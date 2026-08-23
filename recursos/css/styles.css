@@ -66,6 +66,7 @@ body {
   height: 600px;
   background: radial-gradient(circle, rgba(139, 92, 246, 0.25) 0%, rgba(15, 23, 42, 0) 70%);
   pointer-events: none;
+  padding-top: 5rem;
 }
 
 .header-info {
@@ -91,40 +92,51 @@ body {
 
 /* Navegación Estilo Cápsula (Pill Navigation) */
 .site-nav {
-  position: relative;
-  z-index: 1;
+  position: fixed;            /* Lo fija en la ventana del navegador */
+  top: 1.25rem;                /* Distancia desde la parte superior */
+  left: 50%;                  /* Centrado horizontal */
+  transform: translateX(-50%); /* Centrado exacto */
+  z-index: 1000;              /* Asegura que quede por encima de todo el contenido */
+  width: auto;
+  max-width: 90%;
 }
 
 .site-nav ul {
   list-style: none;
-  display: inline-flex;
+  display: flex;
+  align-items: center;
   gap: 0.5rem;
-  background-color: rgba(255, 255, 255, 0.08);
-  padding: 0.4rem;
+  background-color: rgba(255, 255, 255, 0.92); /* Fondo blanco semitransparente estilo Tiendanube */
+  padding: 0.5rem 0.75rem;
   border-radius: var(--tn-radius-btn);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(16px);                  /* Efecto de cristal esmerilado */
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.12); /* Sombra flotante */
+  flex-wrap: nowrap;
+  white-space: nowrap;
 }
 
 .site-nav a {
   display: inline-block;
-  padding: 0.6rem 1.4rem;
+  padding: 0.6rem 1.25rem;
   text-decoration: none;
   font-weight: 600;
   font-size: 0.875rem;
   border-radius: var(--tn-radius-btn);
-  color: #cbd5e1;
+  color: var(--tn-text-heading);              /* Texto oscuro para resaltar sobre fondo claro */
   transition: var(--tn-transition);
 }
 
 .site-nav a.active {
   background-color: var(--tn-brand-purple);
   color: #ffffff;
-  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4);
+  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
 }
 
 .site-nav a.active:hover {
   background-color: var(--tn-brand-hover);
+  color: #ffffff;
 }
 
 .site-nav a.disabled {
