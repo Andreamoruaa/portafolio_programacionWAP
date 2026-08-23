@@ -1,0 +1,388 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Paleta de Colores Principal */
+  --primary-dark: #1e102d;      /* Morado noche profundo */
+  --primary-purple: #4c1d95;    /* Morado institucional/técnico */
+  --accent-purple: #7c3aed;     /* Morado brillante para estados activos/botones */
+  --soft-lilac: #8b5cf6;        /* Lila medio */
+  --light-lilac: #f3e8ff;       /* Lila muy suave para fondos de contraste */
+  --accent-light: #ddd6fe;      /* Borde/acento lila claro */
+
+  /* Neutrales */
+  --bg-main: #f8f6fc;           /* Fondo grisáceo lila ultra claro */
+  --card-bg: #ffffff;          /* Fondo blanco de tarjetas */
+  --text-main: #1f2937;         /* Texto principal de lectura */
+  --text-muted: #6b7280;        /* Texto secundario */
+  --text-light: #f9fafb;        /* Texto claro sobre fondos oscuros */
+
+  /* Interacción & Estados */
+  --active-color: #a855f7;
+  --disabled-color: #9ca3af;
+  --disabled-bg: #e5e7eb;
+
+  /* Elevación y Bordes */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --shadow-sm: 0 2px 8px rgba(76, 29, 149, 0.05);
+  --shadow-md: 0 10px 25px -5px rgba(76, 29, 149, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
+  --shadow-hover: 0 18px 35px -5px rgba(124, 58, 237, 0.15);
+  --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 2. Reseteo y Estilos Base */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  line-height: 1.65;
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* 3. Encabezado de la Página (Header) */
+.site-header {
+  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-purple) 100%);
+  color: var(--text-light);
+  padding: 2.5rem 1.5rem 1.5rem;
+  box-shadow: 0 4px 20px rgba(30, 16, 45, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.site-header::before {
+  content: '';
+  position: absolute;
+  top: -40%;
+  right: -10%;
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.header-info {
+  max-width: 1100px;
+  margin: 0 auto 1.75rem auto;
+  text-align: center;
+}
+
+.header-info h1 {
+  font-size: 2.1rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  margin-bottom: 0.4rem;
+  background: linear-gradient(120deg, #ffffff, var(--accent-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.header-info p {
+  font-size: 0.95rem;
+  color: var(--accent-light);
+  font-weight: 400;
+  opacity: 0.9;
+}
+
+/* Navegación del Sitio */
+.site-nav {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.site-nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.site-nav a {
+  display: inline-block;
+  padding: 0.55rem 1.25rem;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9rem;
+  border-radius: var(--radius-sm);
+  transition: var(--transition);
+}
+
+.site-nav a.active {
+  background-color: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  border: 1px solid rgba(221, 214, 254, 0.3);
+  backdrop-filter: blur(8px);
+}
+
+.site-nav a.active:hover {
+  background-color: var(--accent-purple);
+  border-color: var(--accent-purple);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+}
+
+.site-nav a.disabled {
+  color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(0, 0, 0, 0.15);
+  cursor: not-allowed;
+  pointer-events: none;
+  border: 1px solid transparent;
+}
+
+/* 4. Contenedor Principal y Tarjetas */
+.content-container {
+  max-width: 900px;
+  width: 90%;
+  margin: 2.5rem auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  flex: 1;
+}
+
+.card {
+  background-color: var(--card-bg);
+  border-radius: var(--radius-md);
+  padding: 2.25rem;
+  box-shadow: var(--shadow-md);
+  border: 1px solid rgba(221, 214, 254, 0.5);
+  transition: var(--transition);
+  position: relative;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--accent-light);
+}
+
+/* Encabezados y Jerarquía Tipográfica */
+.card h2 {
+  color: var(--primary-purple);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 3px solid var(--light-lilac);
+  position: relative;
+}
+
+.card h2::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background-color: var(--accent-purple);
+  border-radius: 2px;
+}
+
+.card h3 {
+  color: var(--primary-dark);
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin: 1.5rem 0 0.5rem 0;
+  display: flex;
+  align-items: center;
+}
+
+.card h3::before {
+  content: '❖';
+  color: var(--soft-lilac);
+  margin-right: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.card p {
+  color: var(--text-main);
+  margin-bottom: 1rem;
+  text-align: justify;
+}
+
+/* Listas en Tarjetas */
+.card ul {
+  list-style: none;
+  margin-top: 0.75rem;
+}
+
+.card ul li {
+  padding: 0.6rem 0.8rem;
+  margin-bottom: 0.5rem;
+  background-color: var(--bg-main);
+  border-left: 4px solid var(--soft-lilac);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-size: 0.95rem;
+}
+
+.card ul li strong {
+  color: var(--primary-purple);
+}
+
+/* 5. Formulario de Contacto */
+#contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin-top: 1rem;
+}
+
+#contact-form label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--primary-dark);
+  margin-bottom: -0.6rem;
+}
+
+#contact-form input,
+#contact-form textarea {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: 1.5px solid var(--accent-light);
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 0.95rem;
+  background-color: #faf8ff;
+  color: var(--text-main);
+  transition: var(--transition);
+}
+
+#contact-form input:focus,
+#contact-form textarea:focus {
+  outline: none;
+  border-color: var(--accent-purple);
+  background-color: #ffffff;
+  box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.12);
+}
+
+#contact-form button[type="submit"] {
+  align-self: flex-start;
+  background: linear-gradient(135deg, var(--accent-purple), var(--primary-purple));
+  color: #ffffff;
+  border: none;
+  padding: 0.85rem 2rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.25);
+}
+
+#contact-form button[type="submit"]:hover {
+  background: linear-gradient(135deg, #6d28d9, #3b0764);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(124, 58, 237, 0.35);
+}
+
+#contact-form button[type="submit"]:active {
+  transform: translateY(0);
+}
+
+/* 6. Pie de Página (Footer) */
+.site-footer {
+  background-color: var(--primary-dark);
+  color: var(--accent-light);
+  padding: 2.5rem 1.5rem;
+  margin-top: auto;
+  border-top: 3px solid var(--accent-purple);
+  text-align: center;
+}
+
+.site-footer > p {
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+  opacity: 0.85;
+}
+
+.footer-links h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.social-cv-links {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.social-cv-links a {
+  color: var(--accent-light);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.4rem 0.9rem;
+  border-radius: var(--radius-sm);
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(221, 214, 254, 0.15);
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.social-cv-links a:hover {
+  background-color: var(--accent-purple);
+  color: #ffffff;
+  border-color: var(--accent-purple);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+}
+
+.social-cv-links i {
+  font-size: 0.85rem;
+}
+
+/* 7. Adaptabilidad Responsive */
+@media (max-width: 768px) {
+  .site-header {
+    padding: 2rem 1rem 1.25rem;
+  }
+
+  .header-info h1 {
+    font-size: 1.6rem;
+  }
+
+  .content-container {
+    width: 92%;
+    margin: 1.5rem auto;
+  }
+
+  .card {
+    padding: 1.5rem;
+  }
+
+  #contact-form button[type="submit"] {
+    width: 100%;
+  }
+
+  .social-cv-links {
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .social-cv-links a {
+    width: 100%;
+    max-width: 280px;
+    justify-content: center;
+  }
+}
