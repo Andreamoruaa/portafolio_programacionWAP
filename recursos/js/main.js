@@ -23,10 +23,10 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
   btnSubmit.textContent = 'Enviando...';
 
   // 1. Te envía el correo a ti
-  emailjs.sendForm('YOUR_SERVICE_ID', 'TEMPLATE_PARA_TI', this)
+  emailjs.sendForm('service_rc7r2se', 'template_ceikxmr', this)
     .then(() => {
       // 2. Envía la respuesta automática al usuario
-      return emailjs.sendForm('YOUR_SERVICE_ID', 'TEMPLATE_AUTORESPONDER', this);
+      return emailjs.sendForm('service_rc7r2se', 'template_ceikxmr', this);
     })
     .then(() => {
       formStatus.style.display = 'block';
