@@ -542,7 +542,9 @@ card-image-wrapper {
 }
 
 .btn-submit {
-  display: inline-flex;
+  display: block;
+  margin: 1.5rem auto 0 auto;
+  padding: 0.9rem 2rem;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
@@ -551,7 +553,7 @@ card-image-wrapper {
   font-weight: 600;
   font-size: 0.95rem;
   padding: 0.9rem 2rem;
-  border-radius: 999px;
+  border-radius: 12px;
   border: none;
   cursor: pointer;
   transition: all 0.3s ease;
