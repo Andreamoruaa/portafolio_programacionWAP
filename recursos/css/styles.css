@@ -182,15 +182,6 @@ body {
   flex: 1;
 }
 
-.card {
-  background-color: var(--tn-card-bg);
-  border-radius: var(--tn-radius-card);
-  padding: 2.5rem;
-  box-shadow: var(--tn-shadow-soft);
-  border: 1px solid var(--tn-border);
-  transition: var(--tn-transition);
-}
-
 .cards-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
