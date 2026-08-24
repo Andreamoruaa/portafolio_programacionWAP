@@ -547,8 +547,8 @@ card-image-wrapper {
   border-radius: 12px;         
   padding: 0.8rem 2rem;        
   border: none;
-  background-color: #6d28d9;   
-  color: #ffffff;
+  background-color: #6d28d9;  
+  color: #d4bff5;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -557,7 +557,7 @@ card-image-wrapper {
 .btn-submit:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 22px rgba(124, 58, 237, 0.4);
-  background: linear-gradient(135deg, #6d28d9 0%, #5b21b6 100%);
+  background: linear-gradient(135deg, #a078e2 0%, #5b21b6 100%);
 }
 
 .btn-submit span {
