@@ -407,19 +407,6 @@ card-image-wrapper {
   margin-bottom: 0.75rem;
 }
 
-.badge-purple {
-  display: inline-block;
-  background: #7c3aed;
-  color: #ffffff;
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  padding: 0.35rem 0.85rem;
-  border-radius: 999px;
-  margin-bottom: 1rem;
-}
-
 .interests-container {
   margin-top: 1.5rem;
   padding-top: 1rem;
@@ -595,7 +582,7 @@ card-image-wrapper {
 /* 6. Pie de Página Limpio */
 .site-footer {
   background-color: var(--tn-dark-bg);
-  color: #d4bdeb;
+  color: #94a3b8;
   padding: 3rem 1.5rem;
   margin-top: auto;
   text-align: center;
@@ -640,45 +627,10 @@ card-image-wrapper {
   border-color: var(--tn-brand-purple);
   transform: translateY(-2px);
 }
-
 /* 9. Media Queries */
 @media (max-width: 768px) {
   .hero-title { font-size: 2.2rem; }
   .hero-subtitle { font-size: 1.3rem; }
   .side-nav-right { display: none; }
   .btn-submit { width: 100%; }
-  .site-header {
-    padding: 2.5rem 1rem 2rem;
-  }
-  
-  .header-info h1 {
-    font-size: 1.8rem;
-  }
-  
-  .site-nav ul {
-    flex-direction: column;
-    border-radius: 16px;
-    width: 100%;
-  }
-
-  .site-nav a {
-    text-align: center;
-  }
-
-  .card {
-    padding: 1.5rem;
-  }
-
-  .card-hero {
-    grid-template-columns: 1fr;
-    padding: 1.75rem;
-  }
-
-  .card-image-wrapper {
-    height: 150px;
-  }
-
-  #contact-form button[type="submit"] {
-    width: 100%;
-  }
 }
