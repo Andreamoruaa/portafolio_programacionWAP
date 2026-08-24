@@ -544,7 +544,7 @@ card-image-wrapper {
 .btn-submit {
   display: block;
   margin: 1.5rem auto 0 auto; 
-  border-radius: 12px;         
+  border-radius: 20px 20px 0 0;         
   padding: 0.8rem 2rem;        
   border: none;
   background-color: #6d28d9;   
