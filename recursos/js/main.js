@@ -26,7 +26,7 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
   emailjs.sendForm('service_rc7r2se', 'template_ceikxmr', this)
     .then(() => {
       // 2. Envía la respuesta automática al usuario
-      return emailjs.sendForm('service_rc7r2se', 'template_ceikxmr', this);
+      return emailjs.sendForm('service_rc7r2se', 'template_bmdgtx5', this);
     })
     .then(() => {
       formStatus.style.display = 'block';
