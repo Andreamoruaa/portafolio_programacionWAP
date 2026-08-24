@@ -152,6 +152,7 @@ body {
 .site-nav-hero a:hover {
   background: #f3e8ff;
   color: #7e22ce;
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.35);
 }
 
 .site-nav-hero a.active {
@@ -405,6 +406,19 @@ card-image-wrapper {
   padding: 0.3rem 0.8rem;
   border-radius: 8px;
   margin-bottom: 0.75rem;
+}
+
+.badge-purple {
+  display: inline-block;
+  background: #7c3aed;
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  margin-bottom: 1rem;
 }
 
 .interests-container {
