@@ -8,25 +8,47 @@
     </head>
     <body>
         <!-- Header-->
-        <header class="site-header">
-            <nav class="site-nav">
+        <header class="site-header-hero">
+            <div class="header-bg-shapes">
+                <div class="blob blob-1"></div>
+                <div class="blob blob-2"></div>
+            </div>
+
+            <div class="header-info-hero">
+                <span class="hero-tag">Portafolio académico</span>
+                <h1 class="hero-title">Portafolio de seguridad informática</h1>
+                <h2 class="hero-subtitle">Andrea Morúa Bravo <span>185548</span></h2>
+                <p class="hero-alias"><strong>Morúa</strong></p>
+                <div class="hero-details">
+                    <span>CNO IV- Seguridad Informática</span>
+                    <span class="dot">•</span>
+                    <span>Universidad Politécnica de San Luis Potosí</span>
+                    <span class="dot">•</span>
+                    <span>7mo semestre - Otoño 2026</span>
+                </div>
+            </div>
+            <nav class="site-nav-hero">
                 <ul>
                     <li><a href="index.html" class="active">Inicio</a></li>
                     <li><a href="parcial1.html" class="active">Parcial 1</a></li>
                     <li><a href="#" class="disabled">Parcial 2</a></li>
                     <li><a href="#" class="disabled">Parcial 3</a></li>
+                    <li><a href="#contacto" class="active">Contacto</a></li>
                 </ul>
             </nav>
-            <div class="header-info">
-                <h1>Portafolio de Seguridad Informática</h1>
-                <h2>Andrea Morúa Bravo (185548)</h2>
-                <h2>Alias: Morúa</h2>
-                <p>CNO IV - Seguridad Informática | Universidad Politécnica de San Luis Potosí</p>
-                <p>7mo Semestre | Otoño 2026</p>
-            </div>
         </header>
         
         <main class="content-container">
+            <nav class="side-nav-right" id="sideNav">
+                <div class="side-nav-title">Navegación</div>
+                    <ul>
+                        <li><a href="index.html" class="active">Inicio</a></li>
+                        <li><a href="parcial1.html">Parcial 1</a></li>
+                        <li><a href="#" class="disabled">Parcial 2</a></li>
+                        <li><a href="#" class="disabled">Parcial 3</a></li>
+                        <li><a href="#contacto" class="active">Contacto</a></li>
+                    </ul>
+            </nav>
             <!-- Main content -->
             <article class="card card-hero fede-in">
                 <div class="card-content">
@@ -100,7 +122,7 @@
                     </div>
                 </div>
             </article>    
-
+            <section id="contacto">
             <article class="card card-contact fade-in-up delay-2">
                 <span class="badge-tag">Contacto</span>
                 <p class="subtitle-contact">Si deseas ponerte en contacto conmigo, puedes enviarme un mensaje:</p>
@@ -120,6 +142,7 @@
                     <button type="submit" class="btn-submit">Enviar mensaje</button>
                 </form>
             </article>
+            </section>
         </main>
 
         <!-- Footer -->

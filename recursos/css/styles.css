@@ -1,32 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap');
 :root {
-  /* Paleta Inspirada en Tiendanube (Variante Morada / Lila) */
-  --tn-brand-purple: #6366f1;   /* Morado/Índigo vibrante (Principal/CTAs) */
-  --tn-brand-hover: #4f46e5;    /* Hover para botones principales */
-  --tn-accent-violet: #8b5cf6;  /* Violeta de acento */
-  --tn-light-violet: #f3e8ff;   /* Fondo suave lila para badges/destacados */
-  --tn-dark-bg: #0f172a;        /* Azul noche/Oscuro para Footer y Header */
+  --tn-brand-purple: #6366f1;  
+  --tn-brand-hover: #4f46e5;    
+  --tn-accent-violet: #8b5cf6;  
+  --tn-light-violet: #f3e8ff;   
+  --tn-dark-bg: #0f172a;        
 
-  /* Neutrales de Fondo y Superficie */
-  --tn-body-bg: #f3ebfc;        /* Gris ultra claro y limpio */
-  --tn-card-bg: #ffffff;        /* Blanco puro */
-  --tn-border: #e2e8f0;         /* Líneas de división finas */
+  --tn-body-bg: #f3ebfc;        
+  --tn-card-bg: #ffffff;        
+  --tn-border: #e2e8f0;         
   
-  /* Textos */
-  --tn-text-heading: #0f172a;   /* Títulos oscuros de alto contraste */
-  --tn-text-body: #475569;      /* Texto de lectura suave */
-  --tn-text-muted: #64748b;     /* Texto secundario */
+  --tn-text-heading: #0f172a;   
+  --tn-text-body: #475569;      
+  --tn-text-muted: #64748b;     
 
-  /* Borde Redondeado y Sombras Estilo Tiendanube */
   --tn-radius-card: 20px;
-  --tn-radius-btn: 9999px;      /* Botones 100% redondeados (Pill shape) */
+  --tn-radius-btn: 9999px;      
   --tn-radius-input: 12px;
   --tn-shadow-soft: 0 10px 25px -5px rgba(15, 23, 42, 0.05), 0 8px 10px -6px rgba(15, 23, 42, 0.01);
   --tn-shadow-hover: 0 20px 30px -10px rgba(99, 102, 241, 0.15);
   
   --tn-transition: all 0.25s ease-in-out;
 }
+
 /* Animaciones */
 @keyframes fadeInUp {
   from {
@@ -39,6 +36,10 @@
   }
 }
 
+@keyframes floatBlob {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(30px, 20px) scale(1.1); }
+}
 .fade-in {
   animation: fadeInUp 0.6s ease-out forwards;
 }
@@ -59,28 +60,47 @@
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  background-color: var(--tn-body-bg);
-  background-image: radial-gradient(#e4d4f7 1.5px, transparent 1.5px);
-  background-size: 30px 30px;
-  color: var(--tn-text-body);
-  line-height: 1.6;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+  font-family: 'Inter', sans-serif;
+  background-color: #f3ebfc;
 }
 
 /* Encabezado*/
-.site-header {
-  background: var(--tn-dark-bg);
-  color: #ffffff;
-  padding: 6.5rem 1.5rem 3rem 1.5rem; /* 6.5rem arriba para que no choque con la barra */
-  text-align: center;
+.site-header-hero {
   position: relative;
+  background: linear-gradient(135deg, #e9d5ff 0%, #d8b4fe 50%, #c084fc 100%);
+  padding: 5rem 1.5rem 3.5rem 1.5rem;
+  text-align: center;
   overflow: hidden;
+  border-bottom: 2px solid #c4b5fd;
+  box-shadow: 0 10px 30px rgba(124, 58, 237, 0.1);
 }
 
-.site-header::before {
+.hero-bg-shapes .blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(50px);
+  opacity: 0.6;
+  animation: floatBlob 8s infinite alternate ease-in-out;
+}
+
+.blob-1 {
+  width: 320px;
+  height: 320px;
+  background: #a855f7;
+  top: -10%;
+  left: -5%;
+}
+
+.blob-2 {
+  width: 280px;
+  height: 280px;
+  background: #f472b6;
+  bottom: -10%;
+  right: -5%;
+  animation-delay: -4s;
+}
+
+.site-header-hero::before {
   content: '';
   position: absolute;
   top: -50%;
@@ -93,11 +113,69 @@ body {
   padding-top: 5rem;
 }
 
-.header-info {
-  max-width: 800px;
-  margin: 0 auto auto;
+.header-info-hero {
   position: relative;
-  z-index: 1;
+  z-index: 2;
+  max-width: 900px;
+  margin: 0 auto 2.5rem auto
+}
+
+.hero-tag {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.6);
+  color: #6b21a8;
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 0.4rem 1.2rem;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 1.2rem;
+  backdrop-filter: blur(8px);
+}
+
+.hero-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 3.2rem;
+  font-weight: 800;
+  color: #3b0764;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  margin-bottom: 1rem;
+}
+
+.hero-subtitle {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #581c87;
+  margin-bottom: 0.4rem;
+}
+
+.hero-subtitle span {
+  color: #7e22ce;
+  font-weight: 600;
+}
+
+.hero-alias {
+  font-size: 1.2rem;
+  color: #6b21a8;
+  margin-bottom: 1.2rem;
+}
+
+.hero-details {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  font-size: 0.95rem;
+  color: #4c1d95;
+  font-weight: 500;
+}
+
+.hero-details .dot {
+  color: #a855f7;
 }
 
 .header-info h1 {
@@ -115,60 +193,103 @@ body {
 }
 
 /* Menu de navegacion */
-.site-nav {
-  position: fixed;
-  top: 1rem;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1000;
-  width: max-content;
-  max-width: 90%;
+.site-nav-hero {
+  position: relative;
+  z-index: 2;
+  display: inline-block;
 }
 
-.site-nav ul {
+.site-nav-hero ul {
   list-style: none;
   display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  background-color: rgba(255, 255, 255, 0.95);
-  padding: 0.4rem 0.6rem;
-  border-radius: var(--tn-radius-btn);
+  gap: 0.6rem;
+  background: rgba(255, 255, 255, 0.75);
+  padding: 0.5rem 0.75rem;
+  border-radius: 999px;
   backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(226, 232, 240, 0.8);
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+  border: 1.5px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 8px 20px rgba(124, 58, 237, 0.12);
 }
 
-.site-nav a {
-  display: inline-block;
-  padding: 0.5rem 1.1rem;
+.site-nav-hero a {
   text-decoration: none;
+  font-family: 'Outfit', sans-serif;
   font-weight: 600;
-  font-size: 0.85rem;
-  border-radius: var(--tn-radius-btn);
-  color: #1e293b;
-  transition: var(--tn-transition);
+  font-size: 0.95rem;
+  padding: 0.6rem 1.4rem;
+  border-radius: 999px;
+  color: #581c87;
+  transition: all 0.25s ease;
 }
 
-.site-nav a:hover {
-  color: var(--tn-brand-purple);
-  background-color: var(--tn-light-violet);
+.site-nav-hero a:hover {
+  background: #f3e8ff;
+  color: #7e22ce;
 }
-.site-nav a.active {
-  background-color: var(--tn-brand-purple);
+
+.site-nav-hero a.active {
+  background: #7c3aed;
   color: #ffffff;
-  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.35);
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.35);
 }
 
-.site-nav a.active:hover {
-  background-color: var(--tn-brand-hover);
+.side-nav-right {
+  position: fixed;
+  top: 50%;
+  right: -220px; /* Oculto por defecto */
+  transform: translateY(-50%);
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px);
+  border: 1.5px solid #d8b4fe;
+  border-radius: 20px 0 0 20px;
+  padding: 1.25rem 1rem;
+  box-shadow: -8px 10px 25px rgba(124, 58, 237, 0.18);
+  transition: right 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.side-nav-right.visible {
+  right: 0; /* Desliza hacia adentro cuando se hace scroll */
+}
+
+.side-nav-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #7e22ce;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.75rem;
+  padding-left: 0.5rem;
+}
+
+.side-nav-right ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.side-nav-right a {
+  display: block;
+  text-decoration: none;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: 0.875rem;
+  padding: 0.55rem 1rem;
+  border-radius: 10px;
+  color: #4c1d95;
+  transition: all 0.2s ease;
+}
+
+.side-nav-right a:hover {
+  background: #f3e8ff;
+  color: #7c3aed;
+}
+
+.side-nav-right a.active {
+  background: #7c3aed;
   color: #ffffff;
-}
-
-.site-nav a.disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-  pointer-events: none;
 }
 
 /* Contenedor Principal */
@@ -574,6 +695,9 @@ body {
 
 /* 7. Adaptabilidad Móvil */
 @media (max-width: 640px) {
+  .hero-title { font-size: 2.2rem; }
+  .hero-subtitle { font-size: 1.3rem; }
+  .side-nav-right { display: none; }
   .site-header {
     padding: 2.5rem 1rem 2rem;
   }
