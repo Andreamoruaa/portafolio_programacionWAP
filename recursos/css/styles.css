@@ -556,7 +556,6 @@ card-image-wrapper {
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 4px 14px rgba(124, 58, 237, 0.3);
-  align-self: flex-start;
 }
 
 .btn-submit:hover {
@@ -595,7 +594,7 @@ card-image-wrapper {
 
 /* 6. Pie de Página Limpio */
 .site-footer {
-  background-color: #8b5cf6;
+  background-color: #b59bf1;
   color: #94a3b8;
   padding: 3rem 1.5rem;
   margin-top: auto;
@@ -630,15 +629,15 @@ card-image-wrapper {
   font-size: 0.875rem;
   font-weight: 500;
   padding: 0.6rem 1.25rem;
-  border-radius: var(--tn-radius-btn);
+  border-radius: 9999px;
   background-color: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: var(--tn-transition);
+  transition: all 0.25s ease-in-out;
 }
 
 .social-cv-links a:hover {
-  background-color: var(--tn-brand-purple);
-  border-color: var(--tn-brand-purple);
+  background-color: #6366f1;
+  border-color: #6366f1;
   transform: translateY(-2px);
 }
 /* 9. Media Queries */
