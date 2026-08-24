@@ -1,8 +1,3 @@
-/* ==========================================================================
-   PORTAFOLIO DE SEGURIDAD INFORMÁTICA - ESTILOS GENERALES Y HERO LILA PASTEL
-   ========================================================================== */
-
-/* 1. Importación de Tipografías */
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap');
 
 /* 2. Reseteo y Estilos Base */
@@ -33,19 +28,11 @@ body {
 }
 
 /* Formas orgánicas animadas */
-.hero-bg-shapes {
+.hero-bg-shapes .blob {
   position: absolute;
   border-radius: 50%;
   filter: blur(50px);
   opacity: 0.6;
-  animation: floatBlob 8s infinite alternate ease-in-out;
-}
-
-.hero-bg-shapes .blob {
-  position: absolute;
-  border-radius: 50%; /* Asegura que sean círculos y no cuadrados */
-  filter: blur(60px);
-  opacity: 0.45;
   animation: floatBlob 8s infinite alternate ease-in-out;
 }
 
