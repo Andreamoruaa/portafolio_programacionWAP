@@ -33,11 +33,19 @@ body {
 }
 
 /* Formas orgánicas animadas */
-.hero-bg-shapes .blob {
+.hero-bg-shapes {
   position: absolute;
   border-radius: 50%;
   filter: blur(50px);
   opacity: 0.6;
+  animation: floatBlob 8s infinite alternate ease-in-out;
+}
+
+.hero-bg-shapes .blob {
+  position: absolute;
+  border-radius: 50%; /* Asegura que sean círculos y no cuadrados */
+  filter: blur(60px);
+  opacity: 0.45;
   animation: floatBlob 8s infinite alternate ease-in-out;
 }
 
