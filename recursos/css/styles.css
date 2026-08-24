@@ -407,6 +407,19 @@ card-image-wrapper {
   margin-bottom: 0.75rem;
 }
 
+.badge-purple {
+  display: inline-block;
+  background: #7c3aed;
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  margin-bottom: 1rem;
+}
+
 .interests-container {
   margin-top: 1.5rem;
   padding-top: 1rem;
@@ -582,7 +595,7 @@ card-image-wrapper {
 /* 6. Pie de Página Limpio */
 .site-footer {
   background-color: var(--tn-dark-bg);
-  color: #94a3b8;
+  color: #d4bdeb;
   padding: 3rem 1.5rem;
   margin-top: auto;
   text-align: center;
