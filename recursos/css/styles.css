@@ -27,32 +27,6 @@ body {
   box-shadow: 0 10px 30px rgba(124, 58, 237, 0.1);
 }
 
-/* Formas orgánicas animadas */
-.hero-bg-shapes .blob {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(50px);
-  opacity: 0.6;
-  animation: floatBlob 8s infinite alternate ease-in-out;
-}
-
-.blob-1 {
-  width: 320px;
-  height: 320px;
-  background: #a855f7;
-  top: -10%;
-  left: -5%;
-}
-
-.blob-2 {
-  width: 280px;
-  height: 280px;
-  background: #f472b6;
-  bottom: -10%;
-  right: -5%;
-  animation-delay: -4s;
-}
-
 @keyframes floatBlob {
   0% { transform: translate(0, 0) scale(1); }
   100% { transform: translate(30px, 20px) scale(1.1); }
