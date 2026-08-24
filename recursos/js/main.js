@@ -11,54 +11,38 @@ if (sideNav) {
   }
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-  const contactForm = document.getElementById('contact-form');
-  const formStatus = document.getElementById('form-status');
+emailjs.init("nRk8GlO9iUUVwaGE-"); // La encuentras en Account > API Keys
+
+document.getElementById('contact-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+
   const btnSubmit = document.getElementById('btn-submit');
+  const formStatus = document.getElementById('form-status');
 
-  if (contactForm) {
-    contactForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
+  btnSubmit.disabled = true;
+  btnSubmit.textContent = 'Enviando...';
 
-      btnSubmit.disabled = true;
-      btnSubmit.textContent = 'Enviando...';
-      formStatus.style.display = 'none';
-
-      // Captura los datos del formulario
-      const formData = new FormData(contactForm);
-      const data = Object.fromEntries(formData.entries());
-
-      try {
-        const response = await fetch(contactForm.action, {
-          method: 'POST',
-          headers: { 
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-          },
-          body: JSON.stringify(data)
-        });
-
-        if (response.ok) {
-          formStatus.style.display = 'block';
-          formStatus.style.backgroundColor = '#ede9fe';
-          formStatus.style.color = '#6d28d9';
-          formStatus.style.border = '1px solid #c4b5fd';
-          formStatus.innerHTML = '¡Gracias por tu mensaje! Lo he recibido correctamente y te responderé en breve.';
-          
-          contactForm.reset();
-        } else {
-          throw new Error('Error en el envío');
-        }
-      } catch (error) {
-        formStatus.style.display = 'block';
-        formStatus.style.backgroundColor = '#fef2f2';
-        formStatus.style.color = '#991b1b';
-        formStatus.style.border = '1px solid #fca5a5';
-        formStatus.innerHTML = 'Ocurrió un error al enviar el mensaje. Revisa tu conexión o intenta más tarde.';
-      } finally {
-        btnSubmit.disabled = false;
-        btnSubmit.textContent = 'Enviar mensaje';
-      }
+  // 1. Te envía el correo a ti
+  emailjs.sendForm('YOUR_SERVICE_ID', 'TEMPLATE_PARA_TI', this)
+    .then(() => {
+      // 2. Envía la respuesta automática al usuario
+      return emailjs.sendForm('YOUR_SERVICE_ID', 'TEMPLATE_AUTORESPONDER', this);
+    })
+    .then(() => {
+      formStatus.style.display = 'block';
+      formStatus.style.backgroundColor = '#ede9fe';
+      formStatus.style.color = '#6d28d9';
+      formStatus.innerHTML = '¡Mensaje enviado con éxito! Se ha enviado una confirmación a tu correo.';
+      this.reset();
+    })
+    .catch((error) => {
+      formStatus.style.display = 'block';
+      formStatus.style.backgroundColor = '#fef2f2';
+      formStatus.style.color = '#991b1b';
+      formStatus.innerHTML = 'Ocurrió un error al enviar el mensaje.';
+    })
+    .finally(() => {
+      btnSubmit.disabled = false;
+      btnSubmit.textContent = 'Enviar mensaje';
     });
-  }
 });
