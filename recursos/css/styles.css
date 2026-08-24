@@ -542,22 +542,32 @@ card-image-wrapper {
 }
 
 .btn-submit {
-  display: block;
-  margin: 1.5rem auto 0 auto; /* Centra el botón horizontalmente */
-  border-radius: 12px;         
-  padding: 0.8rem 2rem;        
-  border: none;
-  background-color: #6d28d9;  
-  color: #d4bff5;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  margin: 1.5rem auto 0 auto;
+  padding: 0.85rem 2.5rem;
+  background: linear-gradient(135deg, #7c3aed, #6d28d9) !important;
+  color: #ffffff !important;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
   font-weight: 600;
+  border: none !important;
+  border-radius: 50px !important; /* Bordes redondeados tipo píldora */
+  box-shadow: 0 4px 14px rgba(109, 40, 217, 0.35);
   cursor: pointer;
   transition: all 0.3s ease;
+  width: fit-content;
 }
 
 .btn-submit:hover {
+  background: linear-gradient(135deg, #6d28d9, #5b21b6) !important;
   transform: translateY(-2px);
-  box-shadow: 0 8px 22px rgba(124, 58, 237, 0.4);
-  background: linear-gradient(135deg, #a078e2 0%, #5b21b6 100%);
+  box-shadow: 0 6px 20px rgba(109, 40, 217, 0.45);
+}
+
+.btn-submit:active {
+  transform: translateY(0);
 }
 
 .btn-submit span {
