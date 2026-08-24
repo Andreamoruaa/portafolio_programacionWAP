@@ -595,7 +595,7 @@ card-image-wrapper {
 
 /* 6. Pie de Página Limpio */
 .site-footer {
-  background-color: var(--tn-dark-bg);
+  background-color: #8b5cf6;
   color: #94a3b8;
   padding: 3rem 1.5rem;
   margin-top: auto;
