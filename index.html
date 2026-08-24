@@ -114,7 +114,12 @@
             <article class="card card-contact fade-in-up delay-2">
                 <span class="badge-tag">Contacto</span>
                 <p class="subtitle-contact">Si deseas ponerte en contacto conmigo, puedes enviarme un mensaje:</p>
-                <form id="contact-form" action="https://formspree.io/f/andreamoruaa@gmail.com"" method="POST">
+                <form id="contact-form" action="https://formsubmit.co/andreamoruaa@gmail.com" method="POST">
+                    <!-- Campo oculto para enviar la respuesta automática al usuario -->
+                    <input type="hidden" name="_autoresponse" value="¡Hola! He recibido tu mensaje correctamente. Muchas gracias por contactarme, en breve me pondré en comunicación contigo. - Andrea Morúa">
+                    
+                    <!-- Desactiva el Captcha molesto de FormSubmit -->
+                    <input type="hidden" name="_captcha" value="false">
                     <div class="input-group">
                         <label for="nombre">Nombre:</label>
                         <input type="text" id="nombre" placeholder="Tu nombre" name="name" required>
