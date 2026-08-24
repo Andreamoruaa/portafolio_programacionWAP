@@ -114,7 +114,7 @@
             <article class="card card-contact fade-in-up delay-2">
                 <span class="badge-tag">Contacto</span>
                 <p class="subtitle-contact">Si deseas ponerte en contacto conmigo, puedes enviarme un mensaje:</p>
-                <form id="contact-form">
+                <form id="contact-form" action="https://formspree.io/f/mdenvjvo" method="POST">
                     <div class="input-group">
                         <label for="nombre">Nombre:</label>
                         <input type="text" id="nombre" placeholder="Tu nombre" name="name" required>
@@ -133,6 +133,7 @@
                     </div>
                     <button type="submit" class="btn-submit">Enviar mensaje</button>
                 </form>
+                <div id="form-status" style="display: none; margin-top: 1rem; padding: 1rem; border-radius: 12px; font-weight: 600;"></div>    
             </article>
             </section>
         </main>
