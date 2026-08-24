@@ -54,34 +54,75 @@
             </div>
 
             <!-- Perfil del Estudiante-->
-            <section id="perfil" class="card">
-                <h2>Perfil del estudiante</h2>
+            <article class="card card-profile fade-in-up">
+                <div class="card-header-icon">
+                    <div class="card-icon">👩‍💻</div>
+                    <span class="badge-tag">Perfil profesional </span>
+                    <h2>Perfil de estudiante</h2>
+                </div>
                 <p>Mi nombre es Andrea Morúa Bravo, estudiante de la Universidad Politécnica de San Luis Potosí con un perfil enfocado en las Tecnologías de la Información. Cuento con experiencia en el desarrollo e implementación de sistemas de software reales, destacando el diseño y despliegue de un sistema de punto de venta (POS) integral para el sector restaurantero. Mi perfil es de desarrollo web backend, incorporando el diseño del software.</p>
-                <h3>Áreas de interés</h3>
-                <p>Me interesa el enfoque analítico orientado a la ciberseguridad, especialmente las ramas de análisis forense, seguridad en redes y criptografía.</p>
-            </section>
+                
+                <div class="interests-container">
+                    <h3>Áreas de interés</h3>
+                    <div class="tags-wrapper">
+                        <span class="chip-tag">Análisis forense</span>
+                        <span class="chip-tag">Seguridad en redes</span>
+                        <span class="chip-tag">Criptografía</span>
+                        <span class="chip-tag">Desarrollo backend</span>
+                        <span class="chip-tag">Diseño y arquitectura de datos</span>
+                    </div>
+                </div>
+            </article>
 
-            <section id="tecnica" class="card">
-                <h2>Información Técnica</h2>
-                <ul>
-                    <li><strong>Lenguajes de programación:</strong> HTML, CSS, JavaScript, Python</li>
-                    <li><strong>Control de versiones:</strong> Git, GitHub</li>
-                    <li><strong>Metodologías ágiles:</strong> Scrum, Kanban</li>
-                </ul>
-            </section>
+            <!-- Información Técnica -->
+            <article class="card card-tech fade-in-up delay-1">
+                <span class="badge-tag">Skills</span>
+                <h2>Habilidades Técnicas</h2>
+                <div class="tech-grid">
+                    <div class="tech-box">
+                        <div class="tech-title">Lenguajes de programación</div>
+                        <div class="tech-pills">
+                            <span class="pill">HTML</span>
+                            <span class="pill">CSS</span>
+                            <span class="pill">JavaScript</span>
+                            <span class="pill">Python</span>
+                            <span class="pill">SQL</span>
+                            <span class="pill">PHP</span>
+                            <span class="pill">C++</span>
+                            <span class="pill">Java</span>
+                        </div>
+                    </div>
+                    <div class="tech-box">
+                        <div class="tech-title">Control de versiones</div>
+                        <div class="tech-pills">
+                            <span class="pill">Git</span>
+                            <span class="pill">GitHub</span>
+                        </div>
+                    </div>
+                </div>
+            </article>    
 
-            <section id="contacto" class="card">
-                <h2>Formulario de Contacto</h2>
+            <article class="card card-contact fade-in-up delay-2">
+                <span class="badge-tag">Contacto</span>
+                <p class="subtitle-contact">Si deseas ponerte en contacto conmigo, puedes enviarme un mensaje:</p>
                 <form id="contact-form">
-                        <label for="name">Nombre:</label>
-                        <input type="text" id="name" name="name" required>
-                        <label for="email">Correo Electrónico:</label>
-                        <input type="email" id="email" name="email" required>
-                        <label for="mensaje">Mensaje:</label>
-                        <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
-                    <button type="submit">Enviar mensaje</button>
+                    <div class="input-group">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" id="nombre" placeholder="Tu nombre" name="name" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="email">Correo electrónico:</label>
+                        <input type="email" id="email" placeholder="Tu correo electrónico" name="email" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="message">Mensaje:</label>
+                        <textarea id="message" rows="5" placeholder="Escribe tu mensaje aquí..." name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">Enviar mensaje
+                        <span>-></span>>
+                    </button>
                 </form>
-            </section>
+            </article>
         </main>
 
         <!-- Footer -->
