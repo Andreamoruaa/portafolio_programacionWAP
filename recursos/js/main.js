@@ -22,16 +22,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
       btnSubmit.disabled = true;
       btnSubmit.textContent = 'Enviando...';
+      formStatus.style.display = 'none';
 
+      // Captura los datos del formulario
       const formData = new FormData(contactForm);
+      const data = Object.fromEntries(formData.entries());
 
       try {
         const response = await fetch(contactForm.action, {
           method: 'POST',
-          body: formData,
-          headers: {
+          headers: { 
+            'Content-Type': 'application/json',
             'Accept': 'application/json'
-          }
+          },
+          body: JSON.stringify(data)
         });
 
         if (response.ok) {
@@ -39,18 +43,18 @@ document.addEventListener('DOMContentLoaded', () => {
           formStatus.style.backgroundColor = '#ede9fe';
           formStatus.style.color = '#6d28d9';
           formStatus.style.border = '1px solid #c4b5fd';
-          formStatus.innerHTML = '¡Gracias por tu mensaje! Lo he recibido correctamente y te he enviado una confirmación a tu correo.';
+          formStatus.innerHTML = '¡Gracias por tu mensaje! Lo he recibido correctamente y te responderé en breve.';
           
           contactForm.reset();
         } else {
-          throw new Error('Error al enviar');
+          throw new Error('Error en el envío');
         }
       } catch (error) {
         formStatus.style.display = 'block';
         formStatus.style.backgroundColor = '#fef2f2';
         formStatus.style.color = '#991b1b';
         formStatus.style.border = '1px solid #fca5a5';
-        formStatus.innerHTML = 'Ocurrió un error al enviar el mensaje. Por favis intenta de nuevo.';
+        formStatus.innerHTML = 'Ocurrió un error al enviar el mensaje. Revisa tu conexión o intenta más tarde.';
       } finally {
         btnSubmit.disabled = false;
         btnSubmit.textContent = 'Enviar mensaje';
