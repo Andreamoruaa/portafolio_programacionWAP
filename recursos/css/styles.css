@@ -235,14 +235,11 @@ body {
 
 /* 6. Contenedores y Tarjetas de Contenido */
 .content-container {
-  max-width: 1400px;
-  width: 92%;
-  margin: 2rem auto;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  flex: 1;
-  position: relative;
+  max-width: 95% !important; /* Fuerza a usar el 95% de la pantalla */
+  width: 95% !important;
+  margin: 2rem auto !important;
+  display: flex !important;
+  gap: 2rem !important;
 }
 
 .card {
@@ -650,8 +647,8 @@ card-image-wrapper {
 
 /*Columnas de actividades*/
 .activities-section {
-  flex: 1; /* Ocupa todo el espacio disponible antes de la barra lateral */
-  width: 100%;
+  flex: 1 1 auto !important; 
+  width: 100% !important;
 }
 
 /* Encabezado del título principal */
@@ -670,14 +667,15 @@ card-image-wrapper {
 
 /* Grid de 3 Columnas */
 .activities-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.75rem;
-  width: 100%;
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 1.75rem !important; 
+  width: 100% !important;
 }
 
 /* Tarjetas individuales */
 .activity-card {
+  width: 100% !important;
   background: #ffffff;
   border-radius: 20px;
   padding: 1.75rem;
@@ -686,6 +684,7 @@ card-image-wrapper {
   flex-direction: column;
   justify-content: space-between;
   border: 1px solid rgba(196, 181, 253, 0.3);
+  box-sizing: border-box !important;
 }
 
 .activity-title {
