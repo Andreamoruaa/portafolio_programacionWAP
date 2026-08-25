@@ -40,3 +40,31 @@
 2026-08-24 22:57:58.876 | RELEASE:  | Evento 038 | Tecla: c
 2026-08-24 22:58:29.730 | PRESS:  | Evento 039 | Tecla: Key.esc
 2026-08-24 22:58:29.873 | RELEASE:  | Evento 040 | Tecla: Key.esc
+
+--- Inicio de Sesión: 2026-08-25 00:27:24.454055 ---
+2026-08-25 00:27:29.461 | PRESS:  | Evento 001 | Tecla: Key.tab
+2026-08-25 00:27:29.658 | RELEASE:  | Evento 002 | Tecla: Key.tab
+2026-08-25 00:27:29.934 | PRESS:  | Evento 003 | Tecla: Key.tab
+2026-08-25 00:27:30.085 | RELEASE:  | Evento 004 | Tecla: Key.tab
+2026-08-25 00:27:31.419 | PRESS:  | Evento 005 | Tecla: Key.shift
+2026-08-25 00:27:31.575 | RELEASE:  | Evento 006 | Tecla: Key.shift
+2026-08-25 00:27:32.186 | PRESS:  | Evento 007 | Tecla: Key.shift
+2026-08-25 00:27:32.315 | RELEASE:  | Evento 008 | Tecla: Key.shift
+2026-08-25 00:27:37.338 | PRESS:  | Evento 009 | Tecla: Key.enter
+2026-08-25 00:27:37.474 | RELEASE:  | Evento 010 | Tecla: Key.enter
+2026-08-25 00:27:37.851 | PRESS:  | Evento 011 | Tecla: Key.enter
+2026-08-25 00:27:37.950 | RELEASE:  | Evento 012 | Tecla: Key.enter
+2026-08-25 00:27:40.170 | PRESS:  | Evento 013 | Tecla: Key.media_volume_mute
+2026-08-25 00:27:40.298 | RELEASE:  | Evento 014 | Tecla: Key.media_volume_mute
+2026-08-25 00:27:40.979 | PRESS:  | Evento 015 | Tecla: Key.media_volume_down
+2026-08-25 00:27:41.150 | RELEASE:  | Evento 016 | Tecla: Key.media_volume_down
+2026-08-25 00:27:43.991 | PRESS:  | Evento 017 | Tecla: Key.media_previous
+2026-08-25 00:27:44.098 | RELEASE:  | Evento 018 | Tecla: Key.media_previous
+2026-08-25 00:27:44.519 | PRESS:  | Evento 019 | Tecla: r
+2026-08-25 00:27:44.700 | RELEASE:  | Evento 020 | Tecla: r
+2026-08-25 00:27:45.146 | PRESS:  | Evento 021 | Tecla: s
+2026-08-25 00:27:45.397 | RELEASE:  | Evento 022 | Tecla: s
+2026-08-25 00:27:45.712 | PRESS:  | Evento 023 | Tecla: g
+2026-08-25 00:27:45.917 | RELEASE:  | Evento 024 | Tecla: g
+2026-08-25 00:27:46.777 | PRESS:  | Evento 025 | Tecla: Key.esc
+2026-08-25 00:27:46.875 | RELEASE:  | Evento 026 | Tecla: Key.esc
