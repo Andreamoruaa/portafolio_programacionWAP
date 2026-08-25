@@ -646,7 +646,61 @@ card-image-wrapper {
   border-color: #6366f1;
   transform: translateY(-2px);
 }
-/* 9. Media Queries */
+
+/*Columnas de actividades*/
+.activities-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.activity-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.5rem;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(109, 40, 217, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.activity-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(109, 40, 217, 0.15);
+}
+
+.activity-title {
+  color: #4c1d95;
+  font-size: 1.25rem;
+  margin: 0.75rem 0;
+}
+
+.activity-objective, .activity-summary {
+  font-size: 0.9rem;
+  color: #4b5563;
+  margin-bottom: 0.75rem;
+}
+
+.btn-sm {
+  margin: 1rem 0 0 0 !important;
+  padding: 0.6rem 1.5rem !important;
+  font-size: 0.9rem !important;
+  width: 100% !important;
+}
+@media (max-width: 992px) {
+  .activities-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .activities-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 768px) {
   .hero-title { font-size: 2.2rem; }
   .hero-subtitle { font-size: 1.3rem; }
