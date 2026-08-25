@@ -235,11 +235,12 @@ body {
 
 /* 6. Contenedores y Tarjetas de Contenido */
 .content-container {
-  max-width: 95% !important; /* Fuerza a usar el 95% de la pantalla */
-  width: 95% !important;
-  margin: 2rem auto !important;
-  display: flex !important;
-  gap: 2rem !important;
+  max-width: 1100px;
+  width: 90%;
+  margin: 2.5rem auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem
 }
 
 .card {
