@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Actividad 04 - Parcial 1 | Portafolio WAP</title>
+  <link rel="stylesheet" href="recursos/css/styles.css">
+</head>
+<body>
+
+  <!-- Header Hero -->
+  <header class="site-header-hero">
+    <div class="header-info-hero">
+      <span class="hero-tag">Portafolio académico</span>
+      <h1 class="hero-title">Portafolio de seguridad informática</h1>
+      <h2 class="hero-subtitle">Andrea Morúa Bravo <span>185548</span></h2>
+      <p class="hero-alias"><strong>Morúa</strong></p>
+      <div class="hero-details">
+        <span>CNO IV- Seguridad Informática</span>
+        <span class="dot">•</span>
+        <span>Universidad Politécnica de San Luis Potosí</span>
+        <span class="dot">•</span>
+        <span>7mo semestre - Otoño 2026</span>
+      </div>
+    </div>
+    <nav class="site-nav-hero">
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="parcial1.html" class="active">Parcial 1</a></li>
+        <li><a href="#" class="disabled">Parcial 2</a></li>
+        <li><a href="#" class="disabled">Parcial 3</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Contenido Principal -->
+  <main class="content-container">
+    <nav class="side-nav-right" id="sideNav">
+        <div class="side-nav-title">Navegación</div>
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="parcial1.html">Parcial 1</a></li>
+            <li><a href="#" class="disabled">Parcial 2</a></li>
+            <li><a href="#" class="disabled">Parcial 3</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    <article class="card-detail fade-in-up">
+      
+      <!-- Encabezado de la Actividad -->
+      <div class="detail-header-badge">
+        <span class="badge-tag">Parcial 1 — Actividad 04</span>
+        <h1 class="activity-detail-title">Una página demasiado convincente</h1>
+      </div>
+      <!--Introduccion de la actividad-->
+      <section class="detail-section">
+        <h2 class="section-subheading">Introducción</h2>
+        <p>
+            En el ámbito de la ciberseguridad, la ingeniería social representa una de las amenazas más efectivas al explotar el factor humano mediante el engaño y la manipulación. La presente actividad práctica tiene como propósito implementar y analizar un escenario controlado de phishing utilizando el módulo Credential Harvester de Social-Engineer Toolkit (SET) en Kali Linux.
+        </p>
+      </section>
+      <!-- 1. Objetivo de la Actividad -->
+       <section class="detail-section">
+        <h2 class="section-subheading">Objetivo</h2>
+        <p>
+            Implementar y analizar, en un entorno de laboratorio controlado, una simulación de ingeniería social mediante Social-Engineer Toolkit (SET), utilizando una página web ficticia para comprender el funcionamiento de una técnica de captura de información y reconocer los elementos que permiten identificar un intento de phishing.
+        </p>
+      </section>
+
+      <!-- 3. Descripción del Escenario -->
+      <section class="detail-section">
+        <h3 class="section-subheading">Descripción del escenario</h3>
+        <p class="section-desc">
+          <strong>Panadería My Melody</strong> es una franquicia multinacional con infraestructura tecnológica centralizada. El área de seguridad identificó una campaña activa de suplantación de identidad (phishing) donde atacantes envían mensajes falsos indicando: <em>"Su sesión ha expirado. Inicie sesión nuevamente para continuar."</em>
+        </p>
+        <p class="section-desc">
+          El enlace redirige a los empleados a un portal ficticio que suplanta la identidad visual de la empresa y recolecta credenciales mediante Credential Harvesting a través de Social-Engineer Toolkit (SET).
+        </p>
+        <p class="section-desc">
+            La captura de contraseñas y usuarios representa un riesgo de nivel alto/critico ya que
+una vez dentro de la red interna, el atacante puede escalar privilegios, identificar
+vulnerabilidades, desplegar un programa maligno y paralizar las operaciones de las
+tiendas, pueden reutilizar las contraseñas si algunos empleados las reutilizan en otros portales. Con todo
+esto la reputación de la empresa seria dañada e incluso provocando pérdidas
+millonarias.
+        </p>
+      </section>
+
+      <!-- 4. Configuración del Laboratorio -->
+      <section class="detail-section">
+        <h3 class="section-subheading">Configuración del laboratorio</h3>
+        <ul class="custom-list">
+          <li><strong>Sistema Operativo:</strong> Kali Linux</li>
+          <li><strong>Herramientas:</strong> Social-Engineer Toolkit (SET), Mozilla Firefox</li>
+          <li><strong>Archivos del sitio:</strong> <code>index.html</code> (Portal ficticio de Panadería My Melody)</li>
+          <li><strong>Direccionamiento IP del atacante/servidor:</strong> <code>10.0.2.15</code></li>
+        </ul>
+      </section>
+
+      <!-- 5. Código del Portal Ficticio (index.html) -->
+      <section class="detail-section">
+        <h3 class="section-subheading">Código HTML del portal ficticio</h3>
+        <p class="section-desc">
+          Estructura básica del portal clonado creado en Kali Linux utilizando el editor <code>nano</code> para la captura de credenciales </code>:
+        </p>
+        
+        <div class="code-window">
+          <div class="code-window-bar">
+            <div class="code-dots">
+              <span class="dot-btn #140972"></span>
+              <span class="dot-btn #3940aa"></span>
+              <span class="dot-btn #786ecf"></span>
+            </div>
+            <span class="code-title">index.html — Portal Ficticio</span>
+          </div>
+          <div class="code-scroll-container">
+            <pre class="code-block"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Panaderia My Melody - Iniciar sesión&lt;/title&gt;
+    &lt;style&gt;
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background-color: #fde2e2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .login-card {
+            background-color: #ffffff;
+            width: 380px;
+            padding: 30px 25px;
+            border-radius: 12px;
+            border: 2px solid #ffb6c1;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+
+        .logo-img {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 12px;
+        }
+
+        .logo-text {
+            font-size: 20px;
+            font-weight: bold;
+            color: #d8527a;
+            margin-bottom: 15px;
+        }
+
+        .alert-message {
+            background-color: #fff0f3;
+            color: #d8527a;
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-size: 11px;
+            margin-bottom: 20px;
+            border: 1px dashed #ffc0cb;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 13px;
+            color: #b05c75;
+            font-weight: bold;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px 12px;
+            background-color: #fffdf5;
+            border: 1.5px solid #d8527a;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+            color: #333;
+        }
+
+        .form-group input:focus {
+            box-shadow: 0 0 5px rgba(216, 82, 122, 0.4);
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 12px;
+            background-color: #ffaa99;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.3s;
+        }
+
+        .btn-submit:hover {
+            background-color: #f89684;
+        }
+    &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;div class="login-card"&gt;
+            &lt;img src="https://i.pinimg.com/736x/9e/64/28/9e6428bde937208ce1fd56981e3728a4.jpg" alt="Logo de Panaderia My Melody" class="logo-img"&gt;
+            &lt;div class="logo-text"&gt;Panadería My Melody&lt;/div&gt;
+            &lt;div class="alert-message"&gt;
+                Su sesión ha expirado. Inicie sesión nuevamente para continuar.
+            &lt;/div&gt;
+            &lt;form action="" method="POST"&gt;
+            &lt;div class="form-group"&gt;
+                &lt;label for="username"&gt;Usuario:&lt;/label&gt;
+                &lt;input type="text" id="username" name="username" required&gt;
+            &lt;/div&gt;                  
+            &lt;div class="form-group"&gt;
+                &lt;label for="password"&gt;Password:&lt;/label&gt;
+                &lt;input type="password" id="password" name="password" required&gt;
+            &lt;/div&gt;
+            &lt;button type="submit" class="btn-submit"&gt;Iniciar sesión&lt;/button&gt;
+        &lt;/form&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+            </code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. Evidencias del Proceso -->
+      <section class="detail-section">
+        <h3 class="section-subheading">Evidencias y descripción del funcionamiento</h3>
+        
+        <div class="evidence-grid">
+          <figure class="evidence-card">
+            <div class="image-wrapper">
+              <img src="recursos/imagenes/actividad4_set_menu.png" alt="Configuración de SET en Kali Linux" loading="lazy">
+            </div>
+            <figcaption><strong>Ilustración 1:</strong> Configuración del ataque en SET seleccionando <em>Social-Engineering Attacks &gt;Website Attack Vectors &gt; Credential Harvester &gt; Custom Import</em>.</figcaption>
+          </figure>
+
+          <figure class="evidence-card">
+            <div class="image-wrapper">
+              <img src="recursos/imagenes/actividad4_phishing_page.png" alt="Portal ficticio en navegador" loading="lazy">
+            </div>
+            <figcaption><strong>Ilustración 2:</strong> Interfaz visual del portal ficticio de autenticación cargado en el servidor web del atacante (<code>http://10.0.2.15/</code>).</figcaption>
+          </figure>
+
+          <figure class="evidence-card">
+            <div class="image-wrapper">
+              <img src="recursos/imagenes/actividad4_credentials_captured.png" alt="Captura de credenciales en tiempo real" loading="lazy">
+            </div>
+            <figcaption><strong>Ilustración 3:</strong> Captura en tiempo real de las credenciales enviadas por la víctima en la consola de SET.</figcaption>
+          </figure>
+
+          <figure class="evidence-card">
+            <div class="image-wrapper">
+              <img src="recursos/imagenes/actividad4_xml_report.png" alt="Logs de reportes XML guardados en SET" loading="lazy">
+            </div>
+            <figcaption><strong>Ilustración 4:</strong> Almacenamiento persistente de los datos capturados en formato XML bajo el directorio <code>/root/.set/reports/</code>.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- 7. Flujo de Captura y Controles de Seguridad -->
+      <section class="detail-section">
+        <h3 class="section-subheading">Controles de seguridad y mitigación</h3>
+        <p class="section-desc">
+          Para contrarrestar campañas de phishing y la captura de credenciales por servidores de suplantación, se proponen las siguientes medidas defensivas:
+        </p>
+        <ul class="custom-list">
+          <li><strong>Autenticación Multifactor (MFA FIDO2 / WebAuthn):</strong> El uso de llaves físicas de seguridad inmuniza contra portales clonados, ya que la llave valida el nombre de dominio legítimo antes de firmar.</li>
+          <li><strong>Filtros de correo y autenticación (SPF, DKIM, DMARC):</strong> Bloquean el vector de entrada impidiendo que los correos suplantados lleguen a la bandeja de entrada.</li>
+          <li><strong>Gestores de contraseñas corporativos:</strong> Los gestores no autocompletan datos si la URL en la barra de direcciones no coincide exactamente con el dominio registrado.</li>
+          <li><strong>Capacitación y concientización:</strong> Entrenamiento continuo a empleados para detectar incoherencias estéticas, uso de direcciones IP directas y falta de certificados TLS.</li>
+          <li><strong>Inspección de TLS y filtros de ULRs en Gateway:</strong>Bloqueo perimetral de
+dominios no categorizados o IPs directas, impide que las estaciones de trabajo
+locales establezcan conexiones hacia servidores maliciosos</li>
+        </ul>
+      </section>
+
+      <!-- 2. Visor y Descarga del Documento PDF -->
+      <section class="detail-section">
+        <h3 class="section-subheading">Documentación de la práctica (PDF)</h3>
+        <p class="section-desc">
+          Puedes consultar el reporte completo de la práctica directamente a continuación o descargarlo en tu dispositivo:
+        </p>
+
+        <!-- Visor Integrado (Embed / Iframe) -->
+        <div style="width: 100%; height: 650px; border-radius: 16px; overflow: hidden; border: 1.5px solid #d8b4fe; box-shadow: 0 10px 25px rgba(124, 58, 237, 0.1);">
+          <iframe src="recursos/docs/Actividad 04.pdf" width="100%" height="100%" style="border: none;">
+            <p>Tu navegador no soporta la visualización de archivos PDF. <a href="recursos/docs/Actividad 04.pdf">Haz clic aquí para descargarlo.</a></p>
+          </iframe>
+        </div>
+      </section>
+
+      <section class="detail-section">
+        <h2 class="section-subheading">Conclusión</h2>
+        <p>La ejecución de este laboratorio demostró lo accesible que resulta replicar interfaces corporativas para interceptar credenciales en texto plano sin necesidad de vulnerar servidores ni descifrar algoritmos de cifrado. Se constató que la seguridad de una organización no puede depender únicamente del criterio visual del usuario para detectar fraudes, ya que el engaño explota directamente la confianza y la urgencia. En consecuencia, resulta indispensable implementar un esquema de defensa en profundidad que combine la concientización continua del personal con controles técnicos avanzados, tales como la autenticación multifactor (MFA) resistente a phishing y el uso estricto de protocolos cifrados (HTTPS/TLS).</p>
+      </section>
+      <!-- Navegación entre Actividades -->
+      <nav class="activity-navigation">
+        <a href="actividad3_p1.html" class="btn-nav">← Anterior actividad</a>
+        <a href="parcial1.html" class="btn-nav primary">Volver al parcial 1 </a>
+        <a href="#" class="btn-nav">Siguiente actividad →</a>
+      </nav>
+
+    </article>
+  </main>
+
+  <!-- Pie de Página -->
+  <footer class="site-footer">
+    <p style="color:rgb(77, 6, 107)">&copy; 2026 Andrea Morúa Bravo. Universidad Politécnica de San Luis Potosí</p>
+    <div class="footer-links">
+      <h3>Recursos Profesionales</h3>
+      <ul class="social-cv-links">
+        <li><a href="https://www.linkedin.com/in/andrea-morua-01092732b/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        <li><a href="https://github.com/Andreamoruaa" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        <li><a href="recursos/docs/Andrea Morua Bravo CV.pdf" target="_blank" rel="noopener noreferrer">Curriculum Vitae</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="recursos/js/main.js"></script>
+
+</body>
+</html>
