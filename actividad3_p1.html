@@ -72,7 +72,28 @@
           asociándolos de manera temporal con alta precisión y almacenándolos de forma persistente en un archivo local para su posterior análisis.
         </p>
       </section>
-
+      <!-- Configuración del Laboratorio -->
+      <section class="detail-section">
+        <h2 class="section-subheading">Configuración del laboratorio</h2>
+        <ul class="custom-list">
+          <li><strong>Sistema Operativo:</strong> Windows 10</li>
+          <li><strong>Lenguaje de programación:</strong> Python</li>
+          <li><strong>Librerías:</strong> <code>pynput y datetime</code></li>
+        </ul>
+      </section>
+      <!-- Funcionamiento -->
+      <section class="detail-section">
+        <h2 class="section-subheading">Funcionamiento</h2>
+        <p>
+          El programa hace uso de la clase <code>Listener</code> para suscribirse a las llamadas del sistema operativo encargadas de los eventos de teclado.
+          Cada evento detectado activa una función de respuesta (<code>on_press</code> o <code>on_release</code>), la cual realiza tres acciones principales:
+        </p>
+        <ul class="custom-list">
+          <li><strong>Asociación Temporal y Secuencial:</strong> Asigna una marca de tiempo con precisión de milisegundos (<code>YYYY-MM-DD HH:MM:SS.mmm</code>) y un contador incremental formateado a tres dígitos (<code>evento_001</code>).</li>
+          <li><strong>Manejo de Excepciones:</strong> Diferencia entre teclas alfanuméricas estándar y teclas especiales de sistema (como <code>Key.esc</code> o <code>Key.space</code>).</li>
+          <li><strong>Persistencia Local:</strong> Apertura continua en modo <em>append</em> (<code>"a"</code>) hacia el archivo <code>registrodeteclado.txt</code>, garantizando que todos los registros permanezcan guardados tras la finalización del hilo principal mediante la tecla <code>Esc</code>.</li>
+        </ul>
+      </section>
       <!-- Código Fuente en Ventana Morada Central -->
       <section class="detail-section">
         <h2 class="section-subheading">Código Fuente / Script</h2>
@@ -139,23 +160,10 @@ if __name__ == "__main__":
         </div>
       </section>
 
-      <!-- Informe Detallado -->
-      <section class="detail-section">
-        <h2 class="section-subheading">Informe Detallado</h2>
-        <p>
-          El programa hace uso de la clase <code>Listener</code> para suscribirse a las llamadas del sistema operativo encargadas de los eventos de teclado.
-          Cada evento detectado activa una función de respuesta (<code>on_press</code> o <code>on_release</code>), la cual realiza tres acciones principales:
-        </p>
-        <ul class="custom-list">
-          <li><strong>Asociación Temporal y Secuencial:</strong> Asigna una marca de tiempo con precisión de milisegundos (<code>YYYY-MM-DD HH:MM:SS.mmm</code>) y un contador incremental formateado a tres dígitos (<code>evento_001</code>).</li>
-          <li><strong>Manejo de Excepciones:</strong> Diferencia entre teclas alfanuméricas estándar y teclas especiales de sistema (como <code>Key.esc</code> o <code>Key.space</code>).</li>
-          <li><strong>Persistencia Local:</strong> Apertura continua en modo <em>append</em> (<code>"a"</code>) hacia el archivo <code>registrodeteclado.txt</code>, garantizando que todos los registros permanezcan guardados tras la finalización del hilo principal mediante la tecla <code>Esc</code>.</li>
-        </ul>
-      </section>
 
       <!-- Evidencias / Galería de Imágenes en Columnas -->
       <section class="detail-section">
-        <h2 class="section-subheading">Pruebas Realizadas y Funcionamiento</h2>
+        <h2 class="section-subheading">Pruebas Realizadas</h2>
         <p class="section-desc">A continuación se presentan las evidencias del correcto funcionamiento del script y la persistencia de datos alcanzada:</p>
         
         <div class="evidence-grid">
@@ -185,12 +193,27 @@ if __name__ == "__main__":
       <section class="detail-section">
         <h2 class="section-subheading">Conclusión</h2>
         <p>
-          El desarrollo de esta actividad permitió comprender de manera práctica la facilidad con la que un proceso ejecutado a nivel de sistema puede interceptar las entradas globales del teclado utilizando ganchos de eventos (<em>event hooks</em>). 
+          El desarrollo de esta actividad permitió analizar de forma práctica el funcionamiento interno de las herramientas de espionaje del tipo keylogger. Mediante el uso de ganchos de eventos (hooks) y funciones de respuesta (callbacks), es posible interceptar cualquier interacción física en el teclado de forma transparente para el usuario. 
         </p>
         <p>
-          Desde la perspectiva de la ciberseguridad, esta práctica demuestra la importancia de contar con herramientas de monitoreo de integridad y análisis de comportamiento, ya que el código evidencia cómo un vector de captura de credenciales o información sensible puede operar de forma silenciosa en segundo plano guardando datos con marcas de tiempo muy detalladas.
+          La implementación de la asociación temporal (timestamps) no solo permite reconstruir lo ingresado, sino que abre la puerta a análisis de comportamiento (como inferir patrones de tecleo o contraseñas). Como medida de mitigación, se resalta la importancia de implementar soluciones antivirus que detecten llamadas a APIs de bajo nivel, el uso de teclados virtuales dinámicos y la aplicación del principio de mínimo privilegio para prevenir la ejecución no autorizada de estos scripts.
         </p>
       </section>
+      <!--PDF -->
+    <section class="detail-section">
+        <h2 class="section-subheading">Documentación de la práctica (PDF)</h2>
+        <p class="section-desc">
+          Puedes consultar el reporte completo de la práctica directamente a continuación o descargarlo en tu dispositivo:
+        </p>
+    
+        <!-- Visor Integrado (Embed / Iframe) -->
+        <div style="width: 100%; height: 650px; border-radius: 16px; overflow: hidden; border: 1.5px solid #d8b4fe; box-shadow: 0 10px 25px rgba(124, 58, 237, 0.1);">
+          <iframe src="recursos/docs/Actividad 03_parcial1.pdf" width="100%" height="100%" style="border: none;">
+            <p>Tu navegador no soporta la visualización de archivos PDF. <a href="recursos/docs/Actividad 04.pdf">Haz clic aquí para descargarlo.</a></p>
+          </iframe>
+        </div>
+      </section>
+      
       <!-- Navegación entre Actividades -->
       <nav class="activity-navigation">
         <a href="#" class="btn-nav">← Anterior actividad</a>
