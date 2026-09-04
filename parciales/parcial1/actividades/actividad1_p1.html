@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Actividad 01 - Parcial 1 | Portafolio WAP</title>
+  <link rel="stylesheet" href="../../../assets/css/styles.css">
+</head>
+<body>
+
+  <!-- Header Hero -->
+  <header class="site-header-hero">
+    <div class="header-info-hero">
+      <span class="hero-tag">Portafolio académico</span>
+      <h1 class="hero-title">Portafolio de seguridad informática</h1>
+      <h2 class="hero-subtitle">Andrea Morúa Bravo <span>185548</span></h2>
+      <p class="hero-alias"><strong>Morúa</strong></p>
+      <div class="hero-details">
+        <span>CNO IV- Seguridad Informática</span>
+        <span class="dot">•</span>
+        <span>Universidad Politécnica de San Luis Potosí</span>
+        <span class="dot">•</span>
+        <span>7mo semestre - Otoño 2026</span>
+      </div>
+    </div>
+    <nav class="site-nav-hero">
+      <ul>
+        <li><a href="../../../index.html">Inicio</a></li>
+        <li><a href="../parcial1.html" class="active">Parcial 1</a></li>
+        <li><a href="#" class="disabled">Parcial 2</a></li>
+        <li><a href="#" class="disabled">Parcial 3</a></li>
+        <li><a href="../../../index.html#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Contenido Principal -->
+  <main class="content-container">
+    <nav class="side-nav-right" id="sideNav">
+        <div class="side-nav-title">Navegación</div>
+          <ul>
+            <li><a href="../../../index.html">Inicio</a></li>
+            <li><a href="../parcial1.html">Parcial 1</a></li>
+            <li><a href="#" class="disabled">Parcial 2</a></li>
+            <li><a href="#" class="disabled">Parcial 3</a></li>
+            <li><a href="../../../index.html#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    <article class="card card-detail">
+      
+      <!-- Encabezado de la Actividad -->
+      <div class="detail-header-badge">
+        <span class="badge-tag">Parcial 1 — Actividad 01</span>
+        <h1 class="activity-detail-title">Análisis de un ciberataque real y su impacto empresarial.</h1>
+        <h2 class="activity-detail-subtitle">Colonial Pipeline</h2>
+      </div>
+      <!--Introduccion de la actividad-->
+      <section class="detail-section">
+        <h2 class="section-subheading">Introducción</h2>
+        <p>
+            El presente reporte analiza de manera técnica, económica y estratégica el ciberataque sufrido por la empresa <strong>Colonial Pipeline</strong> en mayo de 2021. Este incidente representó una de las intrusiones de ciberseguridad más críticas a la infraestructura energética de los Estados Unidos, evidenciando el impacto directo de las amenazas informáticas en la continuidad operativa y económica.
+        </p>
+      </section>
+      <!-- 1. Objetivo de la Actividad -->
+       <section class="detail-section">
+        <h2 class="section-subheading">Objetivo</h2>
+        <p>
+            Examinar el caso real de Colonial Pipeline para identificar los vectores de ataque, evaluar la afectación en el modelo CIA (Confidencialidad, Integridad y Disponibilidad), cuantificar el impacto económico en pesos mexicanos (MXN) y determinar lecciones aprendidas y recomendaciones preventivas alineadas a marcos internacionales de ciberseguridad</p>
+      </section>
+
+      <!-- 3. Descripción del Escenario -->
+      <section class="detail-section">
+        <h2 class="section-subheading">Descripción del escenario</h2>
+        <p class="section-desc">
+            Colonial Pipeline opera un sistema de oleoductos de 8,850 km responsable de transportar más del 45% del combustible consumido en la Costa Este de los Estados Unidos. El entorno técnico combinaba una red corporativa de Tecnologías de la Información (IT) interconectada con la red de Tecnologías Operativas (OT) sin una estricta segmentación.
+        </p>
+      </section>
+
+      <!-- 4. contexto general del caso -->
+      <section class="detail-section">
+        <h2 class="section-subheading">Contexto General</h2>
+        <p class="section-desc">
+         El 29 de abril de 2021, el grupo de ciberdelincuentes <strong>DarkSide</strong> obtuvo acceso inicial a la red corporativa comprometiendo credenciales de una cuenta VPN heredada e inactiva que carecía de Autenticación de Múltiples Factores (MFA). Tras exfiltrar 100 GB de datos y desplegar el ransomware el 7 de mayo, la empresa decidió apagar preventivamente la red de oleoductos tras perder el control del sistema de facturación, provocando un desabasto masivo de combustible.
+        </p>    
+        </section>
+
+      <!-- evaluacion de imparto (CIA)-->
+      <section class="detail-section">
+        <h2 class="section-subheading">Evaluación de Impacto (CIA)</h2>
+        <p>
+            <strong>Confidencialidad:</strong> El grupo atacante DarkSide comprometió la privacidad de la empresa al exfiltrar 100 GB de datos confidenciales de la red corporativa. Esta información sensible fue utilizada como mecanismo de doble extorsión, amenazando con hacerla pública si no se realizaba el pago del rescate.
+        </p>
+        <p>
+            <strong>Integridad:</strong> La alteración no autorizada de la información ocurrió mediante el cifrado malicioso de archivos en los servidores de TI. Además, la pérdida de confianza en los datos del sistema de facturación impidió calcular los cobros correctamente, forzando la interrupción operativa.
+        </p>
+        <p>
+            <strong>Disponibilidad:</strong> La continuidad del negocio sufrió el impacto más grave, obligando a apagar la red de oleoductos durante 5 días. Esto detuvo el suministro de 2.5 millones de barriles diarios de combustible, afectando directamente la infraestructura crítica y el abastecimiento de la Costa Este de EE. UU.
+        </p>
+      </section>
+
+      <!-- Costo total aproximado -->
+      <section class="detail-section">
+        <h2 class="section-subheading">Costo total aproximado</h2>
+        <p>
+            Considerando el tipo de cambio del evento (~$19.92 MXN/USD), el costo total estimado ascendió a aproximadamente <strong>$16,217,788,949.65 MXN</strong>. El desglose incluye:
+        </p>
+        <div class="tech-grid">
+          <div class="tech-box">
+            <div class="tech-title">Perdidas operativas (5 dias)</div>
+              <div class="tech-pills">
+                  <span class="pill">~$16,176,907,600.00 MXN</span>
+              </div>
+          </div>
+
+          <div class="tech-box">
+            <div class="tech-title">Daño reputacional</div>
+              <div class="tech-pills">
+                  <span class="pill">~$597,669,000.00 MXN</span>
+              </div>
+          </div>
+          <div class="tech-box">
+            <div class="tech-title">Costos técnicos e inversión de recuperación</div>
+              <div class="tech-pills">
+                  <span class="pill">~$3,985,860,000.00 MXN</span>
+              </div> 
+          </div> 
+          <div class="tech-box">
+            <div class="tech-title">Multas regulatorias</div>
+              <div class="tech-pills">
+                  <span class="pill">~$18,894,309.32 MXN</span>
+              </div>
+          </div>
+          <div class="tech-box">
+            <div class="tech-title">Perdida remanente por rescate pagado</div>
+              <div class="tech-pills">
+                  <span class="pill">~$17,403,511.33 MXN</span>
+              </div>
+          </div>
+        </div>
+      </section>
+            
+      <!--linea del tiempo-->
+       <section class="detail-section">
+        <h2 class="section-subheading">Linea del tiempo</h2>
+        <figure class="evidence-card">
+            <div class="image-wrapper">
+              <img src="../imagenes/Linea del tiempo Colonial Pipeline (3).png" alt="Linea del tiempo del ataque" loading="lazy">
+            </div>
+            <figcaption><strong>Ilustración 5:</strong> Línea del tiempo del ataque a Colonial Pipeline.</figcaption>
+          </figure>
+      </section>
+      <!--Lecciones aprendidas -->
+      <section class="detail-section">
+        <h2 class="section-subheading">Lecciones aprendidas</h2>
+        <p class="section-desc">
+          A partir del análisis del ataque de phishing, se identificaron las siguientes lecciones:
+        </p>
+        <ul class="custom-list">
+            <li><strong>Identidad y acceso:</strong> Una sola cuenta sin MFA ni gestión de ciclo de vida puede comprometer toda una organización.</li>
+            <li><strong>Dependencia IT/OT:</strong> La falta de visibilidad y separación entre sistemas administrativos e industriales obliga a paros totales innecesarios.</li>
+            <li><strong>Resiliencia operativa:</strong> Las empresas deben estar preparadas para operar manualmente ante el secuestro de sus sistemas digitales de facturación o gestión.</li>
+        </ul>
+      </section>
+      <!-- recomendaciones -->
+      <section class="detail-section">
+        <h2 class="section-subheading">Recomendaciones</h2>
+        <p class="section-desc">
+          A partir del análisis del ataque de phishing, se identificaron las siguientes recomendaciones:
+        </p>
+        <ul class="custom-list">
+            <li>Obligar la implementación de <strong>MFA</strong> en todos los accesos remotos y VPNs sin excepción.</li>
+            <li>Implementar <strong>segmentación estricta de red</strong> (VLANs, Firewalls) entre los entornos de IT y OT.</li>
+            <li>Realizar auditorías periódicas de cuentas inactivas y revisiones continuas bajo el modelo de <i>Zero Trust</i>.</li>
+            <li>Desarrollar y probar planes de continuidad del negocio que permitan la operación manual en contingencias de ciberseguridad.</li>    
+        </ul>
+      </section>
+      <!-- 7. Conclusión -->
+      <section class="detail-section">
+          <h2 class="section-subheading">Conclusión</h2>
+            <p>
+                El caso de Colonial Pipeline demuestra que la ciberseguridad trasciende el ámbito puramente informático para convertirse en un factor determinante de la estabilidad económica y operativa. La prevención mediante gobernanza de accesos, políticas de segmentación y planes de respuesta a incidentes resulta infinitamente más rentable que enfrentar los costos directos e indirectos de un ciberataque de escala masiva.
+            </p>  
+        </section>
+      <!-- 2. Visor y Descarga del Documento PDF -->
+      <section class="detail-section">
+        <h2 class="section-subheading">Documentación de la práctica (PDF)</h2>
+        <p class="section-desc">
+          Puedes consultar el reporte completo de la práctica directamente a continuación o descargarlo en tu dispositivo:
+        </p>
+    
+        <!-- Visor Integrado (Embed / Iframe) -->
+        <div style="width: 100%; height: 650px; border-radius: 16px; overflow: hidden; border: 1.5px solid #d8b4fe; box-shadow: 0 10px 25px rgba(124, 58, 237, 0.1);">
+          <iframe src="../docs/Equipo1-act01.pdf" width="100%" height="100%" style="border: none;">
+            <p>Tu navegador no soporta la visualización de archivos PDF. <a href="../docs/Equipo1-act01.pdf">Haz clic aquí para descargarlo.</a></p>
+          </iframe>
+        </div>
+      </section>
+
+      
+      <!-- Navegación entre Actividades -->
+      <nav class="activity-navigation">
+        <a href="../parcial1.html" class="btn-nav primary">Volver al parcial 1 </a>
+        <a href="#" class="btn-nav">Siguiente actividad →</a>
+      </nav>
+
+    </article>
+  </main>
+
+  <!-- Pie de Página -->
+  <footer class="site-footer">
+    <p style="color:rgb(77, 6, 107)">&copy; 2026 Andrea Morúa Bravo. Universidad Politécnica de San Luis Potosí</p>
+    <div class="footer-links">
+      <h3>Recursos Profesionales</h3>
+      <ul class="social-cv-links">
+        <li><a href="https://www.linkedin.com/in/andrea-morua-01092732b/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        <li><a href="https://github.com/Andreamoruaa" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        <li><a href="../../../assets/docs/Andrea Morua Bravo CV.pdf" target="_blank" rel="noopener noreferrer">Curriculum Vitae</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="../../../assets/js/main.js"></script>
+
+</body>
+</html>
