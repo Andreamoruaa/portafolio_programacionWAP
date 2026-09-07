@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proyecto - Parcial 1 | Portafolio WAP</title>
+  <link rel="stylesheet" href="../../../assets/css/styles.css">
+</head>
+<body>
+
+  <!-- Header Hero -->
+  <header class="site-header-hero">
+    <div class="header-info-hero">
+      <span class="hero-tag">Portafolio académico</span>
+      <h1 class="hero-title">Portafolio de seguridad informática</h1>
+      <h2 class="hero-subtitle">Andrea Morúa Bravo <span>185548</span></h2>
+      <p class="hero-alias"><strong>Morúa</strong></p>
+      <div class="hero-details">
+        <span>CNO IV- Seguridad Informática</span>
+        <span class="dot">•</span>
+        <span>Universidad Politécnica de San Luis Potosí</span>
+        <span class="dot">•</span>
+        <span>7mo semestre - Otoño 2026</span>
+      </div>
+    </div>
+    <nav class="site-nav-hero">
+      <ul>
+        <li><a href="../../../index.html">Inicio</a></li>
+        <li><a href="../parcial1.html" class="active">Parcial 1</a></li>
+        <li><a href="#" class="disabled">Parcial 2</a></li>
+        <li><a href="#" class="disabled">Parcial 3</a></li>
+        <li><a href="../../../index.html#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Contenido Principal -->
+  <main class="content-container">
+    <nav class="side-nav-right" id="sideNav">
+        <div class="side-nav-title">Navegación</div>
+          <ul>
+            <li><a href="../../../index.html">Inicio</a></li>
+            <li><a href="../parcial1.html">Parcial 1</a></li>
+            <li><a href="#" class="disabled">Parcial 2</a></li>
+            <li><a href="#" class="disabled">Parcial 3</a></li>
+            <li><a href="../../../index.html#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    <article class="card card-detail">
+      
+      <!-- Encabezado de la Actividad -->
+      <div class="detail-header-badge">
+        <span class="badge-tag">Parcial 1 — Proyecto</span>
+        <h1 class="activity-detail-title">De la teoría a la práctica: walkthrough en acción</h1>
+      </div>
+      <!--Introduccion de la actividad-->
+      <section class="detail-section">
+        <h2 class="section-subheading">Introducción</h2>
+        <p>
+            Este proyecto tiene como objetivo demostrar la capacidad de aplicar conocimientos teóricos de seguridad informática en un entorno práctico, mediante la realización de un walkthrough detallado y la explicación de las técnicas y metodologías utilizadas para vulnerar una máquina virtual. A través de este ejercicio, se busca consolidar la comprensión de los conceptos aprendidos durante el curso y evidenciar la habilidad para identificar y explotar vulnerabilidades en sistemas informáticos.
+        </p>
+      </section>
+      <!-- 1. Objetivo de la Actividad -->
+       <section class="detail-section">
+        <h2 class="section-subheading">Objetivo</h2>
+        <p>
+            Demostrar la capacidad de aplicar conocimientos teóricos de seguridad informática en un entorno práctico, mediante la realización de un walkthrough detallado y la explicación de las técnicas y metodologías utilizadas para vulnerar una máquina virtual.
+        </p>
+      </section>
+
+      <!-- 3. Descripción del Escenario -->
+      <section class="detail-section">
+        <h2 class="section-subheading">Descripción del escenario</h2>
+        <p class="section-desc">
+          <strong>Panadería My Melody</strong> es una franquicia multinacional con infraestructura tecnológica centralizada. El área de seguridad identificó una campaña activa de suplantación de identidad (phishing) donde atacantes envían mensajes falsos indicando: <em>"Su sesión ha expirado. Inicie sesión nuevamente para continuar."</em>
+        </p>
+        <p class="section-desc">
+          El enlace redirige a los empleados a un portal ficticio que suplanta la identidad visual de la empresa y recolecta credenciales mediante Credential Harvesting a través de Social-Engineer Toolkit (SET).
+        </p>
+        <p class="section-desc">
+            
+        </p>
+      </section>
+
+      <!-- 4. Configuración del Laboratorio -->
+      <section class="detail-section">
+        <h2 class="section-subheading">Configuración del laboratorio</h2>
+        <div class="tech-grid">
+            <div class="tech-box">
+                <div class="tech-title">Sistema Operativo</div>
+                <div class="tech-pills">
+                    <span class="pill">Linux</span>
+                </div>
+            </div>
+            <div class="tech-box">
+                <div class="tech-title">Maquinas Virtuales</div>
+                <div class="tech-pills">
+                    <span class="pill">Kali Linux</span>
+                    <span class="pill">Snakeoil</span>
+                </div>
+            </div>
+            <div class="tech-box">
+                <div class="tech-title">Herramientas</div>
+                <div class="tech-pills">
+                    <span class="pill">Mozilla Firefox</span>
+                    <span class="pill">Gobuster</span>
+                </div>
+            </div>
+            <div class="tech-box">
+                <div class="tech-title">Red</div>
+                <div class="tech-pills">
+                    <span class="pill">Adaptador solo anfitrión</span>
+                </div>
+            </div>
+            <div class="tech-box">
+                <div class="tech-title">Direccionamiento IP</div>
+                <div class="tech-pills">
+                    <span class="pill">Kali Linux: 192.168.56.101</span>
+                    <span class="pill">Snakeoil: 192.168.56.102</span>
+                </div>
+            </div>
+        </div>
+      </section>
+
+      <!-- 6. Evidencias del Proceso -->
+      <section class="detail-section">
+        <h2 class="section-subheading">Evidencias y descripción del funcionamiento</h2>
+        
+        <div class="evidence-grid">
+          <figure class="evidence-card">
+            <div class="image-wrapper">
+              <img src="../imagenes/actividad4_set_menu.png" alt="Configuración de SET en Kali Linux" loading="lazy">
+            </div>
+            <figcaption><strong>Ilustración 1:</strong> Configuración del ataque en SET seleccionando <em>Social-Engineering Attacks &gt;Website Attack Vectors &gt; Credential Harvester &gt; Custom Import</em>.</figcaption>
+          </figure>
+
+          <figure class="evidence-card">
+            <div class="image-wrapper">
+              <img src="../imagenes/actividad4_phishing_page.png" alt="Portal ficticio en navegador" loading="lazy">
+            </div>
+            <figcaption><strong>Ilustración 2:</strong> Interfaz visual del portal ficticio de autenticación cargado en el servidor web del atacante (<code>http://10.0.2.15/</code>).</figcaption>
+          </figure>
+
+          <figure class="evidence-card">
+            <div class="image-wrapper">
+              <img src="../imagenes/actividad4_credentials_captured.png" alt="Captura de credenciales en tiempo real" loading="lazy">
+            </div>
+            <figcaption><strong>Ilustración 3:</strong> Captura en tiempo real de las credenciales enviadas por la víctima en la consola de SET.</figcaption>
+          </figure>
+
+          <figure class="evidence-card">
+            <div class="image-wrapper">
+              <img src="../imagenes/actividad4_xml_report.png" alt="Logs de reportes XML guardados en SET" loading="lazy">
+            </div>
+            <figcaption><strong>Ilustración 4:</strong> Almacenamiento persistente de los datos capturados en formato XML bajo el directorio <code>/root/.set/reports/</code>.</figcaption>
+          </figure>
+        </div>
+      </section>
+      <!-- flujo-->
+       <section class="detail-section">
+        <h2 class="section-subheading">Flujo del ataque</h2>
+        <p class="section-desc">
+          El flujo del ataque de phishing mediante SET se puede resumir en los siguientes pasos:
+        </p>
+        <figure class="evidence-card">
+            <div class="image-wrapper">
+              <img src="../imagenes/actividad4_flujo.png" alt="Flujo del ataque de phishing" loading="lazy">
+            </div>
+            <figcaption><strong>Ilustración 5:</strong> Flujo del ataque de phishing mediante SET.</figcaption>
+          </figure>
+      </section>
+      <!--Controles de Seguridad -->
+      <section class="detail-section">
+        <h2 class="section-subheading">Controles de seguridad y mitigación</h2>
+        <p class="section-desc">
+          Para contrarrestar campañas de phishing y la captura de credenciales por servidores de suplantación, se proponen las siguientes medidas defensivas:
+        </p>
+        <ul class="custom-list">
+          <li><strong>Autenticación Multifactor (MFA FIDO2 / WebAuthn):</strong> El uso de llaves físicas de seguridad inmuniza contra portales clonados, ya que la llave valida el nombre de dominio legítimo antes de firmar.</li>
+          <li><strong>Filtros de correo y autenticación (SPF, DKIM, DMARC):</strong> Bloquean el vector de entrada impidiendo que los correos suplantados lleguen a la bandeja de entrada.</li>
+          <li><strong>Gestores de contraseñas corporativos:</strong> Los gestores no autocompletan datos si la URL en la barra de direcciones no coincide exactamente con el dominio registrado.</li>
+          <li><strong>Capacitación y concientización:</strong> Entrenamiento continuo a empleados para detectar incoherencias estéticas, uso de direcciones IP directas y falta de certificados TLS.</li>
+          <li><strong>Inspección de TLS y filtros de ULRs en Gateway:</strong>Bloqueo perimetral de
+dominios no categorizados o IPs directas, impide que las estaciones de trabajo
+locales establezcan conexiones hacia servidores maliciosos</li>
+        </ul>
+      </section>
+      <!-- 7. Conclusión -->
+      <section class="detail-section">
+          <h2 class="section-subheading">Conclusión</h2>
+          <p>La ejecución de este laboratorio demostró lo accesible que resulta replicar interfaces corporativas para interceptar credenciales en texto plano sin necesidad de vulnerar servidores ni descifrar algoritmos de cifrado. Se constató que la seguridad de una organización no puede depender únicamente del criterio visual del usuario para detectar fraudes, ya que el engaño explota directamente la confianza y la urgencia. En consecuencia, resulta indispensable implementar un esquema de defensa en profundidad que combine la concientización continua del personal con controles técnicos avanzados, tales como la autenticación multifactor (MFA) resistente a phishing y el uso estricto de protocolos cifrados (HTTPS/TLS).</p>
+      </section>
+      <!-- 2. Visor y Descarga del Documento PDF -->
+      <section class="detail-section">
+        <h2 class="section-subheading">Documentación de la práctica (PDF)</h2>
+        <p class="section-desc">
+          Puedes consultar el reporte completo de la práctica directamente a continuación o descargarlo en tu dispositivo:
+        </p>
+    
+        <!-- Visor Integrado (Embed / Iframe) -->
+        <div style="width: 100%; height: 650px; border-radius: 16px; overflow: hidden; border: 1.5px solid #d8b4fe; box-shadow: 0 10px 25px rgba(124, 58, 237, 0.1);">
+          <iframe src="../docs/Actividad 04.pdf" width="100%" height="100%" style="border: none;">
+            <p>Tu navegador no soporta la visualización de archivos PDF. <a href="../docs/Actividad 04.pdf">Haz clic aquí para descargarlo.</a></p>
+          </iframe>
+        </div>
+      </section>
+
+      
+      <!-- Navegación entre Actividades -->
+      <nav class="activity-navigation">
+        <a href="#" class="btn-nav">← Anterior actividad</a>
+        <a href="../parcial1.html" class="btn-nav primary">Volver al parcial 1 </a>
+      </nav>
+
+    </article>
+  </main>
+
+  <!-- Pie de Página -->
+  <footer class="site-footer">
+    <p style="color:rgb(77, 6, 107)">&copy; 2026 Andrea Morúa Bravo. Universidad Politécnica de San Luis Potosí</p>
+    <div class="footer-links">
+      <h3>Recursos Profesionales</h3>
+      <ul class="social-cv-links">
+        <li><a href="https://www.linkedin.com/in/andrea-morua-01092732b/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        <li><a href="https://github.com/Andreamoruaa" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        <li><a href="../../../assets/docs/Andrea Morua Bravo CV.pdf" target="_blank" rel="noopener noreferrer">Curriculum Vitae</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="../../../assets/js/main.js"></script>
+
+</body>
+</html>
