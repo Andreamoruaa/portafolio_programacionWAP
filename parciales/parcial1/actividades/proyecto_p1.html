@@ -127,80 +127,112 @@
         <!-- Fase 3 -->
         <h3>2. Enumeración Web y Fuzzing de Endpoints</h3>
         <p>
-          Dado que las aplicaciones Flask no utilizan extensiones tradicionales (como `.php`), el fuzzing de rutas identificó endpoints RESTful abstractos (`/login`, `/registration`, `/secret`, `/run`). Las respuestas `405 Method Not Allowed` confirmaron controladores diseñados para recibir peticiones HTTP `POST`.
+          Dado que las aplicaciones Flask no utilizan extensiones tradicionales (como .php), el fuzzing de rutas identificó endpoints RESTful abstractos (/login, /registration, /secret, /run). Las respuestas 405 Method Not Allowed confirmaron controladores diseñados para recibir peticiones HTTP POST.
         </p>
 
         <!-- Fase 4 -->
         <h3>3. Cracking de Credenciales (John the Ripper)</h3>
         <p>
-          Las contraseñas del sistema estaban almacenadas mediante <strong>PBKDF2-HMAC-SHA256</strong>. Mediante un ataque de diccionario con <code>John the Ripper</code>, se demostró que la seguridad del sistema se vio comprometida debido a una <strong>política débil de contraseñas</strong> elegida por el usuario.
+          Las contraseñas del sistema estaban almacenadas mediante <strong>PBKDF2-HMAC-SHA256</strong>. Mediante un ataque de diccionario con John the Ripper.Esta fase demuestra que, aunque la aplicación implemente un esquema robusto de hashing, la seguridad final sigue dependiendo directamente de la complejidad de la contraseña elegida por el usuario. En este caso no se logro obtener la contraseña de Patrick ya que su contraseña era compleja y no estaba presente en el diccionario utilizado.
         </p>
 
         <!-- Fase 5 -->
         <h3>4. Autenticación y Análisis de JWT</h3>
         <p>
-          Tras autenticarse en `/login`, la API emite un token JWT firmado mediante `HS256`. Al incluir este token dentro de la cookie de sesión (`access_token_cookie`) hacia el endpoint `/secret`, el servidor valida la firma y revela información confidencial: la clave del entorno <code>secret_key</code>.
+          Tras autenticarse en /login, la API emite un token JWT. Al incluir este token dentro de la cookie de sesión (access_token_cookie) hacia el endpoint /secret, el servidor valida la firma y revela información confidencial: la clave del entorno secret_key.
         </p>
 
         <!-- Fase 6 -->
         <h3>5. Explotación: OS Command Injection</h3>
         <p>
-          El endpoint `/run` presentó una vulnerabilidad de <strong>Inyección de Comandos del Sistema Operativo (CWE-78)</strong> al procesar la entrada del usuario en una llamada subyacente (ej. `subprocess.Popen`) usando `shell=True`. Mediante el uso del metacaracter `;` y codificación en Base64 para evitar la ruptura de la estructura JSON, se ejecutó una <em>Reverse Shell</em> hacia Kali Linux.
+          El endpoint /run presentó una vulnerabilidad de inyección de comandos del sistema operativo al procesar la entrada del usuario en una llamada subyacente usando shell=True. Mediante el uso del metacaracter `;` y codificación en Base64 para evitar la ruptura de la estructura JSON, se ejecutó una Reverse Shell.
         </p>
 
         <!-- Fase 7 -->
         <h3>6. Estabilización de TTY y Escalación de Privilegios a Root</h3>
         <p>
-          Con la sesión interactiva establecida, se utilizó el módulo <code>pty</code> de Python para spawnear un entorno Bash completo. Al auditar el archivo de configuración <code>app.py</code>, se identificaron **credenciales en texto plano (CWE-798)**. Debido a la reutilización de contraseñas, la clave del token correspondía al usuario `patrick`, quien contaba con privilegios de `sudo` ilimitados (`sudo su`), logrando el control total del servidor.
+          Con la sesión interactiva establecida, se utilizó el módulo pty de Python para spawnear un entorno Bash completo. Al auditar el archivo de configuración app.py, se identificaron credenciales en texto plano. Debido a la reutilización de contraseñas, la clave del token correspondía al usuario `patrick`, quien contaba con privilegios de sudo ilimitados, logrando el control total del servidor.
         </p>
       </section>
       <!-- 6. Evidencias del Proceso -->
       <section class="detail-section">
-        <h2 class="section-subheading">Evidencias y descripción del funcionamiento</h2>
+        <h2 class="section-subheading">Evidencias del Proceso de Intrusión</h2>
+        <p class="section-desc">
+          A continuación se documenta el flujo de trabajo paso a paso llevado a cabo durante el compromiso de la máquina Snakeoil, desde la fase inicial de reconocimiento hasta el escalamiento completo de privilegios:
+        </p>
         
         <div class="evidence-grid">
+          <!-- Fase 1 & 2: Reconocimiento -->
           <figure class="evidence-card">
             <div class="image-wrapper">
-              <img src="../imagenes/actividad4_set_menu.png" alt="Configuración de SET en Kali Linux" loading="lazy">
+              <img src="../imagenes/proyecto_nmap.png" alt="Escaneo de puertos con Nmap" loading="lazy">
             </div>
-            <figcaption><strong>Ilustración 1:</strong> Configuración del ataque en SET seleccionando <em>Social-Engineering Attacks &gt;Website Attack Vectors &gt; Credential Harvester &gt; Custom Import</em>.</figcaption>
+            <figcaption><strong>Ilustración 1 (Escaneo):</strong> Identificación de puertos abiertos y servicios mediante Nmap (HTTP en puerto 80 y servidor de desarrollo Flask en puerto 8080).</figcaption>
           </figure>
 
+          <!-- Fase 3: Enumeración de Endpoints -->
           <figure class="evidence-card">
             <div class="image-wrapper">
-              <img src="../imagenes/actividad4_phishing_page.png" alt="Portal ficticio en navegador" loading="lazy">
+              <img src="../imagenes/proyecto_gobuster.png" alt="Fuzzing de endpoints con Gobuster" loading="lazy">
             </div>
-            <figcaption><strong>Ilustración 2:</strong> Interfaz visual del portal ficticio de autenticación cargado en el servidor web del atacante (<code>http://10.0.2.15/</code>).</figcaption>
+            <figcaption><strong>Ilustración 2 (Enumeración):</strong> Descubrimiento de rutas de la API REST (`/login`, `/secret`, `/run`) utilizando Gobuster.</figcaption>
           </figure>
 
+          <!-- Fase 5: Autenticación y Obtención de Token JWT -->
           <figure class="evidence-card">
             <div class="image-wrapper">
-              <img src="../imagenes/actividad4_credentials_captured.png" alt="Captura de credenciales en tiempo real" loading="lazy">
+              <img src="../imagenes/proyecto_jwt_auth.png" alt="Autenticación POST y recepción de JWT" loading="lazy">
             </div>
-            <figcaption><strong>Ilustración 3:</strong> Captura en tiempo real de las credenciales enviadas por la víctima en la consola de SET.</figcaption>
+            <figcaption><strong>Ilustración 3 (Autenticación JWT):</strong> Envío de credenciales vía `POST /login` y recepción del token JWT de sesión.</figcaption>
           </figure>
 
+          <!-- Fase 5 (cont): Extracción de la Secret Key -->
           <figure class="evidence-card">
             <div class="image-wrapper">
-              <img src="../imagenes/actividad4_xml_report.png" alt="Logs de reportes XML guardados en SET" loading="lazy">
+              <img src="../imagenes/proyecto_jwt_secret.png" alt="Acceso a endpoint protegido /secret" loading="lazy">
             </div>
-            <figcaption><strong>Ilustración 4:</strong> Almacenamiento persistente de los datos capturados en formato XML bajo el directorio <code>/root/.set/reports/</code>.</figcaption>
+            <figcaption><strong>Ilustración 4 (Exfiltración de Secret Key):</strong> Uso del JWT en la cookie de sesión hacia `/secret` para exfiltrar el parámetro confidencial `secret_key`.</figcaption>
           </figure>
+
+          <!-- Fase 6: Inyección de Comandos -->
+          <figure class="evidence-card">
+            <div class="image-wrapper">
+              <img src="../imagenes/proyecto_command_injection.png" alt="Inyección de comandos en endpoint /run" loading="lazy">
+            </div>
+            <figcaption><strong>Ilustración 5 (Inyección OS):</strong> Inyección del payload codificado en Base64 con metacaracteres `;` a través de la clave `"url"` en el endpoint `/run`.</figcaption>
+          </figure>
+
+          <!-- Fase 6 (cont): Reverse Shell y Estabilización TTY -->
+          <figure class="evidence-card">
+            <div class="image-wrapper">
+              <img src="../imagenes/proyecto_reverse_shell.png" alt="Captura de Reverse Shell en Netcat" loading="lazy">
+            </div>
+            <figcaption><strong>Ilustración 6 (Reverse Shell & TTY):</strong> Conexión remota recibida en el oyente de Netcat y estabilización del entorno interactivo usando `python3 -c "import pty; pty.spawn('/bin/bash')"`.</figcaption>
+          </figure>
+
+          <!-- Fase 7: Auditar Código y Reutilización de Credenciales -->
+          <figure class="evidence-card">
+            <div class="image-wrapper">
+              <img src="../imagenes/proyecto_app_py.png" alt="Lectura del código app.py con credenciales hardcodeadas" loading="lazy">
+            </div>
+            <figcaption><strong>Ilustración 7 (Análisis del Fuente):</strong> Inspección de `app.py` identificando la clave del JWT hardcodeada que coincide con la contraseña del usuario `patrick`.</figcaption>
+          </figure>
+
+          <!-- Fase 7 (cont): Compromiso Total como Root -->
+          <figure class="evidence-card">
+            <div class="image-wrapper">
+              <img src="../imagenes/proyecto_root.png" alt="Escalación de privilegios a Root con sudo" loading="lazy">
+            </div>
+            <figcaption><strong>Ilustración 8 (Compromiso Root):</strong> Reutilización de credenciales para cambiar al usuario `patrick`, ejecución de `sudo su` y confirmación de privilegios como `root` mediante `whoami` e `id`.</figcaption>
+          </figure>
+          <figure class="evidence-card">
+            <div class="image-wrapper">
+              <img src="../imagenes/proyecto_bandera.png" alt="Lectura del archivo root.txt" loading="lazy">
+            </div>
+            <figcaption><strong>Ilustración 9 (Flag Root):</strong> Acceso al archivo `root.txt` en `/root` confirmando el control total del sistema.</figcaption>
         </div>
       </section>
-      <!-- flujo-->
-       <section class="detail-section">
-        <h2 class="section-subheading">Flujo del ataque</h2>
-        <p class="section-desc">
-          El flujo del ataque de phishing mediante SET se puede resumir en los siguientes pasos:
-        </p>
-        <figure class="evidence-card">
-            <div class="image-wrapper">
-              <img src="../imagenes/actividad4_flujo.png" alt="Flujo del ataque de phishing" loading="lazy">
-            </div>
-            <figcaption><strong>Ilustración 5:</strong> Flujo del ataque de phishing mediante SET.</figcaption>
-          </figure>
-      </section>
+
       <!--Controles de Seguridad -->
       <section class="detail-section">
         <h2 class="section-subheading">Controles de seguridad y mitigación</h2>
@@ -208,20 +240,30 @@
           Para remediar las vulnerabilidades identificadas durante la auditoría, se recomienda implementar las siguientes medidas correctivas:
         </p>
         <ul class="custom-list">
-          <li><strong>Sanitización y Uso de APIs Seguras (CWE-78):</strong> Evitar la invocación de `shell=True` en Python. Pasar los argumentos como una lista parametrizada en `subprocess.run(["curl", url])` para prevenir la ejecución de metacaracteres.</li>
-          <li><strong>Gestión de Secretos (OWASP A07 / CWE-798):</strong> Eliminar contraseñas y claves criptográficas del código fuente (`app.py`). Utilizar variables de entorno o gestores de secretos como HashiCorp Vault.</li>
-          <li><strong>Políticas de Contraseñas y Salting:</strong> Incrementar el factor de costo en PBKDF2 e imponer políticas de longitud/complejidad mínima para contrarrestar ataques de diccionario.</li>
-          <li><strong>Principio de Mínimo Privilegio:</strong> Restringir los permisos de `sudo` para usuarios de servicios web y segmentar las credenciales utilizadas en la aplicación de aquellas del sistema operativo.</li>
+          <li><strong>Sanitización y Uso de APIs Seguras:</strong> Evitar la invocación de shell=True en Python. Pasar los argumentos como una lista parametrizada en `subprocess.run(["curl", url])` para prevenir la ejecución de metacaracteres.</li>
+          <li><strong>Gestión de Secretos:</strong> Eliminar contraseñas y claves criptográficas del código fuente (`app.py`). Utilizar variables de entorno o gestores de secretos como HashiCorp Vault.</li>
+          <li><strong>Políticas de Contraseñas:</strong> Imponer políticas de longitud/complejidad mínima para contrarrestar ataques de diccionario.</li>
+          <li><strong>Principio de Mínimo Privilegio:</strong> Restringir los permisos de sudo para usuarios de servicios web y segmentar las credenciales utilizadas en la aplicación de aquellas del sistema operativo.</li>
         </ul>
       </section>
       <!-- 7. Conclusión -->
       <section class="detail-section">
           <h2 class="section-subheading">Conclusión</h2>
           <p>
-              El compromiso de la máquina Snakeoil demostró la importancia del principio de "Defensa en Profundidad". Pequeños fallos concatenados —desde una mala política de contraseñas y exposición de rutas hasta la inyección de comandos y la reutilización de credenciales en el código fuente— permitieron a un atacante escalar privilegios hasta tomar el control absoluto del servidor (`root`).
+              La auditoría realizada sobre la máquina SnakeOil permitió poner en práctica de manera integral el ciclo metodológico de una prueba de penetración. Mediante una fase inicial rigurosa de reconocimiento de red y escaneo de puertos, se logró acotar la superficie de ataque a la aplicación web. El análisis cuidadoso de los endpoints REST permitió superar los controles de acceso utilizando tokens JWT y explotar una grave falla de Inyección de Comandos.  Finalmente, las malas prácticas en la gestión de credenciales (claves hardcodeadas) dentro del código de la aplicación facilitaron la escalación hacia privilegios totales de superusuario (root). Esta práctica resalta la importancia trascendental de la codificación segura y la administración adecuada de permisos en entornos de producción.               
           </p>
       </section>
-      <!-- 2. Visor y Descarga del Documento PDF -->
+      <!-- 8. video de youtube-->
+      <section class="detail-section">
+        <h2 class="section-subheading">Video Walkthrough</h2>
+        <p class="section-desc">
+          A continuación se presenta un video demostrativo del walkthrough completo, mostrando cada fase de la intrusión y las técnicas empleadas para comprometer la máquina Snakeoil:
+        </p>
+        <div class="video-wrapper">
+          <iframe width="100%" height="480" src="https://www.youtube.com/embed/your_video_id" title="Walkthrough Snakeoil" frameborder="0" allowfullscreen></iframe>
+        </div>
+      </section>
+      <!-- 9. Visor y Descarga del Documento PDF -->
       <section class="detail-section">
         <h2 class="section-subheading">Documentación de la práctica (PDF)</h2>
         <p class="section-desc">
