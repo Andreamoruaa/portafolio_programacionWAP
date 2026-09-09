@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Proyecto - Parcial 1 | Portafolio WAP</title>
+  <title>Proyecto Parcial 1 - Walkthrough Snakeoil | Portafolio WAP</title>
   <link rel="stylesheet" href="../../../assets/css/styles.css">
 </head>
 <body>
@@ -72,13 +72,7 @@
       <section class="detail-section">
         <h2 class="section-subheading">Descripción del escenario</h2>
         <p class="section-desc">
-          <strong>Panadería My Melody</strong> es una franquicia multinacional con infraestructura tecnológica centralizada. El área de seguridad identificó una campaña activa de suplantación de identidad (phishing) donde atacantes envían mensajes falsos indicando: <em>"Su sesión ha expirado. Inicie sesión nuevamente para continuar."</em>
-        </p>
-        <p class="section-desc">
-          El enlace redirige a los empleados a un portal ficticio que suplanta la identidad visual de la empresa y recolecta credenciales mediante Credential Harvesting a través de Social-Engineer Toolkit (SET).
-        </p>
-        <p class="section-desc">
-            
+            Patrick es un desarrollador y administrador de sistemas y desplego la infraestructura de un proyecto interno utilizando Debian Linux con servicios web y aplicaciones desarrolladas en Python. Sin embargo, el equipo de ciberseguridad sospecha que Patrick tiene malas prácticas de desarrollo y configuraciones, dejando expuesta la red interna de la compañía. Para evaluar la postura defensiva del entorno, nos han encargado realizar una auditoría de seguridad, nuestro objetivo es asumir el rol de un auditor externo situado en el mismo segmento de red, evaluar la superficie de ataque del servidor de Patrick, identificar y explotar sus vulnerabilidades de forma sistemática y lograr obtener total control del sistema obteniendo privilegios de superusuario.
         </p>
       </section>
 
@@ -87,23 +81,21 @@
         <h2 class="section-subheading">Configuración del laboratorio</h2>
         <div class="tech-grid">
             <div class="tech-box">
-                <div class="tech-title">Sistema Operativo</div>
+                <div class="tech-title">Sistemas operativos</div>
                 <div class="tech-pills">
-                    <span class="pill">Linux</span>
+                    <span class="pill">Kali Linux (Atacante)</span>
+                    <span class="pill">Debian Linux (Snakeoil - Objetivo)</span>
                 </div>
             </div>
             <div class="tech-box">
-                <div class="tech-title">Maquinas Virtuales</div>
-                <div class="tech-pills">
-                    <span class="pill">Kali Linux</span>
-                    <span class="pill">Snakeoil</span>
-                </div>
-            </div>
-            <div class="tech-box">
-                <div class="tech-title">Herramientas</div>
+                <div class="tech-title">Herramientas utilizadas</div>
                 <div class="tech-pills">
                     <span class="pill">Mozilla Firefox</span>
                     <span class="pill">Gobuster</span>
+                    <span class="pill">Nmap</span>
+                    <span class="pill">John the Ripper</span>
+                    <span class="pill">cURL</span>
+                    <span class="pill">Netcat</span>
                 </div>
             </div>
             <div class="tech-box">
@@ -122,6 +114,46 @@
         </div>
       </section>
 
+      <!-- 5. Metodología de Walkthrough -->
+       <section class="detail-section">
+        <h2 class="section-subheading">Desarrollo y Fases de Intrusión</h2>
+
+        <!-- Fase 1 & 2 -->
+        <h3>1. Reconocimiento y Escaneo de Puertos (Nmap)</h3>
+        <p>
+          Se realizó un escaneo de puertos abiertos y detección de servicios. Se identificaron el puerto `80` (Nginx) y el puerto `8080` (Servidor de desarrollo Flask).
+        </p>
+
+        <!-- Fase 3 -->
+        <h3>2. Enumeración Web y Fuzzing de Endpoints</h3>
+        <p>
+          Dado que las aplicaciones Flask no utilizan extensiones tradicionales (como `.php`), el fuzzing de rutas identificó endpoints RESTful abstractos (`/login`, `/registration`, `/secret`, `/run`). Las respuestas `405 Method Not Allowed` confirmaron controladores diseñados para recibir peticiones HTTP `POST`.
+        </p>
+
+        <!-- Fase 4 -->
+        <h3>3. Cracking de Credenciales (John the Ripper)</h3>
+        <p>
+          Las contraseñas del sistema estaban almacenadas mediante <strong>PBKDF2-HMAC-SHA256</strong>. Mediante un ataque de diccionario con <code>John the Ripper</code>, se demostró que la seguridad del sistema se vio comprometida debido a una <strong>política débil de contraseñas</strong> elegida por el usuario.
+        </p>
+
+        <!-- Fase 5 -->
+        <h3>4. Autenticación y Análisis de JWT</h3>
+        <p>
+          Tras autenticarse en `/login`, la API emite un token JWT firmado mediante `HS256`. Al incluir este token dentro de la cookie de sesión (`access_token_cookie`) hacia el endpoint `/secret`, el servidor valida la firma y revela información confidencial: la clave del entorno <code>secret_key</code>.
+        </p>
+
+        <!-- Fase 6 -->
+        <h3>5. Explotación: OS Command Injection</h3>
+        <p>
+          El endpoint `/run` presentó una vulnerabilidad de <strong>Inyección de Comandos del Sistema Operativo (CWE-78)</strong> al procesar la entrada del usuario en una llamada subyacente (ej. `subprocess.Popen`) usando `shell=True`. Mediante el uso del metacaracter `;` y codificación en Base64 para evitar la ruptura de la estructura JSON, se ejecutó una <em>Reverse Shell</em> hacia Kali Linux.
+        </p>
+
+        <!-- Fase 7 -->
+        <h3>6. Estabilización de TTY y Escalación de Privilegios a Root</h3>
+        <p>
+          Con la sesión interactiva establecida, se utilizó el módulo <code>pty</code> de Python para spawnear un entorno Bash completo. Al auditar el archivo de configuración <code>app.py</code>, se identificaron **credenciales en texto plano (CWE-798)**. Debido a la reutilización de contraseñas, la clave del token correspondía al usuario `patrick`, quien contaba con privilegios de `sudo` ilimitados (`sudo su`), logrando el control total del servidor.
+        </p>
+      </section>
       <!-- 6. Evidencias del Proceso -->
       <section class="detail-section">
         <h2 class="section-subheading">Evidencias y descripción del funcionamiento</h2>
@@ -172,23 +204,22 @@
       <!--Controles de Seguridad -->
       <section class="detail-section">
         <h2 class="section-subheading">Controles de seguridad y mitigación</h2>
-        <p class="section-desc">
-          Para contrarrestar campañas de phishing y la captura de credenciales por servidores de suplantación, se proponen las siguientes medidas defensivas:
+          <p class="section-desc">
+          Para remediar las vulnerabilidades identificadas durante la auditoría, se recomienda implementar las siguientes medidas correctivas:
         </p>
         <ul class="custom-list">
-          <li><strong>Autenticación Multifactor (MFA FIDO2 / WebAuthn):</strong> El uso de llaves físicas de seguridad inmuniza contra portales clonados, ya que la llave valida el nombre de dominio legítimo antes de firmar.</li>
-          <li><strong>Filtros de correo y autenticación (SPF, DKIM, DMARC):</strong> Bloquean el vector de entrada impidiendo que los correos suplantados lleguen a la bandeja de entrada.</li>
-          <li><strong>Gestores de contraseñas corporativos:</strong> Los gestores no autocompletan datos si la URL en la barra de direcciones no coincide exactamente con el dominio registrado.</li>
-          <li><strong>Capacitación y concientización:</strong> Entrenamiento continuo a empleados para detectar incoherencias estéticas, uso de direcciones IP directas y falta de certificados TLS.</li>
-          <li><strong>Inspección de TLS y filtros de ULRs en Gateway:</strong>Bloqueo perimetral de
-dominios no categorizados o IPs directas, impide que las estaciones de trabajo
-locales establezcan conexiones hacia servidores maliciosos</li>
+          <li><strong>Sanitización y Uso de APIs Seguras (CWE-78):</strong> Evitar la invocación de `shell=True` en Python. Pasar los argumentos como una lista parametrizada en `subprocess.run(["curl", url])` para prevenir la ejecución de metacaracteres.</li>
+          <li><strong>Gestión de Secretos (OWASP A07 / CWE-798):</strong> Eliminar contraseñas y claves criptográficas del código fuente (`app.py`). Utilizar variables de entorno o gestores de secretos como HashiCorp Vault.</li>
+          <li><strong>Políticas de Contraseñas y Salting:</strong> Incrementar el factor de costo en PBKDF2 e imponer políticas de longitud/complejidad mínima para contrarrestar ataques de diccionario.</li>
+          <li><strong>Principio de Mínimo Privilegio:</strong> Restringir los permisos de `sudo` para usuarios de servicios web y segmentar las credenciales utilizadas en la aplicación de aquellas del sistema operativo.</li>
         </ul>
       </section>
       <!-- 7. Conclusión -->
       <section class="detail-section">
           <h2 class="section-subheading">Conclusión</h2>
-          <p>La ejecución de este laboratorio demostró lo accesible que resulta replicar interfaces corporativas para interceptar credenciales en texto plano sin necesidad de vulnerar servidores ni descifrar algoritmos de cifrado. Se constató que la seguridad de una organización no puede depender únicamente del criterio visual del usuario para detectar fraudes, ya que el engaño explota directamente la confianza y la urgencia. En consecuencia, resulta indispensable implementar un esquema de defensa en profundidad que combine la concientización continua del personal con controles técnicos avanzados, tales como la autenticación multifactor (MFA) resistente a phishing y el uso estricto de protocolos cifrados (HTTPS/TLS).</p>
+          <p>
+              El compromiso de la máquina Snakeoil demostró la importancia del principio de "Defensa en Profundidad". Pequeños fallos concatenados —desde una mala política de contraseñas y exposición de rutas hasta la inyección de comandos y la reutilización de credenciales en el código fuente— permitieron a un atacante escalar privilegios hasta tomar el control absoluto del servidor (`root`).
+          </p>
       </section>
       <!-- 2. Visor y Descarga del Documento PDF -->
       <section class="detail-section">
@@ -199,8 +230,8 @@ locales establezcan conexiones hacia servidores maliciosos</li>
     
         <!-- Visor Integrado (Embed / Iframe) -->
         <div style="width: 100%; height: 650px; border-radius: 16px; overflow: hidden; border: 1.5px solid #d8b4fe; box-shadow: 0 10px 25px rgba(124, 58, 237, 0.1);">
-          <iframe src="../docs/Actividad 04.pdf" width="100%" height="100%" style="border: none;">
-            <p>Tu navegador no soporta la visualización de archivos PDF. <a href="../docs/Actividad 04.pdf">Haz clic aquí para descargarlo.</a></p>
+          <iframe src="../docs/Proyecto1.pdf" width="100%" height="100%" style="border: none;">
+            <p>Tu navegador no soporta la visualización de archivos PDF. <a href="../docs/Proyecto1.pdf">Haz clic aquí para descargarlo.</a></p>
           </iframe>
         </div>
       </section>
@@ -208,7 +239,7 @@ locales establezcan conexiones hacia servidores maliciosos</li>
       
       <!-- Navegación entre Actividades -->
       <nav class="activity-navigation">
-        <a href="#" class="btn-nav">← Anterior actividad</a>
+        <a href="../actividades/actividad4_p1.html" class="btn-nav">← Anterior actividad</a>
         <a href="../parcial1.html" class="btn-nav primary">Volver al parcial 1 </a>
       </nav>
 
