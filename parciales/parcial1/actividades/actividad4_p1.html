@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Actividad 04 - Parcial 1 | Portafolio WAP</title>
   <link rel="stylesheet" href="../../../assets/css/styles.css">
 </head>
+
 <body>
 
   <!-- Header Hero -->
@@ -26,9 +28,10 @@
     <nav class="site-nav-hero">
       <ul>
         <li><a href="../../../index.html">Inicio</a></li>
-        <li><a href="../parcial1.html" class="active">Parcial 1</a></li>
+        <li><a href="../parcial1.html">Parcial 1</a></li>
         <li><a href="#" class="disabled">Parcial 2</a></li>
         <li><a href="#" class="disabled">Parcial 3</a></li>
+        <li><a href="../roadmap/roadmap.html">Roadmap</a></li>
         <li><a href="../../../index.html#contacto">Contacto</a></li>
       </ul>
     </nav>
@@ -37,17 +40,18 @@
   <!-- Contenido Principal -->
   <main class="content-container">
     <nav class="side-nav-right" id="sideNav">
-        <div class="side-nav-title">Navegación</div>
-          <ul>
-            <li><a href="../../../index.html">Inicio</a></li>
-            <li><a href="../parcial1.html">Parcial 1</a></li>
-            <li><a href="#" class="disabled">Parcial 2</a></li>
-            <li><a href="#" class="disabled">Parcial 3</a></li>
-            <li><a href="../../../index.html#contacto">Contacto</a></li>
-        </ul>
-      </nav>
+      <div class="side-nav-title">Navegación</div>
+      <ul>
+        <li><a href="../../../index.html">Inicio</a></li>
+        <li><a href="../parcial1.html">Parcial 1</a></li>
+        <li><a href="#" class="disabled">Parcial 2</a></li>
+        <li><a href="#" class="disabled">Parcial 3</a></li>
+        <li><a href="../roadmap/roadmap.html">Roadmap</a></li>
+        <li><a href="../../../index.html#contacto">Contacto</a></li>
+      </ul>
+    </nav>
     <article class="card card-detail">
-      
+
       <!-- Encabezado de la Actividad -->
       <div class="detail-header-badge">
         <span class="badge-tag">Parcial 1 — Actividad 04</span>
@@ -57,14 +61,19 @@
       <section class="detail-section">
         <h2 class="section-subheading">Introducción</h2>
         <p>
-            En el ámbito de la ciberseguridad, la ingeniería social representa una de las amenazas más efectivas al explotar el factor humano mediante el engaño y la manipulación. La presente actividad práctica tiene como propósito implementar y analizar un escenario controlado de phishing utilizando el módulo Credential Harvester de Social-Engineer Toolkit (SET) en Kali Linux.
+          En el ámbito de la ciberseguridad, la ingeniería social representa una de las amenazas más efectivas al
+          explotar el factor humano mediante el engaño y la manipulación. La presente actividad práctica tiene como
+          propósito implementar y analizar un escenario controlado de phishing utilizando el módulo Credential Harvester
+          de Social-Engineer Toolkit (SET) en Kali Linux.
         </p>
       </section>
       <!-- 1. Objetivo de la Actividad -->
-       <section class="detail-section">
+      <section class="detail-section">
         <h2 class="section-subheading">Objetivo</h2>
         <p>
-            Implementar y analizar, en un entorno de laboratorio controlado, una simulación de ingeniería social mediante Social-Engineer Toolkit (SET), utilizando una página web ficticia para comprender el funcionamiento de una técnica de captura de información y reconocer los elementos que permiten identificar un intento de phishing.
+          Implementar y analizar, en un entorno de laboratorio controlado, una simulación de ingeniería social mediante
+          Social-Engineer Toolkit (SET), utilizando una página web ficticia para comprender el funcionamiento de una
+          técnica de captura de información y reconocer los elementos que permiten identificar un intento de phishing.
         </p>
       </section>
 
@@ -72,18 +81,22 @@
       <section class="detail-section">
         <h2 class="section-subheading">Descripción del escenario</h2>
         <p class="section-desc">
-          <strong>Panadería My Melody</strong> es una franquicia multinacional con infraestructura tecnológica centralizada. El área de seguridad identificó una campaña activa de suplantación de identidad (phishing) donde atacantes envían mensajes falsos indicando: <em>"Su sesión ha expirado. Inicie sesión nuevamente para continuar."</em>
+          <strong>Panadería My Melody</strong> es una franquicia multinacional con infraestructura tecnológica
+          centralizada. El área de seguridad identificó una campaña activa de suplantación de identidad (phishing) donde
+          atacantes envían mensajes falsos indicando: <em>"Su sesión ha expirado. Inicie sesión nuevamente para
+            continuar."</em>
         </p>
         <p class="section-desc">
-          El enlace redirige a los empleados a un portal ficticio que suplanta la identidad visual de la empresa y recolecta credenciales mediante Credential Harvesting a través de Social-Engineer Toolkit (SET).
+          El enlace redirige a los empleados a un portal ficticio que suplanta la identidad visual de la empresa y
+          recolecta credenciales mediante Credential Harvesting a través de Social-Engineer Toolkit (SET).
         </p>
         <p class="section-desc">
-            La captura de contraseñas y usuarios representa un riesgo de nivel alto/critico ya que
-una vez dentro de la red interna, el atacante puede escalar privilegios, identificar
-vulnerabilidades, desplegar un programa maligno y paralizar las operaciones de las
-tiendas, pueden reutilizar las contraseñas si algunos empleados las reutilizan en otros portales. Con todo
-esto la reputación de la empresa seria dañada e incluso provocando pérdidas
-millonarias.
+          La captura de contraseñas y usuarios representa un riesgo de nivel alto/critico ya que
+          una vez dentro de la red interna, el atacante puede escalar privilegios, identificar
+          vulnerabilidades, desplegar un programa maligno y paralizar las operaciones de las
+          tiendas, pueden reutilizar las contraseñas si algunos empleados las reutilizan en otros portales. Con todo
+          esto la reputación de la empresa seria dañada e incluso provocando pérdidas
+          millonarias.
         </p>
       </section>
 
@@ -93,29 +106,29 @@ millonarias.
         <div class="tech-grid">
           <div class="tech-box">
             <div class="tech-title">Sistema Operativo</div>
-              <div class="tech-pills">
-                  <span class="pill">Kali Linux</span>
-              </div>
+            <div class="tech-pills">
+              <span class="pill">Kali Linux</span>
+            </div>
           </div>
 
           <div class="tech-box">
             <div class="tech-title">Herramientas</div>
-              <div class="tech-pills">
-                  <span class="pill">Social-Engineer Toolkit (SET)</span>
-                  <span class="pill">Mozilla Firefox</span>
-              </div>
+            <div class="tech-pills">
+              <span class="pill">Social-Engineer Toolkit (SET)</span>
+              <span class="pill">Mozilla Firefox</span>
+            </div>
           </div>
           <div class="tech-box">
             <div class="tech-title">Archivos del sitio</div>
-              <div class="tech-pills">
-                  <span class="pill">index.html (Portal ficticio de Panadería My Melody)</span>
-              </div> 
-          </div> 
+            <div class="tech-pills">
+              <span class="pill">index.html (Portal ficticio de Panadería My Melody)</span>
+            </div>
+          </div>
           <div class="tech-box">
             <div class="tech-title">Direccionamiento IP</div>
-              <div class="tech-pills">
-                  <span class="pill">10.0.2.15</span>
-              </div>
+            <div class="tech-pills">
+              <span class="pill">10.0.2.15</span>
+            </div>
           </div>
         </div>
       </section>
@@ -124,15 +137,16 @@ millonarias.
       <section class="detail-section">
         <h2 class="section-subheading">Código HTML del portal ficticio</h2>
         <p class="section-desc">
-          Estructura básica del portal clonado creado en Kali Linux utilizando el editor <code>nano</code> para la captura de credenciales </code>:
+          Estructura básica del portal clonado creado en Kali Linux utilizando el editor <code>nano</code> para la
+          captura de credenciales </code>:
         </p>
-        
+
         <div class="code-window">
           <div class="code-window-bar">
             <div class="code-dots">
-              <span class="dot-btn #140972"></span>
-              <span class="dot-btn #3940aa"></span>
-              <span class="dot-btn #786ecf"></span>
+              <span class="dot-btn dark-purple"></span>
+              <span class="dot-btn blue"></span>
+              <span class="dot-btn lavender"></span>
             </div>
             <span class="code-title">index.html — Portal Ficticio</span>
           </div>
@@ -269,87 +283,109 @@ millonarias.
       <!-- 6. Evidencias del Proceso -->
       <section class="detail-section">
         <h2 class="section-subheading">Evidencias y descripción del funcionamiento</h2>
-        
+
         <div class="evidence-grid">
           <figure class="evidence-card">
             <div class="image-wrapper">
               <img src="../imagenes/actividad4_set_menu.png" alt="Configuración de SET en Kali Linux" loading="lazy">
             </div>
-            <figcaption><strong>Ilustración 1:</strong> Configuración del ataque en SET seleccionando <em>Social-Engineering Attacks &gt;Website Attack Vectors &gt; Credential Harvester &gt; Custom Import</em>.</figcaption>
+            <figcaption><strong>Ilustración 1:</strong> Configuración del ataque en SET seleccionando
+              <em>Social-Engineering Attacks &gt;Website Attack Vectors &gt; Credential Harvester &gt; Custom
+                Import</em>.</figcaption>
           </figure>
 
           <figure class="evidence-card">
             <div class="image-wrapper">
               <img src="../imagenes/actividad4_phishing_page.png" alt="Portal ficticio en navegador" loading="lazy">
             </div>
-            <figcaption><strong>Ilustración 2:</strong> Interfaz visual del portal ficticio de autenticación cargado en el servidor web del atacante (<code>http://10.0.2.15/</code>).</figcaption>
+            <figcaption><strong>Ilustración 2:</strong> Interfaz visual del portal ficticio de autenticación cargado en
+              el servidor web del atacante (<code>http://10.0.2.15/</code>).</figcaption>
           </figure>
 
           <figure class="evidence-card">
             <div class="image-wrapper">
-              <img src="../imagenes/actividad4_credentials_captured.png" alt="Captura de credenciales en tiempo real" loading="lazy">
+              <img src="../imagenes/actividad4_credentials_captured.png" alt="Captura de credenciales en tiempo real"
+                loading="lazy">
             </div>
-            <figcaption><strong>Ilustración 3:</strong> Captura en tiempo real de las credenciales enviadas por la víctima en la consola de SET.</figcaption>
+            <figcaption><strong>Ilustración 3:</strong> Captura en tiempo real de las credenciales enviadas por la
+              víctima en la consola de SET.</figcaption>
           </figure>
 
           <figure class="evidence-card">
             <div class="image-wrapper">
-              <img src="../imagenes/actividad4_xml_report.png" alt="Logs de reportes XML guardados en SET" loading="lazy">
+              <img src="../imagenes/actividad4_xml_report.png" alt="Logs de reportes XML guardados en SET"
+                loading="lazy">
             </div>
-            <figcaption><strong>Ilustración 4:</strong> Almacenamiento persistente de los datos capturados en formato XML bajo el directorio <code>/root/.set/reports/</code>.</figcaption>
+            <figcaption><strong>Ilustración 4:</strong> Almacenamiento persistente de los datos capturados en formato
+              XML bajo el directorio <code>/root/.set/reports/</code>.</figcaption>
           </figure>
         </div>
       </section>
       <!-- flujo-->
-       <section class="detail-section">
+      <section class="detail-section">
         <h2 class="section-subheading">Flujo del ataque</h2>
         <p class="section-desc">
           El flujo del ataque de phishing mediante SET se puede resumir en los siguientes pasos:
         </p>
         <figure class="evidence-card">
-            <div class="image-wrapper">
-              <img src="../imagenes/actividad4_flujo.png" alt="Flujo del ataque de phishing" loading="lazy">
-            </div>
-            <figcaption><strong>Ilustración 5:</strong> Flujo del ataque de phishing mediante SET.</figcaption>
-          </figure>
+          <div class="image-wrapper">
+            <img src="../imagenes/actividad4_flujo.png" alt="Flujo del ataque de phishing" loading="lazy">
+          </div>
+          <figcaption><strong>Ilustración 5:</strong> Flujo del ataque de phishing mediante SET.</figcaption>
+        </figure>
       </section>
       <!--Controles de Seguridad -->
       <section class="detail-section">
         <h2 class="section-subheading">Controles de seguridad y mitigación</h2>
         <p class="section-desc">
-          Para contrarrestar campañas de phishing y la captura de credenciales por servidores de suplantación, se proponen las siguientes medidas defensivas:
+          Para contrarrestar campañas de phishing y la captura de credenciales por servidores de suplantación, se
+          proponen las siguientes medidas defensivas:
         </p>
         <ul class="custom-list">
-          <li><strong>Autenticación Multifactor (MFA FIDO2 / WebAuthn):</strong> El uso de llaves físicas de seguridad inmuniza contra portales clonados, ya que la llave valida el nombre de dominio legítimo antes de firmar.</li>
-          <li><strong>Filtros de correo y autenticación (SPF, DKIM, DMARC):</strong> Bloquean el vector de entrada impidiendo que los correos suplantados lleguen a la bandeja de entrada.</li>
-          <li><strong>Gestores de contraseñas corporativos:</strong> Los gestores no autocompletan datos si la URL en la barra de direcciones no coincide exactamente con el dominio registrado.</li>
-          <li><strong>Capacitación y concientización:</strong> Entrenamiento continuo a empleados para detectar incoherencias estéticas, uso de direcciones IP directas y falta de certificados TLS.</li>
+          <li><strong>Autenticación Multifactor (MFA FIDO2 / WebAuthn):</strong> El uso de llaves físicas de seguridad
+            inmuniza contra portales clonados, ya que la llave valida el nombre de dominio legítimo antes de firmar.
+          </li>
+          <li><strong>Filtros de correo y autenticación (SPF, DKIM, DMARC):</strong> Bloquean el vector de entrada
+            impidiendo que los correos suplantados lleguen a la bandeja de entrada.</li>
+          <li><strong>Gestores de contraseñas corporativos:</strong> Los gestores no autocompletan datos si la URL en la
+            barra de direcciones no coincide exactamente con el dominio registrado.</li>
+          <li><strong>Capacitación y concientización:</strong> Entrenamiento continuo a empleados para detectar
+            incoherencias estéticas, uso de direcciones IP directas y falta de certificados TLS.</li>
           <li><strong>Inspección de TLS y filtros de ULRs en Gateway:</strong>Bloqueo perimetral de
-dominios no categorizados o IPs directas, impide que las estaciones de trabajo
-locales establezcan conexiones hacia servidores maliciosos</li>
+            dominios no categorizados o IPs directas, impide que las estaciones de trabajo
+            locales establezcan conexiones hacia servidores maliciosos</li>
         </ul>
       </section>
       <!-- 7. Conclusión -->
       <section class="detail-section">
-          <h2 class="section-subheading">Conclusión</h2>
-          <p>La ejecución de este laboratorio demostró lo accesible que resulta replicar interfaces corporativas para interceptar credenciales en texto plano sin necesidad de vulnerar servidores ni descifrar algoritmos de cifrado. Se constató que la seguridad de una organización no puede depender únicamente del criterio visual del usuario para detectar fraudes, ya que el engaño explota directamente la confianza y la urgencia. En consecuencia, resulta indispensable implementar un esquema de defensa en profundidad que combine la concientización continua del personal con controles técnicos avanzados, tales como la autenticación multifactor (MFA) resistente a phishing y el uso estricto de protocolos cifrados (HTTPS/TLS).</p>
+        <h2 class="section-subheading">Conclusión</h2>
+        <p>La ejecución de este laboratorio demostró lo accesible que resulta replicar interfaces corporativas para
+          interceptar credenciales en texto plano sin necesidad de vulnerar servidores ni descifrar algoritmos de
+          cifrado. Se constató que la seguridad de una organización no puede depender únicamente del criterio visual del
+          usuario para detectar fraudes, ya que el engaño explota directamente la confianza y la urgencia. En
+          consecuencia, resulta indispensable implementar un esquema de defensa en profundidad que combine la
+          concientización continua del personal con controles técnicos avanzados, tales como la autenticación
+          multifactor (MFA) resistente a phishing y el uso estricto de protocolos cifrados (HTTPS/TLS).</p>
       </section>
       <!-- 2. Visor y Descarga del Documento PDF -->
       <section class="detail-section">
         <h2 class="section-subheading">Documentación de la práctica (PDF)</h2>
         <p class="section-desc">
-          Puedes consultar el reporte completo de la práctica directamente a continuación o descargarlo en tu dispositivo:
+          Puedes consultar el reporte completo de la práctica directamente a continuación o descargarlo en tu
+          dispositivo:
         </p>
-    
+
         <!-- Visor Integrado (Embed / Iframe) -->
-        <div style="width: 100%; height: 650px; border-radius: 16px; overflow: hidden; border: 1.5px solid #d8b4fe; box-shadow: 0 10px 25px rgba(124, 58, 237, 0.1);">
+        <div
+          style="width: 100%; height: 650px; border-radius: 16px; overflow: hidden; border: 1.5px solid #d8b4fe; box-shadow: 0 10px 25px rgba(124, 58, 237, 0.1);">
           <iframe src="../docs/Actividad 04.pdf" width="100%" height="100%" style="border: none;">
-            <p>Tu navegador no soporta la visualización de archivos PDF. <a href="../docs/Actividad 04.pdf">Haz clic aquí para descargarlo.</a></p>
+            <p>Tu navegador no soporta la visualización de archivos PDF. <a href="../docs/Actividad 04.pdf">Haz clic
+                aquí para descargarlo.</a></p>
           </iframe>
         </div>
       </section>
 
-      
+
       <!-- Navegación entre Actividades -->
       <nav class="activity-navigation">
         <a href="../actividades/actividad3_p1.html" class="btn-nav">← Anterior actividad</a>
@@ -366,9 +402,11 @@ locales establezcan conexiones hacia servidores maliciosos</li>
     <div class="footer-links">
       <h3>Recursos Profesionales</h3>
       <ul class="social-cv-links">
-        <li><a href="https://www.linkedin.com/in/andrea-morua-01092732b/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        <li><a href="https://www.linkedin.com/in/andrea-morua-01092732b/" target="_blank"
+            rel="noopener noreferrer">LinkedIn</a></li>
         <li><a href="https://github.com/Andreamoruaa" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-        <li><a href="../../../assets/docs/Andrea Morua Bravo CV.pdf" target="_blank" rel="noopener noreferrer">Curriculum Vitae</a></li>
+        <li><a href="../../../assets/docs/Andrea Morua Bravo CV.pdf" target="_blank"
+            rel="noopener noreferrer">Curriculum Vitae</a></li>
       </ul>
     </div>
   </footer>
@@ -376,4 +414,5 @@ locales establezcan conexiones hacia servidores maliciosos</li>
   <script src="../../../assets/js/main.js"></script>
 
 </body>
+
 </html>

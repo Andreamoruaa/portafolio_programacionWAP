@@ -804,6 +804,9 @@ card-image-wrapper {
 .dot-btn.red { background-color: #ff5f56; }
 .dot-btn.yellow { background-color: #ffbd2e; }
 .dot-btn.green { background-color: #27c93f; }
+.dot-btn.dark-purple { background-color: #140972; }
+.dot-btn.blue { background-color: #3940aa; }
+.dot-btn.lavender { background-color: #786ecf; }
 
 .code-title {
   color: #c4b5fd;

