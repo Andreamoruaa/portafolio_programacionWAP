@@ -1017,7 +1017,7 @@ card-image-wrapper {
   height: 75px;
   border-radius: 50%;
   background: linear-gradient(135deg, #b57cff 0%, #400080 100%);
-  border: 3px solid #0a4e29; /* Acento dorado/amarillo estilo roadmap */
+  border: 3px solid #e780e7; /* Acento dorado/amarillo estilo roadmap */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1029,12 +1029,13 @@ card-image-wrapper {
 
 .node-circle:hover {
   transform: scale(1.15);
-  box-shadow: 0 0 25px rgba(61, 177, 51, 0.7);
+  box-shadow: 0 0 25px rgb(186, 68, 255);
   border-color: #ffffff;
 }
 
 .node-icon {
   font-size: 1.8rem;
+  color: #fcfcfc;
 }
 
 /* Tarjeta flotante emergente al pasar el mouse */
@@ -1047,7 +1048,7 @@ card-image-wrapper {
   transform: translateX(-50%) translateY(10px);
   width: 280px;
   background: #12121e;
-  border: 1px solid rgba(30, 126, 62, 0.4);
+  border: 1px solid rgb(255, 255, 255);
   border-radius: 10px;
   padding: 0.8rem;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
@@ -1104,7 +1105,7 @@ card-image-wrapper {
   font-size: 0.75rem;
   font-weight: 600;
   color: #080707;
-  background: rgba(28, 27, 85, 0.1);
+  background: rgba(115, 113, 236, 0.836);
   border: 1px solid rgba(84, 7, 226, 0.2);
   border-radius: 20px;
   text-decoration: none;
@@ -1116,6 +1117,37 @@ card-image-wrapper {
   border-color: #7000ff;
   color: #ffffff;
   transform: translateY(-2px);
+}
+/* Estado Bloqueado para Nodos del Roadmap */
+.roadmap-node-wrapper.locked {
+  opacity: 0.6;
+  filter: grayscale(80%);
+  transition: all 0.3s ease;
+}
+
+/* Deshabilitar interacción en el círculo del nodo */
+.roadmap-node-wrapper.locked .node-circle {
+  pointer-events: none;
+  cursor: not-allowed;
+  background-color: #2a2a2a;
+  border-color: #555555;
+  box-shadow: none;
+}
+
+/* Ajustes visuales para el botón de descarga bloqueado */
+.roadmap-node-wrapper.locked .node-download-btn {
+  pointer-events: none;
+  cursor: not-allowed;
+  background-color: #333333;
+  color: #888888;
+  border-color: #444444;
+  opacity: 0.7;
+}
+
+/* Opcional: Ocultar o atenuar la tarjeta de previsualización al hacer hover */
+.roadmap-node-wrapper.locked .node-interactive:hover .node-preview-card {
+  opacity: 0.5;
+  filter: blur(1px);
 }
 
 /* Responsividad para móviles */

@@ -46,3 +46,37 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
       btnSubmit.textContent = 'Enviar mensaje';
     });
 });
+
+document.querySelectorAll('.node-download-btn').forEach(button => {
+  button.addEventListener('click', function(e) {
+    // Verificar si el botón está bloqueado antes de descargar
+    if (this.closest('.roadmap-node-wrapper')?.classList.contains('locked')) {
+      e.preventDefault();
+      return;
+    }
+
+    const fileUrl = this.getAttribute('href');
+    if (!fileUrl || fileUrl === 'javascript:void(0)') return;
+
+    e.preventDefault(); // Evita cualquier redirección o navegación
+
+    fetch(fileUrl)
+      .then(response => {
+        if (!response.ok) throw new Error('Error al obtener el archivo');
+        return response.blob();
+      })
+      .then(blob => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.style.display = 'none';
+        a.href = url;
+        // Toma el nombre del archivo de la ruta
+        a.download = fileUrl.split('/').pop(); 
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+        a.remove();
+      })
+      .catch(err => console.error('Error en la descarga:', err));
+  });
+});
