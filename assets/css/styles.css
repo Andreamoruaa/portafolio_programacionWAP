@@ -957,6 +957,167 @@ card-image-wrapper {
   box-shadow: 0 6px 18px rgba(109, 40, 217, 0.4);
 }
 
+/* ==========================================================================
+   ROADMAP INTERACTIVO - ROAD TO HALL OF FAME
+   ========================================================================== */
+
+.roadmap-path-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 3.5rem 2rem;
+  padding: 3rem 1.5rem;
+  position: relative;
+  background: rgba(181, 181, 245, 0.4);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Estructura individual del nodo */
+.roadmap-node-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 170px;
+  text-align: center;
+  z-index: 2;
+}
+
+/* Efecto serpiente / S-Curve (zigzag vertical) */
+.roadmap-node-wrapper:nth-child(even) {
+  transform: translateY(25px);
+}
+.roadmap-node-wrapper:nth-child(odd) {
+  transform: translateY(-25px);
+}
+
+/* Nombre visible sobre el círculo */
+.node-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+  white-space: nowrap;
+}
+
+/* Contenedor interactivo (Círculo + Preview) */
+.node-interactive {
+  position: relative;
+  display: inline-block;
+}
+
+/* Círculo que actúa como botón */
+.node-circle {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #b57cff 0%, #400080 100%);
+  border: 3px solid #0a4e29; /* Acento dorado/amarillo estilo roadmap */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 0 15px rgba(172, 120, 231, 0.4);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.node-circle:hover {
+  transform: scale(1.15);
+  box-shadow: 0 0 25px rgba(61, 177, 51, 0.7);
+  border-color: #ffffff;
+}
+
+.node-icon {
+  font-size: 1.8rem;
+}
+
+/* Tarjeta flotante emergente al pasar el mouse */
+.node-preview-card {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  bottom: 110%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  width: 280px;
+  background: #12121e;
+  border: 1px solid rgba(30, 126, 62, 0.4);
+  border-radius: 10px;
+  padding: 0.8rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+  transition: all 0.3s ease;
+  pointer-events: none;
+  z-index: 100;
+  text-align: left;
+}
+
+.node-preview-card::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 6px;
+  border-style: solid;
+  border-color: #12121e transparent transparent transparent;
+}
+
+/* Despliegue en :hover */
+.node-interactive:hover .node-preview-card {
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.preview-img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.preview-content h4 {
+  margin: 0 0 0.4rem 0;
+  font-size: 0.95rem;
+  color: #2cac6c;
+}
+
+.preview-content p {
+  margin: 0 0 0.3rem 0;
+  font-size: 0.78rem;
+  line-height: 1.3;
+  color: #d1d1d1;
+}
+
+/* Botón de descarga debajo del círculo */
+.node-download-btn {
+  margin-top: 0.8rem;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #080707;
+  background: rgba(28, 27, 85, 0.1);
+  border: 1px solid rgba(84, 7, 226, 0.2);
+  border-radius: 20px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.node-download-btn:hover {
+  background: #7000ff;
+  border-color: #7000ff;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
 /* Responsividad para móviles */
 @media (max-width: 768px) {
   .evidence-grid {

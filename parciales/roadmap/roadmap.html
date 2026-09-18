@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Roadmap | Portafolio WAP</title>
+  <title>Road to Hall of Fame | Portafolio WAP</title>
   <link rel="stylesheet" href="../../assets/css/styles.css">
 </head>
+
 <body>
 
   <!-- Header Hero -->
   <header class="site-header-hero">
     <div class="header-info-hero">
       <span class="hero-tag">Portafolio académico</span>
-      <h1 class="hero-title">Portafolio de seguridad informática</h1>
+      <h1 class="hero-title">Road to Hall of Fame</h1>
       <h2 class="hero-subtitle">Andrea Morúa Bravo <span>185548</span></h2>
       <p class="hero-alias"><strong>Morúa</strong></p>
       <div class="hero-details">
-        <span>CNO IV- Seguridad Informática</span>
+        <span>CNO IV - Seguridad Informática</span>
         <span class="dot">•</span>
         <span>Universidad Politécnica de San Luis Potosí</span>
         <span class="dot">•</span>
@@ -29,41 +31,221 @@
         <li><a href="../parcial1/parcial1.html">Parcial 1</a></li>
         <li><a href="#" class="disabled">Parcial 2</a></li>
         <li><a href="#" class="disabled">Parcial 3</a></li>
-        <li><a href="../roadmap/roadmap.html">Roadmap</a></li>
+        <li><a href="roadmap.html" class="active">Road to hall of fame</a></li>
         <li><a href="../../index.html#contacto">Contacto</a></li>
       </ul>
     </nav>
   </header>
+
+  <!-- Contenido Principal -->
   <main class="content-container">
-    <nav class="side-nav-right" id="sideNav">
-        <div class="side-nav-title">Navegación</div>
-          <ul>
-            <li><a href="../../index.html">Inicio</a></li>
-            <li><a href="../parcial1/parcial1.html">Parcial 1</a></li>
-            <li><a href="#" class="disabled">Parcial 2</a></li>
-            <li><a href="#" class="disabled">Parcial 3</a></li>
-            <li><a href="../roadmap/roadmap.html">Roadmap</a></li>
-            <li><a href="../../index.html#contacto">Contacto</a></li>
-        </ul>
-      </nav>
 
-    </main>
+  <!-- Sección Hero / Descarga General -->
+  <section class="card fade-in-up">
+    <h2 class="section-title">Road to Hall of Fame</h2>
+    <p style="margin-bottom: 1.5rem;">
+      Explora la ruta interactiva de los 18 laboratorios desarrollados durante el semestre. Pasa el cursor sobre cada nodo para desplegar la vista previa detallada o haz clic para acceder al informe completo.
+    </p>
+    
+    <div class="download-box" style="padding: 1rem; background-color: rgba(255, 255, 255, 0.05); border-radius: 8px; border-left: 4px solid #7000ff; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+      <div>
+        <h3 style="margin: 0; font-size: 1.1rem;">Memoria Técnica Completa</h3>
+        <p style="margin: 0; font-size: 0.9rem; opacity: 0.8;">Descarga la compilación oficial de todos los laboratorios en PDF.</p>
+      </div>
+      <a href="../../assets/docs/Road_To_Hall_Of_Fame_Andrea_Morua.pdf" target="_blank" download class="btn btn-primary">
+        📥 Descargar PDF Completo
+      </a>
+    </div>
+  </section>
+
+  <!-- Contenedor del Roadmap en Serpiente -->
+  <section class="roadmap-path-container">
+    
+    <!-- Nodo 01 -->
+    <div class="roadmap-node-wrapper">
+      <span class="node-title">Lab 01.Path Traversal Simple</span>
+      
+      <div class="node-interactive">
+        <a href="../parcial1/laboratorio1.html" class="node-circle" aria-label="Ver Laboratorio 1">
+          <span class="node-icon">🛡️</span>
+        </a>
+
+        <!-- Popover flotante al pasar el mouse -->
+        <div class="node-preview-card">
+          <img src="../../assets/img/lab01.png" alt="Laboratorio 1" class="preview-img">
+          <div class="preview-content">
+            <h4>Lab 01: Path traversal simple</h4>
+            <p><strong>Nivel:</strong> Apprentice</p>
+            <p><strong>Tipo:</strong> File Path Traversal</p>
+            <p><strong>Descripción:</strong> Manipulación del parámetro filename mediante secuencias ../ para evadir la ruta del directorio de imágenes y leer el archivo /etc/passwd directamente del servidor web.</p>
+          </div>
+        </div>
+      </div>
+      <a href="../../assets/docs/Lab01_Reporte.pdf" download class="node-download-btn" title="Descargar reporte de Lab 01">
+        📥 Descargar
+      </a>
+    </div>
+
+    <!-- Nodo 02 -->
+    <div class="roadmap-node-wrapper">
+      <span class="node-title">Lab 02: Absolute path bypass</span>
+      
+      <div class="node-interactive">
+        <a href="../parcial1/laboratorio2.html" class="node-circle" aria-label="Ver Laboratorio 2">
+          <span class="node-icon">🔍</span>
+        </a>
+
+        <div class="node-preview-card">
+          <img src="../../assets/img/lab02.png" alt="Laboratorio 2" class="preview-img">
+          <div class="preview-content">
+            <h4>Lab 02: Absolute path bypass</h4>
+            <p><strong>Nivel:</strong> Apprentice</p>
+            <p><strong>Tipo:</strong> File Path Traversal</p>
+            <p><strong>Descripción:</strong> Bypasseo del bloqueo de secuencias relativas ../ mediante la inyección directa de rutas absolutas como /etc/passwd en el parámetro de consulta.</p>
+          </div>
+        </div>
+      </div>
+
+      <a href="../../assets/docs/Lab02_Reporte.pdf" download class="node-download-btn" title="Descargar reporte de Lab 02">
+        📥 Descargar
+      </a>
+    </div>
+
+    <!-- Nodo 03 -->
+    <div class="roadmap-node-wrapper">
+      <span class="node-title">Lab 03: Non-recursive stripping bypass</span>
+      
+      <div class="node-interactive">
+        <a href="../parcial1/laboratorio1.html" class="node-circle" aria-label="Ver Laboratorio 1">
+          <span class="node-icon">🛡️</span>
+        </a>
+
+        <!-- Popover flotante al pasar el mouse -->
+        <div class="node-preview-card">
+          <img src="../../assets/img/lab03.png" alt="Laboratorio 3" class="preview-img">
+          <div class="preview-content">
+            <h4>Lab 03: Non-recursive stripping bypass</h4>
+            <p><strong>Nivel:</strong> Apprentice</p>
+            <p><strong>Tipo:</strong> File Path Traversal</p>
+            <p><strong>Descripción:</strong> Evatación de sanitizaciones no recursivas de secuencias ../ utilizando la técnica de anidación ....// para reconstruir la ruta del archivo tras el filtro del servidor.</p>
+          </div>
+        </div>
+      </div>
+
+      <a href="../../assets/docs/Lab03_Reporte.pdf" download class="node-download-btn" title="Descargar reporte de Lab 03">
+        📥 Descargar
+      </a>
+    </div>
+    <!-- Nodo 04 -->
+    <div class="roadmap-node-wrapper">
+      <span class="node-title">Lab 04: Superfluous URL decode bypass</span>
+      
+      <div class="node-interactive">
+        <a href="../parcial1/laboratorio1.html" class="node-circle" aria-label="Ver Laboratorio 1">
+          <span class="node-icon">🛡️</span>
+        </a>
+
+        <!-- Popover flotante al pasar el mouse -->
+        <div class="node-preview-card">
+          <img src="../../assets/img/lab04.png" alt="Laboratorio 4" class="preview-img">
+          <div class="preview-content">
+            <h4>Lab 04: Superfluous URL decode bypass</h4>
+            <p><strong>Nivel:</strong> Apprentice</p>
+            <p><strong>Tipo:</strong> File Path Traversal</p>
+            <p><strong>Descripción:</strong>Bypasseo de filtros defensivos aplicando doble codificación URL (Double URL Encoding) sobre la secuencia ../, explotando el proceso repetido de decodificación en el backend.</p>
+          </div>
+        </div>
+      </div>
+
+      <a href="../../assets/docs/Lab04_Reporte.pdf" download class="node-download-btn" title="Descargar reporte de Lab 04">
+        📥 Descargar
+      </a>
+    </div>
+    <!-- Nodo 05 -->
+    <div class="roadmap-node-wrapper">
+      <span class="node-title">Lab 05: Path prefix validation bypass</span>
+      
+      <div class="node-interactive">
+        <a href="../parcial1/laboratorio1.html" class="node-circle" aria-label="Ver Laboratorio 1">
+          <span class="node-icon">🛡️</span>
+        </a>
+
+        <!-- Popover flotante al pasar el mouse -->
+        <div class="node-preview-card">
+          <img src="../../assets/img/lab05.png" alt="Laboratorio 5" class="preview-img">
+          <div class="preview-content">
+            <h4>Lab 05: Path prefix validation bypass</h4>
+            <p><strong>Nivel:</strong> Apprentice</p>
+            <p><strong>Tipo:</strong> File Path Traversal</p>
+            <p><strong>Descripción:</strong> Explotación de validaciones de ruta parciales agregando la secuencia de retroceso ../ inmediatamente después del prefijo obligatorio (ej. /var/www/images/).</p>
+          </div>
+        </div>
+      </div>
+
+      <a href="../../assets/docs/Lab05_Reporte.pdf" download class="node-download-btn" title="Descargar reporte de Lab 05">
+        📥 Descargar
+      </a>
+    </div>
+    <!-- Nodo 06 -->
+    <div class="roadmap-node-wrapper">
+      <span class="node-title">Lab 06: Extension validation null byte bypass</span>
+      
+      <div class="node-interactive">
+        <a href="../parcial1/laboratorio1.html" class="node-circle" aria-label="Ver Laboratorio 1">
+          <span class="node-icon">🛡️</span>
+        </a>
+
+        <!-- Popover flotante al pasar el mouse -->
+        <div class="node-preview-card">
+          <img src="../../assets/img/lab06.png" alt="Laboratorio 6" class="preview-img">
+          <div class="preview-content">
+            <h4>Lab 06: Extension validation null byte bypass</h4>
+            <p><strong>Nivel:</strong> Apprentice</p>
+            <p><strong>Tipo:</strong> File Path Traversal</p>
+            <p><strong>Descripción:</strong> Evatación del control estricto de extensión de archivo (ej. .png) mediante la inyección de un Byte Nulo (%00) para truncar la ruta antes de la validación.</p>
+          </div>
+        </div>
+      </div>
+
+      <a href="../../assets/docs/Lab06_Reporte.pdf" download class="node-download-btn" title="Descargar reporte de Lab 06">
+        📥 Descargar
+      </a>
+    </div>
+  </section>
+
+  <!-- Navegación Lateral -->
+  <nav class="side-nav-right" id="sideNav">
+    <div class="side-nav-title">Navegación</div>
+    <ul>
+      <li><a href="../../index.html">Inicio</a></li>
+      <li><a href="../parcial1/parcial1.html">Parcial 1</a></li>
+      <li><a href="#" class="disabled">Parcial 2</a></li>
+      <li><a href="#" class="disabled">Parcial 3</a></li>
+      <li><a href="roadmap.html" class="active">Road to hall of fame</a></li>
+      <li><a href="../../index.html#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+
+</main>
 
 
-    <!-- Pie de Página -->
+  <!-- Pie de Página -->
   <footer class="site-footer">
     <p style="color:rgb(77, 6, 107)">&copy; 2026 Andrea Morúa Bravo. Universidad Politécnica de San Luis Potosí</p>
     <div class="footer-links">
       <h3>Recursos Profesionales</h3>
       <ul class="social-cv-links">
-        <li><a href="https://www.linkedin.com/in/andrea-morua-01092732b/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        <li><a href="https://www.linkedin.com/in/andrea-morua-01092732b/" target="_blank"
+            rel="noopener noreferrer">LinkedIn</a></li>
         <li><a href="https://github.com/Andreamoruaa" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-        <li><a href="../../../assets/docs/Andrea Morua Bravo CV.pdf" target="_blank" rel="noopener noreferrer">Curriculum Vitae</a></li>
+        <li><a href="../../assets/docs/Andrea Morua Bravo CV.pdf" target="_blank" rel="noopener noreferrer">Curriculum
+            Vitae</a></li>
       </ul>
     </div>
   </footer>
 
-  <script src="../../../assets/js/main.js"></script>
+  <script src="../../assets/js/main.js"></script>
 
 </body>
+
 </html>
