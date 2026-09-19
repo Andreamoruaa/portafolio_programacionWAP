@@ -51,26 +51,26 @@
       <section class="detail-section">
         <h2 class="section-subheading">Marco Teórico</h2>
         <p>
-          La vulnerabilidad de <strong>File Path Traversal</strong> (o directory traversal) ocurre cuando una aplicación web utiliza entradas del usuario de forma no segura para construir rutas del sistema de archivos sin realizar una validación o sanitización estricta[cite: 15].
+          La vulnerabilidad de <strong>File Path Traversal</strong> (o directory traversal) ocurre cuando una aplicación web utiliza entradas del usuario de forma no segura para construir rutas del sistema de archivos sin realizar una validación o sanitización estricta.
         </p>
         <p>
-          Un atacante inserta secuencias de escape como <code>../</code> en sistemas Linux o <code>..\</code> en Windows para retroceder desde el directorio raíz configurado en el servidor web e ingresar a directorios restringidos del sistema operativo[cite: 15].
+          Un atacante inserta secuencias de escape como <code>../</code> en sistemas Linux o <code>..\</code> en Windows para retroceder desde el directorio raíz configurado en el servidor web e ingresar a directorios restringidos del sistema operativo.
         </p>
 
         <h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem; color: var(--primary-color, #7c3aed);">Impacto en la Tríada CIA</h3>
         <p>
-          <strong>Confidencialidad:</strong> El impacto es alto, ya que permite la lectura no autorizada de código fuente, archivos de configuración con credenciales y datos sensibles del sistema[cite: 15].
+          <strong>Confidencialidad:</strong> El impacto es alto, ya que permite la lectura no autorizada de código fuente, archivos de configuración con credenciales y datos sensibles del sistema[: 15].
         </p>
         <p>
-          <strong>Integridad / Disponibilidad:</strong> El impacto es bajo si solo se ejecutan ataques de lectura, pero el riesgo escala significativamente si se combinan con vulnerabilidades de escritura arbitraria o si se comprometen claves maestras[cite: 15].
+          <strong>Integridad / Disponibilidad:</strong> El impacto es bajo si solo se ejecutan ataques de lectura, pero el riesgo escala significativamente si se combinan con vulnerabilidades de escritura arbitraria o si se comprometen claves maestras.
         </p>
 
         <h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem; color: var(--primary-color, #7c3aed);">Categoría OWASP y Defensa</h3>
         <p>
-          Corresponde a la categoría <strong>A01:2025 - Broken Access Control</strong> de la OWASP Foundation[cite: 15].
+          Corresponde a la categoría <strong>A01:2025 - Broken Access Control</strong> de la OWASP Foundation.
         </p>
         <p>
-          Para la defensa se debe aplicar el principio de mínimo privilegio y reemplazar el manejo directo de rutas locales mediante listas blancas o identificadores indirectos e inmutables[cite: 15].
+          Para la defensa se debe aplicar el principio de mínimo privilegio y reemplazar el manejo directo de rutas locales mediante listas blancas o identificadores indirectos e inmutables.
         </p>
       </section>
 
@@ -99,10 +99,10 @@
         </div>
         <br>
         <p>
-          <strong>Objetivo:</strong> Recuperar y visualizar el contenido del archivo <code>/etc/passwd</code> del servidor[cite: 15].
+          <strong>Objetivo:</strong> Recuperar y visualizar el contenido del archivo <code>/etc/passwd</code> del servidor.
         </p>
         <p>
-          <strong>Vulnerabilidad:</strong> La aplicación procesa la solicitud de imágenes mediante un parámetro URL (<code>filename</code>). El backend lee directamente este valor e intenta resolver el recurso en el disco duro sin restringir que la secuencia de búsqueda salga de la carpeta <code>/var/www/images</code>[cite: 15].
+          <strong>Vulnerabilidad:</strong> La aplicación procesa la solicitud de imágenes mediante un parámetro URL (<code>filename</code>). El backend lee directamente este valor e intenta resolver el recurso en el disco duro sin restringir que la secuencia de búsqueda salga de la carpeta <code>/var/www/images</code>.
         </p>
       </section>
 
@@ -110,18 +110,18 @@
       <section class="detail-section">
         <h2 class="section-subheading">Procedimiento</h2>
         <p>
-          <strong>Payload utilizado:</strong> <code>../../../etc/passwd</code>[cite: 15]
+          <strong>Payload utilizado:</strong> <code>../../../etc/passwd</code>
         </p>
         <p>
-          Suponiendo que la aplicación almacena las imágenes en la ruta <code>/var/www/app/resources/images/</code>[cite: 15]:
+          Suponiendo que la aplicación almacena las imágenes en la ruta <code>/var/www/app/resources/images/</code>:
         </p>
         <ul class="custom-list">
-          <li>El primer <code>../</code> retrocede a <code>/var/www/app/resources/</code>[cite: 15].</li>
-          <li>El segundo <code>../</code> retrocede a <code>/var/www/app/</code>[cite: 15].</li>
-          <li>El tercer <code>../</code> retrocede a la raíz del sistema de archivos[cite: 15].</li>
+          <li>El primer <code>../</code> retrocede a <code>/var/www/app/resources/</code>.</li>
+          <li>El segundo <code>../</code> retrocede a <code>/var/www/app/</code>.</li>
+          <li>El tercer <code>../</code> retrocede a la raíz del sistema de archivos.</li>
         </ul>
         <p>
-          La adición de <code>etc/passwd</code> le indica al servidor que abra dicho archivo del directorio <code>/etc/</code>. Al no existir una validación que elimine los caracteres <code>..</code> o <code>/</code>, el servidor ejecuta la lectura de forma nativa[cite: 15].
+          La adición de <code>etc/passwd</code> le indica al servidor que abra dicho archivo del directorio <code>/etc/</code>. Al no existir una validación que elimine los caracteres <code>..</code> o <code>/</code>, el servidor ejecuta la lectura de forma nativa.
         </p>
 
         <!-- Sección de Proceso vacía -->
@@ -134,12 +134,12 @@
       <section class="detail-section">
         <h2 class="section-subheading">Mitigación Recomendada</h2>
         <p class="section-desc">
-          Para solucionar esta vulnerabilidad se deben implementar prácticas de programación seguras[cite: 15]:
+          Para solucionar esta vulnerabilidad se deben implementar prácticas de programación seguras:
         </p>
         <ul class="custom-list">
-          <li><strong>Evitar la entrada directa:</strong> No pasar nombres de archivos ni rutas provenientes de entradas del usuario a las APIs del sistema de archivos[cite: 15]. Utilizar identificadores numéricos o claves hash asociadas a una base de datos[cite: 15].</li>
-          <li><strong>Validación de entradas:</strong> Validar rigurosamente los parámetros antes de procesarlos[cite: 15].</li>
-          <li><strong>Verificación de ruta estricta:</strong> Verificar que la ruta absoluta resultante se mantenga dentro del directorio base permitido antes de realizar la lectura de archivos[cite: 15].</li>
+          <li><strong>Evitar la entrada directa:</strong> No pasar nombres de archivos ni rutas provenientes de entradas del usuario a las APIs del sistema de archivos[: 15]. Utilizar identificadores numéricos o claves hash asociadas a una base de datos.</li>
+          <li><strong>Validación de entradas:</strong> Validar rigurosamente los parámetros antes de procesarlos.</li>
+          <li><strong>Verificación de ruta estricta:</strong> Verificar que la ruta absoluta resultante se mantenga dentro del directorio base permitido antes de realizar la lectura de archivos.</li>
         </ul>
       </section>
 
