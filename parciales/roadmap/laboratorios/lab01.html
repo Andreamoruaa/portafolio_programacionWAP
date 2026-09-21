@@ -2,199 +2,285 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lab 01: Path Traversal Simple | Portafolio WAP</title>
-    <link rel="stylesheet" href="../../../assets/css/styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lab 01: Path Traversal Simple | Portafolio WAP</title>
+  <link rel="stylesheet" href="../../../assets/css/styles.css">
 </head>
 
 <body>
 
-    <!-- Header Hero -->
-    <header class="site-header-hero">
-        <div class="header-info-hero">
-            <span class="hero-tag">Portafolio académico</span>
-            <h1 class="hero-title">Laboratorio 1: Path Traversal Simple</h1>
-            <h2 class="hero-subtitle">Andrea Morúa Bravo <span>185548</span></h2>
-            <p class="hero-alias"><strong>Morúa</strong></p>
-            <div class="hero-details">
-                <span>CNO IV - Seguridad Informática</span>
-                <span class="dot">•</span>
-                <span>Universidad Politécnica de San Luis Potosí</span>
-                <span class="dot">•</span>
-                <span>7mo semestre - Otoño 2026</span>
-            </div>
-        </div>
-        <nav class="site-nav-hero">
-            <ul>
-                <li><a href="../../../index.html">Inicio</a></li>
-                <li><a href="../../parcial1/parcial1.html">Parcial 1</a></li>
-                <li><a href="#" class="disabled">Parcial 2</a></li>
-                <li><a href="#" class="disabled">Parcial 3</a></li>
-                <li><a href="../../roadmap/roadmap.html" class="active">Road to hall of fame</a></li>
-                <li><a href="../../../index.html#contacto">Contacto</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <!-- Contenido Principal -->
-    <main class="content-container">
-
-        <!-- Encabezado del Laboratorio -->
-      <div class="detail-header-badge">
-        <span class="badge-tag">Roadmap — Laboratorio 01</span>
-        <h1 class="activity-detail-title">File path traversal, simple case</h1>
-        <h2 class="activity-detail-subtitle">Nivel: Apprentice | Tipo: File Path Traversal</h2>
+  <!-- Header Hero -->
+  <header class="site-header-hero">
+    <div class="header-info-hero">
+      <span class="hero-tag">Portafolio académico</span>
+      <h1 class="hero-title">Laboratorio 1: Path Traversal Simple</h1>
+      <h2 class="hero-subtitle">Andrea Morúa Bravo <span>185548</span></h2>
+      <p class="hero-alias"><strong>Morúa</strong></p>
+      <div class="hero-details">
+        <span>CNO IV - Seguridad Informática</span>
+        <span class="dot">•</span>
+        <span>Universidad Politécnica de San Luis Potosí</span>
+        <span class="dot">•</span>
+        <span>7mo semestre - Otoño 2026</span>
       </div>
+    </div>
+    <nav class="site-nav-hero">
+      <ul>
+        <li><a href="../../../index.html">Inicio</a></li>
+        <li><a href="../../parcial1/parcial1.html">Parcial 1</a></li>
+        <li><a href="#" class="disabled">Parcial 2</a></li>
+        <li><a href="#" class="disabled">Parcial 3</a></li>
+        <li><a href="../../roadmap/roadmap.html" class="active">Road to hall of fame</a></li>
+        <li><a href="../../../index.html#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main class="content-container">
 
-      <!-- Marco Teórico -->
+    <article class="card card-detail">
+
+      <!-- Encabezado de la Actividad -->
+      <div class="detail-header-badge">
+        <span class="badge-tag">Laboratorio 1</span>
+        <h1 class="activity-detail-title">Path Traversal Case Simple </h1>
+      </div>
+      <!-- información del Laboratorio -->
       <section class="detail-section">
-        <h2 class="section-subheading">Marco Teórico</h2>
-        <p>
-          La vulnerabilidad de <strong>File Path Traversal</strong> (o directory traversal) ocurre cuando una aplicación web utiliza entradas del usuario de forma no segura para construir rutas del sistema de archivos sin realizar una validación o sanitización estricta.
-        </p>
-        <p>
-          Un atacante inserta secuencias de escape como <code>../</code> en sistemas Linux o <code>..\</code> en Windows para retroceder desde el directorio raíz configurado en el servidor web e ingresar a directorios restringidos del sistema operativo.
-        </p>
-
-        <h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem; color: var(--primary-color, #7c3aed);">Impacto en la Tríada CIA</h3>
-        <p>
-          <strong>Confidencialidad:</strong> El impacto es alto, ya que permite la lectura no autorizada de código fuente, archivos de configuración con credenciales y datos sensibles del sistema.
-        </p>
-        <p>
-          <strong>Integridad / Disponibilidad:</strong> El impacto es bajo si solo se ejecutan ataques de lectura, pero el riesgo escala significativamente si se combinan con vulnerabilidades de escritura arbitraria o si se comprometen claves maestras.
-        </p>
-
-        <h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem; color: var(--primary-color, #7c3aed);">Categoría OWASP y Defensa</h3>
-        <p>
-          Corresponde a la categoría <strong>A01:2025 - Broken Access Control</strong> de la OWASP Foundation.
-        </p>
-        <p>
-          Para la defensa se debe aplicar el principio de mínimo privilegio y reemplazar el manejo directo de rutas locales mediante listas blancas o identificadores indirectos e inmutables.
-        </p>
-      </section>
-
-      <!-- Información del Laboratorio -->
-      <section class="detail-section">
-        <h2 class="section-subheading">Detalles del Laboratorio</h2>
+        <h2 class="section-subheading">Información del laboratorio</h2>
         <div class="tech-grid">
           <div class="tech-box">
-            <div class="tech-title">Nombre del laboratorio</div>
+            <div class="tech-title">Nombre del laboratorio:</div>
             <div class="tech-pills">
-              <span class="pill">File path traversal, simple case</span>
+              <span class="pill">Path Traversal Simple, simple case</span>
+            </div>
+          </div>
+
+          <div class="tech-box">
+            <div class="tech-title">Nivel de dificultad: </div>
+            <div class="tech-pills">
+              <span class="pill">Apperentice</span>
             </div>
           </div>
           <div class="tech-box">
-            <div class="tech-title">Nivel</div>
+            <div class="tech-title">Tipo de explotación:</div>
             <div class="tech-pills">
-              <span class="pill">Apprentice</span>
+              <span class="pill">File path traversal</span>
             </div>
           </div>
           <div class="tech-box">
-            <div class="tech-title">Tipo de explotación</div>
+            <div class="tech-title">Objetivo del laboratorio:</div>
             <div class="tech-pills">
-              <span class="pill">File Path Traversal</span>
+              <span class="pill">Recuperar y desplegar el contenido del archivo de configuración del sistema
+                /etc/passwd.</span>
+            </div>
+          </div>
+          <div class="tech-box">
+            <div class="tech-title">Explicación técnica de la vulnerabilidad:</div>
+            <div class="tech-pills">
+              <span class="pill">La aplicación web maneja la carga dinámica de recursos multimedia mediante una
+                solicitud HTTP GET que incluye
+                el parámetro filename. El servidor backend consulta directamente el sistema de
+                archivos local pasando el valor suministrado por el usuario sin sanitizar las
+                secuencias de navegación ../. Esto permite romper la restricción de directorio
+                (jail/sandbox) y leer archivos del sistema operativo subyacente.</span>
             </div>
           </div>
         </div>
-        <br>
+      </section>
+      <!-- Marco teorico -->
+      <section class="detail-section">
+        <h2 class="section-subheading">Marco teórico</h2>
         <p>
-          <strong>Objetivo:</strong> Recuperar y visualizar el contenido del archivo <code>/etc/passwd</code> del servidor.
+          El Path Traversal, también conocido como Directory Traversal, es una vulnerabilidad de seguridad que permite a
+          un
+          atacante acceder a archivos y directorios que están fuera del directorio raíz de la aplicación web. Esta
+          vulnerabilidad ocurre cuando la aplicación no valida correctamente las entradas proporcionadas por el usuario,
+          permitiendo así que se manipulen las rutas de los archivos.
         </p>
         <p>
-          <strong>Vulnerabilidad:</strong> La aplicación procesa la solicitud de imágenes mediante un parámetro URL (<code>filename</code>). El backend lee directamente este valor e intenta resolver el recurso en el disco duro sin restringir que la secuencia de búsqueda salga de la carpeta <code>/var/www/images</code>.
+          En un escenario de Path Traversal, un atacante puede utilizar secuencias de caracteres especiales, como
+          "../" (en sistemas basados en Unix) o "..\" (en sistemas basados en Windows), para navegar hacia arriba en la
+          jerarquía de directorios y acceder a archivos sensibles del sistema. Esto puede incluir archivos de
+          configuración, contraseñas, registros y otros datos críticos que no deberían ser accesibles desde la web.
+        </p>
+        <p>
+          A diferencia de otros ataques, el Path Traversal no necesariamente implica la ejecución de código malicioso,
+          sino que se centra en la exposición de información confidencial. Sin embargo, la información obtenida a través
+          de un ataque de Path Traversal puede ser utilizada para llevar a cabo ataques más sofisticados, como la
+          escalada de privilegios o la ejecución remota de código.
+        </p>
+        <p>
+          En cuestion de base de datos, su principal diferencia en las vulnerabilidades de inyecciones SQL, es que el
+          Path Traversal se enfoca en la manipulación de rutas de archivos y directorios, mientras que las inyecciones
+          SQL se centran en la manipulación de consultas a bases de datos. Ambas vulnerabilidades pueden tener
+          consecuencias graves para la seguridad de una aplicación web, pero requieren enfoques diferentes para su
+          mitigación y prevención.
+        </p>
+        <p>Su impacto en la triada CIA es significativo:
+        <ul class="custom-list">
+          <li><strong>Confidencialidad:</strong> La exposición de archivos sensibles puede comprometer la
+            confidencialidad de la información, permitiendo que datos privados sean accesibles para usuarios no
+            autorizados.</li>
+          <li><strong>Integridad:</strong> Si un atacante logra modificar archivos críticos del sistema, puede afectar
+            la integridad de la aplicación y sus datos, lo que podría llevar a comportamientos inesperados o maliciosos.
+          </li>
+          <li><strong>Disponibilidad:</strong> La manipulación de archivos esenciales para el funcionamiento de la
+            aplicación puede afectar su disponibilidad, causando interrupciones en el servicio o incluso la caída
+            completa del sistema.</li>
+        </ul>
         </p>
       </section>
 
-      <!-- Procedimiento / Proceso -->
+      <!-- Evidencias / Galería de Imágenes en Columnas -->
       <section class="detail-section">
-        <h2 class="section-subheading">Procedimiento</h2>
-        <p>
-          <strong>Payload utilizado:</strong> <code>../../../etc/passwd</code>
-        </p>
-        <p>
-          Suponiendo que la aplicación almacena las imágenes en la ruta <code>/var/www/app/resources/images/</code>:
-        </p>
-        <ul class="custom-list">
-          <li>El primer <code>../</code> retrocede a <code>/var/www/app/resources/</code>.</li>
-          <li>El segundo <code>../</code> retrocede a <code>/var/www/app/</code>.</li>
-          <li>El tercer <code>../</code> retrocede a la raíz del sistema de archivos.</li>
-        </ul>
-        <p>
-          La adición de <code>etc/passwd</code> le indica al servidor que abra dicho archivo del directorio <code>/etc/</code>. Al no existir una validación que elimine los caracteres <code>..</code> o <code>/</code>, el servidor ejecuta la lectura de forma nativa.
-        </p>
+        <h2 class="section-subheading">Evidencias</h2>
+        <p class="section-desc">A continuación se presentan las capturas realizadas en el procedimiento técnico del laboratorio:</p>
 
-        <!-- Sección de Proceso vacía -->
-        <div class="proceso-container" style="margin-top: 2rem;">
-          
+        <div class="evidence-grid">
+          <figure class="evidence-card">
+            <div class="image-wrapper">
+              <img src="../imagenes/lab01_proxyInicial.PNG"
+                alt="Peticion interceptada inicial" class="img-fluid">
+            </div>
+            <figcaption><strong>Figura 1:</strong> Se activa el proxy interyector en Burp Suite (Proxy > Intercept is on) y
+se navega al sitio web del laboratorio.Posteriormente se presiona el botón Forward para liberar la petición interceptada y
+permitir la carga continua del sitio web en el navegador.</figcaption>
+          </figure>
+
+          <figure class="evidence-card">
+            <div class="image-wrapper">
+              <img src="../imagenes/lab01_httphistory.PNG"
+                alt="Historial HTTP de Burp Suite" class="img-fluid">
+            </div>
+            <figcaption><strong>Figura 2:</strong> Se accede a Proxy > HTTP history y se filtra la lista hasta ubicar
+peticiones enviadas hacia /image?filename=....</figcaption>
+          </figure>
+
+          <figure class="evidence-card">
+            <div class="image-wrapper">
+              <img src="../imagenes/lab01_intercept.PNG" alt="Petición del recurso de imagen"
+                class="img-fluid">
+            </div>
+            <figcaption><strong>Figura 3:</strong> 
+              Se selecciona una petición de imagen en la pestaña Intercept.
+            </figcaption>
+          </figure>
+
+          <figure class="evidence-card">
+            <div class="image-wrapper">
+              <img src="../imagenes/lab01_sendtorepeater.PNG" alt="Envío de la solicitud al Repeater"
+                class="img-fluid">
+            </div>
+            <figcaption><strong>Figura 4:</strong> 
+               Haz clic derecho sobre la petición de la imagen en el historial y
+selecciona Send to Repeater (Ctrl + R)  
+            </figcaption>
+          </figure>
+
+          <figure class="evidence-card">
+            <div class="image-wrapper">
+              <img src="../imagenes/lab01_repeater.PNG" alt="Modificación del Payload en el Request"
+                class="img-fluid">
+            </div>
+            <figcaption><strong>Figura 5:</strong> 
+               En la pestaña Repeater, se reemplaza el valor del parámetro
+filename=21.jpg por el payload ../../../etc/passwd y se presiona el botón Send
+            </figcaption>
+          </figure>
+
+          <figure class="evidence-card">
+            <div class="image-wrapper">
+              <img src="../imagenes/lab01_response.PNG" alt="Respuesta del servidor con /etc/passwd"
+                class="img-fluid">
+            </div>
+            <figcaption><strong>Figura 6:</strong> 
+              Se cambia a la pestaña Response dentro del Repeater   
+            </figcaption>
+          </figure>
+
+            <figure class="evidence-card">
+            <div class="image-wrapper">
+              <img src="../imagenes/lab01_final.PNG" alt="Confirmación de solución del laboratorio"
+                class="img-fluid">
+            </div>
+            <figcaption><strong>Figura 7:</strong> 
+              Confirmación de la solución del laboratorio   
+            </figcaption>
+          </figure>
         </div>
       </section>
-
-      <!-- Mitigación Recomendada -->
+      <!--Explicacion de payload-->
       <section class="detail-section">
-        <h2 class="section-subheading">Mitigación Recomendada</h2>
-        <p class="section-desc">
-          Para solucionar esta vulnerabilidad se deben implementar prácticas de programación seguras:
+        <h2 class="section-subheading">Explicación del Payload</h2>
+        <p>
+          El payload utilizado en este laboratorio es una secuencia de caracteres que permite realizar una prueba de vulnerabilidad de Path Traversal. Al reemplazar el valor del parámetro `filename` con `../../../etc/passwd`, se intenta acceder a un archivo sensible del sistema.
+        </p>
+        <p>
+          La secuencia `../../../` indica al servidor que debe navegar hacia arriba en la jerarquía de directorios, saliendo del directorio actual y accediendo a niveles superiores. Esto permite al atacante escapar del entorno restringido de la aplicación y acceder a archivos que normalmente no serían accesibles.
+        </p>
+        <p>
+          El archivo `/etc/passwd` es un archivo crítico en sistemas basados en Unix que contiene información sobre las cuentas de usuario del sistema. Al obtener acceso a este archivo, un atacante puede recopilar información sensible, como nombres de usuario y detalles de configuración del sistema.
+        </p>
+      </section>
+      <!-- Mitigacion -->
+      <section class="detail-section">
+        <h2 class="section-subheading">Recomendaciones de mitigación</h2>
+        <p>
+          Para mitigar la vulnerabilidad de Path Traversal, se recomienda implementar una validación estricta de las
+          entradas proporcionadas por el usuario. Esto incluye:
         </p>
         <ul class="custom-list">
-          <li><strong>Evitar la entrada directa:</strong> No pasar nombres de archivos ni rutas provenientes de entradas del usuario a las APIs del sistema de archivos[: 15]. Utilizar identificadores numéricos o claves hash asociadas a una base de datos.</li>
-          <li><strong>Validación de entradas:</strong> Validar rigurosamente los parámetros antes de procesarlos.</li>
-          <li><strong>Verificación de ruta estricta:</strong> Verificar que la ruta absoluta resultante se mantenga dentro del directorio base permitido antes de realizar la lectura de archivos.</li>
+          <li>Sanitizar y validar los parámetros de entrada para asegurarse de que no contengan secuencias de
+            navegación no deseadas.</li>
+          <li>Utilizar rutas absolutas en lugar de rutas relativas para acceder a archivos y directorios.</li>
+          <li>Implementar controles de acceso adecuados para restringir el acceso a archivos sensibles.</li>
+          <li>Evitar exponer información del sistema operativo o estructura de directorios en los mensajes de error.</li>
+          <li>Realizar pruebas de seguridad regulares para identificar y corregir posibles vulnerabilidades.</li>
         </ul>
       </section>
-
-      <!-- Visor y Descarga del Documento PDF -->
+      <!--PDF -->
       <section class="detail-section">
         <h2 class="section-subheading">Documentación de la práctica (PDF)</h2>
         <p class="section-desc">
-          Puedes consultar el reporte completo del laboratorio directamente a continuación o descargarlo en tu dispositivo:
+          Puedes consultar el reporte completo de la práctica directamente a continuación o descargarlo en tu
+          dispositivo:
         </p>
 
-        <div style="width: 100%; height: 650px; border-radius: 16px; overflow: hidden; border: 1.5px solid #d8b4fe; box-shadow: 0 10px 25px rgba(124, 58, 237, 0.1);">
+        <!-- Visor Integrado (Embed / Iframe) -->
+        <div
+          style="width: 100%; height: 650px; border-radius: 16px; overflow: hidden; border: 1.5px solid #d8b4fe; box-shadow: 0 10px 25px rgba(124, 58, 237, 0.1);">
           <iframe src="../docs/Lab01_Reporte.pdf" width="100%" height="100%" style="border: none;">
-            <p>Tu navegador no soporta la visualización de archivos PDF. <a href="../docs/Lab01_Reporte.pdf">Haz clic aquí para descargarlo.</a></p>
+            <p>Tu navegador no soporta la visualización de archivos PDF. <a href="../docs/Lab01_Reporte.pdf" target="_blank" rel="noopener noreferrer">Haz
+                clic aquí para descargarlo.</a></p>
           </iframe>
         </div>
       </section>
+      <!-- Navegación entre Laboratorios -->
+      <nav class="activity-navigation">
+        <a href="../roadmap.html" class="btn-nav primary">Volver a road to hall of fame</a>
+        <a href="../laboratorios/lab02.html" class="btn-nav">Siguiente laboratorio →</a>
+      </nav>
 
-        <!-- Navegación Lateral -->
-        <nav class="side-nav-right" id="sideNav">
-            <div class="side-nav-title">Navegación</div>
-            <ul>
-                <li><a href="../../index.html">Inicio</a></li>
-                <li><a href="../parcial1/parcial1.html">Parcial 1</a></li>
-                <li><a href="#" class="disabled">Parcial 2</a></li>
-                <li><a href="#" class="disabled">Parcial 3</a></li>
-                <li><a href="roadmap.html" class="active">Road to hall of fame</a></li>
-                <li><a href="../../index.html#contacto">Contacto</a></li>
-            </ul>
-        </nav>
-        <!-- Navegación entre Laboratorios -->
-        <nav class="activity-navigation">
-            <a href="../roadmap.html" class="btn-nav primary">Volver a road to hall of fame</a>
-            <a href="../laboratorios/lab02.html" class="btn-nav">Siguiente laboratorio →</a>
-        </nav>
-
-    </main>
+  </main>
 
 
-    <!-- Pie de Página -->
-    <footer class="site-footer">
-        <p style="color:rgb(77, 6, 107)">&copy; 2026 Andrea Morúa Bravo. Universidad Politécnica de San Luis Potosí</p>
-        <div class="footer-links">
-            <h3>Recursos Profesionales</h3>
-            <ul class="social-cv-links">
-                <li><a href="https://www.linkedin.com/in/andrea-morua-01092732b/" target="_blank"
-                        rel="noopener noreferrer">LinkedIn</a></li>
-                <li><a href="https://github.com/Andreamoruaa" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-                <li><a href="../../assets/docs/Andrea Morua Bravo CV.pdf" target="_blank"
-                        rel="noopener noreferrer">Curriculum
-                        Vitae</a></li>
-            </ul>
-        </div>
-    </footer>
+  <!-- Pie de Página -->
+  <footer class="site-footer">
+    <p style="color:rgb(77, 6, 107)">&copy; 2026 Andrea Morúa Bravo. Universidad Politécnica de San Luis Potosí</p>
+    <div class="footer-links">
+      <h3>Recursos Profesionales</h3>
+      <ul class="social-cv-links">
+        <li><a href="https://www.linkedin.com/in/andrea-morua-01092732b/" target="_blank"
+            rel="noopener noreferrer">LinkedIn</a></li>
+        <li><a href="https://github.com/Andreamoruaa" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        <li><a href="../../assets/docs/Andrea Morua Bravo CV.pdf" target="_blank" rel="noopener noreferrer">Curriculum
+            Vitae</a></li>
+      </ul>
+    </div>
+  </footer>
 
-    <script src="../../../assets/js/main.js"></script>
+  <script src="../../../assets/js/main.js"></script>
 
 </body>
 
