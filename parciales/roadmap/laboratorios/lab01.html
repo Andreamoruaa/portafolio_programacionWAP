@@ -135,77 +135,73 @@
       <!-- Evidencias / Galería de Imágenes en Columnas -->
       <section class="detail-section">
         <h2 class="section-subheading">Evidencias</h2>
-        <p class="section-desc">A continuación se presentan las capturas realizadas en el procedimiento técnico del laboratorio:</p>
+        <p class="section-desc">A continuación se presentan las capturas realizadas en el procedimiento técnico del
+          laboratorio:</p>
 
         <div class="evidence-grid">
           <figure class="evidence-card">
             <div class="image-wrapper">
-              <img src="../imagenes/lab01_proxyInicial.PNG"
-                alt="Peticion interceptada inicial" class="img-fluid">
+              <img src="../imagenes/lab01_proxyInicial.PNG" alt="Peticion interceptada inicial" class="img-fluid">
             </div>
-            <figcaption><strong>Figura 1:</strong> Se activa el proxy interyector en Burp Suite (Proxy > Intercept is on) y
-se navega al sitio web del laboratorio.Posteriormente se presiona el botón Forward para liberar la petición interceptada y
-permitir la carga continua del sitio web en el navegador.</figcaption>
+            <figcaption><strong>Figura 1:</strong> Se activa el proxy interyector en Burp Suite (Proxy > Intercept is
+              on) y
+              se navega al sitio web del laboratorio.Posteriormente se presiona el botón Forward para liberar la
+              petición interceptada y
+              permitir la carga continua del sitio web en el navegador.</figcaption>
           </figure>
 
           <figure class="evidence-card">
             <div class="image-wrapper">
-              <img src="../imagenes/lab01_httphistory.PNG"
-                alt="Historial HTTP de Burp Suite" class="img-fluid">
+              <img src="../imagenes/lab01_httphistory.PNG" alt="Historial HTTP de Burp Suite" class="img-fluid">
             </div>
             <figcaption><strong>Figura 2:</strong> Se accede a Proxy > HTTP history y se filtra la lista hasta ubicar
-peticiones enviadas hacia /image?filename=....</figcaption>
+              peticiones enviadas hacia /image?filename=....</figcaption>
           </figure>
 
           <figure class="evidence-card">
             <div class="image-wrapper">
-              <img src="../imagenes/lab01_intercept.PNG" alt="Petición del recurso de imagen"
-                class="img-fluid">
+              <img src="../imagenes/lab01_intercept.PNG" alt="Petición del recurso de imagen" class="img-fluid">
             </div>
-            <figcaption><strong>Figura 3:</strong> 
+            <figcaption><strong>Figura 3:</strong>
               Se selecciona una petición de imagen en la pestaña Intercept.
             </figcaption>
           </figure>
 
           <figure class="evidence-card">
             <div class="image-wrapper">
-              <img src="../imagenes/lab01_sendtorepeater.PNG" alt="Envío de la solicitud al Repeater"
-                class="img-fluid">
+              <img src="../imagenes/lab01_sendtorepeater.PNG" alt="Envío de la solicitud al Repeater" class="img-fluid">
             </div>
-            <figcaption><strong>Figura 4:</strong> 
-               Haz clic derecho sobre la petición de la imagen en el historial y
-selecciona Send to Repeater (Ctrl + R)  
+            <figcaption><strong>Figura 4:</strong>
+              Haz clic derecho sobre la petición de la imagen en el historial y
+              selecciona Send to Repeater (Ctrl + R)
             </figcaption>
           </figure>
 
           <figure class="evidence-card">
             <div class="image-wrapper">
-              <img src="../imagenes/lab01_repeater.PNG" alt="Modificación del Payload en el Request"
-                class="img-fluid">
+              <img src="../imagenes/lab01_repeater.PNG" alt="Modificación del Payload en el Request" class="img-fluid">
             </div>
-            <figcaption><strong>Figura 5:</strong> 
-               En la pestaña Repeater, se reemplaza el valor del parámetro
-filename=21.jpg por el payload ../../../etc/passwd y se presiona el botón Send
+            <figcaption><strong>Figura 5:</strong>
+              En la pestaña Repeater, se reemplaza el valor del parámetro
+              filename=21.jpg por el payload ../../../etc/passwd y se presiona el botón Send
             </figcaption>
           </figure>
 
           <figure class="evidence-card">
             <div class="image-wrapper">
-              <img src="../imagenes/lab01_response.PNG" alt="Respuesta del servidor con /etc/passwd"
-                class="img-fluid">
+              <img src="../imagenes/lab01_response.PNG" alt="Respuesta del servidor con /etc/passwd" class="img-fluid">
             </div>
-            <figcaption><strong>Figura 6:</strong> 
-              Se cambia a la pestaña Response dentro del Repeater   
+            <figcaption><strong>Figura 6:</strong>
+              Se cambia a la pestaña Response dentro del Repeater
             </figcaption>
           </figure>
 
-            <figure class="evidence-card">
+          <figure class="evidence-card">
             <div class="image-wrapper">
-              <img src="../imagenes/lab01_final.PNG" alt="Confirmación de solución del laboratorio"
-                class="img-fluid">
+              <img src="../imagenes/lab01_final.PNG" alt="Confirmación de solución del laboratorio" class="img-fluid">
             </div>
-            <figcaption><strong>Figura 7:</strong> 
-              Confirmación de la solución del laboratorio   
+            <figcaption><strong>Figura 7:</strong>
+              Confirmación de la solución del laboratorio
             </figcaption>
           </figure>
         </div>
@@ -214,13 +210,19 @@ filename=21.jpg por el payload ../../../etc/passwd y se presiona el botón Send
       <section class="detail-section">
         <h2 class="section-subheading">Explicación del Payload</h2>
         <p>
-          El payload utilizado en este laboratorio es una secuencia de caracteres que permite realizar una prueba de vulnerabilidad de Path Traversal. Al reemplazar el valor del parámetro `filename` con `../../../etc/passwd`, se intenta acceder a un archivo sensible del sistema.
+          El payload utilizado en este laboratorio es una secuencia de caracteres que permite realizar una prueba de
+          vulnerabilidad de Path Traversal. Al reemplazar el valor del parámetro `filename` con `../../../etc/passwd`,
+          se intenta acceder a un archivo sensible del sistema.
         </p>
         <p>
-          La secuencia `../../../` indica al servidor que debe navegar hacia arriba en la jerarquía de directorios, saliendo del directorio actual y accediendo a niveles superiores. Esto permite al atacante escapar del entorno restringido de la aplicación y acceder a archivos que normalmente no serían accesibles.
+          La secuencia `../../../` indica al servidor que debe navegar hacia arriba en la jerarquía de directorios,
+          saliendo del directorio actual y accediendo a niveles superiores. Esto permite al atacante escapar del entorno
+          restringido de la aplicación y acceder a archivos que normalmente no serían accesibles.
         </p>
         <p>
-          El archivo `/etc/passwd` es un archivo crítico en sistemas basados en Unix que contiene información sobre las cuentas de usuario del sistema. Al obtener acceso a este archivo, un atacante puede recopilar información sensible, como nombres de usuario y detalles de configuración del sistema.
+          El archivo `/etc/passwd` es un archivo crítico en sistemas basados en Unix que contiene información sobre las
+          cuentas de usuario del sistema. Al obtener acceso a este archivo, un atacante puede recopilar información
+          sensible, como nombres de usuario y detalles de configuración del sistema.
         </p>
       </section>
       <!-- Mitigacion -->
@@ -235,7 +237,8 @@ filename=21.jpg por el payload ../../../etc/passwd y se presiona el botón Send
             navegación no deseadas.</li>
           <li>Utilizar rutas absolutas en lugar de rutas relativas para acceder a archivos y directorios.</li>
           <li>Implementar controles de acceso adecuados para restringir el acceso a archivos sensibles.</li>
-          <li>Evitar exponer información del sistema operativo o estructura de directorios en los mensajes de error.</li>
+          <li>Evitar exponer información del sistema operativo o estructura de directorios en los mensajes de error.
+          </li>
           <li>Realizar pruebas de seguridad regulares para identificar y corregir posibles vulnerabilidades.</li>
         </ul>
       </section>
@@ -251,7 +254,8 @@ filename=21.jpg por el payload ../../../etc/passwd y se presiona el botón Send
         <div
           style="width: 100%; height: 650px; border-radius: 16px; overflow: hidden; border: 1.5px solid #d8b4fe; box-shadow: 0 10px 25px rgba(124, 58, 237, 0.1);">
           <iframe src="../docs/Lab01_Reporte.pdf" width="100%" height="100%" style="border: none;">
-            <p>Tu navegador no soporta la visualización de archivos PDF. <a href="../docs/Lab01_Reporte.pdf" target="_blank" rel="noopener noreferrer">Haz
+            <p>Tu navegador no soporta la visualización de archivos PDF. <a href="../docs/Lab01_Reporte.pdf"
+                target="_blank" rel="noopener noreferrer">Haz
                 clic aquí para descargarlo.</a></p>
           </iframe>
         </div>
@@ -261,7 +265,7 @@ filename=21.jpg por el payload ../../../etc/passwd y se presiona el botón Send
         <a href="../roadmap.html" class="btn-nav primary">Volver a road to hall of fame</a>
         <a href="../laboratorios/lab02.html" class="btn-nav">Siguiente laboratorio →</a>
       </nav>
-
+    </article>
   </main>
 
 
