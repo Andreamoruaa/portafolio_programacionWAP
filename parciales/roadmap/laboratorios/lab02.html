@@ -39,7 +39,7 @@
 
     <!-- Contenido Principal -->
     <main class="content-container">
-
+      <article class="card card-detail">
         <!-- Encabezado de la Actividad -->
       <div class="detail-header-badge">
         <span class="badge-tag">Laboratorio 2</span>
@@ -114,7 +114,7 @@
         </ul>
         </p>
         <p>
-            En cuanto a OWAP Top 10, esta vulnerabilidad se clasifica como A5:2021 - Security Misconfiguration, ya que la aplicación no maneja adecuadamente la validación de entradas y permite el acceso a recursos sensibles debido a una configuración insegura.
+            Se clasifica bajo la categoría A01:2021 – Broken Access Control (Control de Acceso Deficiente).   
         </p>
       </section>
 
@@ -127,55 +127,46 @@
         <div class="evidence-grid">
           <figure class="evidence-card">
             <div class="image-wrapper">
-              <img src="../imagenes/lab01_proxyInicial.PNG" alt="Peticion interceptada inicial" class="img-fluid">
+              <img src="../imagenes/lab02_proxyInicial.PNG" alt="Peticion interceptada inicial" class="img-fluid">
             </div>
-            <figcaption><strong>Figura 1:</strong> Se activa el proxy interyector en Burp Suite (Proxy > Intercept is
-              on) y
-              se navega al sitio web del laboratorio.Posteriormente se presiona el botón Forward para liberar la
-              petición interceptada y
-              permitir la carga continua del sitio web en el navegador.</figcaption>
+            <figcaption><strong>Figura 1:</strong>Con Burp Suite configurado y el Proxy activo (Proxy > Intercept is on), se accede a la URL del laboratorio.</figcaption>
           </figure>
 
           <figure class="evidence-card">
             <div class="image-wrapper">
-              <img src="../imagenes/lab01_httphistory.PNG" alt="Historial HTTP de Burp Suite" class="img-fluid">
+              <img src="../imagenes/lab02_intercept.PNG" alt="Historial HTTP de Burp Suite" class="img-fluid">
             </div>
-            <figcaption><strong>Figura 2:</strong> Se accede a Proxy > HTTP history y se filtra la lista hasta ubicar
-              peticiones enviadas hacia /image?filename=....</figcaption>
+            <figcaption><strong>Figura 2:</strong>En Burp Suite, se accede a Proxy > HTTP history y se localiza la petición GET /image?filename=12.jpg HTTP/2. No importa el número de jpg.</figcaption>
           </figure>
 
           <figure class="evidence-card">
             <div class="image-wrapper">
-              <img src="../imagenes/lab01_intercept.PNG" alt="Petición del recurso de imagen" class="img-fluid">
+              <img src="../imagenes/lab02_evaluacionseguridad.PNG" alt="Evaluación de seguridad" class="img-fluid">
             </div>
-            <figcaption><strong>Figura 3:</strong>
-              Se selecciona una petición de imagen en la pestaña Intercept.
+            <figcaption><strong>Figura 3:</strong> Si se envía la secuencia tradicional filename=../../../etc/passwd, el servidor responde con un error o bloquea la petición debido a un filtro que detecta ../.
             </figcaption>
           </figure>
 
           <figure class="evidence-card">
             <div class="image-wrapper">
-              <img src="../imagenes/lab01_sendtorepeater.PNG" alt="Envío de la solicitud al Repeater" class="img-fluid">
+              <img src="../imagenes/lab02_evaluacionseguridadRESPONSE.PNG" alt="Respuesta del servidor de seguridad" class="img-fluid">
             </div>
-            <figcaption><strong>Figura 4:</strong>
-              Haz clic derecho sobre la petición de la imagen en el historial y
-              selecciona Send to Repeater (Ctrl + R)
+            <figcaption><strong>Figura 4:</strong> Este comportamiento confirma la presencia de un mecanismo de defensa rudimentario enfocado en secuencias relativas.
             </figcaption>
           </figure>
 
           <figure class="evidence-card">
             <div class="image-wrapper">
-              <img src="../imagenes/lab01_repeater.PNG" alt="Modificación del Payload en el Request" class="img-fluid">
+              <img src="../imagenes/lab02_repeater.PNG" alt="Modificación del Payload en el Request" class="img-fluid">
             </div>
-            <figcaption><strong>Figura 5:</strong>
-              En la pestaña Repeater, se reemplaza el valor del parámetro
-              filename=21.jpg por el payload ../../../etc/passwd y se presiona el botón Send
+            <figcaption><strong>Figura 5:</strong> En la pestaña request del Repeater, se modifica el valor del parámetro filename por la ruta absoluta directa:
+GET /image?filename=/etc/passwd HTTP/2
             </figcaption>
           </figure>
 
           <figure class="evidence-card">
             <div class="image-wrapper">
-              <img src="../imagenes/lab01_response.PNG" alt="Respuesta del servidor con /etc/passwd" class="img-fluid">
+              <img src="../imagenes/lab02_response.PNG" alt="Respuesta del servidor con /etc/passwd" class="img-fluid">
             </div>
             <figcaption><strong>Figura 6:</strong>
               Se cambia a la pestaña Response dentro del Repeater
@@ -184,7 +175,7 @@
 
           <figure class="evidence-card">
             <div class="image-wrapper">
-              <img src="../imagenes/lab01_final.PNG" alt="Confirmación de solución del laboratorio" class="img-fluid">
+              <img src="../imagenes/lab02_congratulations.PNG" alt="Confirmación de solución del laboratorio" class="img-fluid">
             </div>
             <figcaption><strong>Figura 7:</strong>
               Confirmación de la solución del laboratorio
@@ -196,24 +187,19 @@
       <section class="detail-section">
         <h2 class="section-subheading">Explicación del Payload</h2>
         <p>
-            El payload utilizado en este laboratorio es "/etc/passwd". Este payload es una ruta absoluta que apunta al archivo de configuración de usuarios en sistemas operativos tipo Unix/Linux. Al enviar este payload como valor del parámetro "filename" en la solicitud HTTP, se elude la validación que bloquea las secuencias de navegación relativas (../) y se accede directamente al archivo sensible.
+            El filtro replace "../" no encuentra la secuencia y deja la entrada sin cambios. Al procesar la ruta, la función de unión detecta que el segundo argumento /etc/passwd es una ruta absoluta, por lo que ignora el prefijo previo /var/www/images/. De este modo, el sistema operativo resuelve la ruta directamente hacia /etc/passwd, accediendo a la raíz del sistema para leer el archivo de usuarios.
         </p>
       </section>
       <!-- Mitigacion -->
       <section class="detail-section">
         <h2 class="section-subheading">Recomendaciones de mitigación</h2>
         <p>
-          Para mitigar la vulnerabilidad de Path Traversal, se recomienda implementar una validación estricta de las
-          entradas proporcionadas por el usuario. Esto incluye:
+            Para prevenir vulnerabilidades de Absolute Path Bypass, se recomienda implementar las siguientes medidas de seguridad:Para prevenir vulnerabilidades de Path Traversal por bypass de ruta absoluta, se deben adoptar los siguientes patrones de desarrollo seguro:  
         </p>
         <ul class="custom-list">
-          <li>Sanitizar y validar los parámetros de entrada para asegurarse de que no contengan secuencias de
-            navegación no deseadas.</li>
-          <li>Utilizar rutas absolutas en lugar de rutas relativas para acceder a archivos y directorios.</li>
-          <li>Implementar controles de acceso adecuados para restringir el acceso a archivos sensibles.</li>
-          <li>Evitar exponer información del sistema operativo o estructura de directorios en los mensajes de error.
-          </li>
-          <li>Realizar pruebas de seguridad regulares para identificar y corregir posibles vulnerabilidades.</li>
+          <li>En lugar de permitir que alguien pida directamente un archivo escribiendo su nombre o ruta (como imagen1.jpg o /etc/passwd), el sistema debe usar códigos o números de identificación</li>
+          <li>Si es estrictamente necesario que el usuario envíe un nombre, el servidor debe limpiar la entrada y quedarse solo con el nombre final, ignorando cualquier carpeta o diagonal previa</li>
+          <li>Antes de abrir cualquier archivo, el servidor debe calcular la ubicación exacta donde terminará buscando y confirmar que siga estando dentro de la carpeta permitida.</li>
         </ul>
       </section>
       <!--PDF -->
@@ -227,15 +213,22 @@
         <!-- Visor Integrado (Embed / Iframe) -->
         <div
           style="width: 100%; height: 650px; border-radius: 16px; overflow: hidden; border: 1.5px solid #d8b4fe; box-shadow: 0 10px 25px rgba(124, 58, 237, 0.1);">
-          <iframe src="../docs/Lab01_Reporte.pdf" width="100%" height="100%" style="border: none;">
-            <p>Tu navegador no soporta la visualización de archivos PDF. <a href="../docs/Lab01_Reporte.pdf"
+          <iframe src="../docs/Lab02_reporte.pdf" width="100%" height="100%" style="border: none;">
+            <p>Tu navegador no soporta la visualización de archivos PDF. <a href="../docs/Lab02_reporte.pdf"
                 target="_blank" rel="noopener noreferrer">Haz
                 clic aquí para descargarlo.</a></p>
           </iframe>
         </div>
       </section>
-
-        <!-- Navegación Lateral -->
+        
+        <!-- Navegación entre Laboratorios -->
+        <nav class="activity-navigation">
+            <a href="../laboratorios/lab01.html" class="btn-nav">← Anterior laboratorio</a>
+            <a href="../roadmap.html" class="btn-nav primary">Volver a road to hall of fame</a>
+            <a href="../laboratorios/lab03.html" class="btn-nav">Siguiente laboratorio →</a>
+        </nav>
+      </article>
+      <!-- Navegación Lateral -->
         <nav class="side-nav-right" id="sideNav">
             <div class="side-nav-title">Navegación</div>
             <ul>
@@ -247,13 +240,6 @@
                 <li><a href="../../index.html#contacto">Contacto</a></li>
             </ul>
         </nav>
-        <!-- Navegación entre Laboratorios -->
-        <nav class="activity-navigation">
-            <a href="../laboratorios/lab01.html" class="btn-nav">← Anterior laboratorio</a>
-            <a href="../roadmap.html" class="btn-nav primary">Volver a road to hall of fame</a>
-            <a href="../laboratorios/lab03.html" class="btn-nav">Siguiente laboratorio →</a>
-        </nav>
-
     </main>
 
 
