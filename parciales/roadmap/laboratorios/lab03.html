@@ -39,15 +39,6 @@
 
     <!-- Contenido Principal -->
     <main class="content-container">
-
-        <!-- Sección Hero / Descarga General -->
-        <section class="card fade-in-up">
-            <h2 class="section-title">Laboratorio 3: Non-recursive bypass</h2>
-            <p style="margin-bottom: 1.5rem;">
-                Todavía no esta disponible
-            </p>
-        </section>
-
         <!-- Navegación Lateral -->
         <nav class="side-nav-right" id="sideNav">
             <div class="side-nav-title">Navegación</div>
@@ -60,12 +51,243 @@
                 <li><a href="../../index.html#contacto">Contacto</a></li>
             </ul>
         </nav>
-        <!-- Navegación entre Laboratorios -->
+        <!--Contenido principal -->
+        <article class="card card-detail">
+      <!-- Encabezado de la Actividad -->
+      <div class="detail-header-badge">
+        <span class="badge-tag">Laboratorio 3</span>
+        <h1 class="activity-detail-title">Traversal sequences stripped non-recursively</h1>
+      </div>
+      <!-- información del Laboratorio -->
+      <section class="detail-section">
+        <h2 class="section-subheading">Información del laboratorio</h2>
+        <div class="tech-grid">
+          <div class="tech-box">
+            <div class="tech-title">Nombre del laboratorio:</div>
+            <div class="tech-pills">
+              <span class="pill">Traversal sequences stripped non-recursively</span>
+            </div>
+          </div>
+
+          <div class="tech-box">
+            <div class="tech-title">Nivel de dificultad: </div>
+            <div class="tech-pills">
+              <span class="pill">Practitioner</span>
+            </div>
+          </div>
+          <div class="tech-box">
+            <div class="tech-title">Tipo de explotación:</div>
+            <div class="tech-pills">
+              <span class="pill">File path traversal</span>
+            </div>
+          </div>
+          <div class="tech-box">
+            <div class="tech-title">Objetivo del laboratorio:</div>
+            <div class="tech-pills">
+              <span class="pill">Recuperar y desplegar el contenido del archivo de configuración del sistema
+                /etc/passwd.</span>
+            </div>
+          </div>
+          <div class="tech-box">
+            <div class="tech-title">Explicación técnica de la vulnerabilidad:</div>
+            <div class="tech-pills">
+              <span class="pill"></span>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Marco teorico -->
+      <section class="detail-section">
+        <h2 class="section-subheading">Marco teórico</h2>
+        <p>
+          En muchas aplicaciones web, los desarrolladores intentan solucionar las vulnerabilidades de File Path
+          Traversal aplicando filtros superficiales o listas negras que buscan y eliminan las secuencias de escape
+          relativas ../ o ..\
+        </p>
+        <p>
+          Cuando el backend recibe la entrada del usuario y utiliza funciones nativas del sistema operativo, estas APIs
+          interpretan tanto rutas relativas como rutas absolutas. Si la aplicación solo válida la ausencia de ../, pero
+          acepta rutas que comienzan con el carácter de directorio raíz / (en sistemas UNIX/Linux) o una letra de unidad
+          como C:\ (en Windows), la protección es ineficaz y permite un Absolute Path Bypass. Esto significa que un
+          atacante puede especificar una ruta absoluta a un archivo sensible, eludiendo los filtros de seguridad y
+          accediendo a recursos que deberían estar protegidos.
+        </p>
+        <p>
+          Por ejemplo, si la aplicación filtra ../ pero permite rutas absolutas, un atacante podría enviar una solicitud
+          con un parámetro como /etc/passwd en un sistema Linux o C:\Windows\system32\config\SAM en un sistema Windows.
+          Esto le permitiría leer archivos críticos del sistema operativo, exponiendo información sensible y
+          comprometiendo la seguridad de la aplicación.
+        </p>
+        <p>
+          A diferencia de un ataque de Path Traversal tradicional, donde el atacante navega hacia arriba en la jerarquía
+          de directorios, el Absolute Path Bypass permite especificar directamente la ubicación completa del archivo
+          objetivo. Esto hace que la vulnerabilidad sea más peligrosa, ya que no depende de la estructura de directorios
+          de la aplicación y puede ser explotada incluso si se han implementado medidas básicas de seguridad.
+        </p>
+        <p>Su impacto en la triada CIA es significativo:
+        <ul class="custom-list">
+          <li><strong>Confidencialidad:</strong> La exposición de archivos sensibles puede comprometer la
+            confidencialidad de la información, permitiendo que datos privados sean accesibles para usuarios no
+            autorizados.</li>
+          <li><strong>Integridad:</strong> Si el endpoint vulnerable permite la escritura o modificación de archivos, un
+            atacante podría alterar archivos críticos del sistema, comprometiendo la integridad de la aplicación y sus
+            datos.
+          </li>
+          <li><strong>Disponibilidad:</strong> La manipulación de archivos esenciales para el funcionamiento de la
+            aplicación puede afectar su disponibilidad, causando interrupciones en el servicio o incluso la caída
+            completa del sistema.</li>
+        </ul>
+        </p>
+        <p>
+          Se clasifica bajo la categoría A01:2021 – Broken Access Control (Control de Acceso Deficiente).
+        </p>
+      </section>
+
+      <!-- Evidencias / Galería de Imágenes en Columnas -->
+      <section class="detail-section">
+        <h2 class="section-subheading">Evidencias</h2>
+        <p class="section-desc">A continuación se presentan las capturas realizadas en el procedimiento técnico del
+          laboratorio:</p>
+
+        <div class="evidence-grid">
+          <figure class="evidence-card">
+            <div class="image-wrapper">
+              <img src="../imagenes/lab03_proxyInicial.PNG" alt="Peticion interceptada inicial" class="img-fluid">
+            </div>
+            <figcaption><strong>Figura 1:</strong>Con Burp Suite configurado y el Proxy activo (Proxy > Intercept is
+              on), se accede a la URL del laboratorio.</figcaption>
+          </figure>
+
+          <figure class="evidence-card">
+            <div class="image-wrapper">
+              <img src="../imagenes/lab03_intercept.PNG" alt="Historial HTTP de Burp Suite" class="img-fluid">
+            </div>
+            <figcaption><strong>Figura 2:</strong>En Burp Suite, se accede a Proxy > HTTP history y se localiza la
+              petición GET /image?filename=12.jpg HTTP/2. No importa el número de jpg.</figcaption>
+          </figure>
+
+          <figure class="evidence-card">
+            <div class="image-wrapper">
+              <img src="../imagenes/lab03_intento1.PNG" alt="Evaluación de seguridad" class="img-fluid">
+            </div>
+            <figcaption><strong>Figura 3:</strong> Si se envía la secuencia tradicional filename=../../../etc/passwd, el
+              servidor responde con un error o bloquea la petición debido a un filtro que detecta ../.
+            </figcaption>
+          </figure>
+
+          <figure class="evidence-card">
+            <div class="image-wrapper">
+              <img src="../imagenes/lab03_intento1RESPONSE.PNG" alt="Respuesta del servidor de seguridad"
+                class="img-fluid">
+            </div>
+            <figcaption><strong>Figura 4:</strong> Este comportamiento confirma la presencia de un mecanismo de defensa
+              rudimentario enfocado en secuencias relativas.
+            </figcaption>
+          </figure>
+
+          <figure class="evidence-card">
+            <div class="image-wrapper">
+              <img src="../imagenes/lab03_intento2.PNG" alt="Modificación del Payload en el Request" class="img-fluid">
+            </div>
+            <figcaption><strong>Figura 5:</strong> En la pestaña request del Repeater, se modifica el valor del
+              parámetro filename por la ruta absoluta directa:
+              GET /image?filename=/etc/passwd HTTP/2
+            </figcaption>
+          </figure>
+
+          <figure class="evidence-card">
+            <div class="image-wrapper">
+              <img src="../imagenes/lab03_intento2RESPONSE.PNG" alt="Respuesta del servidor con /etc/passwd" class="img-fluid">
+            </div>
+            <figcaption><strong>Figura 6:</strong>
+              Se cambia a la pestaña Response dentro del Repeater
+              El servidor responde con HTTP/2 200 OK y entrega el contenido del archivo
+              /etc/passwd, mostrando la lista de usuarios del sistema Linux.
+            </figcaption>
+          </figure>
+
+          <figure class="evidence-card">
+            <div class="image-wrapper">
+              <img src="../imagenes/lab03_request.PNG" alt="Confirmación de solución del laboratorio"
+                class="img-fluid">
+            </div>
+            <figcaption><strong>Figura 7:</strong>
+              Confirmación de la solución del laboratorio
+            </figcaption>
+          </figure>
+          <figure class="evidence-card">
+            <div class="image-wrapper">
+              <img src="../imagenes/lab03_response.PNG" alt="Confirmación de solución del laboratorio"
+                class="img-fluid">
+            </div>
+            <figcaption><strong>Figura 7:</strong>
+              Confirmación de la solución del laboratorio
+            </figcaption>
+          </figure>
+          <figure class="evidence-card">
+            <div class="image-wrapper">
+              <img src="../imagenes/lab03_congratulations.PNG" alt="Confirmación de solución del laboratorio"
+                class="img-fluid">
+            </div>
+            <figcaption><strong>Figura 7:</strong>
+              Confirmación de la solución del laboratorio
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+      <!--Explicacion de payload-->
+      <section class="detail-section">
+        <h2 class="section-subheading">Explicación del Payload</h2>
+        <p>
+          El filtro replace "../" no encuentra la secuencia y deja la entrada sin cambios. Al procesar la ruta, la
+          función de unión detecta que el segundo argumento /etc/passwd es una ruta absoluta, por lo que ignora el
+          prefijo previo /var/www/images/. De este modo, el sistema operativo resuelve la ruta directamente hacia
+          /etc/passwd, accediendo a la raíz del sistema para leer el archivo de usuarios.
+        </p>
+      </section>
+      <!-- Mitigacion -->
+      <section class="detail-section">
+        <h2 class="section-subheading">Recomendaciones de mitigación</h2>
+        <p>
+          Para prevenir vulnerabilidades de Absolute Path Bypass, se recomienda implementar las siguientes medidas de
+          seguridad:Para prevenir vulnerabilidades de Path Traversal por bypass de ruta absoluta, se deben adoptar los
+          siguientes patrones de desarrollo seguro:
+        </p>
+        <ul class="custom-list">
+          <li>En lugar de permitir que alguien pida directamente un archivo escribiendo su nombre o ruta (como
+            imagen1.jpg o /etc/passwd), el sistema debe usar códigos o números de identificación</li>
+          <li>Si es estrictamente necesario que el usuario envíe un nombre, el servidor debe limpiar la entrada y
+            quedarse solo con el nombre final, ignorando cualquier carpeta o diagonal previa</li>
+          <li>Antes de abrir cualquier archivo, el servidor debe calcular la ubicación exacta donde terminará buscando y
+            confirmar que siga estando dentro de la carpeta permitida.</li>
+        </ul>
+      </section>
+      <!--PDF -->
+      <section class="detail-section">
+        <h2 class="section-subheading">Documentación de la práctica (PDF)</h2>
+        <p class="section-desc">
+          Puedes consultar el reporte completo de la práctica directamente a continuación o descargarlo en tu
+          dispositivo:
+        </p>
+
+        <!-- Visor Integrado (Embed / Iframe) -->
+        <div
+          style="width: 100%; height: 650px; border-radius: 16px; overflow: hidden; border: 1.5px solid #d8b4fe; box-shadow: 0 10px 25px rgba(124, 58, 237, 0.1);">
+          <iframe src="../docs/Lab02_reporte.pdf" width="100%" height="100%" style="border: none;">
+            <p>Tu navegador no soporta la visualización de archivos PDF. <a href="../docs/Lab02_reporte.pdf"
+                target="_blank" rel="noopener noreferrer">Haz
+                clic aquí para descargarlo.</a></p>
+          </iframe>
+        </div>
+      </section>
+
+      <!-- Navegación entre Laboratorios -->
         <nav class="activity-navigation">
             <a href="../laboratorios/lab02.html" class="btn-nav">← Anterior laboratorio</a>
             <a href="../roadmap.html" class="btn-nav primary">Volver a road to hall of fame</a>
             <a href="../laboratorios/lab04.html" class="btn-nav">Siguiente laboratorio →</a>
         </nav>
+    </article>
 
     </main>
 

@@ -2,45 +2,45 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lab 02: Absolute path bypass | Portafolio WAP</title>
-    <link rel="stylesheet" href="../../../assets/css/styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lab 02: Absolute path bypass | Portafolio WAP</title>
+  <link rel="stylesheet" href="../../../assets/css/styles.css">
 </head>
 
 <body>
 
-    <!-- Header Hero -->
-    <header class="site-header-hero">
-        <div class="header-info-hero">
-            <span class="hero-tag">Portafolio académico</span>
-            <h1 class="hero-title">Laboratorio 2: Absolute path bypass</h1>
-            <h2 class="hero-subtitle">Andrea Morúa Bravo <span>185548</span></h2>
-            <p class="hero-alias"><strong>Morúa</strong></p>
-            <div class="hero-details">
-                <span>CNO IV - Seguridad Informática</span>
-                <span class="dot">•</span>
-                <span>Universidad Politécnica de San Luis Potosí</span>
-                <span class="dot">•</span>
-                <span>7mo semestre - Otoño 2026</span>
-            </div>
-        </div>
-        <nav class="site-nav-hero">
-            <ul>
-                <li><a href="../../../index.html">Inicio</a></li>
-                <li><a href="../../parcial1/parcial1.html">Parcial 1</a></li>
-                <li><a href="#" class="disabled">Parcial 2</a></li>
-                <li><a href="#" class="disabled">Parcial 3</a></li>
-                <li><a href="../../roadmap/roadmap.html" class="active">Road to hall of fame</a></li>
-                <li><a href="../../../index.html#contacto">Contacto</a></li>
-            </ul>
-        </nav>
-    </header>
+  <!-- Header Hero -->
+  <header class="site-header-hero">
+    <div class="header-info-hero">
+      <span class="hero-tag">Portafolio académico</span>
+      <h1 class="hero-title">Laboratorio 2: Absolute path bypass</h1>
+      <h2 class="hero-subtitle">Andrea Morúa Bravo <span>185548</span></h2>
+      <p class="hero-alias"><strong>Morúa</strong></p>
+      <div class="hero-details">
+        <span>CNO IV - Seguridad Informática</span>
+        <span class="dot">•</span>
+        <span>Universidad Politécnica de San Luis Potosí</span>
+        <span class="dot">•</span>
+        <span>7mo semestre - Otoño 2026</span>
+      </div>
+    </div>
+    <nav class="site-nav-hero">
+      <ul>
+        <li><a href="../../../index.html">Inicio</a></li>
+        <li><a href="../../parcial1/parcial1.html">Parcial 1</a></li>
+        <li><a href="#" class="disabled">Parcial 2</a></li>
+        <li><a href="#" class="disabled">Parcial 3</a></li>
+        <li><a href="../../roadmap/roadmap.html" class="active">Road to hall of fame</a></li>
+        <li><a href="../../../index.html#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <!-- Contenido Principal -->
-    <main class="content-container">
-      <article class="card card-detail">
-        <!-- Encabezado de la Actividad -->
+  <!-- Contenido Principal -->
+  <main class="content-container">
+    <article class="card card-detail">
+      <!-- Encabezado de la Actividad -->
       <div class="detail-header-badge">
         <span class="badge-tag">Laboratorio 2</span>
         <h1 class="activity-detail-title">Traversal sequences blocked with absolute path bypass</h1>
@@ -92,29 +92,46 @@
       <section class="detail-section">
         <h2 class="section-subheading">Marco teórico</h2>
         <p>
-            En muchas aplicaciones web, los desarrolladores intentan solucionar las vulnerabilidades de File Path Traversal aplicando filtros superficiales o listas negras que buscan y eliminan las secuencias de escape relativas ../ o ..\ 
+          En muchas aplicaciones web, los desarrolladores intentan solucionar las vulnerabilidades de File Path
+          Traversal aplicando filtros superficiales o listas negras que buscan y eliminan las secuencias de escape
+          relativas ../ o ..\
         </p>
         <p>
-            Cuando el backend recibe la entrada del usuario y utiliza funciones nativas del sistema operativo, estas APIs interpretan tanto rutas relativas como rutas absolutas. Si la aplicación solo válida la ausencia de ../, pero acepta rutas que comienzan con el carácter de directorio raíz / (en sistemas UNIX/Linux) o una letra de unidad como C:\ (en Windows), la protección es ineficaz y permite un Absolute Path Bypass. Esto significa que un atacante puede especificar una ruta absoluta a un archivo sensible, eludiendo los filtros de seguridad y accediendo a recursos que deberían estar protegidos.
+          Cuando el backend recibe la entrada del usuario y utiliza funciones nativas del sistema operativo, estas APIs
+          interpretan tanto rutas relativas como rutas absolutas. Si la aplicación solo válida la ausencia de ../, pero
+          acepta rutas que comienzan con el carácter de directorio raíz / (en sistemas UNIX/Linux) o una letra de unidad
+          como C:\ (en Windows), la protección es ineficaz y permite un Absolute Path Bypass. Esto significa que un
+          atacante puede especificar una ruta absoluta a un archivo sensible, eludiendo los filtros de seguridad y
+          accediendo a recursos que deberían estar protegidos.
         </p>
         <p>
-            Por ejemplo, si la aplicación filtra ../ pero permite rutas absolutas, un atacante podría enviar una solicitud con un parámetro como /etc/passwd en un sistema Linux o C:\Windows\system32\config\SAM en un sistema Windows. Esto le permitiría leer archivos críticos del sistema operativo, exponiendo información sensible y comprometiendo la seguridad de la aplicación.
+          Por ejemplo, si la aplicación filtra ../ pero permite rutas absolutas, un atacante podría enviar una solicitud
+          con un parámetro como /etc/passwd en un sistema Linux o C:\Windows\system32\config\SAM en un sistema Windows.
+          Esto le permitiría leer archivos críticos del sistema operativo, exponiendo información sensible y
+          comprometiendo la seguridad de la aplicación.
         </p>
         <p>
-            A diferencia de un ataque de Path Traversal tradicional, donde el atacante navega hacia arriba en la jerarquía de directorios, el Absolute Path Bypass permite especificar directamente la ubicación completa del archivo objetivo. Esto hace que la vulnerabilidad sea más peligrosa, ya que no depende de la estructura de directorios de la aplicación y puede ser explotada incluso si se han implementado medidas básicas de seguridad.
+          A diferencia de un ataque de Path Traversal tradicional, donde el atacante navega hacia arriba en la jerarquía
+          de directorios, el Absolute Path Bypass permite especificar directamente la ubicación completa del archivo
+          objetivo. Esto hace que la vulnerabilidad sea más peligrosa, ya que no depende de la estructura de directorios
+          de la aplicación y puede ser explotada incluso si se han implementado medidas básicas de seguridad.
         </p>
         <p>Su impacto en la triada CIA es significativo:
         <ul class="custom-list">
           <li><strong>Confidencialidad:</strong> La exposición de archivos sensibles puede comprometer la
             confidencialidad de la información, permitiendo que datos privados sean accesibles para usuarios no
             autorizados.</li>
-          <li><strong>Integridad:</strong> Si el endpoint vulnerable permite la escritura o modificación de archivos, un atacante podría alterar archivos críticos del sistema, comprometiendo la integridad de la aplicación y sus datos.
+          <li><strong>Integridad:</strong> Si el endpoint vulnerable permite la escritura o modificación de archivos, un
+            atacante podría alterar archivos críticos del sistema, comprometiendo la integridad de la aplicación y sus
+            datos.
           </li>
-          <li><strong>Disponibilidad:</strong> La manipulación de archivos esenciales para el funcionamiento de la aplicación puede afectar su disponibilidad, causando interrupciones en el servicio o incluso la caída completa del sistema.</li>
+          <li><strong>Disponibilidad:</strong> La manipulación de archivos esenciales para el funcionamiento de la
+            aplicación puede afectar su disponibilidad, causando interrupciones en el servicio o incluso la caída
+            completa del sistema.</li>
         </ul>
         </p>
         <p>
-            Se clasifica bajo la categoría A01:2021 – Broken Access Control (Control de Acceso Deficiente).   
+          Se clasifica bajo la categoría A01:2021 – Broken Access Control (Control de Acceso Deficiente).
         </p>
       </section>
 
@@ -129,29 +146,34 @@
             <div class="image-wrapper">
               <img src="../imagenes/lab02_proxyInicial.PNG" alt="Peticion interceptada inicial" class="img-fluid">
             </div>
-            <figcaption><strong>Figura 1:</strong>Con Burp Suite configurado y el Proxy activo (Proxy > Intercept is on), se accede a la URL del laboratorio.</figcaption>
+            <figcaption><strong>Figura 1:</strong>Con Burp Suite configurado y el Proxy activo (Proxy > Intercept is
+              on), se accede a la URL del laboratorio.</figcaption>
           </figure>
 
           <figure class="evidence-card">
             <div class="image-wrapper">
               <img src="../imagenes/lab02_intercept.PNG" alt="Historial HTTP de Burp Suite" class="img-fluid">
             </div>
-            <figcaption><strong>Figura 2:</strong>En Burp Suite, se accede a Proxy > HTTP history y se localiza la petición GET /image?filename=12.jpg HTTP/2. No importa el número de jpg.</figcaption>
+            <figcaption><strong>Figura 2:</strong>En Burp Suite, se accede a Proxy > HTTP history y se localiza la
+              petición GET /image?filename=12.jpg HTTP/2. No importa el número de jpg.</figcaption>
           </figure>
 
           <figure class="evidence-card">
             <div class="image-wrapper">
               <img src="../imagenes/lab02_evaluacionseguridad.PNG" alt="Evaluación de seguridad" class="img-fluid">
             </div>
-            <figcaption><strong>Figura 3:</strong> Si se envía la secuencia tradicional filename=../../../etc/passwd, el servidor responde con un error o bloquea la petición debido a un filtro que detecta ../.
+            <figcaption><strong>Figura 3:</strong> Si se envía la secuencia tradicional filename=../../../etc/passwd, el
+              servidor responde con un error o bloquea la petición debido a un filtro que detecta ../.
             </figcaption>
           </figure>
 
           <figure class="evidence-card">
             <div class="image-wrapper">
-              <img src="../imagenes/lab02_evaluacionseguridadRESPONSE.PNG" alt="Respuesta del servidor de seguridad" class="img-fluid">
+              <img src="../imagenes/lab02_evaluacionseguridadRESPONSE.PNG" alt="Respuesta del servidor de seguridad"
+                class="img-fluid">
             </div>
-            <figcaption><strong>Figura 4:</strong> Este comportamiento confirma la presencia de un mecanismo de defensa rudimentario enfocado en secuencias relativas.
+            <figcaption><strong>Figura 4:</strong> Este comportamiento confirma la presencia de un mecanismo de defensa
+              rudimentario enfocado en secuencias relativas.
             </figcaption>
           </figure>
 
@@ -159,8 +181,9 @@
             <div class="image-wrapper">
               <img src="../imagenes/lab02_repeater.PNG" alt="Modificación del Payload en el Request" class="img-fluid">
             </div>
-            <figcaption><strong>Figura 5:</strong> En la pestaña request del Repeater, se modifica el valor del parámetro filename por la ruta absoluta directa:
-GET /image?filename=/etc/passwd HTTP/2
+            <figcaption><strong>Figura 5:</strong> En la pestaña request del Repeater, se modifica el valor del
+              parámetro filename por la ruta absoluta directa:
+              GET /image?filename=/etc/passwd HTTP/2
             </figcaption>
           </figure>
 
@@ -170,12 +193,15 @@ GET /image?filename=/etc/passwd HTTP/2
             </div>
             <figcaption><strong>Figura 6:</strong>
               Se cambia a la pestaña Response dentro del Repeater
+              El servidor responde con HTTP/2 200 OK y entrega el contenido del archivo
+              /etc/passwd, mostrando la lista de usuarios del sistema Linux.
             </figcaption>
           </figure>
 
           <figure class="evidence-card">
             <div class="image-wrapper">
-              <img src="../imagenes/lab02_congratulations.PNG" alt="Confirmación de solución del laboratorio" class="img-fluid">
+              <img src="../imagenes/lab02_congratulations.PNG" alt="Confirmación de solución del laboratorio"
+                class="img-fluid">
             </div>
             <figcaption><strong>Figura 7:</strong>
               Confirmación de la solución del laboratorio
@@ -187,19 +213,27 @@ GET /image?filename=/etc/passwd HTTP/2
       <section class="detail-section">
         <h2 class="section-subheading">Explicación del Payload</h2>
         <p>
-            El filtro replace "../" no encuentra la secuencia y deja la entrada sin cambios. Al procesar la ruta, la función de unión detecta que el segundo argumento /etc/passwd es una ruta absoluta, por lo que ignora el prefijo previo /var/www/images/. De este modo, el sistema operativo resuelve la ruta directamente hacia /etc/passwd, accediendo a la raíz del sistema para leer el archivo de usuarios.
+          El filtro replace "../" no encuentra la secuencia y deja la entrada sin cambios. Al procesar la ruta, la
+          función de unión detecta que el segundo argumento /etc/passwd es una ruta absoluta, por lo que ignora el
+          prefijo previo /var/www/images/. De este modo, el sistema operativo resuelve la ruta directamente hacia
+          /etc/passwd, accediendo a la raíz del sistema para leer el archivo de usuarios.
         </p>
       </section>
       <!-- Mitigacion -->
       <section class="detail-section">
         <h2 class="section-subheading">Recomendaciones de mitigación</h2>
         <p>
-            Para prevenir vulnerabilidades de Absolute Path Bypass, se recomienda implementar las siguientes medidas de seguridad:Para prevenir vulnerabilidades de Path Traversal por bypass de ruta absoluta, se deben adoptar los siguientes patrones de desarrollo seguro:  
+          Para prevenir vulnerabilidades de Absolute Path Bypass, se recomienda implementar las siguientes medidas de
+          seguridad:Para prevenir vulnerabilidades de Path Traversal por bypass de ruta absoluta, se deben adoptar los
+          siguientes patrones de desarrollo seguro:
         </p>
         <ul class="custom-list">
-          <li>En lugar de permitir que alguien pida directamente un archivo escribiendo su nombre o ruta (como imagen1.jpg o /etc/passwd), el sistema debe usar códigos o números de identificación</li>
-          <li>Si es estrictamente necesario que el usuario envíe un nombre, el servidor debe limpiar la entrada y quedarse solo con el nombre final, ignorando cualquier carpeta o diagonal previa</li>
-          <li>Antes de abrir cualquier archivo, el servidor debe calcular la ubicación exacta donde terminará buscando y confirmar que siga estando dentro de la carpeta permitida.</li>
+          <li>En lugar de permitir que alguien pida directamente un archivo escribiendo su nombre o ruta (como
+            imagen1.jpg o /etc/passwd), el sistema debe usar códigos o números de identificación</li>
+          <li>Si es estrictamente necesario que el usuario envíe un nombre, el servidor debe limpiar la entrada y
+            quedarse solo con el nombre final, ignorando cualquier carpeta o diagonal previa</li>
+          <li>Antes de abrir cualquier archivo, el servidor debe calcular la ubicación exacta donde terminará buscando y
+            confirmar que siga estando dentro de la carpeta permitida.</li>
         </ul>
       </section>
       <!--PDF -->
@@ -220,46 +254,45 @@ GET /image?filename=/etc/passwd HTTP/2
           </iframe>
         </div>
       </section>
-        
-        <!-- Navegación entre Laboratorios -->
-        <nav class="activity-navigation">
-            <a href="../laboratorios/lab01.html" class="btn-nav">← Anterior laboratorio</a>
-            <a href="../roadmap.html" class="btn-nav primary">Volver a road to hall of fame</a>
-            <a href="../laboratorios/lab03.html" class="btn-nav">Siguiente laboratorio →</a>
-        </nav>
-      </article>
-      <!-- Navegación Lateral -->
-        <nav class="side-nav-right" id="sideNav">
-            <div class="side-nav-title">Navegación</div>
-            <ul>
-                <li><a href="../../index.html">Inicio</a></li>
-                <li><a href="../parcial1/parcial1.html">Parcial 1</a></li>
-                <li><a href="#" class="disabled">Parcial 2</a></li>
-                <li><a href="#" class="disabled">Parcial 3</a></li>
-                <li><a href="roadmap.html" class="active">Road to hall of fame</a></li>
-                <li><a href="../../index.html#contacto">Contacto</a></li>
-            </ul>
-        </nav>
-    </main>
+
+      <!-- Navegación entre Laboratorios -->
+      <nav class="activity-navigation">
+        <a href="../laboratorios/lab01.html" class="btn-nav">← Anterior laboratorio</a>
+        <a href="../roadmap.html" class="btn-nav primary">Volver a road to hall of fame</a>
+        <a href="../laboratorios/lab03.html" class="btn-nav">Siguiente laboratorio →</a>
+      </nav>
+    </article>
+    <!-- Navegación Lateral -->
+    <nav class="side-nav-right" id="sideNav">
+      <div class="side-nav-title">Navegación</div>
+      <ul>
+        <li><a href="../../index.html">Inicio</a></li>
+        <li><a href="../parcial1/parcial1.html">Parcial 1</a></li>
+        <li><a href="#" class="disabled">Parcial 2</a></li>
+        <li><a href="#" class="disabled">Parcial 3</a></li>
+        <li><a href="roadmap.html" class="active">Road to hall of fame</a></li>
+        <li><a href="../../index.html#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </main>
 
 
-    <!-- Pie de Página -->
-    <footer class="site-footer">
-        <p style="color:rgb(77, 6, 107)">&copy; 2026 Andrea Morúa Bravo. Universidad Politécnica de San Luis Potosí</p>
-        <div class="footer-links">
-            <h3>Recursos Profesionales</h3>
-            <ul class="social-cv-links">
-                <li><a href="https://www.linkedin.com/in/andrea-morua-01092732b/" target="_blank"
-                        rel="noopener noreferrer">LinkedIn</a></li>
-                <li><a href="https://github.com/Andreamoruaa" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-                <li><a href="../../assets/docs/Andrea Morua Bravo CV.pdf" target="_blank"
-                        rel="noopener noreferrer">Curriculum
-                        Vitae</a></li>
-            </ul>
-        </div>
-    </footer>
+  <!-- Pie de Página -->
+  <footer class="site-footer">
+    <p style="color:rgb(77, 6, 107)">&copy; 2026 Andrea Morúa Bravo. Universidad Politécnica de San Luis Potosí</p>
+    <div class="footer-links">
+      <h3>Recursos Profesionales</h3>
+      <ul class="social-cv-links">
+        <li><a href="https://www.linkedin.com/in/andrea-morua-01092732b/" target="_blank"
+            rel="noopener noreferrer">LinkedIn</a></li>
+        <li><a href="https://github.com/Andreamoruaa" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        <li><a href="../../assets/docs/Andrea Morua Bravo CV.pdf" target="_blank" rel="noopener noreferrer">Curriculum
+            Vitae</a></li>
+      </ul>
+    </div>
+  </footer>
 
-    <script src="../../../assets/js/main.js"></script>
+  <script src="../../../assets/js/main.js"></script>
 
 </body>
 
