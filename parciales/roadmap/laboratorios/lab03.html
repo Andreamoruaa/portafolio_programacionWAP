@@ -91,7 +91,7 @@
           <div class="tech-box">
             <div class="tech-title">Explicación técnica de la vulnerabilidad:</div>
             <div class="tech-pills">
-              <span class="pill"></span>
+              <span class="pill">La aplicación web intenta sanear la entrada del usuario eliminando las secuencias de salto de directorio ../ antes de procesar la solicitud del archivo. Sin embargo, el mecanismo de sanitización se realiza en una sola pasada (de forma no recursiva). Al anidar las secuencias en una estructura como ....//, la eliminación simple del patrón interno ../ vuelve a unir los caracteres restantes (.. + /), reconstruyendo la secuencia ../ en el string final que recibe la API del sistema de archivos.</span>
             </div>
           </div>
         </div>
@@ -100,29 +100,7 @@
       <section class="detail-section">
         <h2 class="section-subheading">Marco teórico</h2>
         <p>
-          En muchas aplicaciones web, los desarrolladores intentan solucionar las vulnerabilidades de File Path
-          Traversal aplicando filtros superficiales o listas negras que buscan y eliminan las secuencias de escape
-          relativas ../ o ..\
-        </p>
-        <p>
-          Cuando el backend recibe la entrada del usuario y utiliza funciones nativas del sistema operativo, estas APIs
-          interpretan tanto rutas relativas como rutas absolutas. Si la aplicación solo válida la ausencia de ../, pero
-          acepta rutas que comienzan con el carácter de directorio raíz / (en sistemas UNIX/Linux) o una letra de unidad
-          como C:\ (en Windows), la protección es ineficaz y permite un Absolute Path Bypass. Esto significa que un
-          atacante puede especificar una ruta absoluta a un archivo sensible, eludiendo los filtros de seguridad y
-          accediendo a recursos que deberían estar protegidos.
-        </p>
-        <p>
-          Por ejemplo, si la aplicación filtra ../ pero permite rutas absolutas, un atacante podría enviar una solicitud
-          con un parámetro como /etc/passwd en un sistema Linux o C:\Windows\system32\config\SAM en un sistema Windows.
-          Esto le permitiría leer archivos críticos del sistema operativo, exponiendo información sensible y
-          comprometiendo la seguridad de la aplicación.
-        </p>
-        <p>
-          A diferencia de un ataque de Path Traversal tradicional, donde el atacante navega hacia arriba en la jerarquía
-          de directorios, el Absolute Path Bypass permite especificar directamente la ubicación completa del archivo
-          objetivo. Esto hace que la vulnerabilidad sea más peligrosa, ya que no depende de la estructura de directorios
-          de la aplicación y puede ser explotada incluso si se han implementado medidas básicas de seguridad.
+          Un error 
         </p>
         <p>Su impacto en la triada CIA es significativo:
         <ul class="custom-list">
