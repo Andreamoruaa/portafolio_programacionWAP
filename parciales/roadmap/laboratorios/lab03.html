@@ -100,20 +100,20 @@
       <section class="detail-section">
         <h2 class="section-subheading">Marco teórico</h2>
         <p>
-          Un error 
+          Un error común al intentar prevenir ataques de Path Traversal consiste en reemplazar o eliminar patrones conocidos como ../ mediante funciones simples de sustitución de cadenas aplicadas una sola vez.
+        </p>
+        <p>
+          Sin embargo, los atacantes pueden aprovechar la naturaleza no recursiva de estas funciones para construir secuencias que, tras la eliminación de los patrones internos, se reconstituyen en la secuencia original. Por ejemplo, al enviar una ruta como ....//, la función de reemplazo elimina el patrón ../ interno, dejando ..//. Al procesar esta ruta, el sistema interpreta ..// como ../, permitiendo al atacante acceder a directorios superiores y potencialmente a archivos sensibles del sistema.
+        </p>
+        <p>
+          Este tipo de vulnerabilidad puede tener graves implicaciones de seguridad, ya que permite a un atacante eludir las restricciones de acceso y obtener información confidencial o modificar archivos críticos del sistema. La explotación exitosa de esta vulnerabilidad puede comprometer la confidencialidad, integridad y disponibilidad de la aplicación y sus datos.
         </p>
         <p>Su impacto en la triada CIA es significativo:
         <ul class="custom-list">
-          <li><strong>Confidencialidad:</strong> La exposición de archivos sensibles puede comprometer la
-            confidencialidad de la información, permitiendo que datos privados sean accesibles para usuarios no
-            autorizados.</li>
-          <li><strong>Integridad:</strong> Si el endpoint vulnerable permite la escritura o modificación de archivos, un
-            atacante podría alterar archivos críticos del sistema, comprometiendo la integridad de la aplicación y sus
-            datos.
+          <li><strong>Confidencialidad:</strong>Permite la exfiltración arbitraria de archivos del sistema operativo (/etc/passwd), código fuente de la aplicación, tokens o llaves de cifrado.</li>
+          <li><strong>Integridad:</strong> Si la vulnerabilidad se presenta en un endpoint de escritura o subida de archivos, se podrían sobrescribir archivos del sistema.
           </li>
-          <li><strong>Disponibilidad:</strong> La manipulación de archivos esenciales para el funcionamiento de la
-            aplicación puede afectar su disponibilidad, causando interrupciones en el servicio o incluso la caída
-            completa del sistema.</li>
+          <li><strong>Disponibilidad:</strong> Riesgo de denegación de servicio si se sobrescriben o eliminan archivos necesarios para el funcionamiento del servidor.</li>
         </ul>
         </p>
         <p>
@@ -146,7 +146,7 @@
 
           <figure class="evidence-card">
             <div class="image-wrapper">
-              <img src="../imagenes/lab03_intento1.PNG" alt="Evaluación de seguridad" class="img-fluid">
+              <img src="../imagenes/lab03_intento1.PNG" alt="Evaluación de seguridad ../../../etc/passwd" class="img-fluid">
             </div>
             <figcaption><strong>Figura 3:</strong> Si se envía la secuencia tradicional filename=../../../etc/passwd, el
               servidor responde con un error o bloquea la petición debido a un filtro que detecta ../.
@@ -165,11 +165,10 @@
 
           <figure class="evidence-card">
             <div class="image-wrapper">
-              <img src="../imagenes/lab03_intento2.PNG" alt="Modificación del Payload en el Request" class="img-fluid">
+              <img src="../imagenes/lab03_intento2.PNG" alt="Intento de acceso a archivo con ruta absoluta" class="img-fluid">
             </div>
-            <figcaption><strong>Figura 5:</strong> En la pestaña request del Repeater, se modifica el valor del
-              parámetro filename por la ruta absoluta directa:
-              GET /image?filename=/etc/passwd HTTP/2
+            <figcaption><strong>Figura 5:</strong> Si se envía la secuencia filename=/etc/passwd, el
+              servidor responde con un error.
             </figcaption>
           </figure>
 
@@ -178,28 +177,27 @@
               <img src="../imagenes/lab03_intento2RESPONSE.PNG" alt="Respuesta del servidor con /etc/passwd" class="img-fluid">
             </div>
             <figcaption><strong>Figura 6:</strong>
-              Se cambia a la pestaña Response dentro del Repeater
-              El servidor responde con HTTP/2 200 OK y entrega el contenido del archivo
-              /etc/passwd, mostrando la lista de usuarios del sistema Linux.
+              Este comportamiento confirma que el servidor no permite rutas absolutas, lo que indica la presencia de un
+              filtro adicional que bloquea el acceso a archivos fuera del directorio permitido.
             </figcaption>
           </figure>
 
           <figure class="evidence-card">
             <div class="image-wrapper">
-              <img src="../imagenes/lab03_request.PNG" alt="Confirmación de solución del laboratorio"
+              <img src="../imagenes/lab03_request.PNG" alt="Peticion final con payload ....//etc/passwd"
                 class="img-fluid">
             </div>
             <figcaption><strong>Figura 7:</strong>
-              Confirmación de la solución del laboratorio
+              Petición final con el payload ....//etc/passwd, que explota la vulnerabilidad de bypass no recursivo.
             </figcaption>
           </figure>
           <figure class="evidence-card">
             <div class="image-wrapper">
-              <img src="../imagenes/lab03_response.PNG" alt="Confirmación de solución del laboratorio"
+              <img src="../imagenes/lab03_response.PNG" alt="Respuesta del servidor con el contenido de /etc/passwd"
                 class="img-fluid">
             </div>
-            <figcaption><strong>Figura 7:</strong>
-              Confirmación de la solución del laboratorio
+            <figcaption><strong>Figura 8:</strong>
+              Respuesta del servidor con el contenido de /etc/passwd
             </figcaption>
           </figure>
           <figure class="evidence-card">
@@ -207,7 +205,7 @@
               <img src="../imagenes/lab03_congratulations.PNG" alt="Confirmación de solución del laboratorio"
                 class="img-fluid">
             </div>
-            <figcaption><strong>Figura 7:</strong>
+            <figcaption><strong>Figura 9:</strong>
               Confirmación de la solución del laboratorio
             </figcaption>
           </figure>
@@ -217,27 +215,19 @@
       <section class="detail-section">
         <h2 class="section-subheading">Explicación del Payload</h2>
         <p>
-          El filtro replace "../" no encuentra la secuencia y deja la entrada sin cambios. Al procesar la ruta, la
-          función de unión detecta que el segundo argumento /etc/passwd es una ruta absoluta, por lo que ignora el
-          prefijo previo /var/www/images/. De este modo, el sistema operativo resuelve la ruta directamente hacia
-          /etc/passwd, accediendo a la raíz del sistema para leer el archivo de usuarios.
+          El payload utilizado para explotar la vulnerabilidad de bypass no recursivo es <code>....//etc/passwd</code>. Este payload aprovecha la forma en que el servidor procesa las rutas de archivos. Al enviar esta secuencia, el servidor elimina la secuencia interna <code>../</code>, dejando <code>..//etc/passwd</code>. Cuando el servidor interpreta esta ruta, la secuencia <code>..//</code> se reconstituye como <code>../</code>, permitiendo al atacante acceder al archivo <code>/etc/passwd</code> y obtener información sensible del sistema.
         </p>
       </section>
       <!-- Mitigacion -->
       <section class="detail-section">
         <h2 class="section-subheading">Recomendaciones de mitigación</h2>
         <p>
-          Para prevenir vulnerabilidades de Absolute Path Bypass, se recomienda implementar las siguientes medidas de
-          seguridad:Para prevenir vulnerabilidades de Path Traversal por bypass de ruta absoluta, se deben adoptar los
-          siguientes patrones de desarrollo seguro:
+          Para prevenir vulnerabilidades de Path Traversal, se recomienda implementar las siguientes medidas de seguridad:
         </p>
         <ul class="custom-list">
-          <li>En lugar de permitir que alguien pida directamente un archivo escribiendo su nombre o ruta (como
-            imagen1.jpg o /etc/passwd), el sistema debe usar códigos o números de identificación</li>
-          <li>Si es estrictamente necesario que el usuario envíe un nombre, el servidor debe limpiar la entrada y
-            quedarse solo con el nombre final, ignorando cualquier carpeta o diagonal previa</li>
-          <li>Antes de abrir cualquier archivo, el servidor debe calcular la ubicación exacta donde terminará buscando y
-            confirmar que siga estando dentro de la carpeta permitida.</li>
+          <li>Si es estrictamente necesario limpiar secuencias de rutas, se debe aplicar un proceso iterativo hasta que no se detecten más ocurrencias del patrón, o utilizar funciones nativas del lenguaje diseñadas para extraer el nombre base.</li>
+          <li>Restringir la entrada del usuario a caracteres alfanuméricos simples antes de realizar cualquier operación de lectura</li>
+          <li>Validar que la ruta resuelta permanezca estrictamente dentro del directorio base destinado para los archivos</li>
         </ul>
       </section>
       <!--PDF -->
@@ -251,8 +241,8 @@
         <!-- Visor Integrado (Embed / Iframe) -->
         <div
           style="width: 100%; height: 650px; border-radius: 16px; overflow: hidden; border: 1.5px solid #d8b4fe; box-shadow: 0 10px 25px rgba(124, 58, 237, 0.1);">
-          <iframe src="../docs/Lab02_reporte.pdf" width="100%" height="100%" style="border: none;">
-            <p>Tu navegador no soporta la visualización de archivos PDF. <a href="../docs/Lab02_reporte.pdf"
+          <iframe src="../docs/Lab03_Reporte.pdf" width="100%" height="100%" style="border: none;">
+            <p>Tu navegador no soporta la visualización de archivos PDF. <a href="../docs/Lab03_Reporte.pdf"
                 target="_blank" rel="noopener noreferrer">Haz
                 clic aquí para descargarlo.</a></p>
           </iframe>
