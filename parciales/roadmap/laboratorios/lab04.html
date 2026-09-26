@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lab 04:  Superfluous URL decode bypass | Portafolio WAP</title>
+    <title>Lab 04: Superfluous URL decode bypass | Portafolio WAP</title>
     <link rel="stylesheet" href="../../../assets/css/styles.css">
 </head>
 
@@ -29,7 +29,7 @@
             <ul>
                 <li><a href="../../../index.html">Inicio</a></li>
                 <li><a href="../../parcial1/parcial1.html">Parcial 1</a></li>
-                <li><a href="#" class="disabled">Parcial 2</a></li>
+                <li><a href="../../parcial2/parcial2.html">Parcial 2</a></li>
                 <li><a href="#" class="disabled">Parcial 3</a></li>
                 <li><a href="../../roadmap/roadmap.html" class="active">Road to hall of fame</a></li>
                 <li><a href="../../../index.html#contacto">Contacto</a></li>
@@ -39,15 +39,6 @@
 
     <!-- Contenido Principal -->
     <main class="content-container">
-
-        <!-- Sección Hero / Descarga General -->
-        <section class="card fade-in-up">
-            <h2 class="section-title">Laboratorio 4: Superfluous URL decode bypass</h2>
-            <p style="margin-bottom: 1.5rem;">
-                Todavía no esta disponible
-            </p>
-        </section>
-
         <!-- Navegación Lateral -->
         <nav class="side-nav-right" id="sideNav">
             <div class="side-nav-title">Navegación</div>
@@ -60,14 +51,245 @@
                 <li><a href="../../index.html#contacto">Contacto</a></li>
             </ul>
         </nav>
-        <!-- Navegación entre Laboratorios -->
-        <nav class="activity-navigation">
-            <a href="../laboratorios/lab03.html" class="btn-nav">← Anterior laboratorio</a>
-            <a href="../roadmap.html" class="btn-nav primary">Volver a road to hall of fame</a>
-            <a href="../laboratorios/lab05.html" class="btn-nav">Siguiente laboratorio →</a>
-        </nav>
+        <!--Contenido principal -->
+        <article class="card card-detail">
+            <!-- Encabezado de la Actividad -->
+            <div class="detail-header-badge">
+                <span class="badge-tag">Laboratorio 4</span>
+                <h1 class="activity-detail-title">Traversal sequences stripped with superfluous <URL-decode></URL-decode></h1>
+            </div>
+            <!-- información del Laboratorio -->
+            <section class="detail-section">
+                <h2 class="section-subheading">Información del laboratorio</h2>
+                <div class="tech-grid">
+                    <div class="tech-box">
+                        <div class="tech-title">Nombre del laboratorio:</div>
+                        <div class="tech-pills">
+                            <span class="pill">Traversal sequences stripped with superfluous URL decode</span>
+                        </div>
+                    </div>
+
+                    <div class="tech-box">
+                        <div class="tech-title">Nivel de dificultad: </div>
+                        <div class="tech-pills">
+                            <span class="pill">Practitioner</span>
+                        </div>
+                    </div>
+                    <div class="tech-box">
+                        <div class="tech-title">Tipo de explotación:</div>
+                        <div class="tech-pills">
+                            <span class="pill">File path traversal</span>
+                        </div>
+                    </div>
+                    <div class="tech-box">
+                        <div class="tech-title">Objetivo del laboratorio:</div>
+                        <div class="tech-pills">
+                            <span class="pill">Recuperar y desplegar el contenido del archivo de configuración del
+                                sistema
+                                /etc/passwd.</span>
+                        </div>
+                    </div>
+                    <div class="tech-box">
+                        <div class="tech-title">Explicación técnica de la vulnerabilidad:</div>
+                        <div class="tech-pills">
+                            <span class="pill">La aplicación web intenta sanear el parámetro de entrada filename eliminando las secuencias de navegación de directorio (../). Sin embargo, el servidor web o el marco de desarrollo decodifica la solicitud HTTP antes de llamar a la función de sanitización y, posteriormente, la función o el sistema de archivos realiza un segundo decodificado de URL no necesario (superfluous URL decode) antes de acceder al recurso. Al enviar los caracteres especiales doblemente codificados en URL (como %252f para /), la primera fase de sanitización analiza la cadena como caracteres alfanuméricos inofensivos (%2f), evadiendo el filtro. Luego, en la segunda fase de decodificación, se transforma en /, reconstruyendo la secuencia ../../../etc/passwd.</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Marco teorico -->
+            <section class="detail-section">
+                <h2 class="section-subheading">Marco teórico</h2>
+                <p>
+                    La doble codificación URL (Double URL Encoding) o decodificación superflua ocurre cuando un componente de software procesa una entrada codificada en porcentaje (%-encoding) más de una vez consecutiva a lo largo de la canalización de procesamiento de la solicitud (request processing pipeline).
+                </p>
+                <p>
+                    En un flujo seguro, la decodificación de URL debe realizarse exactamente una sola vez y antes de la validación y sanitización de datos. Cuando existe un desfase en la arquitectura (por ejemplo, el servidor web/proxy realiza un primer decode, la capa de aplicación valida la cadena, y la función de la API de archivos realiza un segundo decode implícito), se crea una ventana de evasión
+                </p>
+                <p>
+                    Las variantes de esta vulnerabilidad son:
+                </p>
+                <ul class="custom-list">
+                    <li><strong>Single URL Encoding:</strong> Uso de codificación simple (ej. %2e%2e%2f) cuando los filtros sólo buscan texto plano ../.</li>
+                    <li><strong>Double URL Encoding:</strong> Uso de doble porcentaje (ej. %252e%252e%252f o ..%252f) para evadir sistemas que decodifican antes del filtro pero vuelven a decodificar en la ejecución.</li>
+                    <li><strong>16-bit Unicode / Overlong UTF-8 Encoding:</strong> Manipulación de representaciones complejas de caracteres (ej. %c0%af o %c1%9c) en servidores legacy que interpretan UTF-8 de forma no canónica.</li>
+                    <li><strong>Null Byte Injection (%00):</strong> Inserción de un byte nulo al final del payload para truncar extensiones de archivo forzadas por el servidor (ej. .jpg).</li>
+                </ul>
+                <p>Su impacto en la triada CIA es significativo:
+                <ul class="custom-list">
+                    <li><strong>Confidencialidad:</strong>
+                        Permite la lectura no autorizada de archivos críticos del sistema operativo (/etc/passwd, /etc/shadow), credenciales de la aplicación, claves privadas de API y código fuente.
+                    </li>
+                    <li><strong>Integridad:</strong> 
+                        Si la falla se presenta en funcionalidades de subida o modificación de archivos, se pueden sobrescribir binarios o archivos de configuración.
+                    </li>
+                    <li><strong>Disponibilidad:</strong> 
+                        Riesgo de causar una denegación de servicio (DoS) al intentar leer archivos de dispositivos de bloque especiales (ej. /dev/urandom) o modificar datos esenciales del sistema.    
+                    </li>
+                </ul>
+                </p>
+                <p>
+                    Se clasifica bajo la categoría A01:2021 – Broken Access Control (Control de Acceso Deficiente).
+                </p>
+            </section>
+
+            <!-- Evidencias / Galería de Imágenes en Columnas -->
+            <section class="detail-section">
+                <h2 class="section-subheading">Evidencias</h2>
+                <p class="section-desc">A continuación se presentan las capturas realizadas en el procedimiento técnico
+                    del
+                    laboratorio:</p>
+
+                <div class="evidence-grid">
+                    <figure class="evidence-card">
+                        <div class="image-wrapper">
+                            <img src="../imagenes/lab04_proxyInicial.PNG" alt="Peticion interceptada inicial"
+                                class="img-fluid">
+                        </div>
+                        <figcaption><strong>Figura 1:</strong>Con Burp Suite configurado y el Proxy activo (Proxy >
+                            Intercept is on), se accede a la URL del laboratorio. Y se
+                            localiza la petición GET /image?filename=12.jpg HTTP/2. No importa el número de jpg.</figcaption>
+                    </figure>
+
+                    <figure class="evidence-card">
+                        <div class="image-wrapper">
+                            <img src="../imagenes/lab04_intento1.PNG" alt="Evaluación de seguridad ../../../etc/passwd"
+                                class="img-fluid">
+                        </div>
+                        <figcaption><strong>Figura 3:</strong> Si se envía la secuencia tradicional
+                            filename=../../../etc/passwd, el
+                            servidor responde con un error o bloquea la petición debido a un filtro que detecta ../.
+                        </figcaption>
+                    </figure>
+
+                    <figure class="evidence-card">
+                        <div class="image-wrapper">
+                            <img src="../imagenes/lab04_intento1REQUEST.PNG" alt="Respuesta del servidor de seguridad"
+                                class="img-fluid">
+                        </div>
+                        <figcaption><strong>Figura 4:</strong> Este comportamiento confirma la presencia de un mecanismo
+                            de defensa
+                            rudimentario enfocado en secuencias relativas.
+                        </figcaption>
+                    </figure>
+
+                    <figure class="evidence-card">
+                        <div class="image-wrapper">
+                            <img src="../imagenes/lab04_intento2.PNG"
+                                alt="Intento de acceso a archivo con ruta absoluta" class="img-fluid">
+                        </div>
+                        <figcaption><strong>Figura 5:</strong> Si se envía la secuencia filename=/etc/passwd, el
+                            servidor responde con un error (Filtro de ruta absoluta activo).
+                        </figcaption>
+                    </figure>
+
+                    <figure class="evidence-card">
+                        <div class="image-wrapper">
+                            <img src="../imagenes/lab04_intento3.PNG"
+                                alt="Respuesta del servidor con /etc/passwd" class="img-fluid">
+                        </div>
+                        <figcaption><strong>Figura 6:</strong> Si se envia la secuencia filename=....//....//....//etc/passwd, el servidor responde con un error. Esto indica que el servidor está aplicando un filtro de seguridad que elimina las secuencias de navegación de archivos (../) antes de procesar la solicitud, pero no está manejando correctamente la decodificación URL superflua.
+                             (Filtro recursivo o limpieza estricta activa).
+                        </figcaption>
+                    </figure>
+
+                    <figure class="evidence-card">
+                        <div class="image-wrapper">
+                            <img src="../imagenes/lab04_request.PNG" alt="Peticion final con payload ..%252f..%252f..%252fetc/passwd"
+                                class="img-fluid">
+                        </div>
+                        <figcaption><strong>Figura 7:</strong>
+                            En la pestaña Request del Repeater, se reemplaza el valor de filename aplicando codificación URL doble a las secuencias de escape: ..%252f..%252f..%252fetc/passwd. Posteriormente se hace clic en send.
+                    </figure>
+                    <figure class="evidence-card">
+                        <div class="image-wrapper">
+                            <img src="../imagenes/lab04_response.PNG"
+                                alt="Respuesta del servidor con el contenido de /etc/passwd" class="img-fluid">
+                        </div>
+                        <figcaption><strong>Figura 8:</strong>
+                            El servidor responde con código HTTP/2 200 OK y devuelve en el cuerpo de la respuesta el contenido en texto plano del archivo /etc/passwd, listando las cuentas del sistema
+                        </figcaption>
+                    </figure>
+                    <figure class="evidence-card">
+                        <div class="image-wrapper">
+                            <img src="../imagenes/lab04_congratulations.PNG"
+                                alt="Confirmación de solución del laboratorio" class="img-fluid">
+                        </div>
+                        <figcaption><strong>Figura 9:</strong>
+                            Confirmación de la solución del laboratorio
+                        </figcaption>
+                    </figure>
+                </div>
+            </section>
+            <!--Explicacion de payload-->
+            <section class="detail-section">
+                <h2 class="section-subheading">Explicación del Payload</h2>
+                <p>
+                    El payload utilizado para explotar la vulnerabilidad de Path Traversal en este laboratorio es:
+                    <code>..%252f..%252f..%252fetc/passwd</code>
+                </p>
+                <p>
+                    El funcionamiento del payload se fundamenta en explotar la inconsistencia arquitectónica entre el módulo de filtrado de entrada y la API interna de lectura de archivos. Al construir la solicitud, se aplica una doble codificación URL en las barras diagonales (/). Dado que el carácter de porcentaje % equivale a %25 en formato hexadecimal, la secuencia %252f representa una representación encubierta de la diagonal.
+                </p>
+                <p>
+                  Al ser recibida la petición por la infraestructura del servidor web o el proxy inverso, se ejecuta un primer decodificado automático de la entrada. En este proceso, la subcadena %25 se transforma en el carácter literal %, convirtiendo el payload en ..%2f..%2f..%2fetc/passwd. Inmediatamente después, la función de seguridad o el filtro de la aplicación inspecciona el texto resultante en busca de secuencias maliciosas explícitas como ../. Dado que la diagonal aún se encuentra codificada como %2f, la validación falla en detectar la amenaza y concede el paso a la solicitud al considerarla una entrada segura.
+                </p>
+                <p>
+                     Finalmente, cuando la solicitud aprobada llega al componente backend encargada de manipular el sistema de archivos, este ejecuta una segunda decodificación de URL no intencionada (superfluous URL decode). Durante esta última fase, los caracteres %2f se convierten en diagonales reales (/), reconstruyendo la ruta ../../../etc/passwd. Al evaluar esta instrucción desde el directorio de recursos (/var/www/images/), el sistema operativo retrocede tres niveles en la jerarquía de carpetas hasta alcanzar el directorio raíz / y procede a leer y exponer el archivo confidencial /etc/passwd.
+                </p> 
+            </section>
+            <!-- Mitigacion -->
+            <section class="detail-section">
+                <h2 class="section-subheading">Recomendaciones de mitigación</h2>
+                
+                <p>
+                    Para prevenir de forma definitiva las vulnerabilidades de Path Traversal causadas por decodificaciones redundantes y validaciones ineficaces, se deben aplicar los siguientes controles defensivos:
+                </p>    
+                <p>
+                    Desuso de Referencias Directas a Archivos (Mapeo Indirecto): Reemplazar los nombres de archivo pasados como parámetros por identificadores numéricos o claves indirectas mapeadas internamente en el servidor (ej. id=104), evitando que el usuario controle directamente la ruta o nombre del recurso.
+                </p>
+                <p>
+                    Canonicidad y Decodificación Única: Asegurar que la decodificación de URL se realice exactamente una sola vez en el punto de entrada de la aplicación (Web Gateway o Middleware de entrada). Se deben prohibir decodificaciones secundarias o redundantes en capas internas, librerías auxiliares o funciones del sistema de archivos.
+                </p>
+                <p>
+                    Validación por Nombre Base (Basename): Extraer únicamente el nombre simple del archivo eliminando cualquier prefijo de ruta, diagonales (/, \) o secuencias de navegación antes de procesar la petición.
+                </p>
+                <p>
+                    Verificación de Ruta Absoluta Canónica (Canonical Path Validation): Resolver la ruta absoluta completa en el servidor y validar estrictamente que la ubicación final comience dentro del directorio base autorizado antes de abrir el recurso.
+                </p>
+                <p>
+                    Principio de Mínimo Privilegio: Configurar los permisos del sistema operativo para que la cuenta con la que ejecuta el servidor web (ej. www-data o nobody) posea exclusivamente permisos de lectura en la carpeta de recursos estáticos, bloqueando el acceso a directorios del sistema como /etc/ o carpetas de configuración.
+                </p>
+            </section>
+            <!--PDF -->
+            <section class="detail-section">
+                <h2 class="section-subheading">Documentación de la práctica (PDF)</h2>
+                <p class="section-desc">
+                    Puedes consultar el reporte completo de la práctica directamente a continuación o descargarlo en tu
+                    dispositivo:
+                </p>
+
+                <!-- Visor Integrado (Embed / Iframe) -->
+                <div
+                    style="width: 100%; height: 650px; border-radius: 16px; overflow: hidden; border: 1.5px solid #d8b4fe; box-shadow: 0 10px 25px rgba(124, 58, 237, 0.1);">
+                    <iframe src="../docs/Lab04_Reporte.pdf" width="100%" height="100%" style="border: none;">
+                        <p>Tu navegador no soporta la visualización de archivos PDF. <a href="../docs/Lab04_Reporte.pdf"
+                                target="_blank" rel="noopener noreferrer">Haz
+                                clic aquí para descargarlo.</a></p>
+                    </iframe>
+                </div>
+            </section>
+
+            <!-- Navegación entre Laboratorios -->
+            <nav class="activity-navigation">
+                <a href="../laboratorios/lab02.html" class="btn-nav">← Anterior laboratorio</a>
+                <a href="../roadmap.html" class="btn-nav primary">Volver a road to hall of fame</a>
+                <a href="../laboratorios/lab04.html" class="btn-nav">Siguiente laboratorio →</a>
+            </nav>
+        </article>
 
     </main>
+
 
 
     <!-- Pie de Página -->
