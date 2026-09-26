@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Actividad 14 - Parcial 2 | Portafolio WAP</title>
+  <link rel="stylesheet" href="../../../assets/css/styles.css">
+</head>
+
+<body>
+
+  <!-- Header-->
+  <header class="site-header-hero">
+    <div class="header-info-hero">
+      <span class="hero-tag">Portafolio académico</span>
+      <h1 class="hero-title">Portafolio de seguridad informática</h1>
+      <h2 class="hero-subtitle">Andrea Morúa Bravo <span>185548</span></h2>
+      <p class="hero-alias"><strong>Morúa</strong></p>
+      <div class="hero-details">
+        <span>CNO IV- Seguridad Informática</span>
+        <span class="dot">•</span>
+        <span>Universidad Politécnica de San Luis Potosí</span>
+        <span class="dot">•</span>
+        <span>7mo semestre - Otoño 2026</span>
+      </div>
+    </div>
+    <!--Nav-->
+    <nav class="site-nav-hero">
+      <ul>
+        <li><a href="../../../index.html">Inicio</a></li>
+        <li><a href="../parcial1.html">Parcial 1</a></li>
+        <li><a href="../parcial2.html">Parcial 2</a></li>
+        <li><a href="#" class="disabled">Parcial 3</a></li>
+        <li><a href="../../roadmap/roadmap.html">Roadmap</a></li>
+        <li><a href="../../../index.html#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Contenido Principal -->
+  <main class="content-container">
+    <nav class="side-nav-right" id="sideNav">
+      <div class="side-nav-title">Navegación</div>
+      <ul>
+        <li><a href="../../../index.html">Inicio</a></li>
+        <li><a href="../parcial1.html">Parcial 1</a></li>
+        <li><a href="../parcial2.html">Parcial 2</a></li>
+        <li><a href="#" class="disabled">Parcial 3</a></li>
+        <li><a href="../../roadmap/roadmap.html">Roadmap</a></li>
+        <li><a href="../../../index.html#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+    <article class="card card-detail">
+
+      <!-- Encabezado de la Actividad -->
+      <div class="detail-header-badge">
+        <span class="badge-tag">Parcial 2 — Actividad 14</span>
+        <h1 class="activity-detail-title">Ciberseguridad en una mirada</h1>
+        <h2 class="activity-detail-subtitle">Aprovechamiento de las vulnerabilidades de seguridad</h2>
+      </div>
+      <!--Introduccion de la actividad-->
+      <section class="detail-section">
+        <h2 class="section-subheading">Introducción</h2>
+        <p>
+            En el ámbito de la ciberseguridad, la identificación y gestión de fallas en los sistemas informáticos representa la primera línea de defensa para la protección de la información. El presente trabajo analiza el concepto fundamental de las vulnerabilidades, abarcando su manifestación tanto en el hardware como en el software. A través de esta síntesis visual y técnica, se examinan los mecanismos de explotación de estas debilidades, su impacto directo en la infraestructura tecnológica y las estrategias indispensables para su mitigación en entornos organizacionales.
+        </p>
+      </section>
+      <!-- 1. Objetivo de la Actividad -->
+      <section class="detail-section">
+        <h2 class="section-subheading">Objetivo</h2>
+        <p>
+          Diseñar una infografía profesional que explique de manera visual, sintética y estratégica el tema de las vulnerabilidades informáticas (del hardware al software) abordado en el curso Introducción a la Ciberseguridad de Cisco Networking Academy, demostrando comprensión técnica, capacidad de síntesis y comunicación efectiva para la concientización organizacional.
+        </p>
+      </section>
+
+      <!-- 4. contexto general del caso -->
+      <section class="detail-section">
+        <h2 class="section-subheading">Contenido principal</h2>
+        <h2 class="section-subheading">¿Qué es una vulnerabilidad?</h2>
+        <p class="section-desc">
+          Es un fallo, error o debilidad en el diseño, la configuración o el código de un sistema que un atacante puede aprovechar para comprometer su seguridad.
+        </p>
+      </section>
+      <section class="detail-section">
+        <h2 class="section-subheading">Clasificación de vulnerabilidades</h2>
+        <p>
+          <strong>Hardware:</strong> Se presentan frecuentemente mediante defectos de diseño físico en los componentes electrónicos o procesadores.
+        </p>
+        <p>
+          <strong>Software:</strong>Suelen ser provocadas por errores en el desarrollo del sistema operativo o en el código fuente de las aplicaciones. 
+        </p>
+      </section>
+
+      <section class="detail-section">
+        <h2 class="section-subheading">Riesgos, mecanismos e impacto técnico</h2>
+        <p>
+            <strong>Fallas en hardware:</strong> Descubiertas en CPUs modernas, permiten a los atacantes leer la memoria del sistema y datos procesados por otras aplicaciones utilizando ataques de canal lateral.
+        </p> 
+        <p>
+            <strong>Mecanismo Rowhammer:</strong> Explotación a nivel físico en memorias RAM donde el acceso repetido ("martilleo") a una fila de condensadores genera una interferencia eléctrica que corrompe los datos de las filas vecinas.
+        </p>
+        <figure class="evidence-card">
+          <div class="image-wrapper">
+            <img src="../imagenes/Imagen infografia propia.jpg" alt="mecanismo rowhammer" loading="lazy">
+          </div>
+          <figcaption><strong>Ilustración 1:</strong> Mecanismo Rowhammer.</figcaption>
+        </figure>
+        <p>
+            <strong>Fallas en software:</strong> Ocurre cuando los datos escritos superan el límite de memoria asignado. Esto permite acceder a la memoria de otros procesos, provocando caídas del sistema, filtración de información o escalada de privilegios.
+        </p>
+      </section>
+
+      <section class="detail-section">
+        <h2 class="section-subheading">Panorama actual y relevancia</h2>
+        <p class="section-desc">
+            Las fallas se descubren con regularidad a pesar de los controles continuos de las organizaciones.
+        </p>
+        <p class="section-desc">
+            Las vulnerabilidades físicas o de hardware son de alto impacto ya que pueden ejecutarse repetidamente con un riesgo muy bajo de generar bloqueos perceptibles en el sistema.    
+        </p>
+      </section>
+      <!-- recomendaciones -->
+      <section class="detail-section">
+        <h2 class="section-subheading">Medidas de mitigación</h2>
+        <p class="section-desc">
+            <strong>Para fallas de hardware:</strong> Actualización de firmware, parches de seguridad y segmentación de la red para aislar sistemas críticos.
+        </p>
+        <p class="section-desc">
+            <strong>Para fallas de software:</strong> Aplicación de parches, auditorías de código, pruebas de penetración y educación continua del personal.
+        </p>
+      </section>
+      <!-- 7. Conclusión -->
+      <section class="detail-section">
+        <h2 class="section-subheading">Conclusión</h2>
+        <p>
+            La comprensión integral de las vulnerabilidades, desde el nivel de silicio hasta las capas superiores del software, es indispensable para construir arquitecturas resilientes. El análisis realizado demuestra que la seguridad no puede basarse únicamente en la protección de software; las fallas físicas y de diseño en el hardware representan vectores de ataque críticos que requieren un enfoque de defensa en profundidad. Garantizar la postura de seguridad exige una cultura de actualización continua, validación de integridad y controles de acceso estrictos que minimicen la superficie de exposición ante amenazas emergentes.
+        </p>
+      </section>
+      <!-- 2. Visor y Descarga del Documento PDF -->
+      <section class="detail-section">
+        <h2 class="section-subheading">Infografía</h2>
+        <!-- Visor Integrado (Embed / Iframe) -->
+        <div
+          style="width: 100%; height: 650px; border-radius: 16px; overflow: hidden; border: 1.5px solid #d8b4fe; box-shadow: 0 10px 25px rgba(124, 58, 237, 0.1);">
+          <iframe src="../docs/Actividad14_infografía.pdf" width="100%" height="100%" style="border: none;">
+            <p>Tu navegador no soporta la visualización de archivos PDF. <a href="../docs/Actividad14_infografía.pdf">Haz clic
+                aquí para descargarlo.</a></p>
+          </iframe>
+        </div>
+      </section>
+
+
+      <!-- Navegación entre Actividades -->
+      <nav class="activity-navigation">
+        <a href="../parcial2.html" class="btn-nav primary">Volver al parcial 2 </a>
+        <a href="#" class="btn-nav">Siguiente actividad →</a>
+      </nav>
+
+    </article>
+  </main>
+
+  <!-- Pie de Página -->
+  <footer class="site-footer">
+    <p style="color:rgb(77, 6, 107)">&copy; 2026 Andrea Morúa Bravo. Universidad Politécnica de San Luis Potosí</p>
+    <div class="footer-links">
+      <h3>Recursos Profesionales</h3>
+      <ul class="social-cv-links">
+        <li><a href="https://www.linkedin.com/in/andrea-morua-01092732b/" target="_blank"
+            rel="noopener noreferrer">LinkedIn</a></li>
+        <li><a href="https://github.com/Andreamoruaa" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        <li><a href="../../../assets/docs/Andrea Morua Bravo CV.pdf" target="_blank"
+            rel="noopener noreferrer">Curriculum Vitae</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="../../../assets/js/main.js"></script>
+
+</body>
+
+</html>
