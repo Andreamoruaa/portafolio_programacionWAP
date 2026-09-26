@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lab 05:  Path prefix validation bypass | Portafolio WAP</title>
+    <title>Lab 05: Path prefix validation bypass | Portafolio WAP</title>
     <link rel="stylesheet" href="../../../assets/css/styles.css">
 </head>
 
@@ -39,15 +39,6 @@
 
     <!-- Contenido Principal -->
     <main class="content-container">
-
-        <!-- Sección Hero / Descarga General -->
-        <section class="card fade-in-up">
-            <h2 class="section-title">Laboratorio 5: Path prefix validation bypass</h2>
-            <p style="margin-bottom: 1.5rem;">
-                Todavía no esta disponible
-            </p>
-        </section>
-
         <!-- Navegación Lateral -->
         <nav class="side-nav-right" id="sideNav">
             <div class="side-nav-title">Navegación</div>
@@ -60,12 +51,212 @@
                 <li><a href="../../index.html#contacto">Contacto</a></li>
             </ul>
         </nav>
-        <!-- Navegación entre Laboratorios -->
-        <nav class="activity-navigation">
-            <a href="../laboratorios/lab04.html" class="btn-nav">← Anterior laboratorio</a>
-            <a href="../roadmap.html" class="btn-nav primary">Volver a road to hall of fame</a>
-            <a href="../laboratorios/lab06.html" class="btn-nav">Siguiente laboratorio →</a>
-        </nav>
+        <!--Contenido principal -->
+        <article class="card card-detail">
+            <!-- Encabezado de la Actividad -->
+            <div class="detail-header-badge">
+                <span class="badge-tag">Laboratorio 5</span>
+                <h1 class="activity-detail-title">Validation of start of path</h1>
+            </div>
+            <!-- información del Laboratorio -->
+            <section class="detail-section">
+                <h2 class="section-subheading">Información del laboratorio</h2>
+                <div class="tech-grid">
+                    <div class="tech-box">
+                        <div class="tech-title">Nombre del laboratorio:</div>
+                        <div class="tech-pills">
+                            <span class="pill">Validation of start of path</span>
+                        </div>
+                    </div>
+
+                    <div class="tech-box">
+                        <div class="tech-title">Nivel de dificultad: </div>
+                        <div class="tech-pills">
+                            <span class="pill">Practitioner</span>
+                        </div>
+                    </div>
+                    <div class="tech-box">
+                        <div class="tech-title">Tipo de explotación:</div>
+                        <div class="tech-pills">
+                            <span class="pill">File path traversal</span>
+                        </div>
+                    </div>
+                    <div class="tech-box">
+                        <div class="tech-title">Objetivo del laboratorio:</div>
+                        <div class="tech-pills">
+                            <span class="pill">Recuperar y desplegar el contenido del archivo de configuración del
+                                sistema
+                                /etc/passwd.</span>
+                        </div>
+                    </div>
+                    <div class="tech-box">
+                        <div class="tech-title">Explicación técnica de la vulnerabilidad:</div>
+                        <div class="tech-pills">
+                            <span class="pill">
+                                La aplicación valida que el parámetro recibido comience con el prefijo o directorio esperado (por ejemplo, /var/www/images/). Sin embargo, no verifica la canonicidad de la ruta completa ni impide la inclusión de secuencias de navegación ascendente (../). Al incluir la ruta base requerida seguida inmediatamente de secuencias ../, el control de validación del inicio de la cadena es eludido con éxito, permitiendo escalar hasta la raíz del sistema de archivos.
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Marco teorico -->
+            <section class="detail-section">
+                <h2 class="section-subheading">Marco teórico</h2>
+                <p>
+                    La validación de prefijo de ruta (Path Prefix Validation) es un mecanismo defensivo en el que la aplicación verifica si la entrada proporcionada por el usuario comienza estrictamente con un directorio base autorizado (por ejemplo, <code>/var/www/images/</code>).
+                </p>
+                <p>
+                    Esta falla ocurre cuando los desarrolladores asumen que validar únicamente el inicio de la cadena de texto garantiza la seguridad del acceso a archivos. Si la aplicación no resuelve la ruta canónica completa ni limpia las secuencias de salto de directorio (<code>../</code>), un atacante puede anteponer la ruta requerida y posteriormente retroceder en el árbol de directorios para acceder a cualquier archivo del sistema.
+                </p>
+                <p>
+                    Las variantes comunes en los controles de validación de rutas incluyen:
+                </p>
+                <ul class="custom-list">
+                    <li><strong>Validation of start of path:</strong> Se verifica que el parámetro empiece con la ruta esperada (ej. <code>/var/www/images/../../etc/passwd</code>).</li>
+                    <li><strong>Validation of file extension:</strong> Filtros que solo verifican que la entrada termine en una extensión específica (ej. <code>.jpg</code>), evadibles mediante el uso de bytes nulos o parámetros adicionales.</li>
+                    <li><strong>Non-recursive stripping:</strong> Limpieza superficial de <code>../</code> que permite bypasses intercalados como <code>....//</code>.</li>
+                    <li><strong>Absolute path bypass:</strong> Aplicaciones que fallan al no restringir rutas absolutas directas comenzando con <code>/</code>.</li>
+                </ul>
+                <p>Su impacto en la triada CIA es significativo:
+                <ul class="custom-list">
+                    <li><strong>Confidencialidad:</strong> 
+                        Permite la lectura no autorizada de archivos sensibles del sistema operativo (<code>/etc/passwd</code>, <code>/etc/shadow</code>), variables de entorno, código fuente y claves secretas.
+                    </li>
+                    <li><strong>Integridad:</strong> 
+                        Si el parámetro vulnerable es utilizado en operaciones de escritura o eliminación, se podrían modificar o corruptos archivos críticos de la aplicación.
+                    </li>
+                    <li><strong>Disponibilidad:</strong> 
+                        Existe el riesgo de provocar una denegación de servicio (DoS) al intentar leer archivos de dispositivos especiales o consumir recursos críticos del servidor.
+                    </li>
+                </ul>
+                </p>
+                <p>
+                    Se clasifica bajo la categoría A01:2021 – Broken Access Control (Control de Acceso Deficiente).
+                </p>
+            </section>
+
+            <!-- Evidencias / Galería de Imágenes en Columnas -->
+            <section class="detail-section">
+                <h2 class="section-subheading">Evidencias</h2>
+                <p class="section-desc">A continuación se presentan las capturas realizadas en el procedimiento técnico
+                    del
+                    laboratorio:</p>
+
+                <div class="evidence-grid">
+                    <figure class="evidence-card">
+                        <div class="image-wrapper">
+                            <img src="../imagenes/lab05_proxyInicial.PNG" alt="Petición interceptada inicial"
+                                class="img-fluid">
+                        </div>
+                        <figcaption><strong>Figura 1:</strong> Con Burp Suite configurado y el Proxy activo, se accede al laboratorio y se intercepta la petición GET solicitando una imagen: <code>GET /image?filename=/var/www/images/12.jpg</code>.</figcaption>
+                    </figure>
+
+                    <figure class="evidence-card">
+                        <div class="image-wrapper">
+                            <img src="../imagenes/lab05_intento1.PNG" alt="Intento de acceso relativo tradicional"
+                                class="img-fluid">
+                        </div>
+                        <figcaption><strong>Figura 2:</strong> Al intentar un payload estándar de Path Traversal (<code>filename=../../../etc/passwd</code>), la aplicación rechaza la petición indicando que la ruta debe comenzar con el prefijo autorizado.</figcaption>
+                    </figure>
+
+                    <figure class="evidence-card">
+                        <div class="image-wrapper">
+                            <img src="../imagenes/lab05_intento1REQUEST.PNG" alt="Análisis de respuesta del filtro"
+                                class="img-fluid">
+                        </div>
+                        <figcaption><strong>Figura 3:</strong> La respuesta confirma la presencia de una regla de validación estricta enfocada en comprobar que el valor del parámetro empiece por <code>/var/www/images/</code>.</figcaption>
+                    </figure>
+
+                    <figure class="evidence-card">
+                        <div class="image-wrapper">
+                            <img src="../imagenes/lab05_request.PNG" alt="Petición con bypass de prefijo" class="img-fluid">
+                        </div>
+                        <figcaption><strong>Figura 4:</strong> En el Repeater, se construye el payload conservando el prefijo requerido e introduciendo secuencias de escape: <code>filename=/var/www/images/../../../etc/passwd</code>.</figcaption>
+                    </figure>
+
+                    <figure class="evidence-card">
+                        <div class="image-wrapper">
+                            <img src="../imagenes/lab05_response.PNG"
+                                alt="Respuesta con contenido de /etc/passwd" class="img-fluid">
+                        </div>
+                        <figcaption><strong>Figura 5:</strong> El servidor valida que la cadena inicia con <code>/var/www/images/</code>, aprueba la solicitud y resuelve los <code>../</code>, retornando un estado 200 OK y el contenido de <code>/etc/passwd</code>.</figcaption>
+                    </figure>
+
+                    <figure class="evidence-card">
+                        <div class="image-wrapper">
+                            <img src="../imagenes/lab05_congratulations.PNG"
+                                alt="Confirmación de laboratorio resuelto" class="img-fluid">
+                        </div>
+                        <figcaption><strong>Figura 6:</strong> Confirmación en la interfaz web de que el laboratorio ha sido resuelto con éxito.</figcaption>
+                    </figure>
+                </div>
+            </section>
+            <!--Explicacion de payload-->
+            <section class="detail-section">
+                <h2 class="section-subheading">Explicación del Payload</h2>
+                <p>
+                    El payload utilizado para evadir la validación del prefijo de ruta en este laboratorio es:
+                    <code>/var/www/images/../../../etc/passwd</code>
+                </p>
+                <p>
+                    El funcionamiento del payload radica en satisfacer la lógica del filtro de seguridad manteniéndose vulnerable a nivel del sistema de archivos. El mecanismo de validación de la aplicación realiza una verificación simple de coincidencia de cadena de texto al inicio (por ejemplo, mediante una función del tipo <code>startsWith("/var/www/images/")</code>).
+                </p>
+                <p>
+                    Al incluir la ruta <code>/var/www/images/</code> al inicio del parámetro, la consulta satisface la condición del filtro de seguridad y es aprobada para su procesamiento.
+                </p>
+                <p>
+                    Posteriormente, cuando la función del backend pasa la cadena al sistema de archivos del servidor operativo, las secuencias <code>../../../</code> son interpretadas de forma canónica. El sistema navega desde el directorio <code>/var/www/images/</code> subiendo tres niveles hasta llegar al directorio raíz (<code>/</code>) y finalmente lee el archivo confidencial <code>/etc/passwd</code>.
+                </p> 
+            </section>
+            <!-- Mitigacion -->
+            <section class="detail-section">
+                <h2 class="section-subheading">Recomendaciones de mitigación</h2>
+                
+                <p>
+                    Para prevenir eficazmente esta vulnerabilidad de elusión de validación de rutas, se deben implementar los siguientes controles de seguridad:
+                </p>    
+                <p>
+                    Desuso de Referencias Directas a Archivos (Mapeo Indirecto): Reemplazar los nombres o rutas de archivos pasados como parámetros por identificadores numéricos o claves indirectas mapeadas internamente en el servidor (ej. <code>id=105</code>), evitando que el usuario controle directamente la ruta del recurso.
+                </p>
+                <p>
+                    Validación de Ruta Canónica: Antes de acceder a cualquier recurso, resolver la ruta canónica absoluta utilizando funciones nativas seguras (como <code>realpath()</code> en PHP o <code>Path.getCanonicalPath()</code> en Java) y verificar que la ruta final resuelta comience estrictamente dentro del directorio base autorizado.
+                </p>
+                <p>
+                    Validación por Nombre Base (Basename): Si se requiere que el usuario elija un archivo, extraer únicamente el nombre del archivo eliminando cualquier prefijo, ruta o secuencia <code>../</code> mediante funciones como <code>basename()</code>.
+                </p>
+                <p>
+                    Uso de Listas Blancas (Whitelisting): Implementar una lista estricta de archivos permitidos si el número de recursos a servir es finito y conocido previamente.
+                </p>
+                <p>
+                    Principio de Mínimo Privilegio: Asegurar que el proceso del servidor web se ejecute con una cuenta restringida que solo posea permisos de lectura en el directorio de imágenes estáticas y no en otras áreas del sistema operativo.
+                </p>
+            </section>
+            <!--PDF -->
+            <section class="detail-section">
+                <h2 class="section-subheading">Documentación de la práctica (PDF)</h2>
+                <p class="section-desc">
+                    Puedes consultar el reporte completo de la práctica directamente a continuación o descargarlo en tu
+                    dispositivo:
+                </p>
+
+                <!-- Visor Integrado (Embed / Iframe) -->
+                <div
+                    style="width: 100%; height: 650px; border-radius: 16px; overflow: hidden; border: 1.5px solid #d8b4fe; box-shadow: 0 10px 25px rgba(124, 58, 237, 0.1);">
+                    <iframe src="../docs/Lab05_Reporte.pdf" width="100%" height="100%" style="border: none;">
+                        <p>Tu navegador no soporta la visualización de archivos PDF. <a href="../docs/Lab05_Reporte.pdf"
+                                target="_blank" rel="noopener noreferrer">Haz
+                                clic aquí para descargarlo.</a></p>
+                    </iframe>
+                </div>
+            </section>
+
+            <!-- Navegación entre Laboratorios -->
+            <nav class="activity-navigation">
+                <a href="../laboratorios/lab04.html" class="btn-nav">← Anterior laboratorio</a>
+                <a href="../roadmap.html" class="btn-nav primary">Volver a road to hall of fame</a>
+                <a href="../laboratorios/lab06.html" class="btn-nav">Siguiente laboratorio →</a>
+            </nav>
+        </article>
 
     </main>
 
