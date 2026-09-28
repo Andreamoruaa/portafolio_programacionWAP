@@ -55,8 +55,8 @@
         <article class="card card-detail">
             <!-- Encabezado de la Actividad -->
             <div class="detail-header-badge">
-                <span class="badge-tag">Laboratorio 5</span>
-                <h1 class="activity-detail-title">Validation of start of path</h1>
+                <span class="badge-tag">Laboratorio 6</span>
+                <h1 class="activity-detail-title">Validation of file extension with null byte bypass</h1>
             </div>
             <!-- información del Laboratorio -->
             <section class="detail-section">
@@ -194,7 +194,7 @@
                         <div class="image-wrapper">
                             <img src="../imagenes/lab05_request.PNG" alt="Petición con Validation of start of path" class="img-fluid">
                         </div>
-                        <figcaption><strong>Figura 4:</strong> En el Repeater, se construye el payload conservando el prefijo requerido e introduciendo secuencias de escape: <code>filename=/var/www/images/../../../etc/passwd</code>.</figcaption>
+                        <figcaption><strong>Figura 7:</strong> En el Repeater, se construye el payload conservando el prefijo requerido e introduciendo secuencias de escape: <code>filename=/var/www/images/../../../etc/passwd</code>.</figcaption>
                     </figure>
 
                     <figure class="evidence-card">
@@ -202,7 +202,7 @@
                             <img src="../imagenes/lab05_response.PNG"
                                 alt="Respuesta con contenido de /etc/passwd" class="img-fluid">
                         </div>
-                        <figcaption><strong>Figura 5:</strong> El servidor valida que la cadena inicia con <code>/var/www/images/</code>, aprueba la solicitud y resuelve los <code>../</code>, retornando un estado 200 OK y el contenido de <code>/etc/passwd</code>.</figcaption>
+                        <figcaption><strong>Figura 8:</strong> El servidor valida que la cadena inicia con <code>/var/www/images/</code>, aprueba la solicitud y resuelve los <code>../</code>, retornando un estado 200 OK y el contenido de <code>/etc/passwd</code>.</figcaption>
                     </figure>
 
                     <figure class="evidence-card">
@@ -210,7 +210,7 @@
                             <img src="../imagenes/lab05_congratulations.PNG"
                                 alt="Confirmación de laboratorio resuelto" class="img-fluid">
                         </div>
-                        <figcaption><strong>Figura 6:</strong> Confirmación en la interfaz web de que el laboratorio ha sido resuelto con éxito.</figcaption>
+                        <figcaption><strong>Figura 9:</strong> Confirmación en la interfaz web de que el laboratorio ha sido resuelto con éxito.</figcaption>
                     </figure>
                 </div>
             </section>
