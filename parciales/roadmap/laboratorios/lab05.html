@@ -166,10 +166,33 @@
                         </div>
                         <figcaption><strong>Figura 3:</strong> La respuesta confirma la presencia de una regla de validación estricta enfocada en comprobar que el valor del parámetro empiece por <code>/var/www/images/</code>.</figcaption>
                     </figure>
-
                     <figure class="evidence-card">
                         <div class="image-wrapper">
-                            <img src="../imagenes/lab05_request.PNG" alt="Petición con bypass de prefijo" class="img-fluid">
+                            <img src="../imagenes/lab05_intento2.PNG" alt="Intento de acceso a archivo con ruta absoluta"
+                                class="img-fluid">
+                        </div>
+                        <figcaption><strong>Figura 4:</strong> Si se envía la secuencia filename=/etc/passwd, el
+                            servidor responde con un error (Filtro de ruta absoluta activo).</figcaption>
+                    </figure>
+                    <figure class="evidence-card">
+                        <div class="image-wrapper">
+                            <img src="../imagenes/lab05_intento3.PNG" alt="Intento con ....//....//....//etc/passwd"
+                                class="img-fluid">
+                        </div>
+                        <figcaption><strong>Figura 5:</strong> Si se envia la secuencia filename=....//....//....//etc/passwd, el servidor responde con un error. Esto indica que el servidor está aplicando un filtro de seguridad que elimina las secuencias de navegación de archivos (../) antes de procesar la solicitud, pero no está manejando correctamente la decodificación URL superflua.
+                             (Filtro recursivo o limpieza estricta activa).</figcaption>
+                    </figure>
+                    <figure class="evidence-card">
+                        <div class="image-wrapper">
+                            <img src="../imagenes/lab05_intento4.PNG" alt="Intento con stripped with superfluous URL decode"
+                                class="img-fluid">
+                        </div>
+                        <figcaption><strong>Figura 6:</strong> Si se envia la secuencia filename=..%252f..%252f..%252fetc/passwd, el servidor responde con un error. Esto indica que el servidor está aplicando un filtro de seguridad que elimina las secuencias de navegación de archivos (../) antes de procesar la solicitud, pero no está manejando correctamente la decodificación URL superflua.
+                             (Filtro recursivo o limpieza estricta activa).</figcaption>
+                    </figure>
+                    <figure class="evidence-card">
+                        <div class="image-wrapper">
+                            <img src="../imagenes/lab05_request.PNG" alt="Petición con Validation of start of path" class="img-fluid">
                         </div>
                         <figcaption><strong>Figura 4:</strong> En el Repeater, se construye el payload conservando el prefijo requerido e introduciendo secuencias de escape: <code>filename=/var/www/images/../../../etc/passwd</code>.</figcaption>
                     </figure>
@@ -216,16 +239,10 @@
                     Para prevenir eficazmente esta vulnerabilidad de elusión de validación de rutas, se deben implementar los siguientes controles de seguridad:
                 </p>    
                 <p>
-                    Desuso de Referencias Directas a Archivos (Mapeo Indirecto): Reemplazar los nombres o rutas de archivos pasados como parámetros por identificadores numéricos o claves indirectas mapeadas internamente en el servidor (ej. <code>id=105</code>), evitando que el usuario controle directamente la ruta del recurso.
+                    Desuso de Referencias Directas a Archivos: Reemplazar los nombres o rutas de archivos pasados como parámetros por identificadores numéricos o claves indirectas mapeadas internamente en el servidor (ej. <code>id=105</code>), evitando que el usuario controle directamente la ruta del recurso.
                 </p>
                 <p>
-                    Validación de Ruta Canónica: Antes de acceder a cualquier recurso, resolver la ruta canónica absoluta utilizando funciones nativas seguras (como <code>realpath()</code> en PHP o <code>Path.getCanonicalPath()</code> en Java) y verificar que la ruta final resuelta comience estrictamente dentro del directorio base autorizado.
-                </p>
-                <p>
-                    Validación por Nombre Base (Basename): Si se requiere que el usuario elija un archivo, extraer únicamente el nombre del archivo eliminando cualquier prefijo, ruta o secuencia <code>../</code> mediante funciones como <code>basename()</code>.
-                </p>
-                <p>
-                    Uso de Listas Blancas (Whitelisting): Implementar una lista estricta de archivos permitidos si el número de recursos a servir es finito y conocido previamente.
+                    Validación por Nombre Base: Si se requiere que el usuario elija un archivo, extraer únicamente el nombre del archivo eliminando cualquier prefijo, ruta o secuencia <code>../</code> mediante funciones como <code>basename()</code>.
                 </p>
                 <p>
                     Principio de Mínimo Privilegio: Asegurar que el proceso del servidor web se ejecute con una cuenta restringida que solo posea permisos de lectura en el directorio de imágenes estáticas y no en otras áreas del sistema operativo.

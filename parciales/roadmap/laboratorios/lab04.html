@@ -156,7 +156,7 @@
                             <img src="../imagenes/lab04_intento1.PNG" alt="Evaluación de seguridad ../../../etc/passwd"
                                 class="img-fluid">
                         </div>
-                        <figcaption><strong>Figura 3:</strong> Si se envía la secuencia tradicional
+                        <figcaption><strong>Figura 2:</strong> Si se envía la secuencia tradicional
                             filename=../../../etc/passwd, el
                             servidor responde con un error o bloquea la petición debido a un filtro que detecta ../.
                         </figcaption>
@@ -167,7 +167,7 @@
                             <img src="../imagenes/lab04_intento1REQUEST.PNG" alt="Respuesta del servidor de seguridad"
                                 class="img-fluid">
                         </div>
-                        <figcaption><strong>Figura 4:</strong> Este comportamiento confirma la presencia de un mecanismo
+                        <figcaption><strong>Figura 3:</strong> Este comportamiento confirma la presencia de un mecanismo
                             de defensa
                             rudimentario enfocado en secuencias relativas.
                         </figcaption>
@@ -178,7 +178,7 @@
                             <img src="../imagenes/lab04_intento2.PNG"
                                 alt="Intento de acceso a archivo con ruta absoluta" class="img-fluid">
                         </div>
-                        <figcaption><strong>Figura 5:</strong> Si se envía la secuencia filename=/etc/passwd, el
+                        <figcaption><strong>Figura 4:</strong> Si se envía la secuencia filename=/etc/passwd, el
                             servidor responde con un error (Filtro de ruta absoluta activo).
                         </figcaption>
                     </figure>
@@ -186,9 +186,9 @@
                     <figure class="evidence-card">
                         <div class="image-wrapper">
                             <img src="../imagenes/lab04_intento3.PNG"
-                                alt="Respuesta del servidor con /etc/passwd" class="img-fluid">
+                                alt="Intento con ....//....//....//etc/passwd" class="img-fluid">
                         </div>
-                        <figcaption><strong>Figura 6:</strong> Si se envia la secuencia filename=....//....//....//etc/passwd, el servidor responde con un error. Esto indica que el servidor está aplicando un filtro de seguridad que elimina las secuencias de navegación de archivos (../) antes de procesar la solicitud, pero no está manejando correctamente la decodificación URL superflua.
+                        <figcaption><strong>Figura 5:</strong> Si se envia la secuencia filename=....//....//....//etc/passwd, el servidor responde con un error. Esto indica que el servidor está aplicando un filtro de seguridad que elimina las secuencias de navegación de archivos (../) antes de procesar la solicitud, pero no está manejando correctamente la decodificación URL superflua.
                              (Filtro recursivo o limpieza estricta activa).
                         </figcaption>
                     </figure>
@@ -198,7 +198,7 @@
                             <img src="../imagenes/lab04_request.PNG" alt="Peticion final con payload ..%252f..%252f..%252fetc/passwd"
                                 class="img-fluid">
                         </div>
-                        <figcaption><strong>Figura 7:</strong>
+                        <figcaption><strong>Figura 6:</strong>
                             En la pestaña Request del Repeater, se reemplaza el valor de filename aplicando codificación URL doble a las secuencias de escape: ..%252f..%252f..%252fetc/passwd. Posteriormente se hace clic en send.
                     </figure>
                     <figure class="evidence-card">
@@ -206,7 +206,7 @@
                             <img src="../imagenes/lab04_response.PNG"
                                 alt="Respuesta del servidor con el contenido de /etc/passwd" class="img-fluid">
                         </div>
-                        <figcaption><strong>Figura 8:</strong>
+                        <figcaption><strong>Figura 7:</strong>
                             El servidor responde con código HTTP/2 200 OK y devuelve en el cuerpo de la respuesta el contenido en texto plano del archivo /etc/passwd, listando las cuentas del sistema
                         </figcaption>
                     </figure>
@@ -215,7 +215,7 @@
                             <img src="../imagenes/lab04_congratulations.PNG"
                                 alt="Confirmación de solución del laboratorio" class="img-fluid">
                         </div>
-                        <figcaption><strong>Figura 9:</strong>
+                        <figcaption><strong>Figura 8:</strong>
                             Confirmación de la solución del laboratorio
                         </figcaption>
                     </figure>
@@ -246,16 +246,16 @@
                     Para prevenir de forma definitiva las vulnerabilidades de Path Traversal causadas por decodificaciones redundantes y validaciones ineficaces, se deben aplicar los siguientes controles defensivos:
                 </p>    
                 <p>
-                    Desuso de Referencias Directas a Archivos (Mapeo Indirecto): Reemplazar los nombres de archivo pasados como parámetros por identificadores numéricos o claves indirectas mapeadas internamente en el servidor (ej. id=104), evitando que el usuario controle directamente la ruta o nombre del recurso.
+                    Desuso de Referencias Directas a Archivos: Reemplazar los nombres de archivo pasados como parámetros por identificadores numéricos o claves indirectas mapeadas internamente en el servidor (ej. id=104), evitando que el usuario controle directamente la ruta o nombre del recurso.
                 </p>
                 <p>
                     Canonicidad y Decodificación Única: Asegurar que la decodificación de URL se realice exactamente una sola vez en el punto de entrada de la aplicación (Web Gateway o Middleware de entrada). Se deben prohibir decodificaciones secundarias o redundantes en capas internas, librerías auxiliares o funciones del sistema de archivos.
                 </p>
                 <p>
-                    Validación por Nombre Base (Basename): Extraer únicamente el nombre simple del archivo eliminando cualquier prefijo de ruta, diagonales (/, \) o secuencias de navegación antes de procesar la petición.
+                    Validación por Nombre Base: Extraer únicamente el nombre simple del archivo eliminando cualquier prefijo de ruta, diagonales (/, \) o secuencias de navegación antes de procesar la petición.
                 </p>
                 <p>
-                    Verificación de Ruta Absoluta Canónica (Canonical Path Validation): Resolver la ruta absoluta completa en el servidor y validar estrictamente que la ubicación final comience dentro del directorio base autorizado antes de abrir el recurso.
+                    Verificación de Ruta Absoluta Canónica: Resolver la ruta absoluta completa en el servidor y validar estrictamente que la ubicación final comience dentro del directorio base autorizado antes de abrir el recurso.
                 </p>
                 <p>
                     Principio de Mínimo Privilegio: Configurar los permisos del sistema operativo para que la cuenta con la que ejecuta el servidor web (ej. www-data o nobody) posea exclusivamente permisos de lectura en la carpeta de recursos estáticos, bloqueando el acceso a directorios del sistema como /etc/ o carpetas de configuración.
@@ -282,7 +282,7 @@
 
             <!-- Navegación entre Laboratorios -->
             <nav class="activity-navigation">
-                <a href="../laboratorios/lab02.html" class="btn-nav">← Anterior laboratorio</a>
+                <a href="../laboratorios/lab03.html" class="btn-nav">← Anterior laboratorio</a>
                 <a href="../roadmap.html" class="btn-nav primary">Volver a road to hall of fame</a>
                 <a href="../laboratorios/lab05.html" class="btn-nav">Siguiente laboratorio →</a>
             </nav>
