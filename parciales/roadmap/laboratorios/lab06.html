@@ -240,7 +240,9 @@
                                 alt="Intento con stripped with superfluous URL decode" class="img-fluid">
                         </div>
                         <figcaption><strong>Figura 7:</strong> Si se envia la secuencia
-                            filename=/var/www/images/../../../etc/passwd, el servidor responde con un error. Esto indica que el servidor está aplicando un filtro de seguridad que elimina las secuencias de navegación de archivos (../) antes de procesar la solicitud.</figcaption>
+                            filename=/var/www/images/../../../etc/passwd, el servidor responde con un error. Esto indica
+                            que el servidor está aplicando un filtro de seguridad que elimina las secuencias de
+                            navegación de archivos (../) antes de procesar la solicitud.</figcaption>
                     </figure>
                     <figure class="evidence-card">
                         <div class="image-wrapper">
@@ -257,16 +259,17 @@
                             <img src="../imagenes/lab06_response.PNG" alt="Respuesta con contenido de /etc/passwd"
                                 class="img-fluid">
                         </div>
-                        <figcaption><strong>Figura 9:</strong> Este payload aprovecha una vulnerabilidad de Path Traversal
-combinada con un Null Byte Injection (%00): la secuencia ../../../ le permite al
-atacante escapar del directorio web predeterminado y navegar hacia atrás en el
-sistema de archivos para acceder al archivo sensible /etc/passwd.
+                        <figcaption><strong>Figura 9:</strong> Este payload aprovecha una vulnerabilidad de Path
+                            Traversal
+                            combinada con un Null Byte Injection (%00): la secuencia ../../../ le permite al
+                            atacante escapar del directorio web predeterminado y navegar hacia atrás en el
+                            sistema de archivos para acceder al archivo sensible /etc/passwd.
                         </figcaption>
                     </figure>
 
                     <figure class="evidence-card">
                         <div class="image-wrapper">
-                            <img src="../imagenes/lab06_congratulations.PNG" alt="Confirmación de laboratorio resuelto"
+                            <img src="../imagenes/lab06_congratulations.png" alt="Confirmación de laboratorio resuelto"
                                 class="img-fluid">
                         </div>
                         <figcaption><strong>Figura 10:</strong> Confirmación en la interfaz web de que el laboratorio ha
@@ -283,18 +286,18 @@ sistema de archivos para acceder al archivo sensible /etc/passwd.
                 </p>
                 <p>
                     La lógica de la aplicación web inspecciona la cadena enviada en el parámetro
-filename y comprueba si termina con una extensión de imagen válida (.png). Al
-evaluar la cadena completa ../../../etc/passwd%00.png, la prueba de extensión es
-exitosa. Cuando la cadena es enviada a la función interna de lectura de archivos
-del sistema operative, la secuencia codificada en URL %00 se interpreta como el
-caracter nulo.    
+                    filename y comprueba si termina con una extensión de imagen válida (.png). Al
+                    evaluar la cadena completa ../../../etc/passwd%00.png, la prueba de extensión es
+                    exitosa. Cuando la cadena es enviada a la función interna de lectura de archivos
+                    del sistema operative, la secuencia codificada en URL %00 se interpreta como el
+                    caracter nulo.
                 </p>
                 <p>
                     El sistema de archivos lee únicamente la porción previa al byte nulo
-(../../../etc/passwd), ignorando por completo la extensión .png. Las secuencias ../
-suben desde el directorio de recursos de imágenes hasta la raíz del sistema de
-archivos (/), permitiendo abrir y retornar el contenido confidencial del archivo
-/etc/passwd.
+                    (../../../etc/passwd), ignorando por completo la extensión .png. Las secuencias ../
+                    suben desde el directorio de recursos de imágenes hasta la raíz del sistema de
+                    archivos (/), permitiendo abrir y retornar el contenido confidencial del archivo
+                    /etc/passwd.
                 </p>
             </section>
             <!-- Mitigacion -->
@@ -303,27 +306,27 @@ archivos (/), permitiendo abrir y retornar el contenido confidencial del archivo
 
                 <p>
                     Para solucionar esta vulnerabilidad y prevenir técnicas de bypass mediante byte nulo,
-se recomiendan los siguientes controles:
+                    se recomiendan los siguientes controles:
                 </p>
                 <p>
                     Utilizar versiones modernas y actualizadas de lenguajes de programación y
-frameworks que deshabilitan o sanitizan automáticamente caracteres nulos en
-funciones de manejo de archivos    
+                    frameworks que deshabilitan o sanitizan automáticamente caracteres nulos en
+                    funciones de manejo de archivos
                 </p>
                 <p>
                     Evitan pasar rutas o nombres de archivos directamente desde parámetros
-proporcionados por el usuario; implementar un mapeo de claves o índices en el
-servidor.
+                    proporcionados por el usuario; implementar un mapeo de claves o índices en el
+                    servidor.
 
                 </p>
                 <p>
                     Resolver la ruta absoluta del archivo mediante funciones seguras del sistema y
-verificar que la ruta final resuelta se encuentre estrictamente dentro del directorio
-base autorizado antes de realizar la lectura.    
+                    verificar que la ruta final resuelta se encuentre estrictamente dentro del directorio
+                    base autorizado antes de realizar la lectura.
                 </p>
                 <p>
                     Filtrar y remover caracteres de control ASCII (0x00 a 0x1F) de toda entrada
-recibida antes de procesar operaciones de archivo
+                    recibida antes de procesar operaciones de archivo
                 </p>
             </section>
             <!--PDF -->
