@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Actividad 13 - Parcial 2 | Portafolio WAP</title>
+  <title>Actividad 13 - Parcial 1 | Portafolio WAP</title>
   <link rel="stylesheet" href="../../../assets/css/styles.css">
 </head>
-
 <body>
 
-  <!-- Header-->
+  <!-- Header Hero -->
   <header class="site-header-hero">
     <div class="header-info-hero">
       <span class="hero-tag">Portafolio académico</span>
@@ -25,196 +23,328 @@
         <span>7mo semestre - Otoño 2026</span>
       </div>
     </div>
-    <!--Nav-->
     <nav class="site-nav-hero">
       <ul>
         <li><a href="../../../index.html">Inicio</a></li>
-        <li><a href="../parcial1.html">Parcial 1</a></li>
+        <li><a href="../../parcial1/parcial1.html">Parcial 1</a></li>
         <li><a href="../parcial2.html">Parcial 2</a></li>
         <li><a href="#" class="disabled">Parcial 3</a></li>
-        <li><a href="../../roadmap/roadmap.html">Roadmap</a></li>
-        <li><a href="../../../index.html#contacto">Contacto</a></li>
+        <li><a href="../../../index.html #contacto">Contacto</a></li>
       </ul>
     </nav>
   </header>
 
-  <!-- Contenido Principal -->
+  <!-- Contenedor Principal -->
   <main class="content-container">
     <nav class="side-nav-right" id="sideNav">
-      <div class="side-nav-title">Navegación</div>
-      <ul>
-        <li><a href="../../../index.html">Inicio</a></li>
-        <li><a href="../parcial1.html">Parcial 1</a></li>
-        <li><a href="../parcial2.html">Parcial 2</a></li>
-        <li><a href="#" class="disabled">Parcial 3</a></li>
-        <li><a href="../../roadmap/roadmap.html">Roadmap</a></li>
-        <li><a href="../../../index.html#contacto">Contacto</a></li>
-      </ul>
-    </nav>
+        <div class="side-nav-title">Navegación</div>
+          <ul>
+            <li><a href="../../../index.html">Inicio</a></li>
+            <li><a href="../../parcial1/parcial1.html">Parcial 1</a></li>
+            <li><a href="../parcial2.html">Parcial 2</a></li>
+            <li><a href="#" class="disabled">Parcial 3</a></li>
+            <li><a href="../../../index.html #contacto">Contacto</a></li>
+        </ul>
+      </nav>
     <article class="card card-detail">
-
+      
       <!-- Encabezado de la Actividad -->
       <div class="detail-header-badge">
-        <span class="badge-tag">Parcial 2 — Actividad 13</span>
-        <h1 class="activity-detail-title">Red team report:</h1>
-        <h2 class="activity-detail-subtitle"> Pentesting de My File Server 1</h2>
+        <span class="badge-tag">Parcial 1 — Actividad 13</span>
+        <h1 class="activity-detail-title">Red Team report: Pentesting de My File Server 1</h1>
       </div>
-      <!--Introduccion de la actividad-->
+
+      <!-- Introducción -->
       <section class="detail-section">
         <h2 class="section-subheading">Introducción</h2>
         <p>
-            El pentesting, o prueba de penetración, es una técnica fundamental en el ámbito de la ciberseguridad que consiste en evaluar la seguridad de un sistema informático mediante la simulación de ataques reales. En este contexto, se lleva a cabo una evaluación exhaustiva del servidor vulnerable My File Server 1, con el objetivo de identificar y documentar posibles puntos débiles que podrían ser explotados por atacantes.
+          El presente informe detalla los resultados de una auditoría de seguridad ofensiva simulada bajo la modalidad de caja negra sobre la infraestructura virtualizada identificada como <em>My File Server 1</em>. El propósito principal de la evaluación fue identificar vulnerabilidades críticas de red, fallas en la configuración de servicios y debilidades a nivel de sistema operativo que permitieran a un atacante externo o usuario sin privilegios escalar hasta el nivel máximo de control (root).
         </p>
-      </section>
-      <!-- 1. Objetivo de la Actividad -->
-      <section class="detail-section">
-        <h2 class="section-subheading">Objetivo</h2>
         <p>
-            Desarrollar un informe técnico profesional de pruebas de penetración
-(Pentesting Report) sobre la máquina vulnerable My File Server: 1,
-aplicando una metodología estructurada de evaluación de seguridad,
-documentando hallazgos, evidencias técnicas, análisis de riesgo y
-propuestas de mitigación, demostrando competencias en análisis
-ofensivo y redacción técnica profesional.
+          Durante la evaluación se descubrieron fallas de alta severidad, destacando el acceso anónimo habilitado en servicios FTP, la exposición accidental de credenciales estáticas en texto plano mediante un archivo en el servidor web, y una vulnerabilidad crítica de condición de carrera en el kernel (DirtyCow - CVE-2016-5195). La explotación exitosa de estas debilidades demostró el compromiso total del servidor, permitiendo la lectura de información confidencial y el control absoluto del sistema.
         </p>
       </section>
-      <!-- Scope -->
-      <section class="detail-section">
-        <h2 class="section-subheading">Scope</h2>
-        <div class="tech-grid">
-          <div class="tech-box">
-            <div class="tech-title">Objetivo evaluado:</div>
-            <div class="tech-pills">
-              <span class="pill">Máquina virtual My File Server 1</span>
-                <span class="pill">192.156.68.103</span>
-            </div>
-          </div>
 
-          <div class="tech-box">
-            <div class="tech-title">Máquina atacante:</div>
-            <div class="tech-pills">
-              <span class="pill">Kali Linux</span>
-              <span class="pill">192.156.68.101</span>
+      <!-- Alcance / Scope -->
+      <section class="detail-section">
+        <h2 class="section-subheading">Scope (Alcance)</h2>
+        <ul class="custom-list">
+          <li><strong>Objetivo evaluado:</strong> Máquina virtual <em>My File Server 1</em> (IP: <code>192.168.56.103</code>).</li>
+          <li><strong>Máquina atacante:</strong> Kali Linux (IP: <code>192.168.56.101</code>).</li>
+          <li><strong>Segmento de red:</strong> <code>192.168.56.0/24</code> (Entorno controlado de laboratorio Host-Only).</li>
+          <li><strong>Servicios analizados:</strong> FTP, SSH, HTTP, SMB, RPC y NFS.</li>
+        </ul>
+      </section>
+
+      <!-- Metodología Aplicada -->
+      <section class="detail-section">
+        <h2 class="section-subheading">Metodología aplicada</h2>
+        <p>
+          La evaluación se rigió bajo los estándares corporativos de pruebas de penetración basados en el marco de trabajo PTES (Penetration Testing Execution Standard), estructurado en las siguientes fases secuenciales:
+        </p>
+        <ul class="custom-list">
+          <li><strong>Reconocimiento y descubrimiento:</strong> Localización de hosts activos y mapeo de la red.</li>
+          <li><strong>Enumeración:</strong> Análisis profundo de puertos, versiones de software y servicios expuestos.</li>
+          <li><strong>Análisis de vulnerabilidades:</strong> Inspección de rutas web expuestas, configuraciones por defecto y versiones de kernel obsoletas.</li>
+          <li><strong>Explotación y acceso inicial:</strong> Obtención de una sesión remota válida mediante inyección de claves y credenciales descubiertas.</li>
+          <li><strong>Escalada de privilegios:</strong> Ejecución de exploits orientados a fallos del núcleo del sistema operativo para alcanzar privilegios de superusuario (root).</li>
+        </ul>
+      </section>
+
+      <!-- Fases de Reconocimiento -->
+      <section class="detail-section">
+        <h2 class="section-subheading">Fases de reconocimiento</h2>
+        <p>
+          La fase de reconocimiento tiene como objetivo principal identificar la dirección IP asignada a nuestra propia máquina atacante y descubrir los hosts activos dentro del mismo segmento de red local (Host-Only), sin generar un tráfico excesivo ni alertar sistemas de defensa corporativos.
+        </p>
+        <p>
+          Se utilizó el comando <code>ip a</code> para verificar que nuestra máquina atacante (Kali Linux) operaba correctamente bajo la dirección IP local <code>192.168.56.101</code> dentro de la interfaz <code>eth0</code>. Posteriormente, con la ayuda de <code>sudo netdiscover</code> (o <code>arp-scan</code>), se corroboró que la dirección IP de la víctima correspondía a <code>192.168.56.103</code>.
+        </p>
+
+        <div class="evidence-grid">
+          <figure class="evidence-card">
+            <div class="image-wrapper">
+              <img src="../imagenes/actividad13_ip_kali.png" alt="IP máquina Kali Linux" class="img-fluid">
             </div>
-          </div>
-          <div class="tech-box">
-            <div class="tech-title">Segmento de red:</div>
-            <div class="tech-pills">
-              <span class="pill">192.156.68.0/24</span>
+            <figcaption><strong>Figura 1:</strong> Verificación de la dirección IP de la máquina Kali Linux mediante el comando <code>ip a</code>.</figcaption>
+          </figure>
+
+          <figure class="evidence-card">
+            <div class="image-wrapper">
+              <img src="../imagenes/actividad13_netdiscover.png" alt="IP máquina a vulnerar" class="img-fluid">
             </div>
-          </div>
-          <div class="tech-box">
-            <div class="tech-title">Direccionamiento IP</div>
-            <div class="tech-pills">
-              <span class="pill">10.0.2.15</span>
-            </div>
-          </div>
+            <figcaption><strong>Figura 2:</strong> Escaneo de la red local para la identificación y localización del host objetivo (<code>192.168.56.103</code>).</figcaption>
+          </figure>
         </div>
       </section>
-        <section class="detail-section">
-                <h2 class="section-subheading">Infografía</h2>
-                <!-- Visor Integrado (Embed / Iframe) -->
-                <div
-                style="width: 100%; height: 650px; border-radius: 16px; overflow: hidden; border: 1.5px solid #d8b4fe; box-shadow: 0 10px 25px rgba(124, 58, 237, 0.1);">
-                <iframe src="../docs/Actividad13_infografía.pdf" width="100%" height="100%" style="border: none;">
-                    <p>Tu navegador no soporta la visualización de archivos PDF. <a href="../docs/Actividad13_infografía.pdf">Haz clic
-                        aquí para descargarlo.</a></p>
-                </iframe>
-                </div>
-            </section>
-      <!-- 4. contexto general del caso -->
+
+      <!-- Enumeración -->
       <section class="detail-section">
-        <h2 class="section-subheading">Contenido principal</h2>
-        <h2 class="section-subheading">¿Qué es una vulnerabilidad?</h2>
-        <p class="section-desc">
-          Es un fallo, error o debilidad en el diseño, la configuración o el código de un sistema que un atacante puede aprovechar para comprometer su seguridad.
-        </p>
-      </section>
-      <section class="detail-section">
-        <h2 class="section-subheading">Clasificación de vulnerabilidades</h2>
+        <h2 class="section-subheading">Enumeración</h2>
         <p>
-          <strong>Hardware:</strong> Se presentan frecuentemente mediante defectos de diseño físico en los componentes electrónicos o procesadores.
+          La fase de enumeración profundiza en el análisis del objetivo detectado, identificando puertos abiertos, servicios expuestos y versiones exactas de software mediante herramientas como <strong>Nmap</strong>, <strong>SMBMap</strong> y <strong>Nikto</strong>.
         </p>
-        <p>
-          <strong>Software:</strong>Suelen ser provocadas por errores en el desarrollo del sistema operativo o en el código fuente de las aplicaciones. 
-        </p>
+        <ul class="custom-list">
+          <li><strong>Nmap (-p- y -sV):</strong> Reveló servicios clave como FTP (vsftpd 3.0.2 en puerto 21 y ProFTPD 1.3.5 en puerto 2121), SSH (OpenSSH 7.4), Servidor Web HTTP (Apache 2.4.6) y Samba/SMB en el puerto 445.</li>
+          <li><strong>Nmap con scripts (-A):</strong> Descubrió un fallo crítico de configuración en el servicio FTP: <em>Anonymous FTP login allowed</em> (código 230).</li>
+          <li><strong>SMBMap:</strong> Demostró que el recurso compartido <code>smbdata</code> contaba con permisos de lectura y escritura (<code>READ, WRITE</code>) accesibles sin autenticación previa (NULL session).</li>
+          <li><strong>Nikto:</strong> Localizó de manera exitosa el archivo desatendido <code>/readme.txt</code> en el servidor web, el cual contenía en texto plano una credencial estática crítica: <code>My Password is rootroot1</code>.</li>
+        </ul>
+
+        <div class="evidence-grid">
+          <figure class="evidence-card">
+            <div class="image-wrapper">
+              <img src="../imagenes/actividad13_nmap_inicial.PNG" alt="Escaneo de puertos nmap" class="img-fluid">
+            </div>
+            <figcaption><strong>Figura 3:</strong> Escaneo completo de puertos y detección de versiones con <code>nmap -p- -sV</code>.</figcaption>
+          </figure>
+
+          <figure class="evidence-card">
+            <div class="image-wrapper">
+              <img src="../imagenes/actividad13_nmap2.png" alt="Escaneo avanzado nmap -A" class="img-fluid">
+            </div>
+            <figcaption><strong>Figura 4:</strong> Análisis avanzado con <code>nmap -A</code> mostrando el acceso anónimo FTP permitido.</figcaption>
+          </figure>
+
+          <figure class="evidence-card">
+            <div class="image-wrapper">
+              <img src="../imagenes/actividad13_smbmap.png" alt="Enumeración SMBMap" class="img-fluid">
+            </div>
+            <figcaption><strong>Figura 5:</strong> Verificación de recursos compartidos en SMB mediante <code>smbmap</code>.</figcaption>
+          </figure>
+
+          <figure class="evidence-card">
+            <div class="image-wrapper">
+              <img src="../imagenes/actividad13_ nikto.png" alt="Escaneo Nikto" class="img-fluid">
+            </div>
+            <figcaption><strong>Figura 6:</strong> Hallazgo de archivos sensibles (<code>/readme.txt</code>) mediante el escáner web <code>nikto</code>.</figcaption>
+          </figure>
+
+          <figure class="evidence-card" style="grid-column: 1 / -1; max-width: 700px; margin: 0 auto;">
+            <div class="image-wrapper">
+              <img src="../imagenes/actividad13_readme.png" alt="Contenido del archivo README" class="img-fluid">
+            </div>
+            <figcaption><strong>Figura 7:</strong> Visualización en el navegador de la contraseña expuesta en texto plano dentro del servidor web.</figcaption>
+          </figure>
+        </div>
       </section>
 
+      <!-- Explotación -->
       <section class="detail-section">
-        <h2 class="section-subheading">Riesgos, mecanismos e impacto técnico</h2>
+        <h2 class="section-subheading">Explotación</h2>
         <p>
-            <strong>Fallas en hardware:</strong> Descubiertas en CPUs modernas, permiten a los atacantes leer la memoria del sistema y datos procesados por otras aplicaciones utilizando ataques de canal lateral.
-        </p> 
-        <p>
-            <strong>Mecanismo Rowhammer:</strong> Explotación a nivel físico en memorias RAM donde el acceso repetido ("martilleo") a una fila de condensadores genera una interferencia eléctrica que corrompe los datos de las filas vecinas.
+          La fase de explotación aprovecha las debilidades descubiertas para lograr un acceso inicial controlado al sistema de la víctima:
         </p>
-        <figure class="evidence-card">
-          <div class="image-wrapper">
-            <img src="../imagenes/Imagen infografia propia.jpg" alt="mecanismo rowhammer" loading="lazy">
-          </div>
-          <figcaption><strong>Ilustración 1:</strong> Mecanismo Rowhammer.</figcaption>
-        </figure>
-        <p>
-            <strong>Fallas en software:</strong> Ocurre cuando los datos escritos superan el límite de memoria asignado. Esto permite acceder a la memoria de otros procesos, provocando caídas del sistema, filtración de información o escalada de privilegios.
-        </p>
+        <ul class="custom-list">
+          <li><strong>Generación de llaves SSH:</strong> Se ejecutó <code>sudo ssh-keygen</code> para crear un par de claves asimétricas robustas (ED25519).</li>
+          <li><strong>Inyección de llave autorizada por FTP:</strong> Utilizando el cliente interactivo FTP, se autenticó como <code>smbuser</code>, se accedió al directorio del usuario, se creó la carpeta <code>.ssh</code> y se subió la clave pública de Kali renombrándola estrictamente como <code>authorized_keys</code>.</li>
+          <li><strong>Acceso SSH:</strong> Se estableció la conexión segura con <code>ssh smbuser@192.168.56.103</code>, obteniendo una terminal interactiva bajo el usuario con privilegios limitados.</li>
+        </ul>
+
+        <div class="evidence-grid">
+          <figure class="evidence-card">
+            <div class="image-wrapper">
+              <img src="../imagenes/actividad13_key.png" alt="Generación de llaves ssh" class="img-fluid">
+            </div>
+            <figcaption><strong>Figura 8:</strong> Generación del par de claves criptográficas en el equipo atacante.</figcaption>
+          </figure>
+
+          <figure class="evidence-card">
+            <div class="image-wrapper">
+              <img src="../imagenes/actividad13_directorio_oculto.PNG" alt="Subida de authorized_keys por FTP" class="img-fluid">
+            </div>
+            <figcaption><strong>Figura 9:</strong> Conexión FTP y transferencia de la llave pública como <code>authorized_keys</code>.</figcaption>
+          </figure>
+
+          <figure class="evidence-card" style="grid-column: 1 / -1; max-width: 700px; margin: 0 auto;">
+            <div class="image-wrapper">
+              <img src="../imagenes/actividad13_sesion_con_ssh.png" alt="Acceso SSH exitoso" class="img-fluid">
+            </div>
+            <figcaption><strong>Figura 10:</strong> Acceso remoto exitoso al servidor mediante protocolo SSH utilizando la clave privada.</figcaption>
+          </figure>
+        </div>
       </section>
 
+      <!-- Escalada de Privilegios -->
       <section class="detail-section">
-        <h2 class="section-subheading">Panorama actual y relevancia</h2>
-        <p class="section-desc">
-            Las fallas se descubren con regularidad a pesar de los controles continuos de las organizaciones.
+        <h2 class="section-subheading">Escalada de privilegios</h2>
+        <p>
+          Para elevar los permisos desde el usuario restringido <code>smbuser</code> hasta el control total como superusuario (root), se identificó la versión del kernel del sistema mediante <code>uname -a</code>, revelando CentOS Linux 7 con el Kernel <code>3.10.0-229.el7.x86_64</code>, vulnerable a la condición de carrera <strong>DirtyCow (CVE-2016-5195)</strong>.
         </p>
-        <p class="section-desc">
-            Las vulnerabilidades físicas o de hardware son de alto impacto ya que pueden ejecutarse repetidamente con un riesgo muy bajo de generar bloqueos perceptibles en el sistema.    
-        </p>
+        <ul class="custom-list">
+          <li><strong>Transferencia del exploit:</strong> Se levantó un servidor web temporal con Python en la máquina atacante (<code>python3 -m http.server 8080</code>) y se descargó el código fuente en C (<code>40616.c</code>) al directorio <code>/tmp</code> de la víctima usando <code>wget</code>.</li>
+          <li><strong>Compilación:</strong> Se compiló el exploit utilizando el compilador de GNU con soporte para hilos: <code>gcc -pthread 40616.c -o upslp</code>.</li>
+          <li><strong>Ejecución y bandera:</strong> Al ejecutar el binario <code>./upslp</code>, el exploit sobrescribió temporalmente <code>/usr/bin/passwd</code>, otorgando una terminal de superusuario. Se navegó a <code>/root</code> y se obtuvo la bandera oficial de validación en <code>proof.txt</code>.</li>
+        </ul>
+
+        <div class="evidence-grid">
+          <figure class="evidence-card">
+            <div class="image-wrapper">
+              <img src="../imagenes/actividad13_ DirtyCow.png" alt="Verificación de versión de kernel" class="img-fluid">
+            </div>
+            <figcaption><strong>Figura 11:</strong> Verificación de la versión del kernel vulnerable con <code>uname -a</code> y descarga del exploit.</figcaption>
+          </figure>
+
+          <figure class="evidence-card">
+            <div class="image-wrapper">
+              <img src="../imagenes/actividad13_ compilamos_DirtyCow.png" alt="Compilación gcc del exploit" class="img-fluid">
+            </div>
+            <figcaption><strong>Figura 13:</strong> Compilación multihilo del exploit en C mediante <code>gcc</code>.</figcaption>
+          </figure>
+
+          <figure class="evidence-card">
+            <div class="image-wrapper">
+              <img src="../imagenes/actividad13_ explotamos_DirtyCow.png" alt="Ejecución de upslp y lectura de bandera root" class="img-fluid">
+            </div>
+            <figcaption><strong>Figura 14:</strong> Ejecución exitosa del binario <code>upslp</code> y lectura de la bandera en <code>proof.txt</code>.</figcaption>
+          </figure>
+        </div>
       </section>
-      <!-- recomendaciones -->
+
+      <!-- Análisis de Impacto -->
       <section class="detail-section">
-        <h2 class="section-subheading">Medidas de mitigación</h2>
-        <p class="section-desc">
-            <strong>Para fallas de hardware:</strong> Actualización de firmware, parches de seguridad y segmentación de la red para aislar sistemas críticos.
-        </p>
-        <p class="section-desc">
-            <strong>Para fallas de software:</strong> Aplicación de parches, auditorías de código, pruebas de penetración y educación continua del personal.
-        </p>
+        <h2 class="section-subheading">Análisis de impacto</h2>
+        <ul class="custom-list">
+          <li><strong>Confidencialidad (Alta):</strong> Se comprometieron credenciales de usuarios, archivos de configuración del sistema y datos internos sensibles accesibles desde el servidor de archivos.</li>
+          <li><strong>Integridad (Alta):</strong> Un atacante con privilegios de root puede modificar binarios del sistema, alterar registros de auditoría y corromper la totalidad de los datos almacenados.</li>
+          <li><strong>Disponibilidad (Alta):</strong> La vulnerabilidad de escalada de privilegios y el acceso libre a servicios mal configurados permiten la interrupción deliberada de los servicios críticos de red.</li>
+        </ul>
       </section>
-      <!-- 7. Conclusión -->
+
+      <!-- Recomendaciones Técnicas -->
+      <section class="detail-section">
+        <h2 class="section-subheading">Recomendaciones técnicas</h2>
+        <ul class="custom-list">
+          <li><strong>Actualización de software y kernel:</strong> Aplicar parches de seguridad para mitigar la vulnerabilidad del kernel (CVE-2016-5195).</li>
+          <li><strong>Endurecimiento (Hardening) de servicios:</strong> Deshabilitar los accesos anónimos en los servicios de transferencia de archivos (FTP) y restringir el uso de sesiones nulas en SMB.</li>
+          <li><strong>Eliminación de archivos sensibles:</strong> Remover archivos temporales o de texto plano que contengan credenciales o notas de acceso (<code>readme.txt</code>) en directorios públicos web.</li>
+          <li><strong>Principio de menor privilegio:</strong> Limitar la ejecución de compiladores (<code>gcc</code>) en entornos de producción y restringir permisos de escritura a usuarios estándar.</li>
+        </ul>
+      </section>
+
+      <!-- Tabla de Hallazgos -->
+      <section class="detail-section">
+        <h2 class="section-subheading">Tabla de hallazgos</h2>
+        <div style="overflow-x: auto;">
+          <table style="width: 100%; border-collapse: collapse; margin-top: 15px; background: rgba(255, 255, 255, 0.03); border-radius: 8px; overflow: hidden;">
+            <thead>
+              <tr style="background: rgba(124, 58, 237, 0.2); color: #e2e8f0; text-align: left;">
+                <th style="padding: 12px; border-bottom: 1px solid #4c1d95;">Vulnerabilidad</th>
+                <th style="padding: 12px; border-bottom: 1px solid #4c1d95;">Severidad</th>
+                <th style="padding: 12px; border-bottom: 1px solid #4c1d95;">Evidencia / Impacto</th>
+                <th style="padding: 12px; border-bottom: 1px solid #4c1d95;">Recomendación</th>
+              </tr>
+            </thead>
+            <tbody style="color: #cbd5e1; font-size: 0.95rem;">
+              <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                <td style="padding: 12px;"><strong>Inicio de sesión anónimo en FTP</strong></td>
+                <td style="padding: 12px;"><span style="color: #facc15; font-weight: bold;">Media</span></td>
+                <td style="padding: 12px;">Servicio <code>vsftpd</code> permitiendo acceso con credenciales genéricas, facilitando la enumeración de ficheros.</td>
+                <td style="padding: 12px;">Deshabilitar <code>anonymous_enable</code> en la configuración de vsftpd.</td>
+              </tr>
+              <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                <td style="padding: 12px;"><strong>Exposición de credenciales en texto plano</strong></td>
+                <td style="padding: 12px;"><span style="color: #f97316; font-weight: bold;">Alta</span></td>
+                <td style="padding: 12px;">Archivo <code>/readme.txt</code> expuesto en el servidor web mostrando credenciales (<code>rootroot1</code>).</td>
+                <td style="padding: 12px;">Auditar el directorio raíz web y remover archivos de texto con credenciales.</td>
+              </tr>
+              <tr>
+                <td style="padding: 12px;"><strong>Vulnerabilidad de Kernel (DirtyCow - CVE-2016-5195)</strong></td>
+                <td style="padding: 12px;"><span style="color: #ef4444; font-weight: bold;">Crítica</span></td>
+                <td style="padding: 12px;">Ejecución de exploit en CentOS Kernel 3.10.0 logrando escalada total a <code>root</code>.</td>
+                <td style="padding: 12px;">Actualizar el kernel del sistema operativo a la versión parcheada más reciente.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Conclusión -->
       <section class="detail-section">
         <h2 class="section-subheading">Conclusión</h2>
         <p>
-            La comprensión integral de las vulnerabilidades, desde el nivel de silicio hasta las capas superiores del software, es indispensable para construir arquitecturas resilientes. El análisis realizado demuestra que la seguridad no puede basarse únicamente en la protección de software; las fallas físicas y de diseño en el hardware representan vectores de ataque críticos que requieren un enfoque de defensa en profundidad. Garantizar la postura de seguridad exige una cultura de actualización continua, validación de integridad y controles de acceso estrictos que minimicen la superficie de exposición ante amenazas emergentes.
+          La práctica permitió comprobar de forma empírica la importancia de realizar auditorías de seguridad y evaluaciones de pentesting bajo metodologías estructuradas. La combinación de una mala configuración en servicios de transferencia (FTP anónimo), descuidos en la exposición de archivos informativos en servidores web y la falta de actualización en componentes críticos del kernel facilitaron el compromiso total de la infraestructura en cuestión de minutos.
+        </p>
+        <p>
+          Se subraya la necesidad de aplicar rigurosas políticas de endurecimiento (hardening), mantener una gestión estricta de parches e implementar controles de acceso basados en el principio de mínimo privilegio en cualquier entorno productivo.
         </p>
       </section>
-      <!-- 2. Visor y Descarga del Documento PDF -->
+
+      <!-- PDF / Documentación -->
+      <section class="detail-section">
+        <h2 class="section-subheading">Documentación de la práctica (PDF)</h2>
+        <p class="section-desc">
+          Puedes consultar el reporte completo de la práctica directamente a continuación o descargarlo en tu dispositivo:
+        </p>
+        
+        <div style="width: 100%; height: 650px; border-radius: 16px; overflow: hidden; border: 1.5px solid #d8b4fe; box-shadow: 0 10px 25px rgba(124, 58, 237, 0.1);">
+          <iframe src="../docs/Actividad13.pdf" width="100%" height="100%" style="border: none;">
+            <p>Tu navegador no soporta la visualización de archivos PDF. <a href="../docs/Actividad13.pdf">Haz clic aquí para descargarlo.</a></p>
+          </iframe>
+        </div>
+      </section>
       
-
-
       <!-- Navegación entre Actividades -->
       <nav class="activity-navigation">
-        <a href="../parcial2.html" class="btn-nav primary">Volver al parcial 2 </a>
-        <a href="#" class="btn-nav">Siguiente actividad →</a>
+        <a href="../actividades/actividad14.html">Siguiente actividad →</a>
       </nav>
 
     </article>
   </main>
 
-  <!-- Pie de Página -->
+  <!-- Footer -->
   <footer class="site-footer">
     <p style="color:rgb(77, 6, 107)">&copy; 2026 Andrea Morúa Bravo. Universidad Politécnica de San Luis Potosí</p>
     <div class="footer-links">
       <h3>Recursos Profesionales</h3>
       <ul class="social-cv-links">
-        <li><a href="https://www.linkedin.com/in/andrea-morua-01092732b/" target="_blank"
-            rel="noopener noreferrer">LinkedIn</a></li>
+        <li><a href="https://www.linkedin.com/in/andrea-morua-01092732b/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
         <li><a href="https://github.com/Andreamoruaa" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-        <li><a href="../../../assets/docs/Andrea Morua Bravo CV.pdf" target="_blank"
-            rel="noopener noreferrer">Curriculum Vitae</a></li>
+        <li><a href="../../../assets/docs/Andrea Morua Bravo CV.pdf" target="_blank" rel="noopener noreferrer">Curriculum Vitae</a></li>
       </ul>
     </div>
   </footer>
 
   <script src="../../../assets/js/main.js"></script>
-
 </body>
-
 </html>
