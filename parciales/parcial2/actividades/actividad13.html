@@ -141,14 +141,14 @@
 
           <figure class="evidence-card">
             <div class="image-wrapper">
-              <img src="../imagenes/actividad13_nmap2.png" alt="Escaneo avanzado nmap -A" class="img-fluid">
+              <img src="../imagenes/actividad13_nmap2.PNG" alt="Escaneo avanzado nmap -A" class="img-fluid">
             </div>
             <figcaption><strong>Figura 4:</strong> Análisis avanzado con <code>nmap -A</code> mostrando el acceso anónimo FTP permitido.</figcaption>
           </figure>
 
           <figure class="evidence-card">
             <div class="image-wrapper">
-              <img src="../imagenes/actividad13_smbmap.png" alt="Enumeración SMBMap" class="img-fluid">
+              <img src="../imagenes/actividad13_smbmap.PNG" alt="Enumeración SMBMap" class="img-fluid">
             </div>
             <figcaption><strong>Figura 5:</strong> Verificación de recursos compartidos en SMB mediante <code>smbmap</code>.</figcaption>
           </figure>
@@ -162,7 +162,7 @@
 
           <figure class="evidence-card" style="grid-column: 1 / -1; max-width: 700px; margin: 0 auto;">
             <div class="image-wrapper">
-              <img src="../imagenes/actividad13_readme.png" alt="Contenido del archivo README" class="img-fluid">
+              <img src="../imagenes/actividad13_README.PNG" alt="Contenido del archivo README" class="img-fluid">
             </div>
             <figcaption><strong>Figura 7:</strong> Visualización en el navegador de la contraseña expuesta en texto plano dentro del servidor web.</figcaption>
           </figure>
@@ -268,14 +268,14 @@
         <div style="overflow-x: auto;">
           <table style="width: 100%; border-collapse: collapse; margin-top: 15px; background: rgba(255, 255, 255, 0.03); border-radius: 8px; overflow: hidden;">
             <thead>
-              <tr style="background: rgba(124, 58, 237, 0.2); color: #e2e8f0; text-align: left;">
+              <tr style="background: rgba(124, 58, 237, 0.2); text-align: left;">
                 <th style="padding: 12px; border-bottom: 1px solid #4c1d95;">Vulnerabilidad</th>
                 <th style="padding: 12px; border-bottom: 1px solid #4c1d95;">Severidad</th>
                 <th style="padding: 12px; border-bottom: 1px solid #4c1d95;">Evidencia / Impacto</th>
                 <th style="padding: 12px; border-bottom: 1px solid #4c1d95;">Recomendación</th>
               </tr>
             </thead>
-            <tbody style="color: #cbd5e1; font-size: 0.95rem;">
+            <tbody style=" font-size: 0.95rem;">
               <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
                 <td style="padding: 12px;"><strong>Inicio de sesión anónimo en FTP</strong></td>
                 <td style="padding: 12px;"><span style="color: #facc15; font-weight: bold;">Media</span></td>
@@ -323,10 +323,24 @@
           </iframe>
         </div>
       </section>
+      <!--PDF Presentacion-->
+      <section class="detail-section">
+        <h2 class="section-subheading">Presentación de la auditoría</h2>
+        <p class="section-desc">
+          Puedes consultar la presentación de la auditoría directamente a continuación o descargarla en tu dispositivo:
+        </p>
+        
+        <div style="width: 100%; height: 650px; border-radius: 16px; overflow: hidden; border: 1.5px solid #d8b4fe; box-shadow: 0 10px 25px rgba(124, 58, 237, 0.1);">
+          <iframe src="../docs/Auditoría red team.pdf" width="100%" height="100%" style="border: none;">
+            <p>Tu navegador no soporta la visualización de archivos PDF. <a href="../docs/Auditoría red team.pdf">Haz clic aquí para descargarlo.</a></p>
+          </iframe>
+        </div>
+      </section>
       
       <!-- Navegación entre Actividades -->
       <nav class="activity-navigation">
-        <a href="../actividades/actividad14.html">Siguiente actividad →</a>
+        <a href="../parcial2.html" class="btn-nav primary">Regresar a parcial 2</a>
+        <a href="../actividades/actividad14.html" class="btn-nav">Siguiente actividad →</a>
       </nav>
 
     </article>
