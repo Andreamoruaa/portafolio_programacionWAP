@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Actividad 15 - Parcial 3 | Portafolio WAP</title>
+  <link rel="stylesheet" href="../../../assets/css/styles.css">
+</head>
+<body>
+
+  <!-- Header Hero -->
+  <header class="site-header-hero">
+    <div class="header-info-hero">
+      <span class="hero-tag">Portafolio académico</span>
+      <h1 class="hero-title">Portafolio de seguridad informática</h1>
+      <h2 class="hero-subtitle">Andrea Morúa Bravo <span>185548</span></h2>
+      <p class="hero-alias"><strong>Morúa</strong></p>
+      <div class="hero-details">
+        <span>CNO IV- Seguridad Informática</span>
+        <span class="dot">•</span>
+        <span>Universidad Politécnica de San Luis Potosí</span>
+        <span class="dot">•</span>
+        <span>7mo semestre - Otoño 2026</span>
+      </div>
+    </div>
+    <nav class="site-nav-hero">
+      <ul>
+        <li><a href="../../../index.html">Inicio</a></li>
+        <li><a href="../../parcial1/parcial1.html">Parcial 1</a></li>
+        <li><a href="../parcial2.html">Parcial 2</a></li>
+        <li><a href="#" class="disabled">Parcial 3</a></li>
+        <li><a href="../../../index.html #contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Contenedor Principal -->
+  <main class="content-container">
+    <nav class="side-nav-right" id="sideNav">
+        <div class="side-nav-title">Navegación</div>
+          <ul>
+            <li><a href="../../../index.html">Inicio</a></li>
+            <li><a href="../../parcial1/parcial1.html">Parcial 1</a></li>
+            <li><a href="../parcial2.html">Parcial 2</a></li>
+            <li><a href="#" class="disabled">Parcial 3</a></li>
+            <li><a href="../../../index.html #contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    <article class="card card-detail">
+      
+      <!-- Encabezado de la Actividad -->
+      <div class="detail-header-badge">
+        <span class="badge-tag">Parcial 3 — Actividad 15</span>
+        <h1 class="activity-detail-title">La fotografía como testigo: extracción de metadatos GPS para geolocalización</h1>
+      </div>
+
+      <!-- Introducción -->
+      <section class="detail-section">
+        <h2 class="section-subheading">Introducción</h2>
+        <p>
+        En la era digital actual, los archivos electrónicos y las fotografías digitales almacenan una gran cantidad de información oculta conocida como metadatos. Estos datos invisibles para el usuario común documentan detalles técnicos esenciales, tales como la autoría, fechas de creación, configuraciones de dispositivos e, incluso, coordenadas geográficas exactas de GPS. Dentro del ámbito de la seguridad informática y la investigación forense digital, el análisis de metadatos mediante herramientas especializadas como ExifTool permite a los analistas extraer rastros digitales vitales para verificar la autenticidad de los documentos, rastrear la procedencia de la información y reconstruir escenarios geolocalizados de forma precisa.
+        </p>
+      </section>
+
+      <!-- Objetivo -->
+      <section class="detail-section">
+        <h2 class="section-subheading">Objetivo</h2>
+        <p>
+            Analizar y extraer los metadatos de diferentes tipos de archivos digitales (documentos ofimáticos e imágenes) utilizando ExifTool, con el propósito de identificar información sensible, datos de autoría, configuraciones de captura técnica y coordenadas geográficas para su posterior geolocalización y tratamiento forense.
+        </p>
+      </section>
+
+      <!-- Desarrollo -->
+      <section class="detail-section">
+        <h2 class="section-subheading">Análisis de metadatos del documento institucional</h2>
+        <p>
+            A través de la ejecución de comandos en ExifTool, se inspeccionaron las propiedades internas del documento para obtener datos sobre su origen y trazabilidad:
+        </p>
+        <ul class="custom-list">
+            <li><strong>Clasificación de Interpol:</strong> Se identificó bajo la categoría de "Unclassified". </li>
+            <li><strong>Plantilla base:</strong> Fue elaborado utilizando la plantilla "G03 Basic Doc SP.dotx". </li>
+            <li><strong>Tiempos y Autoría:</strong> El archivo registró un tiempo total de edición de 45 minutos.</li>
+            <li><strong>Propiedad:</strong> La propiedad pertenece a la compañía OIPC – INTERPOL. </li>
+            <li><strong>Creación y Modificación:</strong> La creación y última modificación del fichero fueron realizadas por Carolyn Lejeune</li>
+            <li><strong>Fecha:</strong> 2019:05:03 15:35:00Z.</li>
+        </ul>
+        <div class="evidence-grid">
+          <figure class="evidence-card">
+            <div class="image-wrapper">
+              <img src="../imagenes/actividad15_1.PNG" alt="Captura de pantalla de la extracción de metadatos" class="activity-image">
+            </div>
+            <figcaption><strong>Figura 1:</strong> Extracción de metadatos del documento.</figcaption>
+          </figure>
+        </div>
+        </section>
+
+        <section class="detail-section">
+            <h2 class="section-subheading">Análisis forense y geolocalización de la imagen</h2>
+            <p>
+                Mediante la extracción de los parámetros EXIF e información GPS de la fotografía digital, se obtuvieron los siguientes hallazgos técnicos:    
+            </p>
+            <ul class="custom-list">
+                <li><strong>Parámetros de captura:</strong> Se utilizó una apertura ISO de 100, una longitud focal de 3.8 mm, sin la utilización de disparo de flash ("Off, Did not fire"), con fecha de creación del archivo fijada el 2020:05:28 18:11:41.</li>
+                <li><strong>Geolocalización:</strong> La extracción de la posición GPS indicó las coordenadas exactas de 51° 15' 12.99" N, 0° 32' 21.93" W, situando el punto de captura geográficamente en Inglaterra (Reino Unido).</li>    
+                <li><strong>Privacidad y Sanitización:</strong> Finalmente, se ejecutó el proceso de limpieza y eliminación total de metadatos del archivo multimedia utilizando el comando de purga de ExifTool (-all=), comprobando la anulación exitosa de los rastros sensibles para proteger la privacidad de la muestra.</li>
+            </ul>
+            <div class="evidence-grid">
+            <figure class="evidence-card">
+                <div class="image-wrapper">
+                <img src="../imagenes/actividad15_2.PNG" alt="Captura de pantalla de la geolocalización de la imagen" class="activity-image">
+                </div>
+                <figcaption><strong>Figura 1:</strong> Geolocalización de la imagen.</figcaption>
+            </figure>    
+        </section>
+      <!-- Conclusión -->
+      <section class="detail-section">
+        <h2 class="section-subheading">Conclusión</h2>
+        <p>
+            El desarrollo de esta práctica demostró la enorme relevancia que tienen los metadatos en la informática forense y la ciberseguridad. Herramientas como ExifTool facilitan la extracción minuciosa de información que a simple vista permanece oculta, permitiendo comprobar la trazabilidad de documentos institucionales y la ubicación geográfica exacta de archivos multimedia a través de sus coordenadas GPS. Asimismo, se comprobó la necesidad fundamental de aplicar técnicas de sanitización o borrado de metadatos en archivos que se comparten públicamente, mitigando así riesgos de exposición de privacidad y filtración de información sensible.
+        </p>
+      </section>
+
+      <!-- PDF / Documentación -->
+      <section class="detail-section">
+        <h2 class="section-subheading">Documentación de la práctica (PDF)</h2>
+        <p class="section-desc">
+          Puedes consultar el reporte completo de la práctica directamente a continuación o descargarlo en tu dispositivo:
+        </p>
+        
+        <div style="width: 100%; height: 650px; border-radius: 16px; overflow: hidden; border: 1.5px solid #d8b4fe; box-shadow: 0 10px 25px rgba(124, 58, 237, 0.1);">
+          <iframe src="../docs/MoruaBravoAndrea-ACT15.PDF .pdf" width="100%" height="100%" style="border: none;">
+            <p>Tu navegador no soporta la visualización de archivos PDF. <a href="../docs/MoruaBravoAndrea-ACT15.PDF .pdf">Haz clic aquí para descargarlo.</a></p>
+          </iframe>
+        </div>
+      </section>
+      
+      <!-- Navegación entre Actividades -->
+      <nav class="activity-navigation">
+        <a href="../parcial3.html" class="btn-nav primary">Regresar a parcial 3</a>
+        <a href="../actividades/actividad16.html" class="btn-nav">Siguiente actividad →</a>
+      </nav>
+
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p style="color:rgb(77, 6, 107)">&copy; 2026 Andrea Morúa Bravo. Universidad Politécnica de San Luis Potosí</p>
+    <div class="footer-links">
+      <h3>Recursos Profesionales</h3>
+      <ul class="social-cv-links">
+        <li><a href="https://www.linkedin.com/in/andrea-morua-01092732b/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        <li><a href="https://github.com/Andreamoruaa" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        <li><a href="../../../assets/docs/Andrea Morua Bravo CV.pdf" target="_blank" rel="noopener noreferrer">Curriculum Vitae</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="../../../assets/js/main.js"></script>
+</body>
+</html>
