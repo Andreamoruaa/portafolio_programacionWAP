@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Actividad 16 - Parcial 3 | Portafolio WAP</title>
+  <link rel="stylesheet" href="../../../assets/css/styles.css">
+</head>
+<body>
+
+  <!-- Header Hero -->
+  <header class="site-header-hero">
+    <div class="header-info-hero">
+      <span class="hero-tag">Portafolio académico</span>
+      <h1 class="hero-title">Portafolio de seguridad informática</h1>
+      <h2 class="hero-subtitle">Andrea Morúa Bravo <span>185548</span></h2>
+      <p class="hero-alias"><strong>Morúa</strong></p>
+      <div class="hero-details">
+        <span>CNO IV- Seguridad Informática</span>
+        <span class="dot">•</span>
+        <span>Universidad Politécnica de San Luis Potosí</span>
+        <span class="dot">•</span>
+        <span>7mo semestre - Otoño 2026</span>
+      </div>
+    </div>
+    <nav class="site-nav-hero">
+      <ul>
+        <li><a href="../../../index.html">Inicio</a></li>
+        <li><a href="../../parcial1/parcial1.html">Parcial 1</a></li>
+        <li><a href="../parcial2.html">Parcial 2</a></li>
+        <li><a href="../parcial3.html">Parcial 3</a></li>
+        <li><a href="../../../index.html #contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Contenedor Principal -->
+  <main class="content-container">
+    <nav class="side-nav-right" id="sideNav">
+        <div class="side-nav-title">Navegación</div>
+          <ul>
+            <li><a href="../../../index.html">Inicio</a></li>
+            <li><a href="../../parcial1/parcial1.html">Parcial 1</a></li>
+            <li><a href="../parcial2.html">Parcial 2</a></li>
+            <li><a href="../parcial3.html">Parcial 3</a></li>
+            <li><a href="../../../index.html #contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    <article class="card card-detail">
+      
+      <!-- Encabezado de la Actividad -->
+      <div class="detail-header-badge">
+        <span class="badge-tag">Parcial 3 — Actividad 16</span>
+        <h1 class="activity-detail-title">La verdad en los bits: adquisición forense con FTK Imager</h1>
+      </div>
+
+      <!-- Introducción -->
+      <section class="detail-section">
+        <h2 class="section-subheading">Introducción</h2>
+         <p>
+            El proceso de adquisición forense realizado con FTK Imager constituye la primera etapa metodológica de la Informática Forense (Adquisición y Preservación). Su objetivo principal es duplicar la evidencia digital almacenada en un soporte físico sin alterar en lo absoluto su contenido original.
+        </p>
+      </section>
+
+      <!-- Objetivo -->
+      <section class="detail-section">
+        <h2 class="section-subheading">Objetivo</h2>
+        <p>
+            Realizar la adquisición de evidencia digital mediante la extracción de una imagen forense bit a bit utilizando la herramienta AccessData FTK Imager, asegurando la preservación de la cadena de custodia y la verificación de la integridad criptográfica mediante funciones hash (MD5 y SHA-1).
+        </p>
+      </section>
+
+      <!-- Desarrollo -->
+      <section class="detail-section">
+            <h2 class="section-subheading">Información general del caso</h2>
+            <ul class="custom-list">
+                <li><strong>Número de Caso:</strong> InfoCrim-01_21.11.2023</li>
+                <li><strong>Número de Evidencia:</strong> 00 (Original Adq)</li>
+                <li><strong>Descripción del Caso:</strong> CNO IV - análisis de incidente de fraude bancario</li>
+                <li><strong>Examinador Asignado:</strong> Morúa Bravo Andrea</li>
+                <li><strong>Notas Adicionales:</strong> Adquisición realizada en LIF de la UPSLP</li>
+            </ul>
+        </section>
+        <section class="detail-section">
+    <h2 class="section-subheading">Desarrollo forense de adquisición</h2>
+    <p>
+      A continuación se detalla la secuencia técnica ejecutada durante el proceso de adquisición de evidencia digital:
+    </p>
+
+    <h3 class="section-subheading" style="font-size: 1.15rem; margin-top: 1.5rem;">Paso 1: Inicialización del entorno de captura</h3>
+    <p>
+      Se ejecuta AccessData FTK Imager v4.7.1.2. En el menú contextual <code>File</code>, se selecciona la opción <strong>Create Disk Image...</strong>. En un entorno forense real se debe implementar un Hardware Write Blocker (bloqueador de escritura físico) para garantizar que la unidad fuente no sufra modificaciones por automontaje del sistema operativo.
+    </p>
+
+    <figure class="evidence-card">
+      <div class="image-wrapper">
+        <img src="../imagenes/actividad16_1.PNG" alt="Inicio de creación de imagen en FTK Imager" class="activity-image">
+      </div>
+      <figcaption><strong>Figura 1:</strong> Menú principal de FTK Imager y opción Create Disk Image.</figcaption>
+    </figure>
+
+    <h3 class="section-subheading" style="font-size: 1.15rem; margin-top: 1.5rem;">Paso 2: Selección de la fuente de evidencia</h3>
+    <p>
+      En la pantalla <em>Select Source</em>, se indica <strong>Physical Drive</strong> para realizar una extracción bit a bit de bajo nivel. Posteriormente, en <em>Source Drive Selection</em>, se señala el dispositivo físico correspondiente: <code>\\.\PHYSICALDRIVE3 - Kingston DataTraveler 3.0 USB Device</code>.
+    </p>
+
+    <figure class="evidence-card">
+      <div class="image-wrapper">
+        <img src="../imagenes/actividad16_2.PNG" alt="Selección del dispositivo físico fuente" class="activity-image">
+      </div>
+      <figcaption><strong>Figura 2:</strong> Selección del dispositivo físico fuente (Kingston USB Device).</figcaption>
+    </figure>
+
+    <h3 class="section-subheading" style="font-size: 1.15rem; margin-top: 1.5rem;">Paso 3: Configuración de metadatos de la evidencia</h3>
+    <p>
+      Se establece la adquisición en formato de lectura universal <strong>Raw (dd)</strong> y se registran los metadatos requeridos por el estándar forense (Case Number, Evidence Number, Unique Description, Examiner y Notes).
+    </p>
+
+    <figure class="evidence-card">
+      <div class="image-wrapper">
+        <img src="../imagenes/actividad16_3.PNG" alt="Configuración de metadatos de la evidencia" class="activity-image">
+      </div>
+      <figcaption><strong>Figura 3:</strong> Formulario de metadatos de la evidencia (Evidence Item Information).</figcaption>
+    </figure>
+
+    <h3 class="section-subheading" style="font-size: 1.15rem; margin-top: 1.5rem;">Paso 4: Definición de directorio y nombre de salida</h3>
+    <p>
+      Se establece como ruta de salida <code>C:\Users\andre\OneDrive\Desktop\InfoCrim13</code> y se asigna el nombre <code>infocrim_MoruaBravoAndrea</code>. Se especifica un tamaño de fragmentación de <strong>1500 MB</strong> y compresión <strong>0 (None)</strong>.
+    </p>
+
+    <figure class="evidence-card">
+      <div class="image-wrapper">
+        <img src="../imagenes/actividad16_4.PNG" alt="Definición de carpeta y nombre de destino" class="activity-image">
+      </div>
+      <figcaption><strong>Figura 4:</strong> Selección del destino, nombre y fragmentación del archivo.</figcaption>
+    </figure>
+
+    <h3 class="section-subheading" style="font-size: 1.15rem; margin-top: 1.5rem;">Paso 5: Marcas de tiempo del proceso de adquisición</h3>
+    <ul class="custom-list">
+      <li><strong>Hora de Inicio de Adquisición:</strong> 10:30 AM (06/11/2026)</li>
+      <li><strong>Hora de Finalización de Adquisición:</strong> 10:55 AM (06/11/2026)</li>
+      <li><strong>Tiempo Total Transcurrido:</strong> 25 minutos y 19 segundos (0:25:19)</li>
+    </ul>
+
+    <figure class="evidence-card">
+      <div class="image-wrapper">
+        <img src="../imagenes/actividad16_5.PNG" alt="Progreso y finalización del proceso de adquisición" class="activity-image">
+      </div>
+      <figcaption><strong>Figura 5:</strong> Ventanas de progreso e informe de éxito del proceso de adquisición.</figcaption>
+    </figure>
+    <figure class="evidence-card">
+      <div class="image-wrapper">
+        <img src="../imagenes/actividad16_6.PNG" alt="Progreso y finalización del proceso de adquisición" class="activity-image">
+      </div>
+    </figure>
+  </section>
+
+  <!-- Cuestionario Teórico -->
+  <section class="detail-section">
+    <h2 class="section-subheading">Cuestionario teórico de conceptos forenses</h2>
+    <ul class="custom-list">
+      <li>
+        <strong>¿Qué tipo de formato se refiere el Raw (dd)?</strong><br>
+        El formato Raw (dd) es una copia binaria pura y exacta sector por sector de la unidad física fuente. No añade encabezados, metadatos propios de la herramienta ni compresión al contenedor de evidencia. Su principal ventaja es la compatibilidad universal en la industria (soportado nativamente por Autopsy, EnCase, X-Ways, Sleuth Kit y herramientas de CLI en Linux).
+      </li>
+      <li>
+        <strong>¿A qué tipo de formato se refiere el E01?</strong><br>
+        E01 (Expert Witness Format) es el formato estándar creado por EnCase. A diferencia del formato crudo, E01 integra en su estructura una cabecera con metadatos del caso (examinador, número de evidencia, notas), compresión opcional de datos y sumas de verificación (checksums CRC) intercaladas periódicamente entre los bloques de datos para garantizar la integridad estructural continua.
+      </li>
+      <li>
+        <strong>¿Cuál es la diferencia entre un formato SMART y un formato E01?</strong><br>
+        SMART (desarrollado por ASRData) es un formato de imagen forense clásico pensado para segmentación y verificación de integridad mediante hashes guardados internamente en el contenedor. Por su parte, E01 es el estándar de facto aceptado internacionalmente en entornos judiciales, ofreciendo un soporte más amplio en herramientas modernas, una estructura de metadatos más robusta y una validación de bloques más flexible frente a daños o corrupción de sectores.
+      </li>
+    </ul>
+  </section>
+
+  <!-- Análisis e Integridad -->
+  <section class="detail-section">
+    <h2 class="section-subheading">Análisis e integridad de resultados forenses</h2>
+    <p>
+      Tras finalizar la adquisición, el módulo de verificación arroja una coincidencia exacta de integridad (<em>Match</em>):
+    </p>
+    <figure class="evidence-card">
+      <div class="image-wrapper">
+        <img src="../imagenes/actividad16_7.PNG" alt="Resultados de verificación de hashes de integridad" class="activity-image">
+      </div>
+      <figcaption><strong>Figura 7:</strong> Resultados del Drive/Image Verify con verificación exitosa de hashes MD5 y SHA1.</figcaption>
+    </figure>
+
+    <p style="margin-top: 1.5rem;">
+      Se generaron un total de <strong>11 archivos</strong> en la carpeta de destino <code>InfoCrim13</code> (10 fragmentos de imagen <code>.001</code> a <code>.010</code> de 1,536,000 KB cada uno y 1 archivo de registro <code>.001.txt</code> de 3 KB):
+    </p>
+
+    <figure class="evidence-card">
+      <div class="image-wrapper">
+        <img src="../imagenes/actividad16_8.PNG" alt="Archivos generados en el directorio de destino" class="activity-image">
+      </div>
+      <figcaption><strong>Figura 8:</strong> Listado de los 11 archivos de evidencia generados en el directorio de salida.</figcaption>
+    </figure>
+  </section>
+      <!-- Conclusión -->
+      <section class="detail-section">
+        <h2 class="section-subheading">Conclusión</h2>
+        <p>
+            El desarrollo de esta práctica demostró la enorme relevancia que tienen los metadatos en la informática forense y la ciberseguridad. Herramientas como ExifTool facilitan la extracción minuciosa de información que a simple vista permanece oculta, permitiendo comprobar la trazabilidad de documentos institucionales y la ubicación geográfica exacta de archivos multimedia a través de sus coordenadas GPS. Asimismo, se comprobó la necesidad fundamental de aplicar técnicas de sanitización o borrado de metadatos en archivos que se comparten públicamente, mitigando así riesgos de exposición de privacidad y filtración de información sensible.
+        </p>
+      </section>
+
+      <!-- PDF / Documentación -->
+      <section class="detail-section">
+        <h2 class="section-subheading">Documentación de la práctica (PDF)</h2>
+        <p class="section-desc">
+          Puedes consultar el reporte completo de la práctica directamente a continuación o descargarlo en tu dispositivo:
+        </p>
+        
+        <div style="width: 100%; height: 650px; border-radius: 16px; overflow: hidden; border: 1.5px solid #d8b4fe; box-shadow: 0 10px 25px rgba(124, 58, 237, 0.1);">
+          <iframe src="../docs/MoruaBravoAndrea-ACT16.pdf" width="100%" height="100%" style="border: none;">
+            <p>Tu navegador no soporta la visualización de archivos PDF. <a href="../docs/MoruaBravoAndrea-ACT16.pdf">Haz clic aquí para descargarlo.</a></p>
+          </iframe>
+        </div>
+      </section>
+      
+      <!-- Navegación entre Actividades -->
+      <nav class="activity-navigation">
+        <a href="../actividades/actividad15.html" class="btn-nav">← Anterior actividad</a>
+        <a href="../parcial3.html" class="btn-nav primary">Regresar a parcial 3</a>
+        <a href="../actividades/actividad17.html" class="btn-nav">Siguiente actividad →</a>
+      </nav>
+
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p style="color:rgb(77, 6, 107)">&copy; 2026 Andrea Morúa Bravo. Universidad Politécnica de San Luis Potosí</p>
+    <div class="footer-links">
+      <h3>Recursos Profesionales</h3>
+      <ul class="social-cv-links">
+        <li><a href="https://www.linkedin.com/in/andrea-morua-01092732b/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        <li><a href="https://github.com/Andreamoruaa" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        <li><a href="../../../assets/docs/Andrea Morua Bravo CV.pdf" target="_blank" rel="noopener noreferrer">Curriculum Vitae</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="../../../assets/js/main.js"></script>
+</body>
+</html>
