@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Actividad 17 - Parcial 3 | Portafolio WAP</title>
+  <link rel="stylesheet" href="../../../assets/css/styles.css">
+</head>
+<body>
+
+  <!-- Header Hero -->
+  <header class="site-header-hero">
+    <div class="header-info-hero">
+      <span class="hero-tag">Portafolio académico</span>
+      <h1 class="hero-title">Portafolio de seguridad informática</h1>
+      <h2 class="hero-subtitle">Andrea Morúa Bravo <span>185548</span></h2>
+      <p class="hero-alias"><strong>Morúa</strong></p>
+      <div class="hero-details">
+        <span>CNO IV- Seguridad Informática</span>
+        <span class="dot">•</span>
+        <span>Universidad Politécnica de San Luis Potosí</span>
+        <span class="dot">•</span>
+        <span>7mo semestre - Otoño 2026</span>
+      </div>
+    </div>
+    <nav class="site-nav-hero">
+      <ul>
+        <li><a href="../../../index.html">Inicio</a></li>
+        <li><a href="../../parcial1/parcial1.html">Parcial 1</a></li>
+        <li><a href="../parcial2.html">Parcial 2</a></li>
+        <li><a href="../parcial3.html">Parcial 3</a></li>
+        <li><a href="../../../index.html #contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Contenedor Principal -->
+  <main class="content-container">
+    <nav class="side-nav-right" id="sideNav">
+      <div class="side-nav-title">Navegación</div>
+      <ul>
+        <li><a href="../../../index.html">Inicio</a></li>
+        <li><a href="../../parcial1/parcial1.html">Parcial 1</a></li>
+        <li><a href="../parcial2.html">Parcial 2</a></li>
+        <li><a href="../parcial3.html">Parcial 3</a></li>
+        <li><a href="../../../index.html #contacto">Contacto</a></li>
+      </ul>
+    </nav>
+
+    <article class="card card-detail">
+      
+      <!-- Encabezado de la Actividad -->
+      <div class="detail-header-badge">
+        <span class="badge-tag">Parcial 3 — Actividad 17</span>
+        <h1 class="activity-detail-title">La memoria del crimen: extracción de evidencia de un volcado RAM</h1>
+      </div>
+
+      <!-- Objetivo -->
+      <section class="detail-section">
+        <h2 class="section-subheading">Objetivo</h2>
+        <ul class="custom-list">
+          <li>Familiarizar con la herramienta <strong>Volatility</strong> para el análisis forense de memoria volátil.</li>
+          <li>Desarrollar habilidades prácticas en la identificación y extracción de evidencia digital dentro de un volcado de memoria RAM.</li>
+          <li>Comprender la importancia del análisis de memoria volátil en investigaciones de cibercrimen.</li>
+          <li>Aplicar los conocimientos adquiridos para resolver un caso práctico y proponer líneas de investigación.</li>
+        </ul>
+      </section>
+
+      <!-- Introducción y Contexto del Caso -->
+      <section class="detail-section">
+        <h2 class="section-subheading">Introducción y contexto del caso</h2>
+        <p>
+          El presente informe detalla el análisis forense digital realizado sobre una muestra de memoria volátil (<code>OtterCTF.vmem</code>) vinculada a una investigación de cibercrimen coordinada por elementos especializados de la FGM. Las hipótesis de inteligencia apuntan a un operador con amplios conocimientos técnicos, autodenominado en foros y canales de Telegram bajo los alias de <strong>«Morty»</strong> y <strong>«Ricky»</strong>, presuntamente involucrado en ingeniería social, trasiego de estupefacientes, rapto, explotación mediante servidores <em>Lunar</em> y la gestión de una red botnet (<code>SO_Just_M0v3_Socy</code>) orientada a la extorsión y exfiltración multimedia.
+        </p>
+        <p>
+          Siguiendo una metodología rigurosa basada en el framework <strong>Volatility 2.6</strong>, se extrajo y correlacionó evidencia crítica para esclarecer el modus operandi, trazar la infraestructura de comando y control (C2) y vincular los hallazgos con las evidencias previas (<code>EV455FGM</code> y <code>EV456FGM</code>) y los reportes de inteligencia de SEDENE (<code>FAF3</code>) y CNDI (<code>TFE</code>).
+        </p>
+      </section>
+
+      <!-- Información General del Caso -->
+      <section class="detail-section">
+        <h2 class="section-subheading">Información general del análisis</h2>
+        <ul class="custom-list">
+          <li><strong>Evidencia Analizada:</strong> Volcado de memoria RAM <code>OtterCTF.vmem</code> (2,097,152 KB)</li>
+          <li><strong>Herramienta Principal:</strong> Volatility Framework v2.6 (<code>vol2.exe</code> standalone x64)</li>
+          <li><strong>Fecha de Análisis:</strong> 14/11/2026</li>
+          <li><strong>Examinador Asignado:</strong> Andrea Morúa Bravo (Matrícula: 185548)</li>
+        </ul>
+
+        <figure class="evidence-card">
+          <div class="image-wrapper">
+            <img src="../imagenes/actividad17_1.PNG" alt="Directorio de trabajo con Volatility y volcado OtterCTF.vmem" class="activity-image">
+          </div>
+          <figcaption><strong>Figura 1:</strong> Entorno de trabajo con <code>volatility_2.6_win64_standalone</code> y el volcado <code>OtterCTF.vmem</code>.</figcaption>
+        </figure>
+      </section>
+
+      <!-- Desarrollo Forense -->
+      <section class="detail-section">
+        <h2 class="section-subheading">Desarrollo forense y extracción de evidencia</h2>
+        <p>
+          A continuación se documentan los comandos ejecutados, capturas de evidencia y el análisis técnico de cada fase de la investigación:
+        </p>
+
+        <!-- Paso 1 -->
+        <h3 class="section-subheading" style="font-size: 1.15rem; margin-top: 1.5rem;">1. Marca de tiempo local del volcado de memoria</h3>
+        <p>
+          <strong>Comando ejecutado:</strong> <code>.\vol2.exe -f OtterCTF.vmem imageinfo</code>
+        </p>
+        <ul class="custom-list">
+          <li><strong>Image date and time (UTC):</strong> <code>2018-08-04 19:34:22 UTC+0000</code></li>
+          <li><strong>Image local date and time:</strong> <code>2018-08-04 22:34:22 +0300</code></li>
+        </ul>
+        <p>
+          <strong>Análisis:</strong> Se identificó la marca de tiempo local del sistema en el momento de la adquisición fijada en <code>2018-08-04 22:34:22 +0300</code>, con una diferencia horaria de <strong>UTC+03:00</strong> respecto al tiempo universal coordinado. Este desfase temporal es un indicador crítico para alinear cronológicamente los eventos registrados en el equipo con los accesos externos, bitácoras de red y transacciones financieras del sospechoso.
+        </p>
+
+        <figure class="evidence-card">
+          <div class="image-wrapper">
+            <img src="../imagenes/actividad17_2.PNG" alt="Ejecución de imageinfo para obtener marca de tiempo local" class="activity-image">
+          </div>
+          <figcaption><strong>Figura 2:</strong> Extracción de metadatos temporales del volcado mediante el módulo <code>imageinfo</code>.</figcaption>
+        </figure>
+
+        <!-- Paso 2 -->
+        <h3 class="section-subheading" style="font-size: 1.15rem; margin-top: 1.5rem;">2. Sistema Operativo y arquitectura utilizados</h3>
+        <p>
+          <strong>Comando ejecutado:</strong> <code>.\vol2.exe -f OtterCTF.vmem imageinfo</code>
+        </p>
+        <ul class="custom-list">
+          <li><strong>Perfil sugerido principal:</strong> <code>Win7SP1x64</code> (Microsoft Windows 7 Service Pack 1 de 64 bits).</li>
+          <li><strong>Capa de Dirección de Espacio (AS Layer 1):</strong> <code>WindowsAMD64Paged Memory</code>, confirmando la arquitectura de 64 bits (AMD64/Intel 64).</li>
+          <li><strong>Tipo PAE:</strong> <code>No PAE</code>, operando de forma nativa en espacio de direcciones de 64 bits.</li>
+          <li><strong>Número de Procesadores:</strong> <code>2</code> núcleos asignados durante la adquisición forense.</li>
+        </ul>
+
+        <figure class="evidence-card">
+          <div class="image-wrapper">
+            <img src="../imagenes/actividad17_3.PNG" alt="Identificación de perfil Win7SP1x64 y arquitectura" class="activity-image">
+          </div>
+          <figcaption><strong>Figura 3:</strong> Confirmación del sistema operativo Windows 7 SP1 x64 y parámetros del kernel.</figcaption>
+        </figure>
+
+        <!-- Paso 3 -->
+        <h3 class="section-subheading" style="font-size: 1.15rem; margin-top: 1.5rem;">3. Credenciales y contraseña del perfil del cibercriminal</h3>
+        <p>
+          <strong>Comandos ejecutados:</strong><br>
+          <code>.\vol2.exe -f OtterCTF.vmem --profile Win7SP1x64 hashdump</code><br>
+          <code>.\vol2.exe -f OtterCTF.vmem --profile Win7SP1x64 lsadump</code>
+        </p>
+        <ul class="custom-list">
+          <li><strong>Usuario activo (RID 1000):</strong> <code>Rick</code></li>
+          <li><strong>Hash NTLM extraído:</strong> <code>518172d012f97d3a8fcc089615283940</code></li>
+          <li><strong>Contraseña descifrada (DefaultPassword):</strong> <code>MortyIsReallyAnOtter</code></li>
+        </ul>
+        <p>
+          Al profundizar en la memoria caché de autenticación y las estructuras LSA/DPAPI mediante <code>lsadump</code>, se obtuvo en texto claro la contraseña <code>MortyIsReallyAnOtter</code>, confirmando los vínculos directos con los alias detectados en fuentes abiertas y redes sociales.
+        </p>
+
+        <figure class="evidence-card">
+          <div class="image-wrapper">
+            <img src="../imagenes/actividad17_4.PNG" alt="Extracción de hashes y contraseña mediante hashdump y lsadump" class="activity-image">
+          </div>
+          <figcaption><strong>Figura 4:</strong> Recuperación de credenciales del usuario <code>Rick</code> mediante <code>hashdump</code> y <code>lsadump</code>.</figcaption>
+        </figure>
+
+        <!-- Paso 4 -->
+        <h3 class="section-subheading" style="font-size: 1.15rem; margin-top: 1.5rem;">4. Direccionamiento IP utilizado en la actividad maliciosa</h3>
+        <p>
+          <strong>Comando ejecutado:</strong> <code>.\vol2.exe -f OtterCTF.vmem --profile Win7SP1x64 netscan</code>
+        </p>
+        <ul class="custom-list">
+          <li><strong>Dirección IP local del equipo:</strong> <code>192.168.202.131</code> (puerto origen <code>49530</code>)</li>
+          <li><strong>Dirección IP remota / atacante:</strong> <code>77.102.199.102:7575</code> (TCPv4, asociada a <code>LunarMS.exe</code> con PID <code>708</code>)</li>
+        </ul>
+
+        <figure class="evidence-card">
+          <div class="image-wrapper">
+            <img src="../imagenes/actividad17_5.PNG" alt="Escaneo de conexiones de red con netscan" class="activity-image">
+          </div>
+          <figcaption><strong>Figura 5:</strong> Conexiones de red activas y cerradas extraídas con <code>netscan</code>.</figcaption>
+        </figure>
+
+        <!-- Paso 5 -->
+        <h3 class="section-subheading" style="font-size: 1.15rem; margin-top: 1.5rem;">5. Llaves del Registro del Sistema disponibles</h3>
+        <p>
+          <strong>Comando ejecutado:</strong> <code>.\vol2.exe -f OtterCTF.vmem --profile Win7SP1x64 hivelist</code>
+        </p>
+        <p>
+          Se extrajeron las direcciones virtuales y físicas en memoria RAM de las colmenas fundamentales del registro: <code>\REGISTRY\MACHINE\SYSTEM</code>, <code>\REGISTRY\MACHINE\HARDWARE</code>, <code>\SystemRoot\System32\Config\SECURITY</code>, <code>\SystemRoot\System32\Config\SOFTWARE</code>, <code>\SystemRoot\System32\Config\SAM</code> y el perfil del usuario <code>\??\C:\Users\Rick\ntuser.dat</code>.
+        </p>
+        <p>
+          <strong>¿Por qué es de utilidad conocer el Registro del Sistema del dispositivo comprometido?</strong><br>
+          Funciona como una bitácora persistente de la actividad del equipo y del comportamiento del atacante. Permite reconstruir mecanismos de persistencia (claves de ejecución automática), auditar cuentas de usuario creadas o modificadas en la colmena SAM, y revisar configuraciones de red, historial de dispositivos USB y políticas de seguridad para trazar el alcance exacto de la intrusión.
+        </p>
+
+        <figure class="evidence-card">
+          <div class="image-wrapper">
+            <img src="../imagenes/actividad17_6.PNG" alt="Listado de colmenas del Registro con hivelist" class="activity-image">
+          </div>
+          <figcaption><strong>Figura 6:</strong> Ubicación en memoria virtual y física de las colmenas del registro mediante <code>hivelist</code>.</figcaption>
+        </figure>
+
+        <!-- Paso 6 -->
+        <h3 class="section-subheading" style="font-size: 1.15rem; margin-top: 1.5rem;">6. Nombre del ordenador del cibercriminal</h3>
+        <p>
+          <strong>Comando ejecutado:</strong> <code>.\vol2.exe -f OtterCTF.vmem --profile Win7SP1x64 printkey -K "ControlSet001\Control\ComputerName\ComputerName"</code>
+        </p>
+        <ul class="custom-list">
+          <li><strong>Nombre del ordenador (ComputerName):</strong> <code>WIN-LO6FAF3DTFE</code></li>
+        </ul>
+        <p>
+          Este hallazgo resulta determinante para la investigación, ya que la cadena alfanumérica contiene exactamente las siglas <strong>FAF3</strong> y <strong>TFE</strong>, coincidiendo con los reportes de inteligencia proporcionados por SEDENE y CNDI sobre la infraestructura de servidores <em>Lunar</em>.
+        </p>
+
+        <figure class="evidence-card">
+          <div class="image-wrapper">
+            <img src="../imagenes/actividad17_7.PNG" alt="Identificación del nombre del equipo mediante printkey" class="activity-image">
+          </div>
+          <figcaption><strong>Figura 7:</strong> Consulta de la clave <code>ComputerName</code> con el plugin <code>printkey</code>.</figcaption>
+        </figure>
+
+        <!-- Paso 7 -->
+        <h3 class="section-subheading" style="font-size: 1.15rem; margin-top: 1.5rem;">7. Tres procesos relevantes iniciados durante el incidente</h3>
+        <p>
+          <strong>Comando ejecutado:</strong> <code>.\vol2.exe -f OtterCTF.vmem --profile Win7SP1x64 pslist</code>
+        </p>
+        <ul class="custom-list">
+          <li>
+            <strong>Proceso A — <code>LunarMS.exe</code> (PID 708):</strong> Núcleo de la amenaza y cliente personalizado troyanizado que mantiene enlace directo con la IP externa del servidor malicioso (<code>77.102.199.102:7575</code>).
+          </li>
+          <li>
+            <strong>Proceso B — <code>BitTorrent.exe</code> (PID 2836):</strong> Herramienta de transferencia P2P con múltiples conexiones internacionales utilizada para el intercambio masivo de datos, distribución de cargas útiles y exfiltración/envío de material multimedia de las víctimas.
+          </li>
+          <li>
+            <strong>Proceso C — <code>Rick And Morty</code> (PID 3820):</strong> Proceso con nomenclatura anómala ejecutado desde el entorno gráfico (<code>explorer.exe</code>) vinculado a la ejecución de scripts maliciosos y tareas automatizadas del operador (proceso padre de <code>3720</code>).
+          </li>
+        </ul>
+
+        <figure class="evidence-card">
+          <div class="image-wrapper">
+            <img src="../imagenes/actividad17_8.PNG" alt="Listado de procesos activos en memoria con pslist" class="activity-image">
+          </div>
+          <figcaption><strong>Figura 8:</strong> Árbol y listado de procesos activos en memoria mediante <code>pslist</code>.</figcaption>
+        </figure>
+        <figure class="evidence-card">
+          <div class="image-wrapper">
+            <img src="../imagenes/actividad17_9.PNG" alt="Listado de procesos activos en memoria con pslist" class="activity-image">
+          </div>
+          <figcaption><strong>Figura 9:</strong> Árbol y listado de procesos activos en memoria mediante <code>pslist</code>.</figcaption>
+        </figure>
+
+        <!-- Paso 8 -->
+        <h3 class="section-subheading" style="font-size: 1.15rem; margin-top: 1.5rem;">8. Geolocalización del servidor malicioso</h3>
+        <p>
+          <strong>Comando ejecutado:</strong> <code>.\vol2.exe -f OtterCTF.vmem --profile Win7SP1x64 netscan</code>
+        </p>
+        <ul class="custom-list">
+          <li><strong>Dirección IP del servidor malicioso:</strong> <code>77.102.199.102</code></li>
+          <li><strong>Puerto utilizado:</strong> <code>7575</code> (TCP)</li>
+          <li><strong>Ubicación geográfica estimada (Geolocation):</strong> Londres, Inglaterra, Reino Unido (<code>51.50853, -0.12574</code> — Distrito Greater London, código postal <code>WC2N</code>).</li>
+          <li><strong>Proveedor de servicios (ISP / ASN):</strong> Virgin Media Limited (<code>AS5089</code>, dominio <code>virginmedia.com</code>).</li>
+        </ul>
+
+        <figure class="evidence-card">
+          <div class="image-wrapper">
+            <img src="../imagenes/actividad17_10.PNG" alt="Geolocalización de la dirección IP 77.102.199.102 en Londres" class="activity-image">
+          </div>
+          <figcaption><strong>Figura 10:</strong> Resultado de geointeligencia para la IP <code>77.102.199.102</code>.</figcaption>
+        </figure>
+
+        <!-- Paso 9 -->
+        <h3 class="section-subheading" style="font-size: 1.15rem; margin-top: 1.5rem;">9. Correos electrónicos utilizados para ataques de ingeniería social</h3>
+        <p>
+          <strong>Comandos ejecutados (volcado del proceso <code>chrome.exe</code> PID 4076):</strong><br>
+          <code>findstr /R /I "[a-z0-9._-]*@[a-z0-9.-]*\.[a-z][a-z]*" 4076.dmp &gt; correos_chrome.txt</code><br>
+          <code>Get-Content .\correos_chrome.txt | Select-String -Pattern "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" -AllMatches | ForEach-Object { $_.Matches.Value } | Sort-Object -Unique</code>
+        </p>
+        <ul class="custom-list">
+          <li><strong>Correos identificados:</strong> <code>rickyrickopicko@mail.com</code> y <code>rickyrickopinky@mail.com</code></li>
+        </ul>
+
+        <figure class="evidence-card">
+          <div class="image-wrapper">
+            <img src="../imagenes/actividad17_11.PNG" alt="Extracción de correos electrónicos desde el volcado de Chrome 4076.dmp" class="activity-image">
+          </div>
+          <figcaption><strong>Figura 11:</strong> Filtrado con expresiones regulares en PowerShell sobre el volcado de memoria de Google Chrome (<code>4076.dmp</code>).</figcaption>
+        </figure>
+
+        <!-- Paso 10 -->
+        <h3 class="section-subheading" style="font-size: 1.15rem; margin-top: 1.5rem;">10. Cartera de criptomoneda para cobro de rescates</h3>
+        <p>
+          <strong>Comandos ejecutados (inspección del proceso malicioso PID 3720):</strong><br>
+          <code>.\vol2.exe -f .\OtterCTF.vmem --profile Win7SP1x64 cmdline -p 3720</code><br>
+          <code>.\vol2.exe -f .\OtterCTF.vmem --profile Win7SP1x64 yarascan -p 3720 -W -Y "/[13][a-km-zA-HJ-NP-Z1-9]{25,34}/" &gt; criptomoneda.txt</code>
+        </p>
+        <ul class="custom-list">
+          <li><strong>Dirección de cartera Bitcoin (BTC):</strong> <code>1MmpEmebJkqXG8nQv4cjJSmxZQFVmFo63M</code></li>
+          <li><strong>¿Se encuentra reportada en listas negras de BTC Black?</strong> <strong>No.</strong> Al contrastarla en <code>btcblack.it</code>, la dirección no figura actualmente en su listado negro público, aunque en la memoria del proceso se vincula directamente con el esquema de extorsión y recaudación.</li>
+        </ul>
+
+        <figure class="evidence-card">
+          <div class="image-wrapper">
+            <img src="../imagenes/actividad17_12.PNG" alt="Extracción de dirección Bitcoin mediante yarascan y PowerShell" class="activity-image">
+          </div>
+          <figcaption><strong>Figura 12:</strong> Búsqueda de patrones Base58 de Bitcoin en la memoria del proceso <code>3720</code>.</figcaption>
+        </figure>
+        <figure class="evidence-card">
+          <div class="image-wrapper">
+            <img src="../imagenes/actividad17_13.PNG" alt="Listado de lista negra de direcciones Bitcoin" class="activity-image">
+          </div>
+          <figcaption><strong>Figura 13:</strong> Listado de lista negra de direcciones Bitcoin.</figcaption>
+        </figure>
+      </section>
+
+      <!-- Líneas de Investigación Propuestas -->
+      <section class="detail-section">
+        <h2 class="section-subheading">Líneas de investigación recomendadas</h2>
+        <ul class="custom-list">
+          <li><strong>Trazabilidad financiera (Blockchain Forensics):</strong> Monitorear en tiempo real las transacciones entrantes y salientes de la dirección <code>1MmpEmebJkqXG8nQv4cjJSmxZQFVmFo63M</code> para identificar nodos de mezcla (<em>mixers</em>) o casas de cambio (<em>exchanges</em>) con políticas KYC, además de reportar la cartera en bases de inteligencia de amenazas.</li>
+          <li><strong>Cooperación internacional y preservación con ISP:</strong> Emitir solicitud de asistencia legal mutua hacia Reino Unido para requerir a <em>Virgin Media Limited</em> (AS5089) los registros de asignación DHCP y bitácoras de conexión de la IP <code>77.102.199.102</code> en torno al <code>04/08/2018</code>.</li>
+          <li><strong>Análisis de artefactos P2P y correo electrónico:</strong> Extraer los archivos <code>.torrent</code> cargados en memoria por <code>BitTorrent.exe</code> (PID 2836) para identificar los <em>infohashes</em> y rastrear <em>peers</em> asociados, así como solicitar intervención de los buzones <code>rickyrickopicko@mail.com</code> y <code>rickyrickopinky@mail.com</code>.</li>
+        </ul>
+      </section>
+
+      <!-- Conclusión -->
+      <section class="detail-section">
+        <h2 class="section-subheading">Conclusión</h2>
+        <p>
+          El análisis forense digital practicado sobre el volcado de memoria RAM (<code>OtterCTF.vmem</code>) permitió reconstruir con precisión la estructura técnica, los vectores de ejecución y la infraestructura operativa del presunto cibercriminal, cumpliendo con los estándares metodológicos de preservación y correlación de evidencia volátil. A partir de la ejecución controlada de módulos especializados en Volatility 2.6, se logró perfilar el entorno operativo bajo la arquitectura Windows 7 Service Pack 1 de 64 bits (<code>Win7SP1x64</code>), anclar cronológicamente el incidente mediante la marca de tiempo local (<code>2018-08-04 22:34:22 +0300</code>) e identificar inequívocamente el equipo host bajo el nombre <code>WIN-LO6FAF3DTFE</code>, hallazgo que confirma las hipótesis preliminares de inteligencia al coincidir con las siglas de seguimiento <code>FAF3</code> y <code>TFE</code>.
+        </p>
+        <p>
+          Asimismo, la correlación entre los procesos activos en memoria (<code>LunarMS.exe</code>, <code>BitTorrent.exe</code> y <code>Rick And Morty</code>), la recuperación de credenciales del usuario <code>Rick</code> (<code>MortyIsReallyAnOtter</code>), el tráfico de red saliente hacia el servidor ubicado en Londres (<code>77.102.199.102:7575</code>), los correos electrónicos extraídos de la memoria del navegador (<code>rickyrickopicko@mail.com</code> y <code>rickyrickopinky@mail.com</code>) y la dirección Bitcoin identificada (<code>1MmpEmebJkqXG8nQv4cjJSmxZQFVmFo63M</code>) consolidan una cadena de evidencia coherente y verificable para el esclarecimiento del caso.
+        </p>
+      </section>
+
+      <!-- PDF / Documentación -->
+      <section class="detail-section">
+        <h2 class="section-subheading">Documentación de la práctica (PDF)</h2>
+        <p class="section-desc">
+          Puedes consultar el reporte completo de la práctica directamente a continuación o descargarlo en tu dispositivo:
+        </p>
+        
+        <div style="width: 100%; height: 650px; border-radius: 16px; overflow: hidden; border: 1.5px solid #d8b4fe; box-shadow: 0 10px 25px rgba(124, 58, 237, 0.1);">
+          <iframe src="../docs/MoruaBravoAndrea-ACT17.pdf" width="100%" height="100%" style="border: none;">
+            <p>Tu navegador no soporta la visualización de archivos PDF. <a href="../docs/MoruaBravoAndrea-ACT17.pdf">Haz clic aquí para descargarlo.</a></p>
+          </iframe>
+        </div>
+      </section>
+      
+      <!-- Navegación entre Actividades -->
+      <nav class="activity-navigation">
+        <a href="../actividades/actividad16.html" class="btn-nav">← Anterior actividad</a>
+        <a href="../parcial3.html" class="btn-nav primary">Regresar a parcial 3</a>
+        <a href="../actividades/actividad18.html" class="btn-nav">Siguiente actividad →</a>
+      </nav>
+
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p style="color:rgb(77, 6, 107)">&copy; 2026 Andrea Morúa Bravo. Universidad Politécnica de San Luis Potosí</p>
+    <div class="footer-links">
+      <h3>Recursos Profesionales</h3>
+      <ul class="social-cv-links">
+        <li><a href="https://www.linkedin.com/in/andrea-morua-01092732b/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        <li><a href="https://github.com/Andreamoruaa" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        <li><a href="../../../assets/docs/Andrea Morua Bravo CV.pdf" target="_blank" rel="noopener noreferrer">Curriculum Vitae</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="../../../assets/js/main.js"></script>
+</body>
+</html>
