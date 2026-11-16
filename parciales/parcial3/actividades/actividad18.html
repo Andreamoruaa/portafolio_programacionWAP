@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Actividad 18 - Parcial 3 | Portafolio WAP</title>
+  <link rel="stylesheet" href="../../../assets/css/styles.css">
+</head>
+<body>
+
+  <!-- Header Hero -->
+  <header class="site-header-hero">
+    <div class="header-info-hero">
+      <span class="hero-tag">Portafolio académico</span>
+      <h1 class="hero-title">Portafolio de seguridad informática</h1>
+      <h2 class="hero-subtitle">Andrea Morúa Bravo <span>185548</span></h2>
+      <p class="hero-alias"><strong>Morúa</strong></p>
+      <div class="hero-details">
+        <span>CNO IV- Seguridad Informática</span>
+        <span class="dot">•</span>
+        <span>Universidad Politécnica de San Luis Potosí</span>
+        <span class="dot">•</span>
+        <span>7mo semestre - Otoño 2026</span>
+      </div>
+    </div>
+    <nav class="site-nav-hero">
+      <ul>
+        <li><a href="../../../index.html">Inicio</a></li>
+        <li><a href="../../parcial1/parcial1.html">Parcial 1</a></li>
+        <li><a href="../parcial2.html">Parcial 2</a></li>
+        <li><a href="../parcial3.html">Parcial 3</a></li>
+        <li><a href="../../../index.html #contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Contenedor Principal -->
+  <main class="content-container">
+    <nav class="side-nav-right" id="sideNav">
+      <div class="side-nav-title">Navegación</div>
+      <ul>
+        <li><a href="../../../index.html">Inicio</a></li>
+        <li><a href="../../parcial1/parcial1.html">Parcial 1</a></li>
+        <li><a href="../parcial2.html">Parcial 2</a></li>
+        <li><a href="../parcial3.html">Parcial 3</a></li>
+        <li><a href="../../../index.html #contacto">Contacto</a></li>
+      </ul>
+    </nav>
+
+    <article class="card card-detail">
+      
+      <!-- Encabezado de la Actividad -->
+      <div class="detail-header-badge">
+        <span class="badge-tag">Parcial 3 — Actividad 18</span>
+        <h1 class="activity-detail-title">La investigación forense: la huella digital de un cibercriminal</h1>
+      </div>
+
+      <!-- Objetivo -->
+      <section class="detail-section">
+        <h2 class="section-subheading">Objetivo</h2>
+        <p>
+          Analizar forensemente la imagen de disco <code>SCHARDT.001</code> (escenario de entrenamiento forense digital de la NSA Cybersecurity y NIST CFReDS) utilizando <strong>Autopsy 4.23.1</strong>, con el propósito de verificar la integridad criptográfica de la evidencia, inspeccionar las colmenas binarias del Registro de Windows, decodificar marcas de tiempo y reconstruir la línea temporal que vincula el equipo abandonado con el sospechoso <strong>Greg Schardt</strong> («Mr. Evil»).
+        </p>
+      </section>
+
+      <!-- Introducción y Escenario del Caso -->
+      <section class="detail-section">
+        <h2 class="section-subheading">Introducción y escenario del caso</h2>
+        <p>
+          El <strong>20 de septiembre de 2004</strong>, una computadora portátil <strong>Dell CPi</strong> (número de serie <code>VLQLW</code>) fue hallada abandonada junto con una tarjeta PCMCIA inalámbrica y una antena externa 802.11b de fabricación casera. Las líneas de investigación apuntan a que el equipo fue utilizado para actividades de intrusión inalámbrica y fraude financiero (<em>carding</em>) por el sospechoso <strong>Greg Schardt</strong>, conocido en línea bajo el seudónimo <strong>«Mr. Evil»</strong>.
+        </p>
+        <p>
+          De acuerdo con reportes de asociados, el sospechoso estacionaba su vehículo dentro del alcance de puntos de acceso Wi-Fi públicos (como cafeterías Starbucks y hotspots de T-Mobile) para interceptar tráfico de red en claro y capturar números de tarjetas de crédito, nombres de usuario y contraseñas. El análisis se centra en hallar rastros del sistema, cuentas locales y marcas temporales que demuestren la autoría y el periodo operativo del sospechoso.
+        </p>
+      </section>
+
+      <!-- Información General del Caso -->
+      <section class="detail-section">
+        <h2 class="section-subheading">Información general del caso en Autopsy</h2>
+        <ul class="custom-list">
+          <li><strong>Nombre del Caso (Case Name):</strong> <code>INV01UPSLP</code> (Número de caso: <code>01</code>)</li>
+          <li><strong>Directorio Base:</strong> <code>C:\Users\Andrea\Documents\Ciberseguridad\Actividad18</code></li>
+          <li><strong>Fuente de Evidencia:</strong> Imagen forense fragmentada <code>SCHARDT.001</code> (8 partes, NIST CFReDS)</li>
+          <li><strong>Zona Horaria Configurada:</strong> <code>(GMT-6:00) America/Mexico_City</code></li>
+          <li><strong>Examinador Asignado:</strong> Andrea Morúa Bravo (<code>185548@upslp.edu.mx</code>) — Fecha: <code>16/11/2026</code></li>
+          <li><strong>Organización:</strong> Universidad Politécnica de San Luis Potosí (Contacto: <code>CNO IV - Seguridad Informática</code>)</li>
+          <li><strong>Notas del Caso:</strong> Fraude (carding) Greg Schardt.</li>
+        </ul>
+      </section>
+
+      <!-- Desarrollo Forense: Configuración e Ingesta -->
+      <section class="detail-section">
+        <h2 class="section-subheading">Desarrollo forense: configuración del caso e ingesta</h2>
+        <p>
+          A continuación se detalla el flujo metodológico seguido en <strong>Autopsy 4.23.1</strong> para la creación del caso, incorporación de la imagen forense y ejecución de módulos de análisis:
+        </p>
+
+        <!-- Paso 1 -->
+        <h3 class="section-subheading" style="font-size: 1.15rem; margin-top: 1.5rem;">Paso 1: Creación del caso y datos del examinador</h3>
+        <p>
+          Se descarga el conjunto de archivos de evidencia desde el repositorio <strong>NIST CFReDS</strong> (<em>Hacking Case</em>) en un directorio dedicado. Dentro de Autopsy se selecciona <strong>New Case</strong>, asignando el identificador <code>INV01UPSLP</code>, las credenciales del examinador y la organización correspondiente (<em>Universidad Politécnica de San Luis Potosí</em>).
+        </p>
+
+        <figure class="evidence-card">
+          <div class="image-wrapper">
+            <img src="../imagenes/actividad18_1.PNG" alt="Configuración de New Case Information en Autopsy" class="activity-image">
+          </div>
+          <figcaption><strong>Figura 1:</strong> Definición del nombre del caso <code>INV01UPSLP</code> y directorio base en Autopsy.</figcaption>
+        </figure>
+
+        <figure class="evidence-card">
+          <div class="image-wrapper">
+            <img src="../imagenes/actividad18_2.PNG" alt="Registro de información opcional" class="activity-image">
+          </div>
+          <figcaption><strong>Figura 2:</strong> Registro de datos del examinador, notas del caso.</figcaption>
+        </figure>
+        <figure class="evidence-card">
+          <div class="image-wrapper">
+            <img src="../imagenes/actividad18_3.PNG" alt="Registro de organización en Autopsy" class="activity-image">
+          </div>
+          <figcaption><strong>Figura 3:</strong> Alta de la organización UPSLP.</figcaption>
+        </figure>
+
+        <!-- Paso 2 -->
+        <h3 class="section-subheading" style="font-size: 1.15rem; margin-top: 1.5rem;">Paso 2: Selección del tipo de origen de datos</h3>
+        <p>
+          Tras generar automáticamente el nombre del host a partir de la fuente de datos, se selecciona la opción <strong>Disk Image or VM File</strong> para cargar la imagen completa <code>SCHARDT.001</code> con detección automática de tamaño de sector.
+        </p>
+        <ul class="custom-list">
+          <li>
+            <strong>¿A qué se refiere el tipo de origen «Logical Files»?</strong><br>
+            Permite analizar archivos o carpetas individuales previamente extraídos de un sistema (como documentos sueltos o directorios específicos), sin incluir la estructura completa del sistema de archivos, sectores de arranque ni espacio no asignado (<em>unallocated space</em>).
+          </li>
+          <li>
+            <strong>¿A qué se refiere el tipo de origen «Local Disk»?</strong><br>
+            Permite analizar directamente una unidad física o partición conectada localmente al equipo examinador (como un disco duro interno, memoria USB o tarjeta SD montada en el sistema).
+          </li>
+        </ul>
+
+        <figure class="evidence-card">
+          <div class="image-wrapper">
+            <img src="../imagenes/actividad18_4.PNG" alt="Selección de Disk Image or VM File y archivo SCHARDT.001" class="activity-image">
+          </div>
+          <figcaption><strong>Figura 4:</strong> Selección del tipo de origen <em>Disk Image or VM File</em> y carga de <code>SCHARDT.001</code>.</figcaption>
+        </figure>
+
+        <!-- Paso 3 -->
+        <h3 class="section-subheading" style="font-size: 1.15rem; margin-top: 1.5rem;">Paso 3: Configuración de módulos de ingesta (Ingest Modules)</h3>
+        <p>
+          En la ventana <em>Configure Ingest</em> se habilitan todos los módulos de análisis disponibles sobre <em>All Files, Directories, and Unallocated Space</em> (incluyendo <code>Recent Activity</code>, <code>Hash Lookup</code>, <code>Keyword Search</code>, <code>Email Parser</code>, <code>Encryption Detection</code> y <code>PhotoRec Carver</code>) para indexar artefactos del sistema operativo y del Registro de Windows.
+        </p>
+
+        <figure class="evidence-card">
+          <div class="image-wrapper">
+            <img src="../imagenes/actividad18_6.PNG" alt="Activación de todos los módulos de ingesta en Autopsy" class="activity-image">
+          </div>
+          <figcaption><strong>Figura 5:</strong> Habilitación completa de los módulos de ingesta sobre toda la estructura de la imagen.</figcaption>
+        </figure>
+      </section>
+
+      <!-- Cuestionario Forense y Hallazgos -->
+      <section class="detail-section">
+        <h2 class="section-subheading">Cuestionario de análisis forense y hallazgos</h2>
+
+        <!-- Pregunta 1: Hashes -->
+        <h3 class="section-subheading" style="font-size: 1.15rem; margin-top: 1.5rem;">1. Verificación de hashes de la imagen forense</h3>
+        <ul class="custom-list">
+          <li><strong>Calculated MD5 hash:</strong> <code>aee4fcd9301c03b3b054623ca261959a</code></li>
+          <li><strong>Calculated SHA-1 hash:</strong> <code>da2fe30fe21711edf42310873af475859a68f300</code></li>
+          <li><strong>Calculated SHA-256 hash:</strong> <code>65e2002fed0b286f49541c7e97dcec0dda913d51a063ceeed86782bdacda2312</code></li>
+          <li><strong>¿Coinciden el hash de adquisición y verificación?</strong> <strong>Sí coinciden</strong> exactamente con los valores publicados por NIST CFReDS (verificados en <em>Data Source Integrity</em>).</li>
+        </ul>
+
+        <figure class="evidence-card">
+          <div class="image-wrapper">
+            <img src="../imagenes/actividad18_7.PNG" alt="Cálculo y verificación de hashes MD5, SHA-1 y SHA-256 en Autopsy" class="activity-image">
+          </div>
+          <figcaption><strong>Figura 6:</strong> Resultados del cálculo de integridad criptográfica (MD5, SHA-1 y SHA-256) para <code>SCHARDT.001</code>.</figcaption>
+        </figure>
+
+        <!-- Pregunta 2: Sistema Operativo -->
+        <h3 class="section-subheading" style="font-size: 1.15rem; margin-top: 1.5rem;">2. Sistema operativo utilizado en la computadora</h3>
+        <ul class="custom-list">
+          <li><strong>Sistema Operativo:</strong> <code>Microsoft Windows XP (x86)</code></li>
+          <li><strong>Product ID:</strong> <code>55274-640-0147306-23684</code></li>
+          <li><strong>Directorio de Instalación:</strong> <code>C:\WINDOWS</code> (Ubicación: <em>Data Artifacts → Operating System Information</em>)</li>
+        </ul>
+
+        <!-- Pregunta 3: Fecha de Instalación -->
+        <h3 class="section-subheading" style="font-size: 1.15rem; margin-top: 1.5rem;">3. Fecha de instalación del sistema operativo</h3>
+        <ul class="custom-list">
+          <li><strong>Valor crudo en Registro (<code>REG_DWORD</code>):</strong> <code>0x41252e3b</code> (Decimal: <code>1092955707</code>)</li>
+          <li><strong>Fecha y hora decodificada:</strong> <strong>Jueves, 19 de agosto de 2004, 22:48:27 UTC</strong> (<code>17:48:27 UTC-05:00 DST</code>)</li>
+          <li><strong>Ubicación en el Registro:</strong> <code>SOFTWARE → Microsoft\Windows NT\CurrentVersion\InstallDate</code></li>
+        </ul>
+
+        <figure class="evidence-card">
+          <div class="image-wrapper">
+            <img src="../imagenes/actividad18_8.PNG" alt="Inspección del valor InstallDate 0x41252e3b en la colmena SOFTWARE" class="activity-image">
+          </div>
+          <figcaption><strong>Figura 7:</strong> Lectura de la clave <code>InstallDate</code> (<code>0x41252e3b</code>) mediante el visor de registro de Autopsy.</figcaption>
+        </figure>
+
+        <!-- Pregunta 4: Zona Horaria -->
+        <h3 class="section-subheading" style="font-size: 1.15rem; margin-top: 1.5rem;">4. Configuración de zona horaria</h3>
+        <ul class="custom-list">
+          <li><strong>Zona horaria configurada:</strong> <code>Central Standard Time</code> / <code>Central Daylight Time</code> (<code>Bias: 0x00000168</code> = 360 minutos)</li>
+          <li><strong>Última modificación de la clave:</strong> <code>2004-08-19 17:20:02 GMT+00:00</code></li>
+          <li><strong>Ubicación en el Registro:</strong> <code>SYSTEM → ControlSet001\Control\TimeZoneInformation</code></li>
+        </ul>
+
+        <figure class="evidence-card">
+          <div class="image-wrapper">
+            <img src="../imagenes/actividad18_9.PNG" alt="Clave TimeZoneInformation en la colmena SYSTEM" class="activity-image">
+          </div>
+          <figcaption><strong>Figura 8:</strong> Inspección de <code>TimeZoneInformation</code> en la colmena binaria <code>SYSTEM</code>.</figcaption>
+        </figure>
+
+        <!-- Preguntas 5, 6 y 7: Propietario, Nombre de Cuenta de Equipo y Dominio -->
+        <h3 class="section-subheading" style="font-size: 1.15rem; margin-top: 1.5rem;">5. Propietario registrado, nombre del equipo y dominio principal</h3>
+        <ul class="custom-list">
+          <li><strong>Propietario registrado (<code>RegisteredOwner</code>):</strong> <code>Greg Schardt</code></li>
+          <li><strong>Nombre de la cuenta de la computadora:</strong> <code>N-1A90DN6ZXK4LQ</code></li>
+          <li><strong>Nombre de dominio principal:</strong> Sin dominio corporativo asignado (valor <code>REG_SZ</code> vacío en <code>SYSTEM → ControlSet001\Services\Tcpip\Parameters\Domain</code>).</li>
+        </ul>
+
+        <figure class="evidence-card">
+          <div class="image-wrapper">
+            <img src="../imagenes/actividad18_10.PNG" alt="Verificación del parámetro Domain vacío en el Registro" class="activity-image">
+          </div>
+          <figcaption><strong>Figura 9:</strong> Verificación de la clave <code>Tcpip\Parameters\Domain</code> sin afiliación a dominio.</figcaption>
+        </figure>
+
+        <!-- Pregunta 8: Último apagado -->
+        <h3 class="section-subheading" style="font-size: 1.15rem; margin-top: 1.5rem;">6. Última fecha y hora registrada de apagado del equipo</h3>
+        <ul class="custom-list">
+          <li><strong>Valor binario en Registro (<code>REG_BIN</code>):</strong> <code>C4 FC 00 07 4D 8C C4 01</code> (formato FILETIME de 64 bits Little-Endian)</li>
+          <li><strong>Fecha y hora decodificada:</strong> <strong>27 de agosto de 2004, 15:46:33 UTC</strong> (<code>10:46:33 CDT</code>)</li>
+          <li><strong>Ubicación en el Registro:</strong> <code>SYSTEM → ControlSet001\Control\Windows\Shutdown Time</code></li>
+        </ul>
+
+        <!-- Pregunta 9: Cuentas registradas -->
+        <h3 class="section-subheading" style="font-size: 1.15rem; margin-top: 1.5rem;">7. Cuentas de usuario registradas en el sistema</h3>
+        <ul class="custom-list">
+          <li><strong>Número total de cuentas:</strong> <strong>5 cuentas registradas</strong></li>
+          <li><strong>Listado de cuentas:</strong> <code>Administrator</code>, <code>Guest</code>, <code>HelpAssistant</code>, <strong><code>Mr. Evil</code></strong> y <code>SUPPORT_388945a0</code></li>
+          <li><strong>Ubicación en el Registro:</strong> <code>SAM → SAM\Domains\Account\Users\Names</code></li>
+        </ul>
+
+        <figure class="evidence-card">
+          <div class="image-wrapper">
+            <img src="../imagenes/actividad18_11.PNG" alt="Cuentas de usuario en la colmena SAM incluyendo Mr. Evil" class="activity-image">
+          </div>
+          <figcaption><strong>Figura 10:</strong> Enumeración de las 5 cuentas locales en la colmena <code>SAM</code>, destacando el perfil personalizado <code>Mr. Evil</code>.</figcaption>
+        </figure>
+      </section>
+
+      <!-- Reconstrucción de los Hechos -->
+      <section class="detail-section">
+        <h2 class="section-subheading">Reconstrucción de los hechos</h2>
+        <p>
+          Durante la instalación de Windows XP el <strong>19 de agosto de 2004</strong>, el equipo fue registrado legalmente a nombre de <strong>Greg Schardt</strong> (<code>RegisteredOwner</code>). Posteriormente, en la base de datos de seguridad local (<code>SAM</code>), además de las cuatro cuentas predeterminadas del sistema operativo (<code>Administrator</code>, <code>Guest</code>, <code>HelpAssistant</code> y <code>SUPPORT_388945a0</code>), se creó una única cuenta de usuario personalizada bajo el nombre <strong><code>Mr. Evil</code></strong>. Esta coincidencia demuestra de forma directa que Greg Schardt operaba personalmente el equipo bajo el mismo seudónimo señalado en los informes de inteligencia del caso.
+        </p>
+        <p>
+          La marca de tiempo de instalación del sistema operativo (<code>19/08/2004 22:48:27 UTC</code> / <code>17:48:27 CDT</code>) concuerda con las fechas de creación de las colmenas del registro en <code>/WINDOWS/system32/config</code> (<code>2004-08-19 11:56:06 CDT - 17:20:02 UTC</code>). Asimismo, la última modificación registrada en las colmenas <code>software</code> y <code>system</code> (<code>2004-08-27 10:46:33 CDT</code>) coincide al segundo con la decodificación de la clave <code>ShutdownTime</code> (<code>27/08/2004 15:46:33 UTC = 10:46:33 CDT</code>), confirmando un periodo activo de uso de ocho días antes de que la laptop fuera abandonada y hallada el <strong>20 de septiembre de 2004</strong>.
+        </p>
+      </section>
+
+      <!-- Conclusión y Referencias -->
+      <section class="detail-section">
+        <h2 class="section-subheading">Conclusión</h2>
+        <p>
+          El análisis forense ejecutado sobre la imagen de la computadora portátil Dell CPi permite concluir de manera sólida que el equipo pertenecía y era operado por <strong>Greg Schardt</strong> bajo el perfil local <strong><code>Mr. Evil</code></strong>, manteniendo actividad comprobada entre el <strong>19 y el 27 de agosto de 2004</strong> bajo una configuración de zona horaria central (<em>Central Standard Time</em>) y sin afiliación a dominios corporativos.
+        </p>
+      </section>
+
+      <!-- PDF / Documentación -->
+      <section class="detail-section">
+        <h2 class="section-subheading">Documentación de la práctica (PDF)</h2>
+        <p class="section-desc">
+          Puedes consultar el reporte completo de la práctica directamente a continuación o descargarlo en tu dispositivo:
+        </p>
+        
+        <div style="width: 100%; height: 650px; border-radius: 16px; overflow: hidden; border: 1.5px solid #d8b4fe; box-shadow: 0 10px 25px rgba(124, 58, 237, 0.1);">
+          <iframe src="../docs/MoruaBravoAndrea-ACT18.pdf" width="100%" height="100%" style="border: none;">
+            <p>Tu navegador no soporta la visualización de archivos PDF. <a href="../docs/MoruaBravoAndrea-ACT18.pdf">Haz clic aquí para descargarlo.</a></p>
+          </iframe>
+        </div>
+      </section>
+      
+      <!-- Navegación entre Actividades -->
+      <nav class="activity-navigation">
+        <a href="../actividades/actividad17.html" class="btn-nav">← Anterior actividad</a>
+        <a href="../parcial3.html" class="btn-nav primary">Regresar a parcial 3</a>
+        <a href="../actividades/actividad19.html" class="btn-nav">Siguiente actividad →</a>
+      </nav>
+
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p style="color:rgb(77, 6, 107)">&copy; 2026 Andrea Morúa Bravo. Universidad Politécnica de San Luis Potosí</p>
+    <div class="footer-links">
+      <h3>Recursos Profesionales</h3>
+      <ul class="social-cv-links">
+        <li><a href="https://www.linkedin.com/in/andrea-morua-01092732b/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        <li><a href="https://github.com/Andreamoruaa" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        <li><a href="../../../assets/docs/Andrea Morua Bravo CV.pdf" target="_blank" rel="noopener noreferrer">Curriculum Vitae</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="../../../assets/js/main.js"></script>
+</body>
+</html>
