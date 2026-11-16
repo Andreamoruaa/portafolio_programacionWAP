@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Actividad 19 - Parcial 3 | Portafolio WAP</title>
+  <link rel="stylesheet" href="../../../assets/css/styles.css">
+</head>
+<body>
+
+  <!-- Header Hero -->
+  <header class="site-header-hero">
+    <div class="header-info-hero">
+      <span class="hero-tag">Portafolio académico</span>
+      <h1 class="hero-title">Portafolio de seguridad informática</h1>
+      <h2 class="hero-subtitle">Andrea Morúa Bravo <span>185548</span></h2>
+      <p class="hero-alias"><strong>Morúa</strong></p>
+      <div class="hero-details">
+        <span>CNO IV- Seguridad Informática</span>
+        <span class="dot">•</span>
+        <span>Universidad Politécnica de San Luis Potosí</span>
+        <span class="dot">•</span>
+        <span>7mo semestre - Otoño 2026</span>
+      </div>
+    </div>
+    <nav class="site-nav-hero">
+      <ul>
+        <li><a href="../../../index.html">Inicio</a></li>
+        <li><a href="../../parcial1/parcial1.html">Parcial 1</a></li>
+        <li><a href="../parcial2.html">Parcial 2</a></li>
+        <li><a href="../parcial3.html">Parcial 3</a></li>
+        <li><a href="../../../index.html #contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Contenedor Principal -->
+  <main class="content-container">
+    <nav class="side-nav-right" id="sideNav">
+      <div class="side-nav-title">Navegación</div>
+      <ul>
+        <li><a href="../../../index.html">Inicio</a></li>
+        <li><a href="../../parcial1/parcial1.html">Parcial 1</a></li>
+        <li><a href="../parcial2.html">Parcial 2</a></li>
+        <li><a href="../parcial3.html">Parcial 3</a></li>
+        <li><a href="../../../index.html #contacto">Contacto</a></li>
+      </ul>
+    </nav>
+
+    <article class="card card-detail">
+      
+      <!-- Encabezado de la Actividad -->
+      <div class="detail-header-badge">
+        <span class="badge-tag">Parcial 3 — Actividad 19</span>
+        <h1 class="activity-detail-title">Los primeros minutos cuentan: adquisición forense en escenas del crimen digital</h1>
+      </div>
+
+      <!-- Objetivo -->
+      <section class="detail-section">
+        <h2 class="section-subheading">Objetivo</h2>
+        <p>
+          Aplicar el protocolo de respuesta a incidentes y adquisición forense en vivo (<em>live forensics</em>) conforme al estándar <strong>RFC 3227</strong>, recolectando de manera ordenada y documentada 20 artefactos volátiles y persistentes desde la línea de comandos de Windows antes de apagar o desconectar el sistema comprometido, preservando la integridad de la evidencia y la cadena de custodia.
+        </p>
+      </section>
+
+      <!-- Introducción y Contexto -->
+      <section class="detail-section">
+        <h2 class="section-subheading">Introducción y contexto de la intervención</h2>
+        <p>
+          En el rol de primer respondiente designado por fuerzas del orden, se llevó a cabo la adquisición de evidencia digital sobre un equipo Windows en ejecución (en caliente) presuntamente comprometido. Siguiendo el orden de volatilidad (de los registros más efímeros como hora del sistema, memoria/procesos y conexiones de red, hacia los artefactos persistentes en disco como registros de eventos, fichero <code>hosts</code> y árbol de creación de archivos), cada salida fue redirigida hacia archivos de texto independientes dentro del directorio de trabajo para minimizar la huella forense y documentar el efecto observador.
+        </p>
+      </section>
+
+      <!-- Información General del Sistema Analizado -->
+      <section class="detail-section">
+        <h2 class="section-subheading">Información general del sistema analizado</h2>
+        <ul class="custom-list">
+          <li><strong>Nombre del Host:</strong> <code>DESKTOP-6IQHR2F</code> (Grupo de trabajo: <code>WORKGROUP</code>)</li>
+          <li><strong>Equipo y Hardware:</strong> Dell Inc. Inspiron 5566 (Intel64 ~2901 MHz, 8,090 MB RAM física)</li>
+          <li><strong>Sistema Operativo:</strong> Microsoft Windows 10 Pro (Versión 10.0.19045, Compilación 19045 x64)</li>
+          <li><strong>Examinador Asignado:</strong> Andrea Morúa Bravo (Matrícula: 185548) — Docente: Mtro. Servando López Contreras</li>
+          <li><strong>Directorio de Evidencia:</strong> <code>C:\Users\Andrea\Documents\Ciberseguridad\Actividad19</code></li>
+        </ul>
+      </section>
+
+      <!-- Desarrollo Forense: 19 pasos de adquisición -->
+      <section class="detail-section">
+        <h2 class="section-subheading">Desarrollo forense de adquisición en caliente</h2>
+        <p>
+          A continuación se detallan los comandos ejecutados, las capturas de pantalla de respaldo y el análisis técnico de cada artefacto recolectado:
+        </p>
+
+        <!-- 1. Marca temporal inicial -->
+        <h3 class="section-subheading" style="font-size: 1.15rem; margin-top: 1.5rem;">1. Marca temporal inicial</h3>
+        <p>
+          <strong>Comando ejecutado:</strong> <code>date /t &gt; 01_fecha_hora.txt &amp;&amp; time /t &gt;&gt; 01_fecha_hora.txt</code>
+        </p>
+        <ul class="custom-list">
+          <li><strong>Dato extraído:</strong> <code>15/11/2026</code> a las <code>12:56 a. m.</code></li>
+        </ul>
+        <p>
+          <strong>Análisis:</strong> Este sello de tiempo establece el punto cero y la línea base temporal de la intervención en caliente. Su fijación resulta crítica para preservar la cadena de custodia, sincronizar la línea de tiempo del incidente (<em>timeline</em>) y descartar alteraciones deliberadas en el reloj del sistema (<em>timestomping</em>) antes de recolectar artefactos volátiles.
+        </p>
+        <figure class="evidence-card">
+          <div class="image-wrapper">
+            <img src="../imagenes/actividad19_1.PNG" alt="Captura de marca temporal inicial" class="activity-image">
+          </div>
+          <figcaption><strong>Figura 1:</strong> Fijación de fecha y hora inicial del sistema en <code>01_fecha_hora.txt</code>.</figcaption>
+        </figure>
+
+        <!-- 2. Procesos en ejecución -->
+        <h3 class="section-subheading" style="font-size: 1.15rem; margin-top: 1.5rem;">2. Procesos en ejecución</h3>
+        <p>
+          <strong>Comando ejecutado:</strong> <code>tasklist /v &gt; 02_procesos.txt</code>
+        </p>
+        <p>
+          <strong>Análisis:</strong> El volcado de procesos activos en memoria RAM permitió identificar el nombre del equipo (<code>DESKTOP-6IQHR2F</code>) y auditar tanto los servicios en segundo plano (Sesión 0) como las aplicaciones interactivas (Sesión 1, <code>DESKTOP-6IQHR2F\Andrea</code>). Los procesos nucleares del sistema operativo (<code>lsass.exe</code>, <code>services.exe</code>, <code>csrss.exe</code>, <code>wininit.exe</code>) mantienen sus contextos de privilegios esperados (<code>NT AUTHORITY\SYSTEM</code>) sin indicios de suplantación de identidad. Asimismo, se verificó que los agentes de protección <em>endpoint</em> (Microsoft Defender mediante <code>MsMpEng.exe</code> y Reason Cybersecurity EDR mediante <code>rsEDRSvc.exe</code>) permanecen activos.
+        </p>
+        <figure class="evidence-card">
+          <div class="image-wrapper">
+            <img src="../imagenes/actividad19_2.PNG" alt="Captura de procesos en ejecución con tasklist" class="activity-image">
+          </div>
+          <figcaption><strong>Figura 2:</strong> Listado detallado de procesos en ejecución y contextos de sesión (<code>02_procesos.txt</code>).</figcaption>
+        </figure>
+
+        <!-- 3. Servicios del sistema -->
+        <h3 class="section-subheading" style="font-size: 1.15rem; margin-top: 1.5rem;">3. Servicios del sistema (CMD vs. PowerShell)</h3>
+        <p>
+          <strong>Comandos ejecutados:</strong><br>
+          <code>sc query state= all &gt; 03_servicios_cmd.txt</code><br>
+          <code>Get-Service | Format-Table -AutoSize &gt; 03_servicios_ps.txt</code>
+        </p>
+        <p>
+          <strong>Análisis y diferencias apreciadas:</strong> El análisis mediante <code>sc query</code> confirmó que los servicios esenciales de seguridad —incluyendo <code>WinDefend</code>, el firewall <code>mpssvc</code> y el agente <code>rsEDRSvc</code>— operan en estado <code>4 RUNNING</code> sin códigos de error (<code>COD_SALIDA_WIN32: 0</code>), mientras que los vectores habituales de administración remota (<code>TermService</code>, <code>WinRM</code> y <code>RemoteRegistry</code>) se encontraron detenidos (<code>1 STOPPED</code>). No obstante, se registraron servicios de red activos como <code>LanmanServer</code>, <code>SharedAccess</code> (ICS) y servidores web locales de National Instruments (<code>NISystemWebServer</code>, <code>NIApplicationWebServer</code>). Al contrastar <code>Get-Service</code> en PowerShell frente a <code>sc query</code> en CMD, se evidenció tanto la diferencia estructural (objetos tabulares resumidos frente a bloques detallados con tipo de proceso y códigos Win32) como la naturaleza dinámica del sistema en vivo: servicios como <code>ClipSVC</code> y <code>msiserver</code> cambiaron de <code>STOPPED</code> a <code>Running</code> entre ambas capturas.
+        </p>
+        <figure class="evidence-card">
+          <div class="image-wrapper">
+            <img src="../imagenes/actividad19_3.PNG" alt="Captura de servicios desde CMD y PowerShell" class="activity-image">
+          </div>
+          <figcaption><strong>Figura 3:</strong> Enumeración de servicios mediante <code>sc query</code> y <code>Get-Service</code>.</figcaption>
+        </figure>
+
+        <!-- 4. Usuarios actualmente logueados -->
+        <h3 class="section-subheading" style="font-size: 1.15rem; margin-top: 1.5rem;">4. Usuarios actualmente logueados</h3>
+        <p>
+          <strong>Comandos ejecutados:</strong><br>
+          <code>query user &gt; 04_usuarios_activos.txt</code><br>
+          <code>.\NetUsers.exe /local &gt; 04_usuarios_netusers.txt</code>
+        </p>
+        <p>
+          <strong>Análisis:</strong> La consulta de sesiones activas mediante <code>query user</code> y su validación cruzada con <code>NetUsers.exe</code> confirmaron la existencia de una única sesión interactiva local (<code>console</code>, ID <code>1</code>) correspondiente a la cuenta <code>DESKTOP-6IQHR2F\Andrea</code>. No se detectaron sesiones concurrentes de Escritorio Remoto (<code>rdp-tcp</code>) ni cuentas adicionales activas al momento de la intervención.
+        </p>
+        <figure class="evidence-card">
+          <div class="image-wrapper">
+            <img src="../imagenes/actividad19_4.PNG" alt="Captura de usuarios actualmente logueados" class="activity-image">
+          </div>
+          <figcaption><strong>Figura 4:</strong> Validación de sesiones activas con <code>query user</code> y <code>NetUsers.exe</code>.</figcaption>
+        </figure>
+
+        <!-- 5. Usuarios que alguna vez se loguearon -->
+        <h3 class="section-subheading" style="font-size: 1.15rem; margin-top: 1.5rem;">5. Usuarios que alguna vez se loguearon</h3>
+        <p>
+          <strong>Comandos ejecutados:</strong><br>
+          <code>net user &gt; 05_cuentas_locales.txt</code><br>
+          <code>wmic netlogin get Name, LastLogon, NumberOfLogons &gt; 05_historial_login.txt</code>
+        </p>
+        <p>
+          <strong>Análisis:</strong> La enumeración mediante <code>net user</code> identificó cinco cuentas locales en <code>DESKTOP-6IQHR2F</code>: la cuenta legítima <code>Andrea</code> y las cuentas nativas del sistema (<code>Administrator</code>, <code>DefaultAccount</code>, <code>Guest</code> y <code>WDAGUtilityAccount</code>), descartando la creación de usuarios ocultos o no autorizados. Con <code>wmic netlogin</code> se corroboró que solo <code>DESKTOP-6IQHR2F\Andrea</code> registra accesos interactivos (4,461 inicios de sesión acumulados), situando su última autenticación el <code>15/11/2026</code> a las <code>00:37:05</code> horas (UTC-6).
+        </p>
+        <figure class="evidence-card">
+          <div class="image-wrapper">
+            <img src="../imagenes/actividad19_5.PNG" alt="Captura de historial de inicios de sesión y cuentas locales" class="activity-image">
+          </div>
+          <figcaption><strong>Figura 5:</strong> Auditoría de cuentas locales e historial de inicios de sesión.</figcaption>
+        </figure>
+
+        <!-- 6. Información de red del sistema -->
+        <h3 class="section-subheading" style="font-size: 1.15rem; margin-top: 1.5rem;">6. Información de red del sistema</h3>
+        <p>
+          <strong>Comando ejecutado:</strong> <code>ipconfig /all &gt; 06_info_red.txt</code>
+        </p>
+        <p>
+          <strong>Análisis:</strong> El equipo opera con enrutamiento IP y proxy WINS deshabilitados. Su conectividad externa se cursa a través de la interfaz inalámbrica <em>Dell Wireless 1707 802.11b/g/n</em> (MAC <code>F8-DA-0C-44-85-EF</code>), configurada por DHCP con la dirección IPv4 <code>192.168.1.6/24</code>, direccionamiento IPv6 global (<code>2806:2f0:62a0:e1be::/64</code>) y servidor DNS en la puerta de enlace <code>192.168.1.1</code>. Adicionalmente, se detectó activa una interfaz virtual <em>VirtualBox Host-Only Ethernet Adapter</em> (<code>192.168.56.1/24</code>), utilizada para entornos de virtualización local.
+        </p>
+        <figure class="evidence-card">
+          <div class="image-wrapper">
+            <img src="../imagenes/actividad19_6.PNG" alt="Captura de configuración IP con ipconfig /all" class="activity-image">
+          </div>
+          <figcaption><strong>Figura 6:</strong> Parámetros de adaptadores de red físicos y virtuales (<code>06_info_red.txt</code>).</figcaption>
+        </figure>
+
+        <!-- 7. Nombre y sesiones NetBIOS -->
+        <h3 class="section-subheading" style="font-size: 1.15rem; margin-top: 1.5rem;">7. Nombre y sesiones NetBIOS</h3>
+        <p>
+          <strong>Comandos ejecutados:</strong><br>
+          <code>nbtstat -n &gt; 07_netbios.txt</code><br>
+          <code>nbtstat -S &gt;&gt; 07_netbios.txt</code>
+        </p>
+        <p>
+          <strong>Análisis:</strong> Los registros locales de NetBIOS confirman la pertenencia del host al grupo de trabajo <code>WORKGROUP</code> bajo el identificador <code>DESKTOP-6IQHR2F</code> (servicios <code>&lt;00&gt;</code> y <code>&lt;20&gt;</code>) en sus interfaces activas (<code>192.168.1.6</code> y <code>192.168.56.1</code>). La tabla de sesiones (<code>nbtstat -S</code>) arrojó cero conexiones activas (<em>No hay conexiones</em>), descartando transferencias de archivos o movimientos laterales en curso vía NetBIOS.
+        </p>
+        <figure class="evidence-card">
+          <div class="image-wrapper">
+            <img src="../imagenes/actividad19_7.PNG" alt="Captura de nombres y sesiones NetBIOS" class="activity-image">
+          </div>
+          <figcaption><strong>Figura 7:</strong> Tabla de nombres locales y sesiones NetBIOS mediante <code>nbtstat</code>.</figcaption>
+        </figure>
+
+        <!-- 8. Conexiones establecidas y puertos -->
+        <h3 class="section-subheading" style="font-size: 1.15rem; margin-top: 1.5rem;">8. Conexiones establecidas y relación aplicación-puerto</h3>
+        <p>
+          <strong>Comandos ejecutados:</strong><br>
+          <code>netstat -an &gt; 08_conexiones.txt</code><br>
+          <code>netstat -anob &gt; 09_aplicaciones_puestos.txt</code>
+        </p>
+        <p>
+          <strong>Análisis:</strong> El cruce entre el estado de sockets y los identificadores de proceso (PID) validó que las conexiones externas en estado <code>ESTABLISHED</code> corresponden a aplicaciones legítimas identificadas previamente en memoria: <code>Telegram.exe</code> (PID <code>12800</code>) conectado a <code>149.154.175.59:443</code>, <code>chrome.exe</code> (PID <code>12544</code>) hacia Google, <code>WINWORD.EXE</code> (PID <code>7884</code>) y <code>WpnService</code> (PID <code>5556</code>) hacia infraestructura de Microsoft, así como tráfico hacia <code>72.145.35.104:443</code>. Asimismo, se detectaron múltiples servicios de National Instruments escuchando en todas las interfaces (<code>0.0.0.0</code>), destacando <code>ApplicationWebServer.exe</code> (PID <code>8004</code>, puerto TCP <code>8080</code>) y <code>SystemWebServer.exe</code> (PID <code>6648</code>, puerto TCP <code>3582</code>), además de <code>lkads.exe</code> (puerto <code>2343</code>) y <code>nisvcloc.exe</code> (puerto <code>3580</code>), lo que constituye un vector de exposición innecesario en la red local.
+        </p>
+        <figure class="evidence-card">
+          <div class="image-wrapper">
+            <img src="../imagenes/actividad19_8.PNG" alt="Captura de conexiones activas y procesos asociados con netstat" class="activity-image">
+          </div>
+          <figcaption><strong>Figura 8:</strong> Puertos en escucha y conexiones establecidas vinculadas a binarios ejecutables.</figcaption>
+        </figure>
+
+        <!-- 9. Caché DNS -->
+        <h3 class="section-subheading" style="font-size: 1.15rem; margin-top: 1.5rem;">9. Caché DNS</h3>
+        <p>
+          <strong>Comando ejecutado:</strong> <code>ipconfig /displaydns &gt; 10_cache_dns.txt</code>
+        </p>
+        <p>
+          <strong>Análisis:</strong> El análisis de la caché DNS reveló un indicio relevante de alteración en la resolución local de nombres: diez dominios externos —ocho pertenecientes a Corel (como <code>apps.corel.com</code>) y dos correspondientes a infraestructura en la nube— resuelven hacia <code>127.0.0.1</code> con un TTL estático de <code>601303</code> segundos y registro inverso PTR, apuntando a una modificación deliberada en el fichero <code>hosts</code>. El resto de las entradas corresponden a tráfico legítimo de WhatsApp, Adobe, Mozilla, actualizaciones de Microsoft y la interfaz interna <code>desktop-6iqhr2f.mshome.net</code> (<code>172.19.112.1</code>).
+        </p>
+        <figure class="evidence-card">
+          <div class="image-wrapper">
+            <img src="../imagenes/actividad19_9.PNG" alt="Captura de registros de caché DNS" class="activity-image">
+          </div>
+          <figcaption><strong>Figura 9:</strong> Registros en memoria de resolución DNS (<code>10_cache_dns.txt</code>).</figcaption>
+        </figure>
+
+        <!-- 10. Tabla ARP -->
+        <h3 class="section-subheading" style="font-size: 1.15rem; margin-top: 1.5rem;">10. Tabla ARP: comunicación MAC-IP</h3>
+        <p>
+          <strong>Comando ejecutado:</strong> <code>arp -a &gt; 11_tabla_arp.txt</code>
+        </p>
+        <p>
+          <strong>Análisis:</strong> La inspección de la tabla ARP confirmó que en la interfaz inalámbrica (<code>192.168.1.6</code>) el equipo mantuvo comunicación reciente únicamente con su puerta de enlace (<code>192.168.1.1</code>, MAC <code>c4-eb-ff-85-d9-b2</code>) y con un host vecino de la misma subred (<code>192.168.1.4</code>, MAC <code>f4-dd-06-60-eb-24</code>). La unicidad entre direcciones físicas y lógicas descartó indicios de suplantación ARP (<em>ARP Spoofing</em>). La interfaz virtual <code>192.168.56.1</code> no presentó entradas dinámicas activas.
+        </p>
+        <figure class="evidence-card">
+          <div class="image-wrapper">
+            <img src="../imagenes/actividad19_10.PNG" alt="Captura de tabla ARP" class="activity-image">
+          </div>
+          <figcaption><strong>Figura 10:</strong> Correspondencia de direcciones IP y MAC en la subred local (<code>11_tabla_arp.txt</code>).</figcaption>
+        </figure>
+
+        <!-- 11. Perfiles de redes WiFi -->
+        <h3 class="section-subheading" style="font-size: 1.15rem; margin-top: 1.5rem;">11. Perfiles de redes Wi-Fi</h3>
+        <p>
+          <strong>Comandos ejecutados:</strong><br>
+          <code>netsh wlan show profiles &gt; 12_redes_wifi.txt</code><br>
+          <code>netsh wlan show profile name="CC" key=clear</code>
+        </p>
+        <p>
+          <strong>Análisis:</strong> Se extrajeron 19 perfiles de red inalámbrica almacenados en el sistema, clasificados en redes domésticas (Totalplay, Megacable, Infinitum), redes institucionales (<code>CNT_UPSLP</code>, <code>UAE1_UPSLP</code>, <code>UAE1</code>, <code>CC</code>, <code>CID</code>), puntos de acceso personales (<code>iPhone de Andrea</code>, <code>S24+ de Santiago</code>, <code>HUAWEI P smart</code>) y redes públicas compartidas (<code>Club_Totalplay_WiFi</code>). Este artefacto permite reconstruir la movilidad física del dispositivo e identificar su exposición previa a redes públicas vulnerables a ataques de intermediario (MitM).
+        </p>
+        <figure class="evidence-card">
+          <div class="image-wrapper">
+            <img src="../imagenes/actividad19_11.PNG" alt="Captura de perfiles Wi-Fi almacenados" class="activity-image">
+          </div>
+          <figcaption><strong>Figura 11:</strong> Extracción de perfiles Wi-Fi y credenciales almacenadas mediante <code>netsh wlan</code>.</figcaption>
+        </figure>
+
+        <!-- 12. Histórico del intérprete de comandos -->
+        <h3 class="section-subheading" style="font-size: 1.15rem; margin-top: 1.5rem;">12. Histórico del intérprete de comandos</h3>
+        <p>
+          <strong>Comando ejecutado:</strong> <code>doskey /history &gt; 13_historial_cmd.txt</code>
+        </p>
+        <p>
+          <strong>Análisis:</strong> La extracción del historial de la sesión activa de Símbolo del sistema registró exclusivamente los comandos ejecutados por el equipo investigador dentro de <code>C:\Users\Andrea\Documents\Ciberseguridad\Actividad19</code>, proporcionando trazabilidad auditada de la intervención y documentando el efecto observador. Dado que <code>doskey</code> opera únicamente sobre el búfer volátil de la ventana <code>cmd.exe</code> en curso, en una fase posterior en disco correspondería auditar <code>ConsoleHost_history.txt</code> de PowerShell y archivos <em>Prefetch</em>.
+        </p>
+        <figure class="evidence-card">
+          <div class="image-wrapper">
+            <img src="../imagenes/actividad19_12.PNG" alt="Captura del historial de comandos con doskey" class="activity-image">
+          </div>
+          <figcaption><strong>Figura 12:</strong> Bitácora de comandos ejecutados en la sesión activa (<code>13_historial_cmd.txt</code>).</figcaption>
+        </figure>
+
+        <!-- 13. Unidades de red mapeadas -->
+        <h3 class="section-subheading" style="font-size: 1.15rem; margin-top: 1.5rem;">13. Unidades de red mapeadas</h3>
+        <p>
+          <strong>Comando ejecutado:</strong> <code>net use &gt; 14_unidades_mapeadas.txt</code>
+        </p>
+        <p>
+          <strong>Análisis:</strong> La consulta arrojó un listado vacío (<em>No hay entradas en la lista</em>), confirmando que el sistema comprometido no mantiene conexiones activas ni persistentes hacia recursos de almacenamiento en servidores remotos.
+        </p>
+        <figure class="evidence-card">
+          <div class="image-wrapper">
+            <img src="../imagenes/actividad19_13.PNG" alt="Captura de unidades de red mapeadas" class="activity-image">
+          </div>
+          <figcaption><strong>Figura 13:</strong> Verificación de unidades de red montadas mediante <code>net use</code>.</figcaption>
+        </figure>
+
+        <!-- 14. Recursos compartidos locales -->
+        <h3 class="section-subheading" style="font-size: 1.15rem; margin-top: 1.5rem;">14. Recursos compartidos locales</h3>
+        <p>
+          <strong>Comando ejecutado:</strong> <code>net share &gt; 15_recursos_compartidos.txt</code>
+        </p>
+        <p>
+          <strong>Análisis:</strong> Se verificó que el sistema expone únicamente los recursos administrativos nativos de Windows (<code>C$</code>, <code>IPC$</code> y <code>ADMIN$</code>), sin presencia de carpetas compartidas creadas por terceros para exfiltración o movimiento lateral.
+        </p>
+        <figure class="evidence-card">
+          <div class="image-wrapper">
+            <img src="../imagenes/actividad19_14.PNG" alt="Captura de recursos compartidos locales" class="activity-image">
+          </div>
+          <figcaption><strong>Figura 14:</strong> Recursos compartidos activos en el equipo (<code>15_recursos_compartidos.txt</code>).</figcaption>
+        </figure>
+
+        <!-- 15. Información del sistema -->
+        <h3 class="section-subheading" style="font-size: 1.15rem; margin-top: 1.5rem;">15. Información detallada del sistema</h3>
+        <p>
+          <strong>Comando ejecutado:</strong> <code>systeminfo &gt; 16_info_sistema.txt</code>
+        </p>
+        <p>
+          <strong>Análisis:</strong> El host <code>DESKTOP-6IQHR2F</code> corresponde a un equipo portátil <strong>Dell Inspiron 5566</strong> con procesador Intel x64 (~2901 MHz), 8,090 MB de memoria física y Windows 10 Pro (compilación 19045). Fue instalado originalmente el <code>22/12/2022</code>, cuenta con 43 revisiones de seguridad aplicadas y registró su último arranque el <code>15/11/2026</code> a las <code>01:54:21 a. m.</code> (UTC-6).
+        </p>
+        <figure class="evidence-card">
+          <div class="image-wrapper">
+            <img src="../imagenes/actividad19_15.PNG" alt="Captura de información del sistema con systeminfo" class="activity-image">
+          </div>
+          <figcaption><strong>Figura 15:</strong> Especificaciones de hardware, SO y parches instalados (<code>16_info_sistema.txt</code>).</figcaption>
+        </figure>
+
+        <!-- 16. Tareas programadas -->
+        <h3 class="section-subheading" style="font-size: 1.15rem; margin-top: 1.5rem;">16. Tareas programadas</h3>
+        <p>
+          <strong>Comando ejecutado:</strong> <code>schtasks /query /fo LIST /v &gt; 17_tareas_programadas.txt</code>
+        </p>
+        <p>
+          <strong>Análisis:</strong> La revisión de tareas programadas permitió descartar mecanismos de persistencia maliciosa. En la carpeta raíz (<code>\</code>) se identificaron tareas vinculadas al usuario local <code>Andrea</code>, destacando <code>\Iniciar ThrottStop</code> (<code>C:\ThrottleStop\ThrottleStop.exe</code>, utilidad de control térmico que arrojó código de salida 2 al no hallar el binario) y tareas residuales de actualización de Opera (<code>launcher.exe</code>). Las demás tareas activas corresponden a software legítimo de Dell SupportAssist, Adobe Acrobat, National Instruments, Zoom, Google Chrome, Microsoft Office y servicios nativos de Windows.
+        </p>
+        <figure class="evidence-card">
+          <div class="image-wrapper">
+            <img src="../imagenes/actividad19_16.PNG" alt="Captura de tareas programadas" class="activity-image">
+          </div>
+          <figcaption><strong>Figura 16:</strong> Auditoría de tareas programadas para detección de persistencia (<code>17_tareas_programadas.txt</code>).</figcaption>
+        </figure>
+
+        <!-- 17. Registro de eventos del sistema -->
+        <h3 class="section-subheading" style="font-size: 1.15rem; margin-top: 1.5rem;">17. Registro de eventos del sistema</h3>
+        <p>
+          <strong>Comando ejecutado:</strong> <code>wevtutil epl System "C:\Users\Andrea\Desktop\LogsSystema.evtx"</code>
+        </p>
+        <p>
+          <strong>Análisis:</strong> Se exportó el registro binario del sistema con un total de 34,839 eventos. Los registros asociados a <code>Microsoft-Windows-WHEA-Logger</code> muestran advertencias recurrentes vinculadas al controlador de puente PCI-a-PCI de chipset Intel sobre placa base Dell, mientras que los eventos de <code>Microsoft-Windows-Time</code> (Evento 158, <code>VMICTimeProvider</code>) confirman que el sistema operativo se ejecutaba directamente sobre hardware físico (<em>bare-metal</em>) y no como invitado virtual Hyper-V. Estas advertencias responden a políticas de administración de energía del bus PCIe y no representan indicadores de compromiso (IoC).
+        </p>
+        <figure class="evidence-card">
+          <div class="image-wrapper">
+            <img src="../imagenes/actividad19_17.PNG" alt="Captura del Visor de Eventos con LogsSystema.evtx" class="activity-image">
+          </div>
+          <figcaption><strong>Figura 17:</strong> Inspección forense del archivo exportado <code>LogsSystema.evtx</code> en el Visor de Eventos.</figcaption>
+        </figure>
+
+        <!-- 18. Fichero hosts -->
+        <h3 class="section-subheading" style="font-size: 1.15rem; margin-top: 1.5rem;">18. Fichero hosts</h3>
+        <p>
+          <strong>Comando ejecutado:</strong> <code>type C:\Windows\System32\drivers\etc\hosts &gt; 19_fichero_hosts.txt</code>
+        </p>
+        <p>
+          <strong>Análisis:</strong> La inspección directa del archivo <code>hosts</code> confirmó la causa raíz de las anomalías detectadas en la caché DNS durante el paso 9. El fichero presenta diez registros activos que redirigen hacia <code>127.0.0.1</code> ocho dominios de Corel (<code>apps.corel.com</code>, <code>iws.corel.com</code>, <code>mc.corel.com</code>, etc.) y dos dominios de infraestructura en la nube (<code>deploy.akamaitechnologies.com</code> y <code>compute-1.amazonaws.com</code>), seguidos del comentario <code># Corel 127.0.0.1</code>. Si bien corresponde a un bloqueo local de telemetría de software de terceros, constituye un hallazgo relevante de seguridad al alterar la resolución DNS hacia nodos legítimos de Akamai y AWS.
+        </p>
+        <figure class="evidence-card">
+          <div class="image-wrapper">
+            <img src="../imagenes/actividad19_18.PNG" alt="Captura del contenido del fichero hosts" class="activity-image">
+          </div>
+          <figcaption><strong>Figura 18:</strong> Redirecciones hacia <code>127.0.0.1</code> identificadas en el fichero <code>hosts</code> (<code>19_fichero_hosts.txt</code>).</figcaption>
+        </figure>
+
+        <!-- 19. Árbol de creación de archivos -->
+        <h3 class="section-subheading" style="font-size: 1.15rem; margin-top: 1.5rem;">19. Árbol de creación de archivos</h3>
+        <p>
+          <strong>Comando ejecutado:</strong> <code>dir C:\ /s /tc /o:d &gt; 20_arbol_archivos_creacion.txt</code>
+        </p>
+        <p>
+          <strong>Análisis:</strong> Se identificaron los directorios de fábrica <code>dell</code> (<code>31/03/2017</code>), <code>Drivers</code>, <code>Apps</code> y <code>backup</code> (<code>07/07/2017</code>), corroborando de manera independiente la atribución de hardware Dell obtenida en <code>LogsSystema.evtx</code>. Posteriormente aparecen las carpetas base del sistema operativo (<code>Windows</code>, <code>Users</code>, <code>Program Files</code>, <code>Program Files (x86)</code>, <code>PerfLogs</code>) creadas el <code>07/12/2019</code>, artefactos residuales de actualización fechados el <code>20/02/2025</code> y herramientas de desarrollo (<code>Dev-Cpp</code>, <code>xampp</code>, <code>Java</code>, <code>Mikroe</code>, <code>ThrottleStop</code>) instaladas cronológicamente.
+        </p>
+        <figure class="evidence-card">
+          <div class="image-wrapper">
+            <img src="../imagenes/actividad19_19.PNG" alt="Captura del árbol de creación de archivos en C:\" class="activity-image">
+          </div>
+          <figcaption><strong>Figura 19:</strong> Línea temporal de creación de directorios y archivos en la unidad <code>C:\</code> (<code>20_arbol_archivos_creacion.txt</code>).</figcaption>
+        </figure>
+      </section>
+
+      <!-- Conclusión y Recomendaciones -->
+      <section class="detail-section">
+        <h2 class="section-subheading">Conclusión y acciones de contención</h2>
+        <p>
+          La aplicación sistemática del protocolo de adquisición en caliente conforme a <strong>RFC 3227</strong> permitió preservar de manera íntegra 20 artefactos volátiles y persistentes junto con el registro binario <code>LogsSystema.evtx</code> del equipo <code>DESKTOP-6IQHR2F</code>. El análisis técnico integral demuestra que el núcleo del sistema operativo, los mecanismos de autenticación y las soluciones de protección <em>endpoint</em> (Microsoft Defender y Reason EDR) mantienen su integridad operacional, descartándose compromisos activos de persistencia en servicios, tareas programadas, cuentas locales o canales C2 en red.
+        </p>
+        <p>
+          No obstante, se comprobaron anomalías relevantes de configuración y seguridad que requieren acciones inmediatas de contención y auditoría complementaria:
+        </p>
+        <ul class="custom-list">
+          <li><strong>1. Restauración del fichero hosts y purga de caché DNS:</strong> Eliminar las 10 entradas no estándar en <code>C:\Windows\System32\drivers\etc\hosts</code> (bloqueos de Corel, Akamai y AWS), restablecer la plantilla limpia de Microsoft y ejecutar <code>ipconfig /flushdns</code>.</li>
+          <li><strong>2. Restricción de superficie de red local:</strong> Reconfigurar <code>ApplicationWebServer.exe</code> y <code>SystemWebServer.exe</code> de National Instruments para escuchar únicamente en interfaz de bucle local (<code>127.0.0.1</code>) o bloquear los puertos TCP <code>2343</code>, <code>3580</code>, <code>3582</code> y <code>8080</code> mediante el Firewall de Windows Defender.</li>
+          <li><strong>3. Higiene de perfiles inalámbricos:</strong> Eliminar los perfiles Wi-Fi públicos compartidos (<code>Club_Totalplay_WiFi</code>) mediante <code>netsh wlan delete profile</code> para evitar reconexiones automáticas en entornos no confiables.</li>
+        </ul>
+      </section>
+
+      <!-- PDF / Documentación -->
+      <section class="detail-section">
+        <h2 class="section-subheading">Documentación de la práctica (PDF)</h2>
+        <p class="section-desc">
+          Puedes consultar el reporte completo de la práctica directamente a continuación o descargarlo en tu dispositivo:
+        </p>
+        
+        <div style="width: 100%; height: 650px; border-radius: 16px; overflow: hidden; border: 1.5px solid #d8b4fe; box-shadow: 0 10px 25px rgba(124, 58, 237, 0.1);">
+          <iframe src="../docs/MoruaBravoAndrea-ACT19.pdf" width="100%" height="100%" style="border: none;">
+            <p>Tu navegador no soporta la visualización de archivos PDF. <a href="../docs/MoruaBravoAndrea-ACT19.pdf">Haz clic aquí para descargarlo.</a></p>
+          </iframe>
+        </div>
+      </section>
+      
+      <!-- Navegación entre Actividades -->
+      <nav class="activity-navigation">
+        <a href="../actividades/actividad18.html" class="btn-nav">← Anterior actividad</a>
+        <a href="../parcial3.html" class="btn-nav primary">Regresar a parcial 3</a>
+      </nav>
+
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p style="color:rgb(77, 6, 107)">&copy; 2026 Andrea Morúa Bravo. Universidad Politécnica de San Luis Potosí</p>
+    <div class="footer-links">
+      <h3>Recursos Profesionales</h3>
+      <ul class="social-cv-links">
+        <li><a href="https://www.linkedin.com/in/andrea-morua-01092732b/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        <li><a href="https://github.com/Andreamoruaa" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        <li><a href="../../../assets/docs/Andrea Morua Bravo CV.pdf" target="_blank" rel="noopener noreferrer">Curriculum Vitae</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="../../../assets/js/main.js"></script>
+</body>
+</html>
